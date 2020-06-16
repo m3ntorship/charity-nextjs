@@ -26,7 +26,7 @@ const Home = ({ data }) => {
 };
 
 export async function getServerSideProps() {
-  const res = await fetch("http://localhost:1337/articles");
+  const res = await fetch("https://charity-cms-dev.m3ntorship.net/articles");
   const jsonData = await res.json();
 
   return {
