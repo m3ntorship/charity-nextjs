@@ -24,3 +24,7 @@ yarn-error.log*
 .firebase
 package-lock.json
 storybook-static
+
+#copy of charity prohject
+
+/charity-react
