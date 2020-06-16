@@ -16,3 +16,5 @@
 }
 
 @tailwind utilities;
+/* import components styles */
+@import "./logo.css";
