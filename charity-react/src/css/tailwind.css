@@ -1,0 +1,13 @@
+/* Tailwind Base & Components */
+/*! purgecss start ignore */
+@import url('tailwindcss/base');
+/*! purgecss end ignore */
+@import url('tailwindcss/components');
+
+/* Global Styles */
+@import url('./global.css');
+/*! purgecss start ignore */
+@import url('./fontawesome.css');
+/*! purgecss end ignore */
+/* Tailwind utilities */
+@import url('tailwindcss/utilities');
