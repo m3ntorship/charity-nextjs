@@ -18,7 +18,7 @@ const Home = ({
   featuredBannerData,
   causesData,
   numbersData,
-  upcomingEventsData,
+  // upcomingEventsData,
   testimonialsData,
   workStyleData,
   newsData,
@@ -33,10 +33,10 @@ const Home = ({
       <FeaturedBanner data={featuredBannerData} />
       <Causes data={causesData} />
       <Numbers data={numbersData} />
-      <UpcomingEventsSection
+      {/* <UpcomingEventsSection
         data={upcomingEventsData}
         cardData={upcomingEventsCardData}
-      />
+      /> */}
       <Testimonials data={testimonialsData} />
       <WorkStyle data={workStyleData} />
       <News data={newsData} />
@@ -53,7 +53,7 @@ export function getServerSideProps() {
     charityAPI("/featured-banner"),
     charityAPI("/popular-causes"),
     charityAPI("/speaking-numbers"),
-    charityAPI("/upcoming-events"),
+    // charityAPI("/upcoming-events"),
     charityAPI("/what-they-say"),
     charityAPI("/how-we-work"),
     charityAPI("/news-and-articles"),
@@ -67,7 +67,7 @@ export function getServerSideProps() {
       { data: featuredBannerData },
       { data: causesData },
       { data: numbersData },
-      { data: upcomingEventsData },
+      // { data: upcomingEventsData },
       { data: testimonialsData },
       { data: workStyleData },
       { data: newsData },
@@ -82,7 +82,7 @@ export function getServerSideProps() {
           featuredBannerData,
           causesData,
           numbersData,
-          upcomingEventsData,
+          // upcomingEventsData,
           testimonialsData,
           workStyleData,
           newsData,
