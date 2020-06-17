@@ -1,5 +1,6 @@
 @tailwind base;
 @tailwind components;
+@tailwind utilities;
 
 .btn-blue {
   @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
@@ -15,6 +16,6 @@
   line-height: 1.15;
 }
 
-@tailwind utilities;
 /* import components styles */
 @import "./logo.css";
+@import "./headerNavigation.css";
