@@ -1,12 +1,23 @@
 import Layout from "../components/Layout";
 import { charityAPI } from "../clients";
-const Home = ({ articlesData }) => {
+const Home = ({
+  articlesData,
+  ContactsData,
+  logoData,
+  socialMediasData,
+  pagesData
+}) => {
   const homeArticles = articlesData.filter(
     ({ is_in_home }) => is_in_home === true
-  );
+  )
   return (
     <>
-      <Layout>
+      <Layout
+        ContactsData={ContactsData}
+        logoData={logoData}
+        socialMediasData={socialMediasData}
+        pagesData = {pagesData}
+      >
         <h1 className="text-pink-700">This is the Home page</h1>
         <div className="flex justify-center text-center">
           {homeArticles.map(
@@ -27,10 +38,22 @@ const Home = ({ articlesData }) => {
 };
 
 export async function getServerSideProps() {
-  return Promise.all([charityAPI("/articles")]).then(
-    ([{ data: articlesData }]) => {
+  return Promise.all([
+    charityAPI("/articles"),
+    charityAPI("/main-contacts"),
+    charityAPI("/logo"),
+    charityAPI("/socialmedias"),
+    charityAPI("/pages"),
+  ]).then(
+    ([
+      { data: articlesData },
+      { data: ContactsData },
+      { data: logoData },
+      { data: socialMediasData },
+      { data: pagesData },
+    ]) => {
       return {
-        props: { articlesData },
+        props: { articlesData, ContactsData, logoData,socialMediasData,pagesData },
       };
     }
   );
