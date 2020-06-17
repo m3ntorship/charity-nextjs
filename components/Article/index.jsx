@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link'
+// import Link from 'next/link'
 
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
@@ -42,13 +42,13 @@ const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
             <h4 className="text-c100 font-bold">{title}</h4>
           </div>
           <div className="block text-c100 text-center spicial-info cursor-pointer">
-            <Link
+            {/* <Link
               to={`articles/${id}`}
               className="w-full h-full flex justify-center items-center"
             >
               <i className="fas fa-long-arrow-alt-right"></i>
               {linkText}
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>
