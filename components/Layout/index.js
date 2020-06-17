@@ -1,12 +1,28 @@
 import Link from "next/link";
+import Head from "next/head";
 import Header from "../Header";
-import  HeaderNavigation from  '../HeaderNavigation'
+import HeaderNavigation from "../HeaderNavigation";
 
-const Layout = ({ children,logoData,socialMediasData,ContactsData,pagesData}) => {
+const Layout = ({
+  children,
+  logoData,
+  socialMediasData,
+  ContactsData,
+  pagesData,
+}) => {
   return (
     <>
-      <Header socialMediasData = {socialMediasData} />
-      <HeaderNavigation logoData = {logoData} ContactsData ={ContactsData} pagesData = {pagesData} />
+      <Head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"></link>
+      </Head>
+      <Header socialMediasData={socialMediasData} />
+      <HeaderNavigation
+        logoData={logoData}
+        ContactsData={ContactsData}
+        pagesData={pagesData}
+      />
       <header>
         <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
           <ul className="flex w-full text-center justify-center">
