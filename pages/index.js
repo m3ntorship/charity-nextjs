@@ -4,7 +4,7 @@ import { Activities } from "../components/Activities";
 import { FeaturedBanner } from "../components/FeaturedBanner";
 import { Causes } from "../components/Causes";
 import { Numbers } from "../components/Numbers";
-import { UpcomingEventsSection } from "../components/UpcomingEvents";
+// import { UpcomingEventsSection } from "../components/UpcomingEvents";
 import { Testimonials } from "../components/Testimonials";
 import { WorkStyle } from "../components/WorkStyle";
 import { News } from "../components/NewsAndArticles";
