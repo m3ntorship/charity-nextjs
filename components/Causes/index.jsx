@@ -136,7 +136,7 @@ const Causes = ({ data }) => {
     transform: inView ? 'translateY(0%)' : 'translateY(-50%)'
   });
 
-  const isCarousel = useMedia(['(min-width: 768px)'], [false], true);
+  const isCarousel = false
 
 
 
