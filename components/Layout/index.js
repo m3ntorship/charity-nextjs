@@ -1,8 +1,12 @@
 import Link from "next/link";
+import Header from "../Header";
+import  HeaderNavigation from  '../HeaderNavigation'
 
-const Layout = ({ children }) => {
+const Layout = ({ children,logoData,socialMediasData,ContactsData,pagesData}) => {
   return (
     <>
+      <Header socialMediasData = {socialMediasData} />
+      <HeaderNavigation logoData = {logoData} ContactsData ={ContactsData} pagesData = {pagesData} />
       <header>
         <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
           <ul className="flex w-full text-center justify-center">
