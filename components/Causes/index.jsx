@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import useMedia from '../../Helpers/useMedia';
+
 import Heading from '../Heading';
 import {
   CarouselProvider,
@@ -25,7 +25,7 @@ const Cause = ({
     threshold: 0.3,
     triggerOnce: true
   });
-  const isMobile = useMedia(['(min-width: 768px)'], [false], true);
+  const isMobile = false
 
   const slideCardRef = useRef();
   const slideCard = useSpring({
