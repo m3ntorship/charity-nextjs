@@ -1,20 +1,102 @@
 @tailwind base;
 @tailwind components;
-
-.btn-blue {
-  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
-}
-
-.hero {
-  @apply py-20;
-}
-
-.title {
-  @apply text-5xl text-center;
-  color: #333;
-  line-height: 1.15;
-}
-
 @tailwind utilities;
+
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+  font-family: "Merriweather", "serif";
+}
+
+%btn {
+  @apply leading-none text-base text-c100 font-extrabold px-16;
+}
+
+.btn-lg {
+  @extend %btn;
+  @apply py-8;
+}
+
+.btn-md {
+  @extend %btn;
+  @apply py-7;
+}
+.btn {
+  transition: 0.1s;
+}
+.btn:hover {
+  filter: brightness(90%);
+}
+
+.btn-sm {
+  @extend %btn;
+  @apply py-5;
+}
+.btn-card {
+  @apply text-base font-extrabold bg-c300 py-6 px-24 text-c100;
+}
+
+a {
+  transition: background 0.1s;
+}
+a:hover {
+  color: #efc94c;
+}
+
+.underline {
+  border-bottom-color: currentColor;
+  border-bottom-style: solid;
+  display: inline-block;
+  line-height: 1;
+  border-bottom-width: 1px;
+}
+
+section {
+  @apply py-28;
+}
+.container {
+  width: 70%;
+  max-width: 1170px;
+  margin: 0 auto;
+}
+@media screen and (max-width: 1280px) {
+  .container {
+    width: 85%;
+  }
+}
+p {
+  @apply leading-loose;
+}
+
+/* Items showcase in row (works for activities and work style sections) */
+.showcase-row {
+  @apply flex flex-row justify-center;
+}
+
+.showcase-row__heading {
+  @apply text-c100 text-md py-3 font-bold;
+}
+
 /* import components styles */
 @import "./logo.css";
+@import "./headerNavigation.css";
+@import "./contactTop.css";
+@import "./headerCarousel.css";
+@import "./activities.css";
+@import "./article.css";
+@import "./articleBanner.css";
+@import "./articleModel.css";
+@import "./articleSearch.css";
+@import "./causes.css";
+@import "./contactInfo.css";
+@import "./featuredBanner.css";
+@import "./featuredCause.css";
+@import "./newsAndArticles.css";
+@import "./numbers.css";
+@import "./sponsers.css";
+@import "./testimonials.css";
+@import "./upcomingEvents.css";
+@import "./volunteerBanner.css";
+@import "./welcome.css";
+@import "./workStyle.css";
