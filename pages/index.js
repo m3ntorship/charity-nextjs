@@ -1,23 +1,26 @@
 import Layout from "../components/Layout";
+import HeaderCarousel from "../components/HeaderCarousel";
 import { charityAPI } from "../clients";
 const Home = ({
   articlesData,
   ContactsData,
   logoData,
   socialMediasData,
-  pagesData
+  pagesData,
+  mainCarouselsData,
 }) => {
   const homeArticles = articlesData.filter(
     ({ is_in_home }) => is_in_home === true
-  )
+  );
   return (
     <>
       <Layout
         ContactsData={ContactsData}
         logoData={logoData}
         socialMediasData={socialMediasData}
-        pagesData = {pagesData}
+        pagesData={pagesData}
       >
+      <HeaderCarousel mainCarouselsData = {mainCarouselsData}  />
         <h1 className="text-pink-700">This is the Home page</h1>
         <div className="flex justify-center text-center">
           {homeArticles.map(
@@ -44,6 +47,7 @@ export async function getServerSideProps() {
     charityAPI("/logo"),
     charityAPI("/socialmedias"),
     charityAPI("/pages"),
+    charityAPI("/main-carousels"),
   ]).then(
     ([
       { data: articlesData },
@@ -51,9 +55,17 @@ export async function getServerSideProps() {
       { data: logoData },
       { data: socialMediasData },
       { data: pagesData },
+      { data: mainCarouselsData },
     ]) => {
       return {
-        props: { articlesData, ContactsData, logoData,socialMediasData,pagesData },
+        props: {
+          articlesData,
+          ContactsData,
+          logoData,
+          socialMediasData,
+          pagesData,
+          mainCarouselsData,
+        },
       };
     }
   );
