@@ -1,6 +1,14 @@
+// import Header from "../Header";
+import { Footer } from "../Footer";
 
-const Layout = ({ children }) => {
-  return <>{children}</>;
+const Layout = ({ children, footerData }) => {
+  return (
+    <>
+      {/* <Header /> */}
+      {children}
+      <Footer data={footerData} />
+    </>
+  );
 };
 
 export default Layout;
