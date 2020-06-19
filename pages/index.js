@@ -11,6 +11,7 @@ import { News } from "../components/NewsAndArticles";
 import { Sponsers } from "../components/Sponsers";
 import { MainContact } from "../components/MainContact";
 import { charityAPI } from "../clients";
+import Layout from "../components/Layout";
 const Home = ({
   headerCarouselData,
   welcomeData,
@@ -24,10 +25,10 @@ const Home = ({
   newsData,
   sponsersData,
   mainContactData,
+  footerData,
 }) => {
   return (
-    <>
-      
+    <Layout footerData={footerData}>
       <HeaderCarousel data={headerCarouselData} />
       <Welcome data={welcomeData} />
       <Activities data={activitiesData} />
@@ -43,7 +44,7 @@ const Home = ({
       <News data={newsData} />
       <Sponsers data={sponsersData} />
       <MainContact data={mainContactData} />
-    </>
+    </Layout>
   );
 };
 export function getServerSideProps() {
@@ -60,6 +61,7 @@ export function getServerSideProps() {
     charityAPI("/news-and-articles"),
     charityAPI("/Sponsers"),
     charityAPI("/main-contacts"),
+    charityAPI("/footer"),
   ]).then(
     ([
       { data: headerCarouselData },
@@ -74,6 +76,7 @@ export function getServerSideProps() {
       { data: newsData },
       { data: sponsersData },
       { data: mainContactData },
+      { data: footerData },
     ]) => {
       return {
         props: {
@@ -89,6 +92,7 @@ export function getServerSideProps() {
           newsData,
           sponsersData,
           mainContactData,
+          footerData,
         },
       };
     }
