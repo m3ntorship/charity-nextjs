@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Head from "next/head";
 
-import Header from "../Header";
+import HeaderTop from "../HeaderTop";
 import HeaderNavigation from "../HeaderNavigation";
 
 const Layout = ({
@@ -22,14 +22,14 @@ const Layout = ({
         ></link>
       </Head>
       <header>
-        <Header socialMediasData={socialMediasData} />
+        <HeaderTop socialMediasData={socialMediasData} />
         <HeaderNavigation
           logoData={logoData}
           ContactsData={ContactsData}
           pagesData={pagesData}
         />
       </header>
-      <main className="p-12 text-center">{children}</main>
+      <main >{children}</main>
       <footer className="bg-red-500 p-10">
         <h1 className="text-center ">footer content</h1>
       </footer>

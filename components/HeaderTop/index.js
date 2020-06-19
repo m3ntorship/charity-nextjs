@@ -1,4 +1,4 @@
-const Header = ({ socialMediasData }) => {
+const HeaderTop = ({ socialMediasData }) => {
   return (
     <div>
       <section className="contact-top p-0 items-center bg-c100 hidden md:flex">
@@ -35,4 +35,4 @@ const Header = ({ socialMediasData }) => {
     </div>
   );
 };
-export default Header;
+export default HeaderTop;
