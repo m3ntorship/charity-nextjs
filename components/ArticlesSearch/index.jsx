@@ -1,5 +1,4 @@
 import React from 'react';
-import './style.scss';
 import { Widget } from '../shared/Widget';
 import { SearchBar } from '../shared/SearchBar';
 

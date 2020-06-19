@@ -1,7 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import './style.css';
-import { Link } from 'react-router-dom';
+import  Link  from 'next/link';
 
 const NavigationLink = ({ url, title, secondaryClassName, linkClassName }) => {
   return (

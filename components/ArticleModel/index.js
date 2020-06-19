@@ -1,7 +1,5 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import "./styles.css";
-import { MainImgLoader, HeadlineLoader, BodyText, BodyImgs } from "./Loader";
 
 const ArticleModel = ({ data }) => {
   const {

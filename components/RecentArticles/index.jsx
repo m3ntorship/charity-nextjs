@@ -1,5 +1,4 @@
 import React from 'react';
-import { Loader, ChevronLoader, ListItemLoader } from './myLoader';
 import { Widget } from '../shared/Widget';
 import { ListItemWithThumbnail } from '../shared/ListItemWithThumbnail';
 
