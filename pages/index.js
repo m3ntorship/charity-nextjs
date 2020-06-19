@@ -26,6 +26,10 @@ const Home = ({
   sponsersData,
   mainContactData,
   footerData,
+  ContactsData,
+  logoData,
+  socialMediasData,
+  pagesData,
 }) => {
   let featuredCauseData = (data) => {
     if (data) {
@@ -43,7 +47,13 @@ const Home = ({
   };
 
   return (
-    <Layout footerData={footerData}>
+    <Layout
+      footerData={footerData}
+      ContactsData={ContactsData}
+      logoData={logoData}
+      socialMediasData={socialMediasData}
+      pagesData={pagesData}
+    >
       <HeaderCarousel data={headerCarouselData} />
       <Welcome data={welcomeData} />
       <Activities data={activitiesData} />
@@ -64,6 +74,10 @@ const Home = ({
 };
 export function getServerSideProps() {
   return Promise.all([
+    charityAPI("/main-contacts"),
+    charityAPI("/logo"),
+    charityAPI("/socialmedias"),
+    charityAPI("/pages"),
     charityAPI("/main-carousels"),
     charityAPI("/welcome-section"),
     charityAPI("/what-we-do"),
@@ -79,6 +93,10 @@ export function getServerSideProps() {
     charityAPI("/footer"),
   ]).then(
     ([
+      { data: ContactsData },
+      { data: logoData },
+      { data: socialMediasData },
+      { data: pagesData },
       { data: headerCarouselData },
       { data: welcomeData },
       { data: activitiesData },
@@ -95,6 +113,11 @@ export function getServerSideProps() {
     ]) => {
       return {
         props: {
+          ContactsData,
+          logoData,
+          socialMediasData,
+          pagesData,
+
           headerCarouselData,
           welcomeData,
           activitiesData,
