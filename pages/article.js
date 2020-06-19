@@ -29,8 +29,9 @@ export function getServerSideProps() {
           },
           articles: articlesData,
         },
-        
       },
     };
   });
 }
+
+export default article;
