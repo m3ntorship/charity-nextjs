@@ -1,39 +1,97 @@
-import Layout from "../components/Layout";
+import { HeaderCarousel } from "../components/HeaderCarousel";
+import { Welcome } from "../components/Welcome";
+import { Activities } from "../components/Activities";
+import { FeaturedBanner } from "../components/FeaturedBanner";
+import { Causes } from "../components/Causes";
+import { Numbers } from "../components/Numbers";
+// import { UpcomingEventsSection } from "../components/UpcomingEvents";
+import { Testimonials } from "../components/Testimonials";
+import { WorkStyle } from "../components/WorkStyle";
+import { News } from "../components/NewsAndArticles";
+import { Sponsers } from "../components/Sponsers";
+import { MainContact } from "../components/MainContact";
 import { charityAPI } from "../clients";
-const Home = ({ articlesData }) => {
-  const homeArticles = articlesData.filter(
-    ({ is_in_home }) => is_in_home === true
-  );
+const Home = ({
+  headerCarouselData,
+  welcomeData,
+  activitiesData,
+  featuredBannerData,
+  causesData,
+  numbersData,
+  // upcomingEventsData,
+  testimonialsData,
+  workStyleData,
+  newsData,
+  sponsersData,
+  mainContactData,
+}) => {
   return (
     <>
-      <Layout>
-        <h1 className="text-pink-700">This is the Home page</h1>
-        <div className="flex justify-center text-center">
-          {homeArticles.map(
-            ({ title, description, thumbnail: { url: imgUrl }, id }) => {
-              return (
-                <article key={id}>
-                  <img src={imgUrl} alt="" />
-                  <h1>{title}</h1>
-                  <p>{description}</p>
-                </article>
-              );
-            }
-          )}
-        </div>
-      </Layout>
+      
+      <HeaderCarousel data={headerCarouselData} />
+      <Welcome data={welcomeData} />
+      <Activities data={activitiesData} />
+      <FeaturedBanner data={featuredBannerData} />
+      <Causes data={causesData} />
+      <Numbers data={numbersData} />
+      {/* <UpcomingEventsSection
+        data={upcomingEventsData}
+        cardData={upcomingEventsCardData}
+      /> */}
+      <Testimonials data={testimonialsData} />
+      <WorkStyle data={workStyleData} />
+      <News data={newsData} />
+      <Sponsers data={sponsersData} />
+      <MainContact data={mainContactData} />
     </>
   );
 };
-
-export async function getServerSideProps() {
-  return Promise.all([charityAPI("/articles")]).then(
-    ([{ data: articlesData }]) => {
+export function getServerSideProps() {
+  return Promise.all([
+    charityAPI("/main-carousels"),
+    charityAPI("/welcome-section"),
+    charityAPI("/what-we-do"),
+    charityAPI("/featured-banner"),
+    charityAPI("/popular-causes"),
+    charityAPI("/speaking-numbers"),
+    // charityAPI("/upcoming-events"),
+    charityAPI("/what-they-say"),
+    charityAPI("/how-we-work"),
+    charityAPI("/news-and-articles"),
+    charityAPI("/Sponsers"),
+    charityAPI("/main-contacts"),
+  ]).then(
+    ([
+      { data: headerCarouselData },
+      { data: welcomeData },
+      { data: activitiesData },
+      { data: featuredBannerData },
+      { data: causesData },
+      { data: numbersData },
+      // { data: upcomingEventsData },
+      { data: testimonialsData },
+      { data: workStyleData },
+      { data: newsData },
+      { data: sponsersData },
+      { data: mainContactData },
+    ]) => {
       return {
-        props: { articlesData },
+        props: {
+          headerCarouselData,
+          welcomeData,
+          activitiesData,
+          featuredBannerData,
+          causesData,
+          numbersData,
+          // upcomingEventsData,
+          testimonialsData,
+          workStyleData,
+          newsData,
+          sponsersData,
+          mainContactData,
+        },
       };
     }
   );
 }
-
 export default Home;
