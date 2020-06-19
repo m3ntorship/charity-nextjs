@@ -1,6 +1,6 @@
 const Header = ({ socialMediasData }) => {
   return (
-    <header>
+    <div>
       <section className="contact-top p-0 items-center bg-c100 hidden md:flex">
         <div className="container px-20 w-full max-w-full md:flex justify-between">
           <div className="welcome-text text-sm">
@@ -32,7 +32,7 @@ const Header = ({ socialMediasData }) => {
           Start Donation
         </button>
       </section>
-    </header>
+    </div>
   );
 };
 export default Header;
