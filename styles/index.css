@@ -29,7 +29,8 @@ html {
 @import "./activities.css";
 @import "./article.css";
 @import "./articleBanner.css";
- @import "./articleModel.css";
+@import "./articleModel.css";
+@import "./articleSearch.css";
 @import "./causes.css";
 @import "./contactInfo.css";
 @import "./featuredBanner.css";
