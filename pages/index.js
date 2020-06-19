@@ -11,6 +11,7 @@ import { News } from "../components/NewsAndArticles";
 import { Sponsers } from "../components/Sponsers";
 import { MainContact } from "../components/MainContact";
 import { charityAPI } from "../clients";
+import Layout from "../components/Layout";
 const Home = ({
   headerCarouselData,
   welcomeData,
@@ -24,6 +25,11 @@ const Home = ({
   newsData,
   sponsersData,
   mainContactData,
+  footerData,
+  ContactsData,
+  logoData,
+  socialMediasData,
+  pagesData,
 }) => {
   let featuredCauseData = (data) => {
     if (data) {
@@ -41,7 +47,13 @@ const Home = ({
   };
 
   return (
-    <>
+    <Layout
+      footerData={footerData}
+      ContactsData={ContactsData}
+      logoData={logoData}
+      socialMediasData={socialMediasData}
+      pagesData={pagesData}
+    >
       <HeaderCarousel data={headerCarouselData} />
       <Welcome data={welcomeData} />
       <Activities data={activitiesData} />
@@ -57,11 +69,15 @@ const Home = ({
       <News data={newsData} />
       <Sponsers data={sponsersData} />
       <MainContact data={mainContactData} />
-    </>
+    </Layout>
   );
 };
 export function getServerSideProps() {
   return Promise.all([
+    charityAPI("/main-contacts"),
+    charityAPI("/logo"),
+    charityAPI("/socialmedias"),
+    charityAPI("/pages"),
     charityAPI("/main-carousels"),
     charityAPI("/welcome-section"),
     charityAPI("/what-we-do"),
@@ -74,8 +90,13 @@ export function getServerSideProps() {
     charityAPI("/news-and-articles"),
     charityAPI("/Sponsers"),
     charityAPI("/main-contacts"),
+    charityAPI("/footer"),
   ]).then(
     ([
+      { data: ContactsData },
+      { data: logoData },
+      { data: socialMediasData },
+      { data: pagesData },
       { data: headerCarouselData },
       { data: welcomeData },
       { data: activitiesData },
@@ -88,9 +109,15 @@ export function getServerSideProps() {
       { data: newsData },
       { data: sponsersData },
       { data: mainContactData },
+      { data: footerData },
     ]) => {
       return {
         props: {
+          ContactsData,
+          logoData,
+          socialMediasData,
+          pagesData,
+
           headerCarouselData,
           welcomeData,
           activitiesData,
@@ -103,6 +130,7 @@ export function getServerSideProps() {
           newsData,
           sponsersData,
           mainContactData,
+          footerData,
         },
       };
     }

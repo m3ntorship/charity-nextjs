@@ -1,20 +1,19 @@
-import React from 'react';
-import { parseISO, format } from 'date-fns';
-import './style.css';
+import React from "react";
+import { parseISO, format } from "date-fns";
 export default class Articles extends React.Component {
   getDate(myDate) {
     const theDate = parseISO(myDate);
 
     return {
-      time: format(theDate, 'hh:mm a').toLowerCase(),
-      day: format(theDate, 'dd'),
-      month: format(theDate, 'MMM'),
-      year: format(theDate, 'yyyy')
+      time: format(theDate, "hh:mm a").toLowerCase(),
+      day: format(theDate, "dd"),
+      month: format(theDate, "MMM"),
+      year: format(theDate, "yyyy"),
     };
   }
 
   render() {
-    const articles = this.props.articles.map(article => {
+    const articles = this.props.articles.map((article) => {
       const formattedDate = this.getDate(article.date);
       return (
         <a

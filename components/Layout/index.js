@@ -1,5 +1,17 @@
-import Head from 'next/head'
-const Layout = ({ children }) => {
+// import Header from "../Header";
+import { Footer } from "../Footer";
+import Head from "next/head";
+import HeaderTop from "../HeaderTop";
+import HeaderNavigation from "../HeaderNavigation";
+
+const Layout = ({
+  children,
+  footerData,
+  logoData,
+  socialMediasData,
+  ContactsData,
+  pagesData,
+}) => {
   return (
     <>
       <Head>
@@ -10,7 +22,16 @@ const Layout = ({ children }) => {
           rel="stylesheet"
         ></link>
       </Head>
-      {children}
+      <header>
+        <HeaderTop socialMediasData={socialMediasData} />
+        <HeaderNavigation
+          logoData={logoData}
+          ContactsData={ContactsData}
+          pagesData={pagesData}
+        />
+      </header>
+      <main>{children}</main>
+      <Footer data={footerData} />
     </>
   );
 };
