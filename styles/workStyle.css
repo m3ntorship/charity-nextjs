@@ -1,6 +1,6 @@
 .work-style::before {
-  content: '';
-  background: no-repeat url('../public/images/workStyle/dots.png');
+  content: "";
+  background: no-repeat url("../public/images/workStyle/dots.png");
   background-size: auto;
   background-position-x: 5%;
   position: absolute;
