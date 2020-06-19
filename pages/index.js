@@ -27,6 +27,7 @@ const Home = ({
 }) => {
   return (
     <>
+      
       <HeaderCarousel data={headerCarouselData} />
       <Welcome data={welcomeData} />
       <Activities data={activitiesData} />

@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer';
 
 
 
-const FeaturedCause = ({ data: { featuredCause, loading, error } }) => {
+const FeaturedCause = ({ data: { featuredCause } }) => {
   const isMobile = false
 
   const getProgressPrecentage = (raised, goal) => {
@@ -27,7 +27,7 @@ const FeaturedCause = ({ data: { featuredCause, loading, error } }) => {
   const aspiringRef = useRef();
   const aspiring = useSpring({
     percent:
-      inView && !loading
+      inView 
         ? getProgressPrecentage(featuredCause.raised, featuredCause.goal)
         : 0,
     from: { percent: 0 },
@@ -38,7 +38,7 @@ const FeaturedCause = ({ data: { featuredCause, loading, error } }) => {
   const strokeRef = useRef();
   const stroke = useSpring({
     percent:
-      inView && !loading
+      inView 
         ? 565 +
           getProgressPrecentage(featuredCause.raised, featuredCause.goal) *
             -5.65
