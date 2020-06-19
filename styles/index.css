@@ -1,5 +1,11 @@
 @tailwind base;
 @tailwind components;
+@tailwind utilities;
+
+body,
+html {
+  font-family: "Merriweather", serif;
+}
 
 .btn-blue {
   @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
@@ -15,6 +21,24 @@
   line-height: 1.15;
 }
 
-@tailwind utilities;
 /* import components styles */
 @import "./logo.css";
+@import "./headerNavigation.css";
+@import "./contactTop.css";
+@import "./headerCarousel.css";
+@import "./activities.css";
+@import "./article.css";
+@import "./articleBanner.css";
+ @import "./articleModel.css";
+@import "./causes.css";
+@import "./contactInfo.css";
+@import "./featuredBanner.css";
+@import "./featuredCause.css";
+@import "./newsAndArticles.css";
+@import "./numbers.css";
+@import "./sponsers.css";
+@import "./testimonials.css";
+@import "./upcomingEvents.css";
+@import "./volunteerBanner.css";
+@import "./welcome.css";
+@import "./workStyle.css";
