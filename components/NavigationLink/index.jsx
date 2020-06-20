@@ -5,7 +5,7 @@ import  Link  from 'next/link';
 const NavigationLink = ({ url, title, secondaryClassName, linkClassName }) => {
   return (
     <li className={cn('text-center', secondaryClassName)}>
-      <Link className={cn('', linkClassName)} to={url}>
+      <Link className={cn('', linkClassName)} href={url}>
         {title}
       </Link>
     </li>
