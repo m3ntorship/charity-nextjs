@@ -22,7 +22,9 @@ const articles = ({
         pagesData={pagesData}
       >
         <Banner data={articlesPageData} />
-        <ArticlesList articles={articlesListData} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 sm:gap-8 row-gap-8">
+          <ArticlesList articles={articlesListData} />
+        </div>
         <VolunteeringBanner data={articlesPageData} />
       </Layout>
     </>
