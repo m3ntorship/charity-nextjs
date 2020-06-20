@@ -6,7 +6,7 @@ const NavigationLink = ({ url, title, secondaryClassName, linkClassName }) => {
   return (
     <li className={cn('text-center', secondaryClassName)}>
       <Link className={cn('', linkClassName)} href={url}>
-        {title}
+        <a>{title}</a>
       </Link>
     </li>
   );
