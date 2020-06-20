@@ -1,5 +1,5 @@
 /*! purgecss start ignore */
-@import url('../node_modules/pure-react-carousel/dist/react-carousel.es.css');
+@import url("pure-react-carousel/dist/react-carousel.es.css");
 /*! purgecss end ignore */
 
 .feedback {
@@ -8,8 +8,8 @@
 }
 
 .feedback::before {
-  content: '';
-  background: no-repeat url('../public/images/testimonials/blocks.png');
+  content: "";
+  background: no-repeat url("../public/images/testimonials/blocks.png");
   background-size: auto;
   background-position-x: right;
   background-position-y: bottom;
@@ -234,22 +234,20 @@
 .testimonial_header {
   margin: 0 auto;
   overflow: hidden;
-
 }
 .testimonial_desc {
   margin: 0 auto;
- 
 }
-.loader_testimon{
+.loader_testimon {
   width: 100%;
 }
- @media (mix-width: 786px) {
+@media (mix-width: 786px) {
   .testimonial_header {
     width: 500px;
   }
-} 
+}
 
-.carousel_loader{
+.carousel_loader {
   height: 40vh;
   margin: 0 auto;
 }
