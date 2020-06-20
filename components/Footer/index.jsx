@@ -1,58 +1,26 @@
-import React from 'react';
-import {
-  AboutLoader,
-  NewsletterLoader,
-  ArticlesLoader,
-  LinksLoader
-} from './FooterContentLoading';
-import Links from './Links/index';
-import Articles from './Articles/index';
-import About from './About/index';
-import Newsletter from './NewsLetter/index';
-import { useInView } from 'react-intersection-observer';
-import { useSpring, animated } from 'react-spring';
+import React from "react";
+import Links from "./Links/index";
+import Articles from "./Articles/index";
+import About from "./About/index";
+import Newsletter from "./NewsLetter/index";
+import { useInView } from "react-intersection-observer";
+import { useSpring, animated } from "react-spring";
 
-
-const Footer = ({ data, loading, error }) => {
+const Footer = ({ data }) => {
   const [refLeft, inViewLeft] = useInView({
-    triggerOnce: true
+    triggerOnce: true,
   });
   const [refRight, inViewRight] = useInView({ triggerOnce: true });
 
   const fadeLeft = useSpring({
     opacity: inViewLeft ? 1 : 0,
-    transform: inViewLeft ? 'translateX(0%)' : 'translateX(-50%)'
+    transform: inViewLeft ? "translateX(0%)" : "translateX(-50%)",
   });
 
   const fadeRight = useSpring({
     opacity: inViewRight ? 1 : 0,
-    transform: inViewRight ? 'translateX(0%)' : 'translateX(50%)'
+    transform: inViewRight ? "translateX(0%)" : "translateX(50%)",
   });
-
-  if (error) {
-    return (
-      <div>
-        <p>Failed to Fetch Data</p>
-      </div>
-    );
-  }
-
-  if (loading) {
-    return (
-      <footer className="footer">
-        <div className="container w-9/12 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 py-16">
-          <AboutLoader />
-          <ArticlesLoader />
-          <LinksLoader />
-          <NewsletterLoader />
-        </div>
-
-        <div>
-          <p className="text-center py-8 text-sm border-t border-c700 bg-c100"></p>
-        </div>
-      </footer>
-    );
-  }
 
   if (data) {
     const {
@@ -64,7 +32,7 @@ const Footer = ({ data, loading, error }) => {
       newsletter_title,
       articles,
       links,
-      Disclaimer
+      Disclaimer,
     } = data;
     return (
       <footer className="footer bg-c100 text-c700">
@@ -106,7 +74,7 @@ const Footer = ({ data, loading, error }) => {
       </footer>
     );
   }
-  return 'generic error';
+  return "generic error";
 };
 
-export {  Footer };
+export { Footer };
