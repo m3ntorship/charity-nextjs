@@ -1,27 +1,26 @@
-import React from 'react';
-// import Link from 'next/link'
+import React from "react";
+import Link from "next/link";
 
-import { useInView } from 'react-intersection-observer';
-import { useSpring, animated } from 'react-spring';
-
+import { useInView } from "react-intersection-observer";
+import { useSpring, animated } from "react-spring";
 
 const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
   const [cardRef, cardInView] = useInView({
     threshold: 0.5,
-    triggerOnce: true
+    triggerOnce: true,
   });
-  const isMobile =false
+  const isMobile = false;
 
   const slideCard = useSpring({
     opacity: cardInView ? 1 : 0,
     transform: cardInView
-      ? 'translate(0%)'
+      ? "translate(0%)"
       : isMobile
       ? index % 2 === 0
-        ? 'translateX(-50%)'
-        : 'translateX(50%)'
-      : 'translateY(-50%)',
-    delay: animationDelay ? (isMobile ? 0 : 900 + 250 * index) : 0
+        ? "translateX(-50%)"
+        : "translateX(50%)"
+      : "translateY(-50%)",
+    delay: animationDelay ? (isMobile ? 0 : 900 + 250 * index) : 0,
   });
   return (
     <animated.div className="article relative" style={slideCard}>
@@ -42,13 +41,9 @@ const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
             <h4 className="text-c100 font-bold">{title}</h4>
           </div>
           <div className="block text-c100 text-center spicial-info cursor-pointer">
-            {/* <Link
-              to={`articles/${id}`}
-              className="w-full h-full flex justify-center items-center"
-            >
-              <i className="fas fa-long-arrow-alt-right"></i>
-              {linkText}
-            </Link> */}
+            <Link href={`articles/${id}`}>
+              <a>{linkText}</a>
+            </Link>
           </div>
         </div>
       </div>
