@@ -1,4 +1,8 @@
-import { useRouter } from "next/router";
+import ArticleModel from "../../components/ArticleModel";
+import { ArticlesSearch } from "../../components/ArticlesSearch";
+import { RecentArticles } from "../../components/RecentArticles";
+import { Banner } from "../../components/ArticleBanner";
+import { VolunteeringBanner } from "../../components/VolunteeringBanner";
 import Layout from "../../components/Layout";
 import { charityAPI } from "../../clients";
 
@@ -8,10 +12,10 @@ const Article = ({
   logoData,
   socialMediasData,
   pagesData,
-  articleData
+  recentArticlesData,
+  articleData,
+  articlesPageData,
 }) => {
-  const router = useRouter();
-  console.log(articleData[0])
   return (
     <Layout
       footerData={footerData}
@@ -20,13 +24,28 @@ const Article = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      <div>{articleData[0].id}</div>
+      <Banner data={articlesPageData} />
+      <div className="container py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 lg:gap-8 row-gap-8">
+          <div className="col-span-12 lg:col-span-8">
+            <ArticleModel data={articleData} />
+          </div>
+          <aside className="col-span-12 lg:col-span-4 flex flex-col sm:flex-row lg:flex-col">
+            <div className="mb-8 sm:mr-8 lg:mr-0 sm:w-1/2 lg:w-full">
+              <ArticlesSearch data={{ title: "Find Article" }} />
+            </div>
+            <div className="sm:w-1/2 lg:w-full">
+              <RecentArticles data={recentArticlesData} />
+            </div>
+          </aside>
+        </div>
+      </div>
+      <VolunteeringBanner data={articlesPageData} />
     </Layout>
   );
 };
 
-export async function getServerSideProps({params :{id}}) {
-
+export async function getServerSideProps({ params: { id } }) {
   return Promise.all([
     charityAPI("/main-contacts"),
     charityAPI("/logo"),
@@ -34,7 +53,7 @@ export async function getServerSideProps({params :{id}}) {
     charityAPI("/pages"),
     charityAPI("/main-contacts"),
     charityAPI("/footer"),
-    charityAPI(`/articles?id=${id}`)
+    charityAPI("/articles?_sort=createdAt:DESC"),
   ]).then(
     ([
       { data: ContactsData },
@@ -43,9 +62,13 @@ export async function getServerSideProps({params :{id}}) {
       { data: pagesData },
       { data: mainContactData },
       { data: footerData },
-      { data: articleData },
+      { data: articlesData },
     ]) => {
-
+      const [articlesPageData] = pagesData.filter(
+        (pageData) => pageData.name === "articles"
+      );
+      const articleData = articlesData.find((article) => article.id === id);
+      const recentArticlesData = articlesData.slice(0, 3);
       return {
         props: {
           ContactsData,
@@ -54,7 +77,9 @@ export async function getServerSideProps({params :{id}}) {
           pagesData,
           mainContactData,
           footerData,
-          articleData
+          articleData,
+          articlesPageData,
+          recentArticlesData,
         },
       };
     }
