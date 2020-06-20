@@ -1,5 +1,7 @@
+import { ArticlesList } from "../../components/NewsAndArticles";
+import { Banner } from "../../components/ArticleBanner";
+import { VolunteeringBanner } from "../../components/VolunteeringBanner";
 import Layout from "../../components/Layout";
-import {News} from '../../components/NewsAndArticles'
 import { charityAPI } from "../../clients";
 
 const Articles = ({
@@ -7,8 +9,9 @@ const Articles = ({
   ContactsData,
   logoData,
   socialMediasData,
+  articlesPageData,
+  articlesData,
   pagesData,
-  newsData,
 }) => {
   return (
     <Layout
@@ -17,8 +20,15 @@ const Articles = ({
       logoData={logoData}
       socialMediasData={socialMediasData}
       pagesData={pagesData}
+      articlesData={articlesData}
     >
-      <News data={newsData} />
+      <Banner data={articlesPageData} />
+      <div className="container py-32">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 sm:gap-8 row-gap-8">
+          <ArticlesList articles={articlesData} />
+        </div>
+      </div>
+      <VolunteeringBanner data={articlesPageData} />
     </Layout>
   );
 };
@@ -31,7 +41,7 @@ export function getServerSideProps() {
     charityAPI("/pages"),
     charityAPI("/main-contacts"),
     charityAPI("/footer"),
-    charityAPI("/news-and-articles"),
+    charityAPI("/articles"),
   ]).then(
     ([
       { data: ContactsData },
@@ -40,17 +50,21 @@ export function getServerSideProps() {
       { data: pagesData },
       { data: mainContactData },
       { data: footerData },
-      { data: newsData },
+      { data: articlesData },
     ]) => {
+      const [articlesPageData] = pagesData.filter(
+        (pageData) => pageData.name === "articles"
+      );
       return {
         props: {
           ContactsData,
           logoData,
           socialMediasData,
-          pagesData,
+          articlesPageData,
           mainContactData,
           footerData,
-          newsData,
+          articlesData,
+          pagesData,
         },
       };
     }
