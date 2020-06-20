@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { timeElapsed } from '../../../Helpers/Helpers';
-import './style.scss';
+
 
 export const ListItemWithThumbnail = ({ data }) => {
   const [isHover, setHover] = useState();
