@@ -1,6 +1,6 @@
 import React from 'react';
 // import Link from 'next/link'
-
+import useMedia from '../../Helpers/useMedia';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
 
@@ -10,7 +10,7 @@ const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
     threshold: 0.5,
     triggerOnce: true
   });
-  const isMobile =false
+  const isMobile = useMedia(['(min-width: 768px)'], [false], true);
 
   const slideCard = useSpring({
     opacity: cardInView ? 1 : 0,
@@ -42,13 +42,13 @@ const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
             <h4 className="text-c100 font-bold">{title}</h4>
           </div>
           <div className="block text-c100 text-center spicial-info cursor-pointer">
-            {/* <Link
-              to={`articles/${id}`}
-              className="w-full h-full flex justify-center items-center"
+            <Link
+              href={`articles/${id}`}
+              
             >
-              <i className="fas fa-long-arrow-alt-right"></i>
-              {linkText}
-            </Link> */}
+              <a className="w-full h-full flex justify-center items-center"><i className="fas fa-long-arrow-alt-right"></i>
+              {linkText}</a>
+            </Link>
           </div>
         </div>
       </div>
