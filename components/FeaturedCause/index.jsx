@@ -1,12 +1,10 @@
-import React, { useRef } from 'react';
-
-import { animated, useSpring, useChain } from 'react-spring';
-import { useInView } from 'react-intersection-observer';
-
-
+import React, { useRef } from "react";
+import Link from "next/link";
+import { animated, useSpring, useChain } from "react-spring";
+import { useInView } from "react-intersection-observer";
 
 const FeaturedCause = ({ data: { featuredCause } }) => {
-  const isMobile = false
+  const isMobile = false;
 
   const getProgressPrecentage = (raised, goal) => {
     return Math.floor((raised / goal) * 100);
@@ -14,38 +12,35 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
 
   const [ref, inView] = useInView({
     threshold: 0.2,
-    triggerOnce: true
+    triggerOnce: true,
   });
 
   const slideEndRef = useRef();
   const slideEnd = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0%)' : 'translateX(50%)',
+    transform: inView ? "translateX(0%)" : "translateX(50%)",
     delay: isMobile ? 0 : 600,
-    ref: slideEndRef
+    ref: slideEndRef,
   });
   const aspiringRef = useRef();
   const aspiring = useSpring({
-    percent:
-      inView 
-        ? getProgressPrecentage(featuredCause.raised, featuredCause.goal)
-        : 0,
+    percent: inView
+      ? getProgressPrecentage(featuredCause.raised, featuredCause.goal)
+      : 0,
     from: { percent: 0 },
     delay: isMobile ? 300 : 900,
-    ref: aspiringRef
+    ref: aspiringRef,
   });
 
   const strokeRef = useRef();
   const stroke = useSpring({
-    percent:
-      inView 
-        ? 565 +
-          getProgressPrecentage(featuredCause.raised, featuredCause.goal) *
-            -5.65
-        : 565,
+    percent: inView
+      ? 565 +
+        getProgressPrecentage(featuredCause.raised, featuredCause.goal) * -5.65
+      : 565,
     from: { percent: 565 },
     delay: isMobile ? 300 : 900,
-    ref: strokeRef
+    ref: strokeRef,
   });
 
   useChain([slideEndRef, aspiringRef, strokeRef]);
@@ -54,7 +49,7 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
     return <div>We will announce for urgent cause soon</div>;
   }
   if (featuredCause) {
-    const numberToLocal = number => Number(number).toLocaleString();
+    const numberToLocal = (number) => Number(number).toLocaleString();
     let { raised, goal, title, description } = featuredCause;
     return (
       <animated.div className="Upcoming-Events-Card" style={slideEnd}>
@@ -77,7 +72,7 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
                 <div className="number">
                   <h2>
                     <animated.span>
-                      {aspiring.percent.interpolate(percent =>
+                      {aspiring.percent.interpolate((percent) =>
                         Math.floor(percent)
                       )}
                     </animated.span>
@@ -97,26 +92,28 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
             <div className="text-center">
               <p className="text-sm font-light tracking-normal">
                 <span className="text-c300 text-lg tracking-wide font-bold">
-                  ${numberToLocal(raised)}{' '}
+                  ${numberToLocal(raised)}{" "}
                 </span>
                 Raised
               </p>
               <p className="text-sm font-light tracking-normal">
                 <span className="text-c300 text-lg tracking-wide font-bold font">
-                  ${numberToLocal(goal)}{' '}
+                  ${numberToLocal(goal)}{" "}
                 </span>
                 Goal
               </p>
             </div>
-            <button className="btn btn-card bg-c300 px-24 self-center mt-5">
-              Donate Now
-            </button>
+            <Link href="/donations">
+              <button className="btn btn-card bg-c300 px-24 self-center mt-5">
+                Donate Now
+              </button>
+            </Link>
           </div>
         </div>
       </animated.div>
     );
   }
-  return 'Generic Error';
+  return "Generic Error";
 };
 
 export { FeaturedCause };
