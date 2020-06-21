@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import './style.scss';
 import { useSpring, animated } from 'react-spring';
-import useMedia from '../../../Helpers/useMedia';
 import { useMeasure } from 'react-use';
 
 const Widget = ({ children, title }) => {
-  const isMobile = useMedia(['(min-width: 768px)'], [false], true);
+  const isMobile = false
   const [isOpen, setOpen] = useState();
   const [contentHeight, setContentHeight] = useState('0px');
   const [ref, { height }] = useMeasure();

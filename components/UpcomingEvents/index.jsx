@@ -1,36 +1,23 @@
-import React from 'react';
-
-
-import Heading from '../Heading';
-import { FeaturedCause } from '../FeaturedCause';
-import { parseISO, format } from 'date-fns';
-
-import { useInView } from 'react-intersection-observer';
-import { useSpring, animated } from 'react-spring';
-
-
+import React from "react";
+import Heading from "../Heading";
+import { FeaturedCause } from "../FeaturedCause";
+import { parseISO, format } from "date-fns";
+import { useInView } from "react-intersection-observer";
+import { useSpring, animated } from "react-spring";
 
 // Function to get add dates needed
 function getDate(myDate) {
   const theDate = parseISO(myDate);
 
   return {
-    time: format(theDate, 'hh:mm a').toLowerCase(),
-    day: format(theDate, 'dd'),
-    month: format(theDate, 'MMM'),
-    year: format(theDate, 'yyyy')
+    time: format(theDate, "hh:mm a").toLowerCase(),
+    day: format(theDate, "dd"),
+    month: format(theDate, "MMM"),
+    year: format(theDate, "yyyy"),
   };
 }
 
-const Event = ({ data, loading }) => {
-  if (loading) {
-    return (
-      <div className="flex w-full h-full">
-        <CardLoader />
-      </div>
-    );
-  }
-
+const Event = ({ data }) => {
   if (data) {
     const {
       id,
@@ -38,7 +25,7 @@ const Event = ({ data, loading }) => {
       user: { username },
       address,
       date,
-      image: { url, name }
+      image: { url, name },
     } = data;
     return (
       <div key={id} className="event-card-wrapper flex mb-4 lg:mb-0">
@@ -72,14 +59,14 @@ const Event = ({ data, loading }) => {
   }
 };
 
-const Events = ({ data, slideStart, loading }) => {
+const Events = ({ data, slideStart }) => {
   return (
     <animated.div
       className="col-start-1 articles-component col-end-8 flex flex-col justify-between lg:pr-8"
       style={slideStart}
     >
-      {data.map(eventData => {
-        return <Event data={eventData} loading={loading} key={eventData.id} />;
+      {data.map((eventData) => {
+        return <Event data={eventData} key={eventData.id} />;
       })}
     </animated.div>
   );
@@ -107,53 +94,49 @@ const UpcomingEventsSection = ({ data, cardData }) => {
   //Scroll observation
   const [ref, inView] = useInView({
     threshold: 0.3,
-    triggerOnce: true
+    triggerOnce: true,
   });
 
   //Animation
   const slideTop = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0%)' : 'translateY(-50%)'
+    transform: inView ? "translateY(0%)" : "translateY(-50%)",
   });
 
   const slideStart = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0%)' : 'translateX(-50%)',
-    delay: 300
+    transform: inView ? "translateX(0%)" : "translateX(-50%)",
+    delay: 300,
   });
 
   const fade = useSpring({
     opacity: inView ? 1 : 0,
-    delay: 900
+    delay: 900,
   });
 
   //Data Error Handling
 
-
-
-
   //Main component
-  
-    const { upcoming_events } = data;
-    return (
-      <section className="upcoming-events-section">
-        <div className="upcoming-events-section__container lg:grid gap-8 grid-cols-12 container">
-          <div className="mb-8 col-start-1 col-end-8 pr-8" ref={ref}>
-            <UpcomingEventsText data={data} slideTop={slideTop} />
-          </div>
-          <Events data={upcoming_events} slideStart={slideStart} />
-          <animated.div
-            className="vertical-text text-c800 font-hairline text-xxl"
-            style={fade}
-          >
-            URGENT CAUSE
-          </animated.div>
-          <div className=" col-start-8 col-end-13 row-start-1 row-end-3 h-full w-full flex">
-            <FeaturedCause data={cardData} />
-          </div>
+
+  const { upcoming_events } = data;
+  return (
+    <section className="upcoming-events-section">
+      <div className="upcoming-events-section__container lg:grid gap-8 grid-cols-12 container">
+        <div className="mb-8 col-start-1 col-end-8 pr-8" ref={ref}>
+          <UpcomingEventsText data={data} slideTop={slideTop} />
         </div>
-      </section>
-    );
-  
+        <Events data={upcoming_events} slideStart={slideStart} />
+        <animated.div
+          className="vertical-text text-c800 font-hairline text-xxl"
+          style={fade}
+        >
+          URGENT CAUSE
+        </animated.div>
+        <div className=" col-start-8 col-end-13 row-start-1 row-end-3 h-full w-full flex">
+          <FeaturedCause data={cardData} />
+        </div>
+      </div>
+    </section>
+  );
 };
 export { UpcomingEventsSection, Event };
