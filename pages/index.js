@@ -9,7 +9,7 @@ import { Testimonials } from "../components/Testimonials";
 import { WorkStyle } from "../components/WorkStyle";
 import { News } from "../components/NewsAndArticles";
 import { Sponsers } from "../components/Sponsers";
-import { MainContact } from "../components/MainContact";
+import { ContactInfo } from "../components/ContactInfo";
 import { charityAPI } from "../clients";
 import Layout from "../components/Layout";
 const Home = ({
@@ -24,7 +24,6 @@ const Home = ({
   workStyleData,
   newsData,
   sponsersData,
-  mainContactData,
   footerData,
   ContactsData,
   logoData,
@@ -68,7 +67,7 @@ const Home = ({
       <WorkStyle data={workStyleData} />
       <News data={newsData} />
       <Sponsers data={sponsersData} />
-      <MainContact data={mainContactData} />
+      <ContactInfo contactData={ContactsData} socialData={socialMediasData} />
     </Layout>
   );
 };
@@ -89,7 +88,6 @@ export function getServerSideProps() {
     charityAPI("/how-we-work"),
     charityAPI("/news-and-articles"),
     charityAPI("/Sponsers"),
-    charityAPI("/main-contacts"),
     charityAPI("/footer"),
   ]).then(
     ([
@@ -108,7 +106,6 @@ export function getServerSideProps() {
       { data: workStyleData },
       { data: newsData },
       { data: sponsersData },
-      { data: mainContactData },
       { data: footerData },
     ]) => {
       return {
@@ -129,7 +126,6 @@ export function getServerSideProps() {
           workStyleData,
           newsData,
           sponsersData,
-          mainContactData,
           footerData,
         },
       };

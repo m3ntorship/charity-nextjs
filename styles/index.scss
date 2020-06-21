@@ -1,0 +1,45 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* import components styles */
+/* @/* Tailwind Base & Components */
+/*! purgecss start ignore */
+@import url("tailwindcss/base");
+/*! purgecss end ignore */
+@import url("tailwindcss/components");
+
+/* Global Styles */
+@import url("./global.css");
+/*! purgecss start ignore */
+/* @import url("./fontawesome.css"); */
+/*! purgecss end ignore */
+/* Tailwind utilities */
+@import url("tailwindcss/utilities");
+
+/* import components styles */
+@import url("./logo.css");
+@import url("./headerNavigation.css");
+@import url("./contactTop.css");
+@import url("./headerCarousel.css");
+@import url("./activities.css");
+@import url("./article.css");
+@import url("./articleBanner.css");
+@import url("./articleModel.css");
+@import url("./articleSearch.css");
+@import url("./causes.css");
+@import url("./contactInfo.css");
+@import url("./featuredBanner.css");
+@import url("./featuredCause.css");
+@import url("./newsAndArticles.css");
+@import url("./numbers.css");
+@import url("./sponsers.css");
+@import url("./testimonials.css");
+@import url("./upcomingEvents.css");
+@import url("./volunteerBanner.css");
+@import url("./welcome.css");
+@import url("./workStyle.css");
+@import url("./footer.css");
+@import url("./widget.scss");
+@import url("./listItemWithThumbnail.scss");
+@import url("./articlesSearch.scss");
