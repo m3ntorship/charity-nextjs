@@ -1,5 +1,5 @@
 import React from 'react';
-// import Link from 'next/link'
+import Link from 'next/link'
 import useMedia from '../../Helpers/useMedia';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
