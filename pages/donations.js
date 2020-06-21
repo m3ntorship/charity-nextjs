@@ -11,7 +11,7 @@ const Donations = ({
   return (
     <Layout
       footerData={footerData}
-      ContactsData={ContactsData}
+      contactsData={ContactsData}
       logoData={logoData}
       socialMediasData={socialMediasData}
       pagesData={pagesData}
