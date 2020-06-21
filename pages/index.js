@@ -108,7 +108,6 @@ export function getServerSideProps() {
       { data: sponsersData },
       { data: footerData },
     ]) => {
-      console.log(contactsData);
       return {
         props: {
           contactsData,
