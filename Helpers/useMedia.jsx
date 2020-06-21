@@ -6,7 +6,7 @@ let mediaQueryLists
 if (typeof window !== 'undefined') {
   mediaQueryLists = queries.map(q => window.matchMedia(q));
 } else {
-  mediaQueryLists = []
+  return false
 }
   // Function that gets value based on matching media query
   const getValue = () => {

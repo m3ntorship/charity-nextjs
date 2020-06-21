@@ -1,5 +1,6 @@
 import React from "react";
 import { parseISO, format } from "date-fns";
+import Link from 'next/link'
 export default class Articles extends React.Component {
   getDate(myDate) {
     const theDate = parseISO(myDate);
@@ -16,9 +17,8 @@ export default class Articles extends React.Component {
     const articles = this.props.articles.map((article) => {
       const formattedDate = this.getDate(article.date);
       return (
-        <a
-          href={article.link.url}
-          key={article.id}
+        <Link key={article.id} href={article.link.url}><a
+  
           className="flex flex-col flex-grow my-2"
         >
           <article className="flex">
@@ -36,7 +36,7 @@ export default class Articles extends React.Component {
               <p>{article.description}</p>
             </div>
           </article>
-        </a>
+        </a></Link>
       );
     });
     return (

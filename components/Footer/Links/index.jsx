@@ -1,13 +1,16 @@
 import React from 'react';
+import Link from 'next/link'
 
 export default class Links extends React.Component {
   render() {
     const links = this.props.links.map(link => {
       return (
         <li key={link.id} className="pb-4">
-          <a className="" href={link.url}>
+          <Link href={link.url}>
+          <a>
             {link.text}
-          </a>
+            </a>
+            </Link>
         </li>
       );
     });
