@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-
+import Link from 'next/link'
 import Heading from '../Heading';
 import {
   CarouselProvider,
@@ -115,10 +115,11 @@ const Cause = ({
               <animated.span>{progressNumber}</animated.span>%
             </animated.div>
           </div>
-
+          <Link href="/donations">
           <button className="causes__btn font-bold bg-c800 text-c600 hover:bg-c300 hover:text-c100 transition duration-200 ease-out">
-            Donate Now
+              Donate Now
           </button>
+            </Link>
         </div>{' '}
       </div>{' '}
     </animated.div>
