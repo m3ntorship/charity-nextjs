@@ -1,12 +1,12 @@
-import React from 'react';
-import cn from 'classnames';
-import  Link  from 'next/link';
+import React from "react";
+import cn from "classnames";
+import Link from "next/link";
 
 const NavigationLink = ({ url, title, secondaryClassName, linkClassName }) => {
   return (
-    <li className={cn('text-center', secondaryClassName)}>
-      <Link className={cn('', linkClassName)} href={url}>
-        <a>{title}</a>
+    <li className={cn("text-center", secondaryClassName)}>
+      <Link href={url}>
+        <a className={cn("", linkClassName)}>{title}</a>
       </Link>
     </li>
   );

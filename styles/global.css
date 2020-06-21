@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 html,
 body {
   overflow-x: hidden;
@@ -77,27 +73,3 @@ p {
 .showcase-row__heading {
   @apply text-c100 text-md py-3 font-bold;
 }
-
-/* import components styles */
-@import "./logo.css";
-@import "./headerNavigation.css";
-@import "./contactTop.css";
-@import "./headerCarousel.css";
-@import "./activities.css";
-@import "./article.css";
-@import "./articleBanner.css";
-@import "./articleModel.css";
-@import "./articleSearch.css";
-@import "./causes.css";
-@import "./contactInfo.css";
-@import "./featuredBanner.css";
-@import "./featuredCause.css";
-@import "./newsAndArticles.css";
-@import "./numbers.css";
-@import "./sponsers.css";
-@import "./testimonials.css";
-@import "./upcomingEvents.css";
-@import "./volunteerBanner.css";
-@import "./welcome.css";
-@import "./workStyle.css";
-@import "./footer.css";

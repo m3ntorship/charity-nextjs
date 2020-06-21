@@ -1,4 +1,6 @@
-import "../styles/index.css";
+import "../styles/index.scss";
+// import "../styles/widget.scss";
+// import "../styles/listItemWithThumbnail.scss";
 import "@fortawesome/fontawesome-free/js/fontawesome";
 import "@fortawesome/fontawesome-free/js/solid";
 import "@fortawesome/fontawesome-free/js/regular";
