@@ -25,7 +25,7 @@ const Home = ({
   newsData,
   sponsersData,
   footerData,
-  ContactsData,
+  contactsData,
   logoData,
   socialMediasData,
   pagesData,
@@ -48,7 +48,7 @@ const Home = ({
   return (
     <Layout
       footerData={footerData}
-      ContactsData={ContactsData}
+      contactsData={contactsData}
       logoData={logoData}
       socialMediasData={socialMediasData}
       pagesData={pagesData}
@@ -67,7 +67,7 @@ const Home = ({
       <WorkStyle data={workStyleData} />
       <News data={newsData} />
       <Sponsers data={sponsersData} />
-      <ContactInfo contactData={ContactsData} socialData={socialMediasData} />
+      <ContactInfo contactData={contactsData} socialData={socialMediasData} />
     </Layout>
   );
 };
@@ -91,7 +91,7 @@ export function getServerSideProps() {
     charityAPI("/footer"),
   ]).then(
     ([
-      { data: ContactsData },
+      { data: contactsData },
       { data: logoData },
       { data: socialMediasData },
       { data: pagesData },
@@ -110,11 +110,10 @@ export function getServerSideProps() {
     ]) => {
       return {
         props: {
-          ContactsData,
+          contactsData,
           logoData,
           socialMediasData,
           pagesData,
-
           headerCarouselData,
           welcomeData,
           activitiesData,

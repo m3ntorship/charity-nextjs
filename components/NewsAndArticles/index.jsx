@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Heading from '../Heading/index';
-
+import useMedia from '../../Helpers/useMedia';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
 
@@ -31,7 +31,7 @@ const ArticlesList = ({ articles, animationDelay }) => {
 
 const News = ({ data }) => {
   // //Meida query
-  const isMobile = false
+  const isMobile = useMedia(['(min-width: 768px)'], [false], true);
   const [ref, inView] = useInView({
     threshold: 0.3,
     triggerOnce: true

@@ -1,3 +1,4 @@
+import Link from "next/link";
 const HeaderTop = ({ socialMediasData }) => {
   return (
     <div>
@@ -25,12 +26,14 @@ const HeaderTop = ({ socialMediasData }) => {
             </div>
           </div>
         </div>
-        <button
-          onClick={() => {}} // here The function when click button
-          className="btn w-2/12 h-full text-c100 text-sm font-bold bg-c300"
-        >
-          Start Donation
-        </button>
+        <Link href="/donations">
+          <button
+            onClick={() => {}} // here The function when click button
+            className="btn w-2/12 h-full text-c100 text-sm font-bold bg-c300"
+          >
+            Start Donation
+          </button>
+        </Link>
       </section>
     </div>
   );
