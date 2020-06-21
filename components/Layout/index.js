@@ -9,7 +9,7 @@ const Layout = ({
   footerData,
   logoData,
   socialMediasData,
-  ContactsData,
+  contactsData,
   pagesData,
 }) => {
   return (
@@ -26,7 +26,7 @@ const Layout = ({
         <HeaderTop socialMediasData={socialMediasData} />
         <HeaderNavigation
           logoData={logoData}
-          ContactsData={ContactsData}
+          contactsData={contactsData}
           pagesData={pagesData}
         />
       </header>
