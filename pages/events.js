@@ -1,5 +1,5 @@
-import Layout from "../../components/Layout";
-import { charityAPI } from "../../clients";
+import Layout from "../components/Layout";
+import { charityAPI } from "../clients";
 
 const Events = ({
   footerData,
