@@ -2735,6 +2735,11 @@ diffie-hellman@^5.0.0:
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
 
+dlv@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/dlv/-/dlv-1.1.3.tgz#5c198a8a11453596e751494d49874bc7732f2e79"
+  integrity sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==
+
 dom-serializer@0, dom-serializer@^0.2.1:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/dom-serializer/-/dom-serializer-0.2.2.tgz#1afb81f533717175d478655debc5e332d9f9bb51"
@@ -6518,6 +6523,14 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
+rosetta@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/rosetta/-/rosetta-1.0.1.tgz#16b893019227e70e8e23ef8d1572250c28520e29"
+  integrity sha512-qfPYKyisROOvCpVhkZT3rTejjx6BmvAkkg/J7G0NN3jeniR5v8n3rDYhEVtmQ2spSmQMn9KRa9Ia+i8XVswgng==
+  dependencies:
+    dlv "^1.1.3"
+    templite "^1.1.0"
+
 rtl-css-js@^1.9.0:
   version "1.14.0"
   resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.14.0.tgz#daa4f192a92509e292a0519f4b255e6e3c076b7d"
@@ -7249,6 +7262,11 @@ tar@^2.0.0:
     block-stream "*"
     fstream "^1.0.12"
     inherits "2"
+
+templite@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/templite/-/templite-1.1.0.tgz#4f2eab732234fdac996628427d72817b3a47ce06"
+  integrity sha512-DtXicIurbnJS5/eu3nMLLspt4bZ8F/811IpcI7DgSE63UhES6ld3CxoTcLXBuGhliYx2wMVmyNzHf3c7mqwIIA==
 
 terser-webpack-plugin@^1.4.3:
   version "1.4.4"
