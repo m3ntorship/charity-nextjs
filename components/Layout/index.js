@@ -1,8 +1,10 @@
 // import Header from "../Header";
 import { Footer } from "../Footer";
+import { useEffect } from "react";
 import Head from "next/head";
 import HeaderTop from "../HeaderTop";
 import HeaderNavigation from "../HeaderNavigation";
+import useI18n from "../../hooks/use-i18n";
 
 const Layout = ({
   children,
@@ -12,11 +14,20 @@ const Layout = ({
   contactsData,
   pagesData,
 }) => {
+  const i18n = useI18n();
+  const currentLocale = i18n.activeLocale;
   return (
     <>
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        {currentLocale === "ar" && (
+          <link
+            rel="stylesheet"
+            href={`../../static/styles/style-ar.css`}
+          />
+        )}
+
         <link
           href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
           rel="stylesheet"
