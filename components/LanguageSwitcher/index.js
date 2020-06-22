@@ -7,14 +7,14 @@ const LanguageSwitcher = () => {
   let pageName = asPath.substring(3)
   return (
     <>
-      <li className ="inline-block" >
+      <li className ="inline-block language_elector" >
         <Link href={`/ar${pageName}`}>
           <a>
             اللغة العربية
           </a>
         </Link>
       </li>
-      <li  className ="inline-block">
+      <li  className ="inline-block language_elector">
         <Link href={`/en${pageName}`}>
           English
         </Link>
