@@ -1,7 +1,7 @@
-import Layout from "../components/Layout";
-import { charityAPI } from "../clients";
+import Layout from "../../components/Layout";
+import { charityAPI } from "../../clients";
 
-const Events = ({
+const About = ({
   footerData,
   ContactsData,
   logoData,
@@ -16,7 +16,7 @@ const Events = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      Events components goes here
+      About components goes here
     </Layout>
   );
 };
@@ -49,4 +49,4 @@ export function getServerSideProps() {
   );
 }
 
-export default Events;
+export default About;

@@ -1,17 +1,20 @@
-import { HeaderCarousel } from "../components/HeaderCarousel";
-import { Welcome } from "../components/Welcome";
-import { Activities } from "../components/Activities";
-import { FeaturedBanner } from "../components/FeaturedBanner";
-import { Causes } from "../components/Causes";
-import { Numbers } from "../components/Numbers";
-import { UpcomingEventsSection } from "../components/UpcomingEvents";
-import { Testimonials } from "../components/Testimonials";
-import { WorkStyle } from "../components/WorkStyle";
-import { News } from "../components/NewsAndArticles";
-import { Sponsers } from "../components/Sponsers";
-import { ContactInfo } from "../components/ContactInfo";
-import { charityAPI } from "../clients";
-import Layout from "../components/Layout";
+import { HeaderCarousel } from "../../components/HeaderCarousel";
+import { Welcome } from "../../components/Welcome";
+import { Activities } from "../../components/Activities";
+import { FeaturedBanner } from "../../components/FeaturedBanner";
+import { Causes } from "../../components/Causes";
+import { Numbers } from "../../components/Numbers";
+import { UpcomingEventsSection } from "../../components/UpcomingEvents";
+import { Testimonials } from "../../components/Testimonials";
+import { WorkStyle } from "../../components/WorkStyle";
+import { News } from "../../components/NewsAndArticles";
+import { Sponsers } from "../../components/Sponsers";
+import { ContactInfo } from "../../components/ContactInfo";
+import { charityAPI } from "../../clients";
+import Layout from "../../components/Layout";
+import Head from "next/head";
+import useI18n from "../../hooks/use-i18n";
+import { contentLanguageMap } from "../../lib/i18n";
 const Home = ({
   headerCarouselData,
   welcomeData,
@@ -44,7 +47,8 @@ const Home = ({
       };
     }
   };
-
+  const i18n = useI18n();
+  const currentLocale = i18n.activeLocale;
   return (
     <Layout
       footerData={footerData}
@@ -53,7 +57,28 @@ const Home = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
+      <Head>
+        <meta
+          httpEquiv="content-language"
+          content={contentLanguageMap[currentLocale]}
+        />
+      </Head>
       <HeaderCarousel data={headerCarouselData} />
+      <div className="flex p-10">
+        <div>
+          <h2>{i18n.t("intro.text")}</h2>
+          <h3>{i18n.t("intro.description")}</h3>
+          <div>Current locale: {i18n.activeLocale}</div>
+        </div>
+        <div className="flex">
+          <a className="donation-banner__btn btn bg-c300 block" href="/de">
+            Dutsh
+          </a>
+          <a className="donation-banner__btn btn bg-c300 block" href="/en">
+            English
+          </a>
+        </div>
+      </div>
       <Welcome data={welcomeData} />
       <Activities data={activitiesData} />
       <FeaturedBanner data={featuredBannerData} />
@@ -71,7 +96,8 @@ const Home = ({
     </Layout>
   );
 };
-export function getServerSideProps() {
+export async function getServerSideProps({ params: { lng } }) {
+  const { default: lngDict = {} } = await import(`../../locales/${lng}.json`);
   return Promise.all([
     charityAPI("/main-contacts"),
     charityAPI("/logo"),
@@ -126,6 +152,8 @@ export function getServerSideProps() {
           newsData,
           sponsersData,
           footerData,
+          lngDict,
+          lng,
         },
       };
     }

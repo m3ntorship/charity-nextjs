@@ -1,8 +1,8 @@
-import { ArticlesList } from "../../components/NewsAndArticles";
-import { Banner } from "../../components/ArticleBanner";
-import { VolunteeringBanner } from "../../components/VolunteeringBanner";
-import Layout from "../../components/Layout";
-import { charityAPI } from "../../clients";
+import { ArticlesList } from "../../../components/NewsAndArticles";
+import { Banner } from "../../../components/ArticleBanner";
+import { VolunteeringBanner } from "../../../components/VolunteeringBanner";
+import Layout from "../../../components/Layout";
+import { charityAPI } from "../../../clients";
 
 const Articles = ({
   footerData,

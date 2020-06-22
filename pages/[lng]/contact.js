@@ -1,7 +1,7 @@
-import Layout from "../components/Layout";
-import { charityAPI } from "../clients";
+import Layout from "../../components/Layout";
+import { charityAPI } from "../../clients";
 
-const Causes = ({
+const Contact = ({
   footerData,
   ContactsData,
   logoData,
@@ -16,7 +16,7 @@ const Causes = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      Causes components goes here
+      Contact components goes here
     </Layout>
   );
 };
@@ -49,4 +49,4 @@ export function getServerSideProps() {
   );
 }
 
-export default Causes;
+export default Contact;

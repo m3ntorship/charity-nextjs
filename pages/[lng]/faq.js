@@ -1,7 +1,7 @@
-import Layout from "../components/Layout";
-import { charityAPI } from "../clients";
+import Layout from "../../components/Layout";
+import { charityAPI } from "../../clients";
 
-const Contact = ({
+const Faq = ({
   footerData,
   ContactsData,
   logoData,
@@ -16,7 +16,7 @@ const Contact = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      Contact components goes here
+      Faq components goes here
     </Layout>
   );
 };
@@ -49,4 +49,4 @@ export function getServerSideProps() {
   );
 }
 
-export default Contact;
+export default Faq;

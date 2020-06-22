@@ -1,10 +1,10 @@
-import ArticleModel from "../../components/ArticleModel";
-import { ArticlesSearch } from "../../components/ArticlesSearch";
-import { RecentArticles } from "../../components/RecentArticles";
-import { Banner } from "../../components/ArticleBanner";
-import { VolunteeringBanner } from "../../components/VolunteeringBanner";
-import Layout from "../../components/Layout";
-import { charityAPI } from "../../clients";
+import ArticleModel from "../../../components/ArticleModel";
+import { ArticlesSearch } from "../../../components/ArticlesSearch";
+import { RecentArticles } from "../../../components/RecentArticles";
+import { Banner } from "../../../components/ArticleBanner";
+import { VolunteeringBanner } from "../../../components/VolunteeringBanner";
+import Layout from "../../../components/Layout";
+import { charityAPI } from "../../../clients";
 
 const Article = ({
   footerData,

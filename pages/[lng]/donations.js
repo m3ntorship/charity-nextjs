@@ -1,7 +1,7 @@
-import Layout from "../components/Layout";
-import { charityAPI } from "../clients";
+import Layout from "../../components/Layout";
+import { charityAPI } from "../../clients";
 
-const Faq = ({
+const Donations = ({
   footerData,
   ContactsData,
   logoData,
@@ -16,7 +16,7 @@ const Faq = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      Faq components goes here
+      Donations components goes here
     </Layout>
   );
 };
@@ -49,4 +49,4 @@ export function getServerSideProps() {
   );
 }
 
-export default Faq;
+export default Donations;
