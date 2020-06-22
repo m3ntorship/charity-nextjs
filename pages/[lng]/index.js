@@ -64,21 +64,6 @@ const Home = ({
         />
       </Head>
       <HeaderCarousel data={headerCarouselData} />
-      <div className="flex p-10">
-        <div>
-          <h2>{i18n.t("intro.text")}</h2>
-          <h3>{i18n.t("intro.description")}</h3>
-          <div>Current locale: {i18n.activeLocale}</div>
-        </div>
-        <div className="flex">
-          <a className="donation-banner__btn btn bg-c300 block" href="/de">
-            Dutsh
-          </a>
-          <a className="donation-banner__btn btn bg-c300 block" href="/en">
-            English
-          </a>
-        </div>
-      </div>
       <Welcome data={welcomeData} />
       <Activities data={activitiesData} />
       <FeaturedBanner data={featuredBannerData} />
