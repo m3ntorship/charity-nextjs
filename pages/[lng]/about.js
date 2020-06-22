@@ -21,12 +21,12 @@ const About = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      <Head>
+      {/* <Head>
         <meta
           httpEquiv="content-language"
           content={contentLanguageMap[currentLocale]}
         />
-      </Head>
+      </Head> */}
       <div>About components goes here</div>
     </Layout>
   );

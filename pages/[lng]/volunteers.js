@@ -21,7 +21,9 @@ const Volunteers = ({
   );
 };
 
-export function getServerSideProps() {
+export async function getServerSideProps({params:{lng}}) {
+  const { default: lngDict = {} } = await import(`../../locales/${lng}.json`);
+
   return Promise.all([
     charityAPI("/main-contacts"),
     charityAPI("/logo"),
@@ -43,6 +45,8 @@ export function getServerSideProps() {
           socialMediasData,
           footerData,
           pagesData,
+          lng,
+          lngDict
         },
       };
     }
