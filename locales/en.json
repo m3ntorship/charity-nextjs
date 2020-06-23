@@ -9,5 +9,8 @@
   },
   "email": {
     "placeholder": "type your email address"
+  },
+  "followus": {
+    "follow": "Follow us "
   }
 }
