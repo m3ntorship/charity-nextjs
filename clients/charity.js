@@ -1,5 +1,13 @@
 import { create } from "axios";
 
-export const charityAPI = create({
-  baseURL: process.env.url,
+ export const charityAPI = (lng) => {
+  if (lng === "ar") {
+    return create({
+      baseURL: process.env.urlAr,
 });
+  } else {
+    return create({
+      baseURL: process.env.url,
+    });
+  }
+};
