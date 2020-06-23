@@ -10,7 +10,7 @@ import { WorkStyle } from "../../components/WorkStyle";
 import { News } from "../../components/NewsAndArticles";
 import { Sponsers } from "../../components/Sponsers";
 import { ContactInfo } from "../../components/ContactInfo";
-import { charityAPI } from "../../clients";
+import { charityAPI, charityAPIAr } from "../../clients";
 import Layout from "../../components/Layout";
 import Head from "next/head";
 import useI18n from "../../hooks/use-i18n";
@@ -82,24 +82,28 @@ const Home = ({
   );
 };
 export async function getServerSideProps({ params: { lng } }) {
+  if (lng !== "ar" || lng !== "en") {
+    lng = "en";
+  }
   const { default: lngDict = {} } = await import(`../../locales/${lng}.json`);
+  const getCharityAPI = charityAPI(lng);
   return Promise.all([
-    charityAPI("/main-contacts"),
-    charityAPI("/logo"),
-    charityAPI("/socialmedias"),
-    charityAPI("/pages"),
-    charityAPI("/main-carousels"),
-    charityAPI("/welcome-section"),
-    charityAPI("/what-we-do"),
-    charityAPI("/featured-banner"),
-    charityAPI("/popular-causes"),
-    charityAPI("/speaking-numbers"),
-    charityAPI("/upcoming-events"),
-    charityAPI("/what-they-say"),
-    charityAPI("/how-we-work"),
-    charityAPI("/news-and-articles"),
-    charityAPI("/Sponsers"),
-    charityAPI("/footer"),
+    charityAPI("ar")("/main-contacts"),
+    getCharityAPI("/logo"),
+    getCharityAPI("/socialmedias"),
+    getCharityAPI("/pages"),
+    getCharityAPI("/main-carousels"),
+    getCharityAPI("/welcome-section"),
+    getCharityAPI("/what-we-do"),
+    getCharityAPI("/featured-banner"),
+    getCharityAPI("/popular-causes"),
+    getCharityAPI("/speaking-numbers"),
+    getCharityAPI("/upcoming-events"),
+    getCharityAPI("/what-they-say"),
+    getCharityAPI("/how-we-work"),
+    getCharityAPI("/news-and-articles"),
+    getCharityAPI("/Sponsers"),
+    getCharityAPI("/footer"),
   ]).then(
     ([
       { data: contactsData },
