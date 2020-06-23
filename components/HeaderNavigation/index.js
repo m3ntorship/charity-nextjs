@@ -58,11 +58,11 @@ const HeaderNavigation = ({ logoData, pagesData, contactsData }) => {
         </div>
         <div className="hidden lg:block contacts text-sm mx-6">
           {contactsData
-            .filter(
-              (contact) =>
-                contact.sub_title === "Email address" ||
-                contact.sub_title === "Phone line"
-            )
+            // .filter(
+            //   (contact) =>
+            //     contact.sub_title === "Email address" || 
+            //     contact.sub_title === "Phone line"
+            // )
             .map(
               ({
                 _id,
