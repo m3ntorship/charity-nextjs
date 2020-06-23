@@ -88,7 +88,7 @@ export async function getServerSideProps({ params: { lng } }) {
   const { default: lngDict = {} } = await import(`../../locales/${lng}.json`);
   const getCharityAPI = charityAPI(lng);
   return Promise.all([
-    charityAPI("ar")("/main-contacts"),
+    getCharityAPI("/main-contacts"),
     getCharityAPI("/logo"),
     getCharityAPI("/socialmedias"),
     getCharityAPI("/pages"),
