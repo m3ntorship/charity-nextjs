@@ -1,13 +1,18 @@
-import Layout from "../components/Layout";
-import { charityAPI } from "../clients";
+import Layout from "../../components/Layout";
+import { charityAPI } from "../../clients";
+import Head from "next/head";
+import useI18n from "../../hooks/use-i18n";
+import { contentLanguageMap } from "../../lib/i18n";
 
-const Donations = ({
+const About = ({
   footerData,
   ContactsData,
   logoData,
   socialMediasData,
   pagesData,
 }) => {
+  const i18n = useI18n();
+  const currentLocale = i18n.activeLocale;
   return (
     <Layout
       footerData={footerData}
@@ -16,12 +21,19 @@ const Donations = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      Donations components goes here
+      {/* <Head>
+        <meta
+          httpEquiv="content-language"
+          content={contentLanguageMap[currentLocale]}
+        />
+      </Head> */}
+      <div>About components goes here</div>
     </Layout>
   );
 };
 
-export function getServerSideProps() {
+export async function getServerSideProps({ params: { lng } }) {
+  const { default: lngDict = {} } = await import(`../../locales/${lng}.json`);
   return Promise.all([
     charityAPI("/main-contacts"),
     charityAPI("/logo"),
@@ -43,10 +55,12 @@ export function getServerSideProps() {
           socialMediasData,
           footerData,
           pagesData,
+          lngDict,
+          lng
         },
       };
     }
   );
 }
 
-export default Donations;
+export default About;

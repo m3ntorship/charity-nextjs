@@ -1,5 +1,5 @@
-import Layout from "../components/Layout";
-import { charityAPI } from "../clients";
+import Layout from "../../components/Layout";
+import { charityAPI } from "../../clients";
 
 const Faq = ({
   footerData,
@@ -21,7 +21,9 @@ const Faq = ({
   );
 };
 
-export function getServerSideProps() {
+export  async function getServerSideProps({params:{lng}}) {
+  const { default: lngDict = {} } = await import(`../../locales/${lng}.json`);
+  
   return Promise.all([
     charityAPI("/main-contacts"),
     charityAPI("/logo"),
@@ -43,6 +45,8 @@ export function getServerSideProps() {
           socialMediasData,
           footerData,
           pagesData,
+          lng,
+          lngDict
         },
       };
     }

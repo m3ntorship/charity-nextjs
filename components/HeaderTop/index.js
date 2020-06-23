@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LanguageSwitcher from "../LanguageSwitcher";
 const HeaderTop = ({ socialMediasData }) => {
   return (
     <div>
@@ -8,6 +9,11 @@ const HeaderTop = ({ socialMediasData }) => {
             Welcome to the best{" "}
             <span className="text-c300 underline italic">Lovims</span> charity
             platform
+          </div>
+          <div>
+            <ul className="flex languag__selector_wrapper">
+              <LanguageSwitcher />
+            </ul>
           </div>
           <div className="social flex text-sm">
             <div>Follow us:</div>

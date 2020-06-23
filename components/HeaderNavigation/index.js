@@ -3,9 +3,12 @@ import cn from "classnames";
 import Logo from "../Logo";
 import NavigationLink from "../NavigationLink";
 import Link from "next/link";
+import useI18n from '../../hooks/use-i18n'
 
 const HeaderNavigation = ({ logoData, pagesData, contactsData }) => {
   const [isOpen, setOpen] = useState(false);
+  let i18n = useI18n()
+  const currentLocale = i18n.activeLocale;
 
   return (
     <section className="header-nav py-5 px-0">
@@ -13,7 +16,7 @@ const HeaderNavigation = ({ logoData, pagesData, contactsData }) => {
         <div className="logo-links-container sm:justify-between sm:w-full">
           <div className="flex items-center px-10 py-4 justify-between">
             <div className="w-26">
-              <Link href="/">
+              <Link href={`/${currentLocale}`}>
                 <a>
                   <Logo logoData={logoData} />
                 </a>
@@ -55,11 +58,11 @@ const HeaderNavigation = ({ logoData, pagesData, contactsData }) => {
         </div>
         <div className="hidden lg:block contacts text-sm mx-6">
           {contactsData
-            .filter(
-              (contact) =>
-                contact.sub_title === "Email address" ||
-                contact.sub_title === "Phone line"
-            )
+            // .filter(
+            //   (contact) =>
+            //     contact.sub_title === "Email address" || 
+            //     contact.sub_title === "Phone line"
+            // )
             .map(
               ({
                 _id,
