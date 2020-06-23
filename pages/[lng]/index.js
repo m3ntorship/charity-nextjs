@@ -83,6 +83,7 @@ const Home = ({
 };
 export async function getServerSideProps({ params: { lng } }) {
   const { default: lngDict = {} } = await import(`../../locales/${lng}.json`);
+
   const getCharityAPI = charityAPI(lng);
   return Promise.all([
     getCharityAPI("/main-contacts"),
