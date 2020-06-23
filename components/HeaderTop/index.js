@@ -1,6 +1,9 @@
 import Link from "next/link";
 import LanguageSwitcher from "../LanguageSwitcher";
+import  useI18n from '../../hooks/use-i18n'
 const HeaderTop = ({ socialMediasData }) => {
+  const i18n = useI18n();
+  const followUs = `${i18n.t("followus.follow")}`;
   return (
     <div>
       <section className="contact-top p-0 items-center bg-c100 hidden md:flex">
@@ -16,7 +19,7 @@ const HeaderTop = ({ socialMediasData }) => {
             </ul>
           </div>
           <div className="social flex text-sm">
-            <div>Follow us:</div>
+            <div>{followUs}</div>
             <div className="ml-1">
               <ul className="inline-block ">
                 {socialMediasData.map(({ id, url, fontawesome_icons }) => {
