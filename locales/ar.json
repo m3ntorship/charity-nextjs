@@ -12,5 +12,10 @@
   },
   "followus": {
     "follow": "تابعنا"
+  },
+  "welcome": {
+    "message": "أهلا بكم فى موقع جمعية",
+    "lovims": "غراس ",
+    "platform": "الخيرية"
   }
 }
