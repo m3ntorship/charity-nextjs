@@ -1,13 +1,5 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities;
-
-/* import components styles */
-/* @/* Tailwind Base & Components */
-/*! purgecss start ignore */
-@import url("tailwindcss/base");
-/*! purgecss end ignore */
-@import url("tailwindcss/components");
 
 /* Global Styles */
 @import url("./global.css");
@@ -15,7 +7,7 @@
 /* @import url("./fontawesome.css"); */
 /*! purgecss end ignore */
 /* Tailwind utilities */
-@import url("tailwindcss/utilities");
+@tailwind utilities;
 
 /* import components styles */
 @import url("./logo.css");
