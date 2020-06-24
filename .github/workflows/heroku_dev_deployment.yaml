@@ -1,11 +1,11 @@
-name: heroku deployment (feature)
+name: heroku deployment (dev)
 
 on:
   push:
     branches: [master]
 
 jobs:
-  heroku_deploy_cms:
+  heroku_deploy_next:
     runs-on: ubuntu-latest
 
     steps:
