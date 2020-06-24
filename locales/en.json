@@ -12,5 +12,10 @@
   },
   "followus": {
     "follow": "Follow us "
+  },
+  "welcome" :{
+    "message" :" Welcome to the best" ,
+    "lovims" :"Lovims",
+    "platform" : "charity platform"
   }
 }

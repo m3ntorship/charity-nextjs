@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { useSpring, animated } from 'react-spring';
-import { charityAPI } from '../../clients/charity';
-import './style.scss';
-import Loader from './ContentLoader';
+import React, { useState, useEffect } from "react";
+import { useSpring, animated } from "react-spring";
+import { charityAPI } from "../../clients/charity";
+import useI18n from "../../hooks/use-i18n";
+import Loader from "./ContentLoader";
 
-const ContactTopContainer = props => {
+const ContactTopContainer = (props) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   const getData = () => {
     setError(false);
-    charityAPI('/socialmedias')
+    charityAPI("/socialmedias")
       .then(({ data }) => {
         setData(data);
         setLoading(false);
       })
-      .catch(error => {
+      .catch((error) => {
         setError(true);
         setErrorMessage(error.message);
         setLoading(false);
@@ -44,19 +44,24 @@ const ContactTop = ({
   error,
   errorMessage,
   haveBtn,
-  getData
+  getData,
 }) => {
   const fade = useSpring({
     from: { opacity: 0 },
-    to: { opacity: loading ? 0 : 1 }
+    to: { opacity: loading ? 0 : 1 },
   });
+  
+  const i18n = useI18n();
+  const welcomMessge = `${i18n.t("welcome.message")}`;
+  const lovims = `${i18n.t("welcome.lovims")}`;
+  const platform = `${i18n.t("welcome.platform")}`;
 
   if (error) {
     return (
       <div>
         <div className="bg-c200 text-center text-c000 py-5">
-          {' '}
-          <h2> Error: ==> {errorMessage} </h2>{' '}
+          {" "}
+          <h2> Error: ==> {errorMessage} </h2>{" "}
         </div>
       </div>
     );
@@ -65,7 +70,7 @@ const ContactTop = ({
   if (loading) {
     return (
       <div className="hidden md:block">
-        <Loader style={{ width: '100%', height: 'auto' }} />
+        <Loader style={{ width: "100%", height: "auto" }} />
       </div>
     );
   }
@@ -75,15 +80,15 @@ const ContactTop = ({
       <section className="contact-top p-0 items-center bg-c100 hidden md:flex">
         <div className="container px-20 w-full max-w-full md:flex justify-between">
           <div className="welcome-text text-sm">
-            Welcome to the best{' '}
-            <span className="text-c300 underline italic">Lovims</span> charity
-            platform
+            {welcomMessge}
+            <span className="text-c300 underline italic">{lovims}</span>{" "}
+            {platform}
           </div>
           <div className="social flex text-sm">
             <div>Follow us:</div>
             <div className="ml-1">
               <ul className="inline-block ">
-                {data.map(item => {
+                {data.map((item) => {
                   return (
                     <li key={item.id} className="inline px-3 hover:text-c000">
                       <a href={item.url}>
@@ -104,7 +109,7 @@ const ContactTop = ({
             Start Donation
           </button>
         ) : (
-          ''
+          ""
         )}
       </section>
     </animated.div>
