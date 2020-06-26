@@ -11,7 +11,6 @@ const ContactTop = ({ data }) => {
   const platform = `${i18n.t("welcome.platform")}`;
   const donationBtnText = `${i18n.t("donationButton.text")}`;
   const donationBtnUrl = `${i18n.t("donationButton.url")}`;
-  console.log(lovims, donationBtnText, donationBtnUrl);
 
   const fade = useSpring({
     from: { opacity: 0 },
