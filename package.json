@@ -6,15 +6,14 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.13.1",
-    "@zeit/next-sass": "^1.0.1",
     "autoprefixer": "^9.8.1",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "date-fns": "^2.14.0",
     "next": "^9.4.4",
-    "node-sass": "^4.14.1",
     "postcss-extend": "^1.0.5",
     "postcss-import": "^12.0.1",
+    "postcss-nested": "^4.2.1",
     "postcss-preset-env": "^6.7.0",
     "pure-react-carousel": "^1.27.1",
     "react": "^16.13.1",
@@ -24,7 +23,6 @@
     "react-spring": "^8.0.27",
     "react-use": "^15.2.5",
     "rosetta": "^1.0.1",
-    "sass": "^1.26.8",
     "tailwindcss": "^1.4.6"
   }
 }
