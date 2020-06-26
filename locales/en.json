@@ -11,11 +11,15 @@
     "placeholder": "type your email address"
   },
   "followus": {
-    "follow": "Follow us "
+    "follow": "Follow us: "
   },
-  "welcome" :{
-    "message" :" Welcome to the best" ,
-    "lovims" :"Lovims",
-    "platform" : "charity platform"
+  "welcome": {
+    "message": "Welcome to the best",
+    "lovims": "Lovims",
+    "platform": "charity platform"
+  },
+  "donationButton": {
+    "text": "Start Donation",
+    "url": "/en/donations"
   }
 }

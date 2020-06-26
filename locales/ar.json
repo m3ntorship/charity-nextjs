@@ -15,7 +15,11 @@
   },
   "welcome": {
     "message": "أهلا بكم فى موقع جمعية",
-    "lovims": "غراس ",
+    "lovims": "غراس",
     "platform": "الخيرية"
+  },
+  "donationButton": {
+    "text": "تبرع الآن",
+    "url": "/ar/donations"
   }
 }
