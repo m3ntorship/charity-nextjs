@@ -4,8 +4,11 @@
 
 @import "./global.css";
 
-@import "tailwindcss/utilities";
+/*! purgecss start ignore */
+@import "./fontawesome.css";
+/*! purgecss end ignore */
 
+@import "tailwindcss/utilities";
 /* import components styles */
 @import "./logo.css";
 @import "./languaheSwitcher.css";
