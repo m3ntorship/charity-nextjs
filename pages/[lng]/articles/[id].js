@@ -5,6 +5,7 @@ import { Banner } from "../../../components/ArticleBanner";
 import { VolunteeringBanner } from "../../../components/VolunteeringBanner";
 import Layout from "../../../components/Layout";
 import { charityAPI } from "../../../clients";
+import useI18n from "../../../hooks/use-i18n";
 
 const Article = ({
   footerData,
@@ -16,6 +17,10 @@ const Article = ({
   articleData,
   articlesPageData,
 }) => {
+  const i18n = useI18n();
+  const findArticle = `${i18n.t("articles.findArticle")}`;
+  const recentArticlesTitle = `${i18n.t("articles.recentArticles")}`;
+
   return (
     <Layout
       footerData={footerData}
@@ -32,10 +37,13 @@ const Article = ({
           </div>
           <aside className="col-span-12 lg:col-span-4 flex flex-col sm:flex-row lg:flex-col">
             <div className="mb-8 sm:mr-8 lg:mr-0 sm:w-1/2 lg:w-full">
-              <ArticlesSearch data={{ title: "Find Article" }} />
+              <ArticlesSearch data={findArticle} />
             </div>
             <div className="sm:w-1/2 lg:w-full">
-              <RecentArticles data={recentArticlesData} />
+              <RecentArticles
+                data={recentArticlesData}
+                recentArticlesTitle={recentArticlesTitle}
+              />
             </div>
           </aside>
         </div>
