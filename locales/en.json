@@ -21,5 +21,11 @@
   "donationButton": {
     "text": "Start Donation",
     "url": "/en/donations"
-  }
+  },
+  "homePage": { "text": "Home" },
+  "articles": {
+    "findArticle": "Find Articles",
+    "recentArticles": "Recent Articles"
+  },
+  "comments": "comments"
 }

@@ -21,5 +21,11 @@
   "donationButton": {
     "text": "تبرع الآن",
     "url": "/ar/donations"
-  }
+  },
+  "homePage": { "text": "الصفحة الرئيسية" },
+  "articles": {
+    "findArticle": "إبحث عن مقال",
+    "recentArticles": "أحدث المقالات"
+  },
+  "comments": "التعليقات"
 }
