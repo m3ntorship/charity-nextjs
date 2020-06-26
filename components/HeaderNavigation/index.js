@@ -3,11 +3,11 @@ import cn from "classnames";
 import Logo from "../Logo";
 import NavigationLink from "../NavigationLink";
 import Link from "next/link";
-import useI18n from '../../hooks/use-i18n'
+import useI18n from "../../hooks/use-i18n";
 
 const HeaderNavigation = ({ logoData, pagesData, contactsData }) => {
   const [isOpen, setOpen] = useState(false);
-  let i18n = useI18n()
+  let i18n = useI18n();
   const currentLocale = i18n.activeLocale;
 
   return (
@@ -58,11 +58,7 @@ const HeaderNavigation = ({ logoData, pagesData, contactsData }) => {
         </div>
         <div className="hidden lg:block contacts text-sm mx-6">
           {contactsData
-            // .filter(
-            //   (contact) =>
-            //     contact.sub_title === "Email address" || 
-            //     contact.sub_title === "Phone line"
-            // )
+            .filter(({ show_in_navbar }) => show_in_navbar)
             .map(
               ({
                 _id,

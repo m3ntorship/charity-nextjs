@@ -33,6 +33,7 @@ const Footer = ({ data }) => {
       articles,
       links,
       Disclaimer,
+      links_title,
     } = data;
     return (
       <footer className="footer bg-c100 text-c700">
@@ -57,7 +58,7 @@ const Footer = ({ data }) => {
               style={fadeRight}
               className="grid lg:grid-cols-2 md:grid-cols-1 grid-cols-1"
             >
-              <Links title="Links" links={links} />
+              <Links title={links_title} links={links} />
               <Newsletter
                 title={newsletter_title}
                 description={newsletter_description}

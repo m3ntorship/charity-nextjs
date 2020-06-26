@@ -10,7 +10,7 @@ import { WorkStyle } from "../../components/WorkStyle";
 import { News } from "../../components/NewsAndArticles";
 import { Sponsers } from "../../components/Sponsers";
 import { ContactInfo } from "../../components/ContactInfo";
-import { charityAPI} from "../../clients";
+import { charityAPI } from "../../clients";
 import Layout from "../../components/Layout";
 import Head from "next/head";
 import useI18n from "../../hooks/use-i18n";
@@ -81,9 +81,8 @@ const Home = ({
     </Layout>
   );
 };
-export async function getServerSideProps({ params: { lng } },req,res) {
+export async function getServerSideProps({ params: { lng } }) {
   const { default: lngDict = {} } = await import(`../../locales/${lng}.json`);
-
   const getCharityAPI = charityAPI(lng);
   return Promise.all([
     getCharityAPI("/main-contacts"),

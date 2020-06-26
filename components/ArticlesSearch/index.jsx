@@ -1,11 +1,10 @@
-import React from 'react';
-import { Widget } from '../shared/Widget';
-import { SearchBar } from '../shared/SearchBar';
+import React from "react";
+import { Widget } from "../shared/Widget";
+import { SearchBar } from "../shared/SearchBar";
 
 const ArticlesSearch = ({ data }) => {
-  const { title } = data;
   return (
-    <Widget title={title}>
+    <Widget title={data}>
       <div className="searchbar__container pt-5 pb-10 ">
         <SearchBar />
       </div>
