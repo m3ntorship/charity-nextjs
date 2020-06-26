@@ -1,10 +1,15 @@
-@import url("tailwindcss/base");
-@import url("tailwindcss/components");
+// @import url("tailwindcss/base");
+// @import url("tailwindcss/components");
+@tailwind base;
+
+@tailwind components;
+
+@import url("./global.css");
+@tailwind utilities;
 
 /* Global Styles */
-@import url("./global.css");
 /* Tailwind utilities */
-@import url("tailwindcss/utilities");
+// @import url("tailwindcss/utilities");
 
 /* import components styles */
 @import url("./logo.css");
