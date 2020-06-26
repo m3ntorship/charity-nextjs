@@ -1,9 +1,9 @@
 // import Header from "../Header";
 import { Footer } from "../Footer";
 import Head from "next/head";
-import HeaderTop from "../HeaderTop";
 import HeaderNavigation from "../HeaderNavigation";
 import useI18n from "../../hooks/use-i18n";
+import { ContactTop } from "../ContactTop";
 
 const Layout = ({
   children,
@@ -29,10 +29,14 @@ const Layout = ({
             rel="stylesheet"
           />
         )}
-        <link rel="shortcut icon" type="image/svg" href="../../static/favicon/favicon-16x16.png"></link>
+        <link
+          rel="shortcut icon"
+          type="image/svg"
+          href="../../static/favicon/favicon-16x16.png"
+        ></link>
       </Head>
       <header>
-        <HeaderTop socialMediasData={socialMediasData} />
+        <ContactTop data={socialMediasData} />
         <HeaderNavigation
           logoData={logoData}
           contactsData={contactsData}
