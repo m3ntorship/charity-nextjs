@@ -7,6 +7,10 @@ module.exports = {
   ],
   // important: true,
   theme: {
+    fontFamily: {
+      en: ["Merriweather", "serif"],
+      ar: ["Tajawal", "sans-serif"],
+    },
     extend: {
       colors: {
         c000: "#ffffff",
