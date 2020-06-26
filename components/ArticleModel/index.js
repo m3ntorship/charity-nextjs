@@ -1,5 +1,6 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
+import useI18n from "../../hooks/use-i18n";
 
 const ArticleModel = ({ data }) => {
   const {
@@ -21,6 +22,8 @@ const ArticleModel = ({ data }) => {
 
 // article headline
 const Headline = ({ title, username }) => {
+  const i18n = useI18n();
+  const comments = `${i18n.t("comments")}`;
   return (
     <header className="col-start-1 col-end-13 mt-auto">
       <div className="content-info text-center md:text-left">
@@ -30,7 +33,7 @@ const Headline = ({ title, username }) => {
         </span>
         <span className="text-c600 mr-2 text-xxs">
           <i className="fas fa-comments mr-1 text-c500"></i>
-          43 Comments
+          43 {comments}
         </span>
         <h4 className="text-c100 font-bold text-large">{title}</h4>
       </div>

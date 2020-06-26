@@ -3,6 +3,7 @@ import { useInView } from "react-intersection-observer";
 import NavigationLink from "../NavigationLink";
 import { useSpring, animated } from "react-spring";
 import Heading from "../Heading";
+import useI18n from "../../hooks/use-i18n";
 
 const Banner = ({ data }) => {
   const [ref, inView] = useInView({
@@ -13,14 +14,15 @@ const Banner = ({ data }) => {
   //Animation
 
   const fade = useSpring({
-    // opacity: inView ? 1 : 0,
     opacity: inView ? 1 : 0,
     transform: inView ? "translateY(0%)" : "translateY(-25%)",
   });
 
+  const i18n = useI18n();
+  const home = `${i18n.t("homePage.text")}`;
   const {
     Banner: { image_bg, title, sub_title },
-    name: pageName,
+    link: { text: pageName, url: pageUrl },
   } = data;
   return (
     <section
@@ -54,14 +56,14 @@ const Banner = ({ data }) => {
         <div className=" articles__banner__links self-end text-center ">
           <ul className=" nav__ul__items inline-flex justify-around relative bg-c200 text-c000 px-10 items-center">
             <NavigationLink
-              title="Home"
-              url="#home"
+              title={home}
+              url="/"
               key="1"
               linkClassName="p-7 block font-bold"
             />
             <NavigationLink
               title={pageName}
-              url="/"
+              url={pageUrl}
               key="2"
               linkClassName="p-7 block font-bold"
             />

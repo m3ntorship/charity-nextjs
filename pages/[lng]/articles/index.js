@@ -6,7 +6,7 @@ import { charityAPI } from "../../../clients";
 
 const Articles = ({
   footerData,
-  ContactsData,
+  contactsData,
   logoData,
   socialMediasData,
   articlesPageData,
@@ -16,7 +16,7 @@ const Articles = ({
   return (
     <Layout
       footerData={footerData}
-      ContactsData={ContactsData}
+      contactsData={contactsData}
       logoData={logoData}
       socialMediasData={socialMediasData}
       pagesData={pagesData}
@@ -33,22 +33,24 @@ const Articles = ({
   );
 };
 
-export function getServerSideProps() {
+export async function getServerSideProps({ params: { lng } }) {
+  const { default: lngDict = {} } = await import(
+    `../../../locales/${lng}.json`
+  );
+  const getCharityAPI = charityAPI(lng);
   return Promise.all([
-    charityAPI("/main-contacts"),
-    charityAPI("/logo"),
-    charityAPI("/socialmedias"),
-    charityAPI("/pages"),
-    charityAPI("/main-contacts"),
-    charityAPI("/footer"),
-    charityAPI("/articles"),
+    getCharityAPI("/main-contacts"),
+    getCharityAPI("/logo"),
+    getCharityAPI("/socialmedias"),
+    getCharityAPI("/pages"),
+    getCharityAPI("/footer"),
+    getCharityAPI("/articles"),
   ]).then(
     ([
-      { data: ContactsData },
+      { data: contactsData },
       { data: logoData },
       { data: socialMediasData },
       { data: pagesData },
-      { data: mainContactData },
       { data: footerData },
       { data: articlesData },
     ]) => {
@@ -57,14 +59,15 @@ export function getServerSideProps() {
       );
       return {
         props: {
-          ContactsData,
+          contactsData,
           logoData,
           socialMediasData,
           articlesPageData,
-          mainContactData,
           footerData,
           articlesData,
           pagesData,
+          lng,
+          lngDict,
         },
       };
     }
