@@ -29,6 +29,7 @@ const Layout = ({
             rel="stylesheet"
           />
         )}
+        <link rel="shortcut icon" type="image/svg" href="../../static/favicon/favicon-16x16.png"></link>
       </Head>
       <header>
         <HeaderTop socialMediasData={socialMediasData} />
