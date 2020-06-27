@@ -1,7 +1,10 @@
 import React from "react";
 import Link from "next/link";
+import useI18n from "../../../hooks/use-i18n";
 
 const Links = ({ links, title }) => {
+  const i18n = useI18n();
+  const currentLocale = i18n.activeLocale;
   return (
     <div className="footer-card lg:my-0 my-6">
       <h3 className="text-c000 text-lg font-semibold mb-8">{title}</h3>
@@ -9,7 +12,7 @@ const Links = ({ links, title }) => {
         {links.map(({ id, text, url }) => {
           return (
             <li key={id} className="pb-4">
-              <Link href={url}>
+              <Link href={`/${currentLocale}${url}`}>
                 <a>{text}</a>
               </Link>
             </li>
