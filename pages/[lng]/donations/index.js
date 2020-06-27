@@ -1,4 +1,5 @@
 import Layout from "../../../components/Layout";
+import { Soon } from "../../../components/Soon";
 import { charityAPI } from "../../../clients";
 
 const Donations = ({
@@ -16,13 +17,15 @@ const Donations = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      Donations components goes here
+      <Soon />
     </Layout>
   );
 };
 
-export  async function getServerSideProps({params:{lng}}) {
-  const { default: lngDict = {} } = await import(`../../../locales/${lng}.json`);
+export async function getServerSideProps({ params: { lng } }) {
+  const { default: lngDict = {} } = await import(
+    `../../../locales/${lng}.json`
+  );
   const getCharityAPI = charityAPI(lng);
 
   return Promise.all([
@@ -47,7 +50,7 @@ export  async function getServerSideProps({params:{lng}}) {
           footerData,
           pagesData,
           lng,
-          lngDict
+          lngDict,
         },
       };
     }
