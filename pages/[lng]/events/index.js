@@ -3,7 +3,7 @@ import { charityAPI } from "../../../clients";
 
 const Events = ({
   footerData,
-  ContactsData,
+  contactsData,
   logoData,
   socialMediasData,
   pagesData,
@@ -11,7 +11,7 @@ const Events = ({
   return (
     <Layout
       footerData={footerData}
-      contactsData={ContactsData}
+      contactsData={contactsData}
       logoData={logoData}
       socialMediasData={socialMediasData}
       pagesData={pagesData}
@@ -33,7 +33,7 @@ export async function getServerSideProps({params :{lng}}) {
     getCharityAPI("/footer"),
   ]).then(
     ([
-      { data: ContactsData },
+      { data: contactsData },
       { data: logoData },
       { data: socialMediasData },
       { data: pagesData },
@@ -41,7 +41,7 @@ export async function getServerSideProps({params :{lng}}) {
     ]) => {
       return {
         props: {
-          ContactsData,
+          contactsData,
           logoData,
           socialMediasData,
           footerData,
