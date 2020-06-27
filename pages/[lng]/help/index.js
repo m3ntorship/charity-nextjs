@@ -1,6 +1,6 @@
 import Layout from "../../../components/Layout";
 import { charityAPI } from "../../../clients";
-
+import { Soon } from "../../../components/Soon";
 const Faq = ({
   footerData,
   contactsData,
@@ -16,7 +16,7 @@ const Faq = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      Help Page
+      <Soon />
     </Layout>
   );
 };
