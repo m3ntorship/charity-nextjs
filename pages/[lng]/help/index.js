@@ -16,7 +16,7 @@ const Faq = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      Help page
+      Help Page
     </Layout>
   );
 };
