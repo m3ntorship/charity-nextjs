@@ -1,18 +1,13 @@
-import Layout from "../../components/Layout";
-import { charityAPI } from "../../clients";
-import Head from "next/head";
-import useI18n from "../../hooks/use-i18n";
-import { contentLanguageMap } from "../../lib/i18n";
+import Layout from "../../../components/Layout";
+import { charityAPI } from "../../../clients";
 
-const About = ({
+const Volunteers = ({
   footerData,
   ContactsData,
   logoData,
   socialMediasData,
   pagesData,
 }) => {
-  const i18n = useI18n();
-  const currentLocale = i18n.activeLocale;
   return (
     <Layout
       footerData={footerData}
@@ -21,25 +16,21 @@ const About = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      {/* <Head>
-        <meta
-          httpEquiv="content-language"
-          content={contentLanguageMap[currentLocale]}
-        />
-      </Head> */}
-      <div>About components goes here</div>
+      Volunteers components goes here
     </Layout>
   );
 };
 
 export async function getServerSideProps({ params: { lng } }) {
   const { default: lngDict = {} } = await import(`../../locales/${lng}.json`);
+  const getCharityAPI = charityAPI(lng);
+
   return Promise.all([
-    charityAPI("/main-contacts"),
-    charityAPI("/logo"),
-    charityAPI("/socialmedias"),
-    charityAPI("/pages"),
-    charityAPI("/footer"),
+    getCharityAPI("/main-contacts"),
+    getCharityAPI("/logo"),
+    getCharityAPI("/socialmedias"),
+    getCharityAPI("/pages"),
+    getCharityAPI("/footer"),
   ]).then(
     ([
       { data: ContactsData },
@@ -55,12 +46,12 @@ export async function getServerSideProps({ params: { lng } }) {
           socialMediasData,
           footerData,
           pagesData,
+          lng,
           lngDict,
-          lng
         },
       };
     }
   );
 }
 
-export default About;
+export default Volunteers;

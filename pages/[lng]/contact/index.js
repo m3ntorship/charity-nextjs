@@ -1,7 +1,7 @@
-import Layout from "../../components/Layout";
-import { charityAPI } from "../../clients";
+import Layout from "../../../components/Layout";
+import { charityAPI } from "../../../clients";
 
-const Volunteers = ({
+const Contact = ({
   footerData,
   ContactsData,
   logoData,
@@ -16,20 +16,23 @@ const Volunteers = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      Volunteers components goes here
+      Contact components goes here
     </Layout>
   );
 };
 
-export async function getServerSideProps({params:{lng}}) {
-  const { default: lngDict = {} } = await import(`../../locales/${lng}.json`);
+export async function getServerSideProps({ params: { lng } }) {
+  const { default: lngDict = {} } = await import(
+    `../../../locales/${lng}.json`
+  );
+  const getCharityAPI = charityAPI(lng);
 
   return Promise.all([
-    charityAPI("/main-contacts"),
-    charityAPI("/logo"),
-    charityAPI("/socialmedias"),
-    charityAPI("/pages"),
-    charityAPI("/footer"),
+    getCharityAPI("/main-contacts"),
+    getCharityAPI("/logo"),
+    getCharityAPI("/socialmedias"),
+    getCharityAPI("/pages"),
+    getCharityAPI("/footer"),
   ]).then(
     ([
       { data: ContactsData },
@@ -46,11 +49,11 @@ export async function getServerSideProps({params:{lng}}) {
           footerData,
           pagesData,
           lng,
-          lngDict
+          lngDict,
         },
       };
     }
   );
 }
 
-export default Volunteers;
+export default Contact;

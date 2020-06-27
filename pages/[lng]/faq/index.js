@@ -1,7 +1,7 @@
-import Layout from "../../components/Layout";
-import { charityAPI } from "../../clients";
+import Layout from "../../../components/Layout";
+import { charityAPI } from "../../../clients";
 
-const Events = ({
+const Faq = ({
   footerData,
   ContactsData,
   logoData,
@@ -16,20 +16,21 @@ const Events = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      Events components goes here
+      Faq components goes here
     </Layout>
   );
 };
 
-export async function getServerSideProps({params :{lng}}) {
-  const { default: lngDict = {} } = await import(`../../locales/${lng}.json`);
+export  async function getServerSideProps({params:{lng}}) {
+  const { default: lngDict = {} } = await import(`../../../locales/${lng}.json`);
+  const getCharityAPI = charityAPI(lng);
 
   return Promise.all([
-    charityAPI("/main-contacts"),
-    charityAPI("/logo"),
-    charityAPI("/socialmedias"),
-    charityAPI("/pages"),
-    charityAPI("/footer"),
+    getCharityAPI("/main-contacts"),
+    getCharityAPI("/logo"),
+    getCharityAPI("/socialmedias"),
+    getCharityAPI("/pages"),
+    getCharityAPI("/footer"),
   ]).then(
     ([
       { data: ContactsData },
@@ -53,4 +54,4 @@ export async function getServerSideProps({params :{lng}}) {
   );
 }
 
-export default Events;
+export default Faq;
