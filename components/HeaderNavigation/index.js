@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import LanguageSwitcher from "../LanguageSwitcher";
 import cn from "classnames";
 import Logo from "../Logo";
 import NavigationLink from "../NavigationLink";
@@ -14,13 +15,16 @@ const HeaderNavigation = ({ logoData, pagesData, contactsData }) => {
     <section className="header-nav py-5 px-0">
       <div className="container sm:flex sm:justify-between">
         <div className="logo-links-container sm:justify-between sm:w-full">
-          <div className="flex items-center px-10 py-4 justify-between">
+          <div className="flex items-center px-10 py-4 justify-between relative">
             <div className="w-26">
               <Link href={`/${currentLocale}`}>
                 <a>
                   <Logo logoData={logoData} />
                 </a>
               </Link>
+            </div>
+            <div className="mobile__logo block md:hidden ">
+              <LanguageSwitcher />
             </div>
             <div className="toggle-btn">
               <button
@@ -31,7 +35,7 @@ const HeaderNavigation = ({ logoData, pagesData, contactsData }) => {
                 }}
               >
                 {isOpen ? (
-                  <i className="fas fa-facebook text-c100"></i>
+                  <i className="fa fa-times text-c100"></i>
                 ) : (
                   <i className="fas fa-bars text-c100"></i>
                 )}
