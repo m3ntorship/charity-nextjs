@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import Link from 'next/link'
+import Link from 'next/link';
 import useMedia from '../../Helpers/useMedia';
 import Heading from '../Heading';
 import {
@@ -12,6 +12,7 @@ import {
 } from 'pure-react-carousel';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated, useChain } from 'react-spring';
+import { Media, MediaContextProvider } from '../../Helpers/frenselMedia';
 
 const Cause = ({
   title,
@@ -117,10 +118,10 @@ const Cause = ({
             </animated.div>
           </div>
           <Link href="/donations">
-          <button className="causes__btn font-bold bg-c800 text-c600 hover:bg-c300 hover:text-c100 transition duration-200 ease-out">
+            <button className="causes__btn font-bold bg-c800 text-c600 hover:bg-c300 hover:text-c100 transition duration-200 ease-out">
               Donate Now
-          </button>
-            </Link>
+            </button>
+          </Link>
         </div>{' '}
       </div>{' '}
     </animated.div>
@@ -140,82 +141,35 @@ const Causes = ({ data }) => {
 
   const isCarousel = useMedia(['(min-width: 768px)'], [false], true);
 
-
-
- 
-    let {
-      causes,
-      causes_heading: { heading_primary, heading_secondary }
-    } = data;
-    return (
-      <section className="causes relative">
-        <div className="causes__container container">
-          <animated.div className="causes__headings" style={slide}>
-            <div className="refContainer" ref={ref}>
-              <Heading
-                primaryText={heading_primary}
-                secondaryText={heading_secondary}
-                align="center"
-                primaryTextColor="dark"
-              />
-            </div>{' '}
-          </animated.div>
-
-          {isCarousel ? (
-            <CarouselProvider
-              naturalSlideWidth={50}
-              naturalSlideHeight={100}
-              totalSlides={causes.length}
-              isIntrinsicHeight="true"
-              isPlaying="true"
-              interval="5000"
-              lockOnWindowScroll="true"
-              className="causes__carousel causes__carousel__grid"
-            >
-              <Slider className="causes__carousel__slider col-start-2 col-end-3">
-                {causes.map((cause, index) => {
-                  const {
-                    title,
-                    description,
-                    raised,
-                    goal,
-                    image: { url },
-                    id
-                  } = cause;
-                  return (
-                    <Slide className="causes__carousel__slide" key={id}>
-                      <Cause
-                        title={title}
-                        description={description}
-                        raised={raised}
-                        goal={goal}
-                        image={url}
-                        index={index}
-                      />
-                    </Slide>
-                  );
-                })}
-              </Slider>
-              <div className="causes__carousel__back-arrow causes__carousel__arrow flex items-center justify-center text-lg col-start-1 col-end-2 row-start-1 row-end-2 pr-2">
-                <ButtonBack className="text-c100 border-c100 rounded-full ">
-                  <div className="justify-center items-center flex rounded-full border-solid p-4 border-2 cursor-pointer">
-                    <i className="fas fa-arrow-left"></i>
-                  </div>
-                </ButtonBack>
-              </div>
-              <div className="causes__carousel__forward-arrow causes__carousel__arrow flex items-center justify-center text-lg col-start-3 col-end-4 row-start-1 row-end-2 pl-2">
-                <ButtonNext className="text-c100 border-c100 rounded-full">
-                  <div className="justify-center items-center flex rounded-full border-solid p-4 border-2 cursor-pointer">
-                    <i className="fas fa-arrow-right"></i>
-                  </div>
-                </ButtonNext>
-              </div>
-              <div className="causes__carousel__picker flex items-center justify-center text-lg col-start-1 col-end-4 row-start-2 row-end-3 py-4">
-                <DotGroup className="causes_dots_group" />
-              </div>
-            </CarouselProvider>
-          ) : (
-            <div className="causes__wrapper grid grid-cols-3 gap-8">
+  let {
+    causes,
+    causes_heading: { heading_primary, heading_secondary }
+  } = data;
+  return (
+    <section className="causes relative">
+      <div className="causes__container container">
+        <animated.div className="causes__headings" style={slide}>
+          <div className="refContainer" ref={ref}>
+            <Heading
+              primaryText={heading_primary}
+              secondaryText={heading_secondary}
+              align="center"
+              primaryTextColor="dark"
+            />
+          </div>{' '}
+        </animated.div>
+        <Media lessThan="sm">
+          <CarouselProvider
+            naturalSlideWidth={50}
+            naturalSlideHeight={100}
+            totalSlides={causes.length}
+            isIntrinsicHeight="true"
+            isPlaying="true"
+            interval="5000"
+            lockOnWindowScroll="true"
+            className="causes__carousel causes__carousel__grid"
+          >
+            <Slider className="causes__carousel__slider col-start-2 col-end-3">
               {causes.map((cause, index) => {
                 const {
                   title,
@@ -223,28 +177,71 @@ const Causes = ({ data }) => {
                   raised,
                   goal,
                   image: { url },
-                  id,
-                  alternativeText
+                  id
                 } = cause;
                 return (
-                  <Cause
-                    key={id}
-                    title={title}
-                    description={description}
-                    raised={raised}
-                    goal={goal}
-                    image={url}
-                    imageText={alternativeText}
-                    index={index}
-                  />
+                  <Slide className="causes__carousel__slide" key={id}>
+                    <Cause
+                      title={title}
+                      description={description}
+                      raised={raised}
+                      goal={goal}
+                      image={url}
+                      index={index}
+                    />
+                  </Slide>
                 );
               })}
+            </Slider>
+            <div className="causes__carousel__back-arrow causes__carousel__arrow flex items-center justify-center text-lg col-start-1 col-end-2 row-start-1 row-end-2 pr-2">
+              <ButtonBack className="text-c100 border-c100 rounded-full ">
+                <div className="justify-center items-center flex rounded-full border-solid p-4 border-2 cursor-pointer">
+                  <i className="fas fa-arrow-left"></i>
+                </div>
+              </ButtonBack>
             </div>
-          )}
-        </div>
-      </section>
-    );
-  }
-
+            <div className="causes__carousel__forward-arrow causes__carousel__arrow flex items-center justify-center text-lg col-start-3 col-end-4 row-start-1 row-end-2 pl-2">
+              <ButtonNext className="text-c100 border-c100 rounded-full">
+                <div className="justify-center items-center flex rounded-full border-solid p-4 border-2 cursor-pointer">
+                  <i className="fas fa-arrow-right"></i>
+                </div>
+              </ButtonNext>
+            </div>
+            <div className="causes__carousel__picker flex items-center justify-center text-lg col-start-1 col-end-4 row-start-2 row-end-3 py-4">
+              <DotGroup className="causes_dots_group" />
+            </div>
+          </CarouselProvider>
+        </Media>
+        <Media greaterThan="sm">
+          <div className="causes__wrapper grid grid-cols-3 gap-8">
+            {causes.map((cause, index) => {
+              const {
+                title,
+                description,
+                raised,
+                goal,
+                image: { url },
+                id,
+                alternativeText
+              } = cause;
+              return (
+                <Cause
+                  key={id}
+                  title={title}
+                  description={description}
+                  raised={raised}
+                  goal={goal}
+                  image={url}
+                  imageText={alternativeText}
+                  index={index}
+                />
+              );
+            })}
+          </div>
+        </Media>
+      </div>
+    </section>
+  );
+};
 
 export { Causes };
