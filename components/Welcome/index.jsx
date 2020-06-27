@@ -1,79 +1,79 @@
-import React from 'react';
-import { Fragment } from 'react';
-import { animated, useSpring } from 'react-spring';
-import { useInView } from 'react-intersection-observer';
+import React from "react";
+import Link from "next/link";
+import { Fragment } from "react";
+import { animated, useSpring } from "react-spring";
+import { useInView } from "react-intersection-observer";
+import useI18n from "../../hooks/use-i18n";
+
 // import useMedia from '../../Helpers/useMedia'; // need to fix window is not defined in useMedia
 
 export const Welcome = ({ data, loading, error }) => {
-  const isMobile = false
+  const isMobile = false;
 
   const [ref, inView] = useInView({
     threshold: 0.3,
-    triggerOnce: true
+    triggerOnce: true,
   });
 
   const slideStart = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0%)' : 'translateX(-50%)'
+    transform: inView ? "translateX(0%)" : "translateX(-50%)",
   });
 
   const slideText = useSpring({
     opacity: inView ? 1 : 0,
     transform: inView
-      ? 'translateX(0%)'
+      ? "translateX(0%)"
       : isMobile
-      ? 'translateY(-50%)'
-      : 'translateX(50%)'
+      ? "translateY(-50%)"
+      : "translateX(50%)",
   });
 
-
-
-
-    let {
-      image: { url },
-      Heading: { heading_primary, heading_secondary },
-      description,
-      link,
-      WelcomeActions
-    } = data;
-    return (
-      <Fragment>
-        <section className="welcome py-0 text-c600 pt-16 md:pt-0" ref={ref}>
-          <div
-            className="welcome_wrap container grid grid-cols-12 gap-6
+  let {
+    image: { url },
+    Heading: { heading_primary, heading_secondary },
+    description,
+    link,
+    WelcomeActions,
+  } = data;
+  return (
+    <Fragment>
+      <section className="welcome py-0 text-c600 pt-16 md:pt-0" ref={ref}>
+        <div
+          className="welcome_wrap container grid grid-cols-12 gap-6
             md:grid-rows-3"
-            style={{ gridTemplateRows: '.6fr .4fr .0fr' }}
-          >
-            <WelcomeImage url={url} slideStart={slideStart} />
+          style={{ gridTemplateRows: ".6fr .4fr .0fr" }}
+        >
+          <WelcomeImage url={url} slideStart={slideStart} />
 
-            <WelcomeHeader
-              header={heading_primary}
-              title_complementary={heading_secondary}
-              desc={description}
-              slideText={slideText}
-            />
-            <animated.ul
-              className="welcome_list col-start-1 col-end-13 sm:text-center 
+          <WelcomeHeader
+            header={heading_primary}
+            title_complementary={heading_secondary}
+            desc={description}
+            slideText={slideText}
+          />
+          <animated.ul
+            className="welcome_list col-start-1 col-end-13 sm:text-center 
               sm:flex sm:col-start-1 sm:col-end-13
               md:col-start-7 md:col-end-13 md:flex md:flex-col md:text-left 
               lg:flex-row md:row-start-2 md:row-end-3"
-              style={slideText}
-            >
-              <MiniCard cardInfo={WelcomeActions} />
-            </animated.ul>
+            style={slideText}
+          >
+            <MiniCard cardInfo={WelcomeActions} />
+          </animated.ul>
 
-            <animated.div
-              className="welcome_btn w-full block text-center md:text-left col-start-1 col-end-13 sm:col-start-3 sm:col-end-11
+          <animated.div
+            className="welcome_btn w-full block text-center md:text-left col-start-1 col-end-13 sm:col-start-3 sm:col-end-11
               md:col-start-7 md:col-end-13 md:row-start-4"
-              style={slideText}
-            >
-              <WelcomeBtn link={link || {}} />
-            </animated.div>
-          </div>
-        </section>
-      </Fragment>
-    );
-  }
+            style={slideText}
+          >
+            <WelcomeBtn link={link || {}} />
+          </animated.div>
+        </div>
+      </section>
+    </Fragment>
+  );
+};
 
 // left side card DONE
 
@@ -125,7 +125,7 @@ const WelcomeHeader = ({ header, title_complementary, desc, slideText }) => {
 
 // loop over two cards
 const MiniCard = ({ cardInfo }) => {
-  return cardInfo.map(card => {
+  return cardInfo.map((card) => {
     return (
       <li key={card.id} className="welcome__list__item pl-4">
         <h3 className="welcome__list__item__title relative mb-6 sm:my-4 text-md font-bold text-c100 lg:my-10">
@@ -139,9 +139,13 @@ const MiniCard = ({ cardInfo }) => {
 
 // card btn
 const WelcomeBtn = ({ link }) => {
+  const i18n = useI18n();
+  const currentLocale = i18n.activeLocale;
   return (
-    <button href={link.href} className="btn btn-lg bg-c300">
-      {link.text}
-    </button>
+    <Link href={`${currentLocale}/about`}>
+      <a className=" btn btn-lg bg-c300 hover:text-c100">
+        {link.text}
+      </a>
+    </Link>
   );
 };

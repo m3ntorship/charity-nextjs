@@ -50,7 +50,13 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
   }
   if (featuredCause) {
     const numberToLocal = (number) => Number(number).toLocaleString();
-    let { raised, goal, title, description } = featuredCause;
+    let {
+      raised,
+      goal,
+      title,
+      description,
+      link: { text: linkText, url: linkUrl },
+    } = featuredCause;
     return (
       <animated.div className="Upcoming-Events-Card w-full" style={slideEnd}>
         <div
@@ -103,9 +109,9 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
                 Goal
               </p>
             </div>
-            <Link href="/donations">
+            <Link href={linkUrl}>
               <button className="btn btn-card bg-c300 px-24 self-center mt-5">
-                Donate Now
+                {linkText}
               </button>
             </Link>
           </div>

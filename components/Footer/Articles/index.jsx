@@ -1,8 +1,12 @@
 import React from "react";
 import { parseISO, format } from "date-fns";
-import Link from 'next/link'
-export default class Articles extends React.Component {
-  getDate(myDate) {
+import Link from "next/link";
+import useI18n from "../../../hooks/use-i18n";
+
+const Articles = ({ articles, title }) => {
+  const i18n = useI18n();
+  const currentLocale = i18n.activeLocale;
+  const getDate = (myDate) => {
     const theDate = parseISO(myDate);
 
     return {
@@ -11,41 +15,39 @@ export default class Articles extends React.Component {
       month: format(theDate, "MMM"),
       year: format(theDate, "yyyy"),
     };
-  }
-
-  render() {
-    const articles = this.props.articles.map((article) => {
-      const formattedDate = this.getDate(article.date);
+  };
+  const getArticles = articles.map(
+    ({ date, id, thumbnail: { url, alternativeText }, description }) => {
+      const formattedDate = getDate(date);
       return (
-        <Link key={article.id} href={article.link.url}><a
-  
-          className="flex flex-col flex-grow my-2"
-        >
-          <article className="flex">
-            <img
-              className="news__image_footer"
-              width="72"
-              height="72"
-              src={article.thumbnail.url}
-              alt={article.thumbnail.alternativeText}
-            />
-            <div className="pl-4 flex flex-col justify-between">
-              <p className="text-c300 text-xs">
-                {formattedDate.day}-{formattedDate.month}-{formattedDate.year}
-              </p>
-              <p>{article.description}</p>
-            </div>
-          </article>
-        </a></Link>
+        <Link key={id} href={`/${currentLocale}/articles/${id}`}>
+          <a className="flex flex-col flex-grow my-2">
+            <article className="flex">
+              <img
+                className="news__image_footer"
+                width="72"
+                height="72"
+                src={url}
+                alt={alternativeText}
+              />
+              <div className="pl-4 flex flex-col justify-between">
+                <p className="text-c300 text-xs">
+                  {formattedDate.day}-{formattedDate.month}-{formattedDate.year}
+                </p>
+                <p>{description}</p>
+              </div>
+            </article>
+          </a>
+        </Link>
       );
-    });
-    return (
-      <div className="footer-card flex flex-col lg:my-0 my-6">
-        <h3 className="text-c000 text-lg font-semibold mb-8">
-          {this.props.title}
-        </h3>
-        {articles}
-      </div>
-    );
-  }
-}
+    }
+  );
+  return (
+    <div className="footer-card flex flex-col lg:my-0 my-6">
+      <h3 className="text-c000 text-lg font-semibold mb-8">{title}</h3>
+      {getArticles}
+    </div>
+  );
+};
+
+export default Articles;
