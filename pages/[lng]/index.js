@@ -67,7 +67,7 @@ const Home = ({
       <Welcome data={welcomeData} />
       <Activities data={activitiesData} />
       <FeaturedBanner data={featuredBannerData} />
-      <Causes data={causesData} />
+      {/* <Causes data={causesData} /> */}
       <Numbers data={numbersData} />
       <UpcomingEventsSection
         data={upcomingEventsData}

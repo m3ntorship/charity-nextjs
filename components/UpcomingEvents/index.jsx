@@ -1,6 +1,9 @@
 import React from "react";
+import Link from "next/link";
+import useI18n from "../../hooks/use-i18n";
 import Heading from "../Heading";
 import { FeaturedCause } from "../FeaturedCause";
+
 import { parseISO, format } from "date-fns";
 import { useInView } from "react-intersection-observer";
 import { useSpring, animated } from "react-spring";
@@ -18,6 +21,8 @@ function getDate(myDate) {
 }
 
 const Event = ({ data }) => {
+  const i18n = useI18n();
+  const currentLocale = i18n.activeLocale;
   if (data) {
     const {
       id,
@@ -38,9 +43,14 @@ const Event = ({ data }) => {
             &nbsp; &nbsp;
             <span>{getDate(date).time}</span>
           </div>
-          <div className="event-card-wrapper__topic">
-            <p className="text-c100 font-bold">{title}</p>
-          </div>
+          <Link href = {`${currentLocale}/events/${id}`}>
+            <a className = "event__title">
+              <div className="event-card-wrapper__topic">
+                <p className="text-c100 font-bold">{title}</p>
+              </div>
+            </a>
+          </Link>
+
           <div className="event-card-wrapper__location">
             <p className="text-c600 text-base flex items-center leading-none">
               {address}

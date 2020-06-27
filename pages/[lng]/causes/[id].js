@@ -1,7 +1,7 @@
 import Layout from "../../../components/Layout";
 import { charityAPI } from "../../../clients";
 
-const Faq = ({
+const Article = ({
   footerData,
   contactsData,
   logoData,
@@ -16,15 +16,16 @@ const Faq = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      Privacy policy page
+      <div>Cause place holder</div>
     </Layout>
   );
 };
 
-export  async function getServerSideProps({params:{lng}}) {
-  const { default: lngDict = {} } = await import(`../../../locales/${lng}.json`);
+export async function getServerSideProps({ params: { lng, id } }) {
+  const { default: lngDict = {} } = await import(
+    `../../../locales/${lng}.json`
+  );
   const getCharityAPI = charityAPI(lng);
-
   return Promise.all([
     getCharityAPI("/main-contacts"),
     getCharityAPI("/logo"),
@@ -44,14 +45,14 @@ export  async function getServerSideProps({params:{lng}}) {
           contactsData,
           logoData,
           socialMediasData,
-          footerData,
           pagesData,
+          footerData,
           lng,
-          lngDict
+          lngDict,
         },
       };
     }
   );
 }
 
-export default Faq;
+export default Article;

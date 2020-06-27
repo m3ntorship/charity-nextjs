@@ -1,9 +1,9 @@
 import Layout from "../../../components/Layout";
 import { charityAPI } from "../../../clients";
 
-const Faq = ({
+const Article = ({
   footerData,
-  ContactsData,
+  contactsData,
   logoData,
   socialMediasData,
   pagesData,
@@ -11,22 +11,21 @@ const Faq = ({
   return (
     <Layout
       footerData={footerData}
-      contactsData={ContactsData}
+      contactsData={contactsData}
       logoData={logoData}
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      Help page
+      <div> Event place holder </div>
     </Layout>
   );
 };
 
-export async function getServerSideProps({ params: { lng } }) {
+export async function getServerSideProps({ params: { lng, id } }) {
   const { default: lngDict = {} } = await import(
     `../../../locales/${lng}.json`
   );
   const getCharityAPI = charityAPI(lng);
-
   return Promise.all([
     getCharityAPI("/main-contacts"),
     getCharityAPI("/logo"),
@@ -35,7 +34,7 @@ export async function getServerSideProps({ params: { lng } }) {
     getCharityAPI("/footer"),
   ]).then(
     ([
-      { data: ContactsData },
+      { data: contactsData },
       { data: logoData },
       { data: socialMediasData },
       { data: pagesData },
@@ -43,11 +42,11 @@ export async function getServerSideProps({ params: { lng } }) {
     ]) => {
       return {
         props: {
-          ContactsData,
+          contactsData,
           logoData,
           socialMediasData,
-          footerData,
           pagesData,
+          footerData,
           lng,
           lngDict,
         },
@@ -56,4 +55,4 @@ export async function getServerSideProps({ params: { lng } }) {
   );
 }
 
-export default Faq;
+export default Article;
