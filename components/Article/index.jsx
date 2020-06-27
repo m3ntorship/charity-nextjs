@@ -26,6 +26,7 @@ const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
 
   const i18n = useI18n();
   const currentLocale = i18n.activeLocale;
+  console.log(currentLocale);
 
   return (
     <animated.div className="article relative" style={slideCard}>
@@ -46,7 +47,7 @@ const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
             <h4 className="text-c100 font-bold">{title}</h4>
           </div>
           <div className="block text-c100 text-center spicial-info cursor-pointer">
-            <Link href={`${currentLocale}/articles/${id}`}>
+            <Link href={`/${currentLocale}/articles/${id}`}>
               <a className="w-full h-full flex justify-center items-center">
                 <i className="fas fa-long-arrow-alt-right"></i>
                 {linkText}

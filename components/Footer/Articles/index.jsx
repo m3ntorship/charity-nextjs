@@ -17,10 +17,10 @@ const Articles = ({ articles, title }) => {
     };
   };
   const getArticles = articles.map(
-    ({ date, id, thumbnail: { url, alternativeText },description }) => {
+    ({ date, id, thumbnail: { url, alternativeText }, description }) => {
       const formattedDate = getDate(date);
       return (
-        <Link key={id} href={`${currentLocale}/articles/${id}`}>
+        <Link key={id} href={`/${currentLocale}/articles/${id}`}>
           <a className="flex flex-col flex-grow my-2">
             <article className="flex">
               <img
