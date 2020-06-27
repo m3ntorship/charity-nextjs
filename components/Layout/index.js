@@ -3,6 +3,7 @@ import Head from "next/head";
 import HeaderNavigation from "../HeaderNavigation";
 import useI18n from "../../hooks/use-i18n";
 import { ContactTop } from "../ContactTop";
+import { ButtonBack } from "pure-react-carousel";
 
 const Layout = ({
   children,
@@ -19,9 +20,14 @@ const Layout = ({
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        {currentLocale === "ar" && (
+        {currentLocale === "ar" ? (
           <link
             href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700&display=swap"
+            rel="stylesheet"
+          />
+        ) : (
+          <link
+            href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap"
             rel="stylesheet"
           />
         )}

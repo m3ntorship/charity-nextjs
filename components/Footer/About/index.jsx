@@ -9,7 +9,7 @@ const About = ({ title, description, url, cta }) => {
       <p>{description}</p>
       <a
         className="inline-block text-base mt-8 py-4 px-8 font-bold bg-c400 text-c000 hover:bg-c900"
-        href={`${currentLocale}${url}`}
+        href={`/${currentLocale}${url}`}
       >
         {cta}
       </a>

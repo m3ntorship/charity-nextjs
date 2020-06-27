@@ -1,8 +1,7 @@
-
-import useMedia from '../../Helpers/useMedia';
+import useMedia from "../../Helpers/useMedia";
 import React from "react";
 import Link from "next/link";
-
+import useI18n from "../../hooks/use-i18n";
 import { useInView } from "react-intersection-observer";
 import { useSpring, animated } from "react-spring";
 
@@ -11,7 +10,7 @@ const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
     threshold: 0.5,
     triggerOnce: true,
   });
-  const isMobile = useMedia(['(min-width: 768px)'], [false], true);
+  const isMobile = useMedia(["(min-width: 768px)"], [false], true);
 
   const slideCard = useSpring({
     opacity: cardInView ? 1 : 0,
@@ -24,6 +23,11 @@ const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
       : "translateY(-50%)",
     delay: animationDelay ? (isMobile ? 0 : 900 + 250 * index) : 0,
   });
+
+  const i18n = useI18n();
+  const currentLocale = i18n.activeLocale;
+  console.log(currentLocale);
+
   return (
     <animated.div className="article relative" style={slideCard}>
       <div ref={cardRef}>
@@ -43,12 +47,11 @@ const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
             <h4 className="text-c100 font-bold">{title}</h4>
           </div>
           <div className="block text-c100 text-center spicial-info cursor-pointer">
-            <Link
-              href={`articles/${id}`}
-              
-            >
-              <a className="w-full h-full flex justify-center items-center"><i className="fas fa-long-arrow-alt-right"></i>
-              {linkText}</a>
+            <Link href={`/${currentLocale}/articles/${id}`}>
+              <a className="w-full h-full flex justify-center items-center">
+                <i className="fas fa-long-arrow-alt-right"></i>
+                {linkText}
+              </a>
             </Link>
           </div>
         </div>
