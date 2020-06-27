@@ -29,7 +29,7 @@ const Event = ({ data }) => {
     } = data;
     return (
       <div key={id} className="event-card-wrapper flex mb-4 lg:mb-0">
-        <div className="event-card-wrapper_image w-1/3 md:w-1/4 ">
+        <div className="event-card-wrapper_image w-1/3 sm:w-full lg:w-1/4 ">
           <img src={url} alt={name} />
         </div>
         <div className="event-card-wrapper__details relative self-center p-6 pl-16 sm:pl-6 lg:pl-16 flex flex-col justify-between h-full w-2/3 md:w-3/4 lg:py-10">
