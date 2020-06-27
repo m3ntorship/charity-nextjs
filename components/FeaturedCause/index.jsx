@@ -52,9 +52,9 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
     const numberToLocal = (number) => Number(number).toLocaleString();
     let { raised, goal, title, description } = featuredCause;
     return (
-      <animated.div className="Upcoming-Events-Card" style={slideEnd}>
+      <animated.div className="Upcoming-Events-Card w-full" style={slideEnd}>
         <div
-          className="h-full right-fund-card text-c000 flex flex-col items-center justify-between pt-8 sm:pt-0 lg:pt-8 px-6 lg:px-0"
+          className="h-full w-full right-fund-card text-c000 flex flex-col items-center justify-between pt-8 sm:pt-0 lg:pt-8 px-6 lg:px-0"
           ref={ref}
         >
           <div className="guage mb-8 md:mb-0">

@@ -1,7 +1,16 @@
 module.exports = {
-  purge: ["./components/**/*.js", "./pages/**/*.js"],
+  purge: [
+    "./components/**/*.js",
+    "./components/**/*.jsx",
+    "./pages/**/*.js",
+    "./pages/**/*.jsx",
+  ],
   // important: true,
   theme: {
+    fontFamily: {
+      en: ["Merriweather", "serif"],
+      ar: ["Tajawal", "sans-serif"],
+    },
     extend: {
       colors: {
         c000: "#ffffff",
