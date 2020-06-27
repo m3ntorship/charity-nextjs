@@ -1,10 +1,9 @@
 import Layout from "../../../components/Layout";
 import { charityAPI } from "../../../clients";
 
-
 const About = ({
   footerData,
-  ContactsData,
+  contactsData,
   logoData,
   socialMediasData,
   pagesData,
@@ -12,7 +11,7 @@ const About = ({
   return (
     <Layout
       footerData={footerData}
-      contactsData={ContactsData}
+      contactsData={contactsData}
       logoData={logoData}
       socialMediasData={socialMediasData}
       pagesData={pagesData}
@@ -23,7 +22,9 @@ const About = ({
 };
 
 export async function getServerSideProps({ params: { lng } }) {
-  const { default: lngDict = {} } = await import(`../../../locales/${lng}.json`);
+  const { default: lngDict = {} } = await import(
+    `../../../locales/${lng}.json`
+  );
   const getCharityAPI = charityAPI(lng);
 
   return Promise.all([
@@ -34,7 +35,7 @@ export async function getServerSideProps({ params: { lng } }) {
     getCharityAPI("/footer"),
   ]).then(
     ([
-      { data: ContactsData },
+      { data: contactsData },
       { data: logoData },
       { data: socialMediasData },
       { data: pagesData },
@@ -42,13 +43,13 @@ export async function getServerSideProps({ params: { lng } }) {
     ]) => {
       return {
         props: {
-          ContactsData,
+          contactsData,
           logoData,
           socialMediasData,
           footerData,
           pagesData,
           lngDict,
-          lng
+          lng,
         },
       };
     }
