@@ -1,7 +1,7 @@
 import Layout from "../../../components/Layout";
 import { charityAPI } from "../../../clients";
 
-const Volunteers = ({
+const Faq = ({
   footerData,
   ContactsData,
   logoData,
@@ -16,12 +16,12 @@ const Volunteers = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      Volunteers components goes here
+     Site map
     </Layout>
   );
 };
 
-export async function getServerSideProps({ params: { lng } }) {
+export  async function getServerSideProps({params:{lng}}) {
   const { default: lngDict = {} } = await import(`../../../locales/${lng}.json`);
   const getCharityAPI = charityAPI(lng);
 
@@ -47,11 +47,11 @@ export async function getServerSideProps({ params: { lng } }) {
           footerData,
           pagesData,
           lng,
-          lngDict,
+          lngDict
         },
       };
     }
   );
 }
 
-export default Volunteers;
+export default Faq;
