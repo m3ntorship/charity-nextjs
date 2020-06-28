@@ -4,7 +4,7 @@ const Logo = ({logoData}) => {
   } = logoData;
     return (
       <div className="logo">
-        <img className="max-w-full" src={logo_url} alt="logo" />
+        <img className="max-w-full m-auto h-20" src={logo_url} alt="logo" />
       </div>
     );
 };
