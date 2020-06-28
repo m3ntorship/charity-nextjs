@@ -22,5 +22,7 @@
   "comments": "comments",
   "causes": {
     "urgentCause": "URGENT CAUSE"
-  }
+  },
+  "numbersText": "Numbers speak",
+  "soon": "Coming Soon"
 }

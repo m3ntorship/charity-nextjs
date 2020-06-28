@@ -1,21 +1,21 @@
-import React from "react";
-import Link from "next/link";
-import Heading from "../Heading";
-import { FeaturedCause } from "../FeaturedCause";
-import useI18n from "../../hooks/use-i18n";
-import { parseISO, format } from "date-fns";
-import { useInView } from "react-intersection-observer";
-import { useSpring, animated } from "react-spring";
+import React from 'react';
+import Link from 'next/link';
+import useI18n from '../../hooks/use-i18n';
+import Heading from '../Heading';
+import { FeaturedCause } from '../FeaturedCause';
+import { parseISO, format } from 'date-fns';
+import { useInView } from 'react-intersection-observer';
+import { useSpring, animated } from 'react-spring';
 
 // Function to get add dates needed
 function getDate(myDate) {
   const theDate = parseISO(myDate);
 
   return {
-    time: format(theDate, "hh:mm a").toLowerCase(),
-    day: format(theDate, "dd"),
-    month: format(theDate, "MMM"),
-    year: format(theDate, "yyyy"),
+    time: format(theDate, 'hh:mm a').toLowerCase(),
+    day: format(theDate, 'dd'),
+    month: format(theDate, 'MMM'),
+    year: format(theDate, 'yyyy')
   };
 }
 
@@ -29,11 +29,11 @@ const Event = ({ data }) => {
       user: { username },
       address,
       date,
-      image: { url, name },
+      image: { url, name }
     } = data;
     return (
       <div key={id} className="event-card-wrapper flex mb-4 lg:mb-0">
-        <div className="event-card-wrapper_image w-1/3 md:w-1/4 ">
+        <div className="event-card-wrapper_image w-1/3 sm:w-full lg:w-1/4 ">
           <img src={url} alt={name} />
         </div>
         <div className="event-card-wrapper__details relative self-center p-6 pl-16 sm:pl-6 lg:pl-16 flex flex-col justify-between h-full w-2/3 md:w-3/4 lg:py-10">
@@ -42,8 +42,8 @@ const Event = ({ data }) => {
             &nbsp; &nbsp;
             <span>{getDate(date).time}</span>
           </div>
-          <Link href = {`${currentLocale}/events/${id}`}>
-            <a className = "event__title">
+          <Link href={`${currentLocale}/events/${id}`}>
+            <a className="event__title">
               <div className="event-card-wrapper__topic">
                 <p className="text-c100 font-bold">{title}</p>
               </div>
@@ -74,7 +74,7 @@ const Events = ({ data, slideStart }) => {
       className="col-start-1 articles-component col-end-8 flex flex-col justify-between lg:pr-8"
       style={slideStart}
     >
-      {data.map((eventData) => {
+      {data.map(eventData => {
         return <Event data={eventData} key={eventData.id} />;
       })}
     </animated.div>
@@ -103,24 +103,24 @@ const UpcomingEventsSection = ({ data, cardData }) => {
   //Scroll observation
   const [ref, inView] = useInView({
     threshold: 0.3,
-    triggerOnce: true,
+    triggerOnce: true
   });
 
   //Animation
   const slideTop = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? "translateY(0%)" : "translateY(-50%)",
+    transform: inView ? 'translateY(0%)' : 'translateY(-50%)'
   });
 
   const slideStart = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? "translateX(0%)" : "translateX(-50%)",
-    delay: 300,
+    transform: inView ? 'translateX(0%)' : 'translateX(-50%)',
+    delay: 300
   });
 
   const fade = useSpring({
     opacity: inView ? 1 : 0,
-    delay: 900,
+    delay: 900
   });
 
   //Data Error Handling
