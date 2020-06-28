@@ -27,5 +27,7 @@
     "findArticle": "Find Articles",
     "recentArticles": "Recent Articles"
   },
-  "comments": "comments"
+  "comments": "comments",
+  "numbersText": "Numbers speak",
+  "soon": "Coming Soon"
 }
