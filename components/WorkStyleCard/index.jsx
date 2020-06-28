@@ -14,8 +14,7 @@ const WorkStyleCard = ({ data, animation }) => {
   const transitions = useTransition(isHovered, null, {
     from: { position: 'absolute', opacity: 0 },
     enter: { opacity: 1 },
-    leave: { opacity: 0 },
-    config: { duration: 400 }
+    leave: { opacity: 0 }
   });
   const borderColor = {
     red: 'border-c200',
@@ -25,7 +24,7 @@ const WorkStyleCard = ({ data, animation }) => {
   };
   return (
     <animated.div
-      className="card__wrapper text-center flex flex-col col-div items-center my-8  md:my-auto"
+      className="card__wrapper text-center flex flex-col col-div items-center my-6 lg:my-0"
       style={animation}
     >
       <div
