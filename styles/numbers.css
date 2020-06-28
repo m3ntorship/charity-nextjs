@@ -11,7 +11,7 @@
   line-height: 2.5rem;
 }
 .statistics-numbers__speak__text::before {
-  content: "";
+  content: '';
   position: absolute;
   width: 14px;
   height: 22px;
@@ -25,7 +25,7 @@
 }
 
 .statistics-numbers__speak__text::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 14px;
   height: 22px;
