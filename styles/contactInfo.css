@@ -11,7 +11,7 @@
   }
   
   .contact {
-    @apply flex items-center  px-8;
+    @apply flex items-center  px-4;
   }
   
   .contact:last-of-type {
