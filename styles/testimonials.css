@@ -1,5 +1,5 @@
 /*! purgecss start ignore */
-@import url("pure-react-carousel/dist/react-carousel.es.css");
+@import url('pure-react-carousel/dist/react-carousel.es.css');
 /*! purgecss end ignore */
 
 .feedback {
@@ -8,8 +8,8 @@
 }
 
 .feedback::before {
-  content: "";
-  background: no-repeat url("../public/images/testimonials/blocks.png");
+  content: '';
+  background: no-repeat url('../public/images/testimonials/blocks.png');
   background-size: auto;
   background-position-x: right;
   background-position-y: bottom;

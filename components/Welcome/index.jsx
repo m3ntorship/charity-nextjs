@@ -1,32 +1,35 @@
-import React from "react";
-import Link from "next/link";
-import { Fragment } from "react";
-import { animated, useSpring } from "react-spring";
-import { useInView } from "react-intersection-observer";
-import useI18n from "../../hooks/use-i18n";
+import React from 'react';
+import Link from 'next/link';
+import { Fragment } from 'react';
+import { animated, useSpring } from 'react-spring';
+import { useInView } from 'react-intersection-observer';
+import useI18n from '../../hooks/use-i18n';
+import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
 // import useMedia from '../../Helpers/useMedia'; // need to fix window is not defined in useMedia
 
-export const Welcome = ({ data, loading, error }) => {
+export const Welcome = ({ data }) => {
   const isMobile = false;
 
   const [ref, inView] = useInView({
     threshold: 0.3,
-    triggerOnce: true,
+    triggerOnce: true
   });
 
   const slideStart = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? "translateX(0%)" : "translateX(-50%)",
+    transform: inView
+      ? 'translateX(0%)'
+      : `translateX(${useDirectionalValue(-50)}%)`
   });
 
   const slideText = useSpring({
     opacity: inView ? 1 : 0,
     transform: inView
-      ? "translateX(0%)"
+      ? 'translateX(0%)'
       : isMobile
-      ? "translateY(-50%)"
-      : "translateX(50%)",
+      ? 'translateY(-50%)'
+      : `translateX(${useDirectionalValue(50)}%)`
   });
 
   let {
@@ -34,7 +37,7 @@ export const Welcome = ({ data, loading, error }) => {
     Heading: { heading_primary, heading_secondary },
     description,
     link,
-    WelcomeActions,
+    WelcomeActions
   } = data;
   return (
     <Fragment>
@@ -42,7 +45,7 @@ export const Welcome = ({ data, loading, error }) => {
         <div
           className="welcome_wrap container grid grid-cols-12 gap-6
             md:grid-rows-3"
-          style={{ gridTemplateRows: ".6fr .4fr .0fr" }}
+          style={{ gridTemplateRows: '.6fr .4fr .0fr' }}
         >
           <WelcomeImage url={url} slideStart={slideStart} />
 
@@ -85,11 +88,16 @@ const WelcomeImage = ({ url, slideStart }) => {
       style={slideStart}
     >
       <div className="welcome__start__img h-full relative ">
+        <span className="welcome__start__img--before"></span>
         <img
           src={url}
           alt="childern smiling"
           className="object-cover object-center w-full h-full"
         />
+        <span
+          className="welcome__start__img--after"
+          style={{ transform: `scaleX(${useDirectionalValue(1)})` }}
+        ></span>
         <div className="welcome__start__side absolute top-0 h-full bg-c200 w-12"></div>
       </div>
     </animated.div>
@@ -125,7 +133,7 @@ const WelcomeHeader = ({ header, title_complementary, desc, slideText }) => {
 
 // loop over two cards
 const MiniCard = ({ cardInfo }) => {
-  return cardInfo.map((card) => {
+  return cardInfo.map(card => {
     return (
       <li key={card.id} className="welcome__list__item pl-4">
         <h3 className="welcome__list__item__title relative mb-6 sm:my-4 text-md font-bold text-c100 lg:my-10">
@@ -143,9 +151,7 @@ const WelcomeBtn = ({ link }) => {
   const currentLocale = i18n.activeLocale;
   return (
     <Link href={`${currentLocale}/about`}>
-      <a className=" btn btn-lg bg-c300 hover:text-c100">
-        {link.text}
-      </a>
+      <a className=" btn btn-lg bg-c300 hover:text-c100">{link.text}</a>
     </Link>
   );
 };
