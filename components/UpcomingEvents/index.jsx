@@ -3,7 +3,6 @@ import Link from 'next/link';
 import useI18n from '../../hooks/use-i18n';
 import Heading from '../Heading';
 import { FeaturedCause } from '../FeaturedCause';
-
 import { parseISO, format } from 'date-fns';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
@@ -127,7 +126,8 @@ const UpcomingEventsSection = ({ data, cardData }) => {
   //Data Error Handling
 
   //Main component
-
+  const i18n = useI18n();
+  const urgentCuase = `${i18n.t("causes.urgentCause")}`;
   const { upcoming_events } = data;
   return (
     <section className="upcoming-events-section">
@@ -137,10 +137,10 @@ const UpcomingEventsSection = ({ data, cardData }) => {
         </div>
         <Events data={upcoming_events} slideStart={slideStart} />
         <animated.div
-          className="vertical-text text-c800 font-hairline text-xxl"
+          className="vertical-text  text-c900 md:text-c800  font-hairline text-xxl "
           style={fade}
         >
-          URGENT CAUSE
+         {urgentCuase}
         </animated.div>
         <div className=" col-start-8 col-end-13 row-start-1 row-end-3 h-full w-full flex">
           <FeaturedCause data={cardData} />
