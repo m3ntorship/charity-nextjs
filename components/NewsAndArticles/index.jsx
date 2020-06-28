@@ -83,7 +83,7 @@ const News = ({ data }) => {
 
           <animated.p
             style={slideP}
-            className=" news_description text-c600  md:col-span-4 text-base leading-loose"
+            className="mb-8  news_description text-c600  md:col-span-4 text-base leading-loose"
           >
             {data.description}
           </animated.p>
