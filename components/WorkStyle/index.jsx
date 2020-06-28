@@ -26,7 +26,7 @@ const WorkStyle = ({ data }) => {
             primaryClassName="text-center work-style__header"
           />
         </div>
-        <div className="work-style__items mx-auto showcase-row flex-col items-center md:flex-row md:items-start">
+        <div className="work-style__items showcase-row flex-col items-center md:flex-row md:items-start md:justify-evenly">
           {Cards.map((card, index) => (
             <WorkStyleCard key={index} data={card} animation={fade} />
           ))}
