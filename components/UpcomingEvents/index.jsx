@@ -137,7 +137,7 @@ const UpcomingEventsSection = ({ data, cardData }) => {
         </div>
         <Events data={upcoming_events} slideStart={slideStart} />
         <animated.div
-          className="vertical-text text-c800 font-hairline text-xxl"
+          className="vertical-text  text-c900 md:text-c800  font-hairline text-xxl "
           style={fade}
         >
           URGENT CAUSE
