@@ -1,6 +1,4 @@
-/*! purgecss start ignore */
-@import url("pure-react-carousel/dist/react-carousel.es.css");
-/*! purgecss end ignore */
+@import url('pure-react-carousel/dist/react-carousel.es.css');
 
 .feedback {
   min-height: 40rem;
@@ -8,8 +6,8 @@
 }
 
 .feedback::before {
-  content: "";
-  background: no-repeat url("../public/images/testimonials/blocks.png");
+  content: '';
+  background: no-repeat url('../public/images/testimonials/blocks.png');
   background-size: auto;
   background-position-x: right;
   background-position-y: bottom;
@@ -33,8 +31,8 @@
   background-color: white;
   grid-row: 1/3;
   grid-column: 2/3;
-  box-shadow: 0px -30px 0px -14px rgba(59, 84, 98, 0.5),
-    0px -60px 0px -31px rgba(48, 75, 90, 1);
+  box-shadow: 0px -30px 0px -14px rgba(244, 244, 245, 0.1),
+    0px -60px 0px -31px rgba(244, 244, 245, 0.1);
 }
 .feedback__carousel__back-arrow {
   grid-row: 2/4;
