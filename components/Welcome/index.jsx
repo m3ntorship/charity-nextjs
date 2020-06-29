@@ -15,12 +15,11 @@ export const Welcome = ({ data }) => {
     threshold: 0.3,
     triggerOnce: true
   });
-
+  const imageStartPosition = useDirectionalValue(-50);
+  const textStartPosition = useDirectionalValue(50);
   const slideStart = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView
-      ? 'translateX(0%)'
-      : `translateX(${useDirectionalValue(-50)}%)`
+    transform: inView ? 'translateX(0%)' : `translateX(${imageStartPosition}%)`
   });
 
   const slideText = useSpring({
@@ -29,7 +28,7 @@ export const Welcome = ({ data }) => {
       ? 'translateX(0%)'
       : isMobile
       ? 'translateY(-50%)'
-      : `translateX(${useDirectionalValue(50)}%)`
+      : `translateX(${textStartPosition}%)`
   });
 
   let {
