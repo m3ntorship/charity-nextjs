@@ -8,7 +8,7 @@ const NavigationLink = ({ url, title, secondaryClassName, linkClassName }) => {
   const currentLocale = i18n.activeLocale
   return (
     <li className={cn("text-center", secondaryClassName)}>
-      <Link href={`/${currentLocale}${url}`}>
+      <Link href={`/${currentLocale}${url}`} as={`/${currentLocale}${url}`}>
         <a className={cn("", linkClassName)}>{title}</a>
       </Link>
     </li>
