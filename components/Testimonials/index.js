@@ -39,7 +39,10 @@ const Testimonials = ({ data, loading, error }) => {
           className="feedback__carousel grid absolute container"
           isIntrinsicHeight={true}
         >
-          <Slider className="sliderWrapper feedback__carousel__quote text-c100">
+          <Slider
+            className="sliderWrapper feedback__carousel__quote text-c100"
+            style={{ transform: `scaleX(1)` }}
+          >
             {testimonials.map(
               (
                 {
@@ -53,7 +56,10 @@ const Testimonials = ({ data, loading, error }) => {
               ) => {
                 return (
                   <Slide key={id} index={{ index }}>
-                    <figure className="text-c100 bg-c000 flex flex-col items-center px-12">
+                    <figure
+                      className="text-c100 bg-c000 flex flex-col items-center px-12"
+                      style={{ transform: `scaleX(${useDirectionalValue(1)})` }}
+                    >
                       <img
                         className="feedback__carousel__avatar"
                         src={imageUrl}
