@@ -8,6 +8,7 @@ import {
 } from 'pure-react-carousel';
 import React from 'react';
 import Heading from '../Heading';
+import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
 const Testimonials = ({ data, loading, error }) => {
   let {
@@ -76,14 +77,24 @@ const Testimonials = ({ data, loading, error }) => {
           <div className="feedback__carousel__back-arrow feedback__carousel__arrow lg:bg-c800 flex items-center justify-center text-lg">
             <ButtonBack className="text-c100 border-c100 rounded-full">
               <div className="justify-center items-center flex rounded-full border-solid p-4 border-2 cursor-pointer">
-                <i className="fas fa-arrow-left"></i>
+                <i
+                  className={`fas fa-arrow-${useDirectionalValue(
+                    'left',
+                    'direction'
+                  )}`}
+                ></i>
               </div>
             </ButtonBack>
           </div>
           <div className="feedback__carousel__forward-arrow feedback__carousel__arrow lg:bg-c800 flex items-center justify-center text-lg">
             <ButtonNext className="text-c100 border-c100 rounded-full">
               <div className="justify-center items-center flex rounded-full border-solid p-4 border-2 cursor-pointer">
-                <i className="fas fa-arrow-right"></i>
+                <i
+                  className={`fas fa-arrow-${useDirectionalValue(
+                    'right',
+                    'direction'
+                  )}`}
+                ></i>
               </div>
             </ButtonNext>
           </div>
