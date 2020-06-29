@@ -12,7 +12,7 @@ const LanguageSwitcher = () => {
     <>
         {currentLocale === "ar" ? (
           <li className="inline-block language_elector">
-            <Link href={`/en${pageName}`}>
+            <Link href={`/en${pageName}`} prefetch  ={false}>
               <a>
                 <img
                   className="w-8 h-6"
@@ -24,7 +24,7 @@ const LanguageSwitcher = () => {
             </Link>
           </li>
         ) : (
-          <Link href={`/ar${pageName}`}>
+          <Link href={`/ar${pageName}`} prefetch  ={false}>
             <a>
               <img
                 className="w-8 h-6"

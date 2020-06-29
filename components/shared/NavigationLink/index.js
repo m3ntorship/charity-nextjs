@@ -4,7 +4,7 @@ import cn from "classnames";
 const NavigationLink = ({ url, text, linkClassName, secondaryClassName }) => {
   return (
     <li className={cn("text-center", secondaryClassName)}>
-      <Link href={url}>
+      <Link href={url} prefetch  ={false}>
         <a className={cn("", linkClassName)}>{text}</a>
       </Link>
     </li>

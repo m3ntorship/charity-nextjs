@@ -20,7 +20,7 @@ const Articles = ({ articles, title }) => {
     ({ date, id, thumbnail: { url, alternativeText }, description }) => {
       const formattedDate = getDate(date);
       return (
-        <Link key={id} href={`/${currentLocale}/articles/${id}`}>
+        <Link key={id} href={`/${currentLocale}/articles/${id}`} prefetch = {false}  >
           <a className="flex flex-col flex-grow my-2">
             <article className="flex">
               <img

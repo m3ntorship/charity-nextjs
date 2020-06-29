@@ -88,7 +88,7 @@ const News = ({ data }) => {
             {data.description}
           </animated.p>
           <animated.div style={slideBtn} className="btn-div md:col-span-3">
-            <Link href={url}>
+            <Link href={url} prefetch  ={false}>
               <a className="btn btn-sm text-sm bg-c300 my-8 md:float-right md:mt-3 cursor-pointer hover:text-c100">
                 {text}
               </a>

@@ -42,7 +42,7 @@ const Event = ({ data }) => {
             &nbsp; &nbsp;
             <span>{getDate(date).time}</span>
           </div>
-          <Link href={`${currentLocale}/events/${id}`}>
+          <Link href={`${currentLocale}/events/${id}`} prefetch  ={false}>
             <a className="event__title">
               <div className="event-card-wrapper__topic">
                 <p className="text-c100 font-bold">{title}</p>

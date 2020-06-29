@@ -17,7 +17,7 @@ const HeaderNavigation = ({ logoData, pagesData, contactsData }) => {
         <div className="logo-links-container sm:justify-between sm:w-full">
           <div className="flex items-center px-10 justify-between relative">
             <div className="w-26">
-              <Link href={`/${currentLocale}`}>
+              <Link href={`/${currentLocale}`} prefetch  ={false}>
                 <a>
                   <Logo logoData={logoData} />
                 </a>

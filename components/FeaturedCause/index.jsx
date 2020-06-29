@@ -109,7 +109,7 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
                 Goal
               </p>
             </div>
-            <Link href={linkUrl}>
+            <Link href={linkUrl} prefetch  ={false}>
               <button className="btn btn-card bg-c300 px-24 self-center mt-5">
                 {linkText}
               </button>

@@ -116,7 +116,7 @@ const Cause = ({
               <animated.span>{progressNumber}</animated.span>%
             </animated.div>
           </div>
-          <Link href="/donations">
+          <Link href="/donations" prefetch  ={false}>
           <button className="causes__btn font-bold bg-c800 text-c600 hover:bg-c300 hover:text-c100 transition duration-200 ease-out">
               Donate Now
           </button>

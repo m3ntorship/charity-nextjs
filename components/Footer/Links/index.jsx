@@ -12,7 +12,7 @@ const Links = ({ links, title }) => {
         {links.map(({ id, text, url }) => {
           return (
             <li key={id} className="pb-4">
-              <Link href={`/${currentLocale}${url}`}>
+              <Link href={`/${currentLocale}${url}`} prefetch = {false}>
                 <a>{text}</a>
               </Link>
             </li>

@@ -24,7 +24,7 @@ export const ListItemWithThumbnail = ({ data }) => {
   } = data;
 
   return (
-    <Link href={`/${currentLocale}/articles/${id}`}>
+    <Link href={`/${currentLocale}/articles/${id}`} prefetch  ={false}>
       <animated.a
         className="listItem cursor-pointer flex flex-col"
         style={hovered}

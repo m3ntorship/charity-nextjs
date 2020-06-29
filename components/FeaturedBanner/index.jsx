@@ -47,7 +47,7 @@ const FeaturedBanner = ({ data }) => {
               align="center"
               primaryClassName="donation-banner-desc"
             />
-            <Link href={`${currentLocale}${button_url}`}>
+            <Link href={`${currentLocale}${button_url}`} prefetch  ={false}>
               <a className="donation-banner__btn btn btn-lg bg-c300">
                 {button_text}
               </a>

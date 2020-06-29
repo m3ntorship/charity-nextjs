@@ -46,7 +46,7 @@ const ContactTop = ({ data }) => {
               </div>
             </div>
           </div>
-          <Link href={donationBtnUrl}>
+          <Link href={donationBtnUrl} prefetch  ={false}>
             <button className="btn w-2/12 h-full text-c100 text-sm font-bold bg-c300">
               {donationBtnText}
             </button>

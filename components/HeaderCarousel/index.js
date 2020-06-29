@@ -83,7 +83,7 @@ const HeaderCarousel = ({ data }) => {
                       />
                     </animated.div>
                     <animated.div style={fadeRight}>
-                      <Link href={ `${currentLocale}${url}`}>
+                      <Link href={ `${currentLocale}${url}`} prefetch  ={false}>
                         <a className="mainHeader_fix_mb btn btn-md bg-c200 text-c000 inline-block">
                           {text}
                         </a>
