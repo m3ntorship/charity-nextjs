@@ -8,6 +8,7 @@ import {
 } from 'pure-react-carousel';
 import React from 'react';
 import Heading from '../Heading';
+import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
 const Testimonials = ({ data, loading, error }) => {
   let {
@@ -38,7 +39,10 @@ const Testimonials = ({ data, loading, error }) => {
           className="feedback__carousel grid absolute container"
           isIntrinsicHeight={true}
         >
-          <Slider className="sliderWrapper feedback__carousel__quote text-c100">
+          <Slider
+            className="sliderWrapper feedback__carousel__quote text-c100"
+            style={{ transform: `scaleX(1)` }}
+          >
             {testimonials.map(
               (
                 {
@@ -52,7 +56,10 @@ const Testimonials = ({ data, loading, error }) => {
               ) => {
                 return (
                   <Slide key={id} index={{ index }}>
-                    <figure className="text-c100 bg-c000 flex flex-col items-center px-12">
+                    <figure
+                      className="text-c100 bg-c000 flex flex-col items-center px-12"
+                      style={{ transform: `scaleX(${useDirectionalValue(1)})` }}
+                    >
                       <img
                         className="feedback__carousel__avatar"
                         src={imageUrl}
@@ -76,14 +83,24 @@ const Testimonials = ({ data, loading, error }) => {
           <div className="feedback__carousel__back-arrow feedback__carousel__arrow lg:bg-c800 flex items-center justify-center text-lg">
             <ButtonBack className="text-c100 border-c100 rounded-full">
               <div className="justify-center items-center flex rounded-full border-solid p-4 border-2 cursor-pointer">
-                <i className="fas fa-arrow-left"></i>
+                <i
+                  className={`fas fa-arrow-${useDirectionalValue(
+                    'left',
+                    'direction'
+                  )}`}
+                ></i>
               </div>
             </ButtonBack>
           </div>
           <div className="feedback__carousel__forward-arrow feedback__carousel__arrow lg:bg-c800 flex items-center justify-center text-lg">
             <ButtonNext className="text-c100 border-c100 rounded-full">
               <div className="justify-center items-center flex rounded-full border-solid p-4 border-2 cursor-pointer">
-                <i className="fas fa-arrow-right"></i>
+                <i
+                  className={`fas fa-arrow-${useDirectionalValue(
+                    'right',
+                    'direction'
+                  )}`}
+                ></i>
               </div>
             </ButtonNext>
           </div>
