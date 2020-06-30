@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 import { useSpring, animated } from 'react-spring';
 import useI18n from '../../hooks/use-i18n';
 import LanguageSwitcher from '../LanguageSwitcher';
@@ -46,11 +46,11 @@ const ContactTop = ({ data }) => {
               </div>
             </div>
           </div>
-          <Link href={donationBtnUrl}>
+          <LinkNoPrefetch href={donationBtnUrl}>
             <button className="btn w-2/12 h-full text-c100 text-sm font-bold bg-c300">
               {donationBtnText}
             </button>
-          </Link>
+          </LinkNoPrefetch>
         </section>
       </animated.div>
     );

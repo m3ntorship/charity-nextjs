@@ -1,7 +1,7 @@
 import React from 'react';
-import Link from 'next/link';
 import useI18n from '../../hooks/use-i18n';
 import { useRouter } from 'next/router';
+import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 const LanguageSwitcher = () => {
   const router = useRouter();
   const i18n = useI18n();
@@ -12,7 +12,7 @@ const LanguageSwitcher = () => {
     <>
       {currentLocale === 'ar' ? (
         <li className="inline-block language_elector">
-          <Link href={`/en${pageName}`}>
+          <LinkNoPrefetch href={`/en${pageName}`}>
             <a>
               <img
                 className="w-8 h-6"
@@ -21,10 +21,10 @@ const LanguageSwitcher = () => {
                 title={`change to English `}
               />
             </a>
-          </Link>
+          </LinkNoPrefetch>
         </li>
       ) : (
-        <Link href={`/ar${pageName}`}>
+        <LinkNoPrefetch href={`/ar${pageName}`}>
           <a>
             <img
               className="w-8 h-6"
@@ -33,7 +33,7 @@ const LanguageSwitcher = () => {
               title="التحويل للغة العربية"
             />
           </a>
-        </Link>
+        </LinkNoPrefetch>
       )}
     </>
   );

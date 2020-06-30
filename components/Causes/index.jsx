@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
-import Link from 'next/link';
+import useI18n from '../../hooks/use-i18n';
+import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 import useMedia from '../../Helpers/useMedia';
 import Heading from '../Heading';
 import {
@@ -131,11 +132,11 @@ const Cause = ({
               <animated.span>{progressNumber}</animated.span>%
             </animated.div>
           </div>
-          <Link href={`/${activeLocale}${btnUrl}`}>
+          <LinkNoPrefetch href={`/${activeLocale}${btnUrl}`}>
             <button className="causes__btn font-bold bg-c800 text-c600 hover:bg-c300 hover:text-c100 transition duration-200 ease-out">
               {btnText}
             </button>
-          </Link>
+          </LinkNoPrefetch>
         </div>
       </div>
     </animated.div>

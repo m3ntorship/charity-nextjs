@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { timeElapsed } from '../../../Helpers/Helpers';
 import useI18n from '../../../hooks/use-i18n';
-import Link from 'next/link';
+import LinkNoPrefetch from '../LinkNoPrefetch';
 
 export const ListItemWithThumbnail = ({ data }) => {
   // Finding the active Locale
@@ -24,7 +24,7 @@ export const ListItemWithThumbnail = ({ data }) => {
   } = data;
 
   return (
-    <Link href={`/${currentLocale}/articles/${id}`}>
+    <LinkNoPrefetch href={`/${currentLocale}/articles/${id}`}>
       <animated.a
         className="listItem cursor-pointer flex flex-col"
         style={hovered}
@@ -51,6 +51,6 @@ export const ListItemWithThumbnail = ({ data }) => {
           </div>
         </article>
       </animated.a>
-    </Link>
+    </LinkNoPrefetch>
   );
 };

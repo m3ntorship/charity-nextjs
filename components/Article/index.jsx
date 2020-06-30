@@ -1,9 +1,9 @@
 import useMedia from '../../Helpers/useMedia';
 import React from 'react';
-import Link from 'next/link';
 import useI18n from '../../hooks/use-i18n';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
+import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 
 const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
   const [cardRef, cardInView] = useInView({
@@ -46,12 +46,12 @@ const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
             <h4 className="text-c100 font-bold">{title}</h4>
           </div>
           <div className="block text-c100 text-center spicial-info cursor-pointer">
-            <Link href={`/${currentLocale}/articles/${id}`}>
+            <LinkNoPrefetch href={`/${currentLocale}/articles/${id}`}>
               <a className="w-full h-full flex justify-center items-center">
                 <i className="fas fa-long-arrow-alt-right"></i>
                 {linkText}
               </a>
-            </Link>
+            </LinkNoPrefetch>
           </div>
         </div>
       </div>
