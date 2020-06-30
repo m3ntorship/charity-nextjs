@@ -119,7 +119,7 @@ const FeedBackHeader = ({
   description
 }) => {
   return (
-    <div className="feedback__heading ">
+    <div className="feedback__heading container">
       <div className="grid grid-cols-3 ">
         <Heading
           primaryText={heading_primary}
