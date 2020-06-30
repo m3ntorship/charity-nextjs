@@ -104,7 +104,7 @@ const Testimonials = ({ data, loading, error }) => {
               </div>
             </ButtonNext>
           </div>
-          <div className="feedback__carousel__picker lg:bg-c800 flex items-center justify-center text-lg">
+          <div className="feedback__carousel__picker flex items-center justify-center text-lg">
             <DotGroup className="testimonials_dots_group" />
           </div>
         </CarouselProvider>
@@ -119,7 +119,7 @@ const FeedBackHeader = ({
   description
 }) => {
   return (
-    <div className="feedback__heading container">
+    <div className="feedback__heading">
       <div className="grid grid-cols-3 ">
         <Heading
           primaryText={heading_primary}
