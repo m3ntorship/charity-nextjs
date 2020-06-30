@@ -81,8 +81,8 @@ const Testimonials = ({ data, loading, error }) => {
             )}
           </Slider>
           <div className="feedback__carousel__back-arrow feedback__carousel__arrow lg:bg-c800 flex items-center justify-center text-lg">
-            <ButtonBack className="text-c100 border-c100 rounded-full">
-              <div className="justify-center items-center flex rounded-full border-solid p-4 border-2 cursor-pointer">
+            <ButtonBack className="text-c100  rounded-full">
+              <div className="justify-center items-center flex rounded-full border-c100 border-solid p-4 border-2 cursor-pointer">
                 <i
                   className={`fas fa-arrow-${useDirectionalValue(
                     'left',
@@ -93,8 +93,8 @@ const Testimonials = ({ data, loading, error }) => {
             </ButtonBack>
           </div>
           <div className="feedback__carousel__forward-arrow feedback__carousel__arrow lg:bg-c800 flex items-center justify-center text-lg">
-            <ButtonNext className="text-c100 border-c100 rounded-full">
-              <div className="justify-center items-center flex rounded-full border-solid p-4 border-2 cursor-pointer">
+            <ButtonNext className="text-c100  rounded-full">
+              <div className="justify-center items-center flex rounded-full border-c100 border-solid p-4 border-2 cursor-pointer">
                 <i
                   className={`fas fa-arrow-${useDirectionalValue(
                     'right',
@@ -104,7 +104,7 @@ const Testimonials = ({ data, loading, error }) => {
               </div>
             </ButtonNext>
           </div>
-          <div className="feedback__carousel__picker flex items-center justify-center text-lg">
+          <div className="feedback__carousel__picker flex items-center justify-center text-lg lg:bg-c800">
             <DotGroup className="testimonials_dots_group" />
           </div>
         </CarouselProvider>
@@ -126,7 +126,7 @@ const FeedBackHeader = ({
           secondaryText={heading_secondary}
           primaryClassName="col-span-3 text-center lg:col-span-1 lg:text-left"
         />
-        <div className="text-c000 font-hairline text-center col-span-3 lg:col-span-2 lg:text-left">
+        <div className="text-c000 font-hairline text-center col-span-3 lg:col-span-1 col-start-1 lg:col-start-3 lg:text-left">
           <p>{description}</p>
         </div>
       </div>
