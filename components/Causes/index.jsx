@@ -170,80 +170,78 @@ const Causes = ({ data }) => {
             />
           </div>{' '}
         </animated.div>
-        <div className="causes__wrapper">
-          <CarouselProvider
-            naturalSlideWidth={50}
-            naturalSlideHeight={100}
-            totalSlides={causes.length}
-            isIntrinsicHeight="true"
-            isPlaying="true"
-            interval="5000"
-            lockOnWindowScroll="true"
-            className="causes__carousel causes__carousel__grid text-left grid lg:hidden"
+        <CarouselProvider
+          naturalSlideWidth={50}
+          naturalSlideHeight={100}
+          totalSlides={causes.length}
+          isIntrinsicHeight="true"
+          isPlaying="true"
+          interval="5000"
+          lockOnWindowScroll="true"
+          className="causes__carousel causes__carousel__grid text-left grid lg:hidden"
+        >
+          <Slider
+            className="causes__carousel__slider col-start-2 col-end-3"
+            style={{ transform: `scaleX(1)` }}
           >
-            <Slider
-              className="causes__carousel__slider col-start-2 col-end-3"
-              style={{ transform: `scaleX(1)` }}
-            >
-              {causes.map((cause, index) => {
-                const {
-                  title,
-                  description,
-                  raised,
-                  goal,
-                  image: { url },
-                  id,
-                  link: { url: btnUrl, text: btnText }
-                } = cause;
-                return (
-                  <Slide className="causes__carousel__slide" key={id}>
-                    <div
-                      style={{ transform: `scaleX(${useDirectionalValue(1)})` }}
-                    >
-                      <Cause
-                        title={title}
-                        description={description}
-                        raised={raised}
-                        goal={goal}
-                        image={url}
-                        btnText={btnText}
-                        btnUrl={btnUrl}
-                        index={index}
-                      />
-                    </div>
-                  </Slide>
-                );
-              })}
-            </Slider>
-            <div className="causes__carousel__back-arrow causes__carousel__arrow flex items-center justify-center text-lg col-start-1 col-end-2 row-start-1 row-end-2 pr-2">
-              <ButtonBack className="text-c100  rounded-full ">
-                <div className="justify-center items-center flex border-c100 rounded-full border-solid p-4 border-2 cursor-pointer">
-                  <i
-                    className={`fas fa-arrow-${useDirectionalValue(
-                      'left',
-                      'direction'
-                    )}`}
-                  ></i>
-                </div>
-              </ButtonBack>
-            </div>
-            <div className="causes__carousel__forward-arrow causes__carousel__arrow flex items-center justify-center text-lg col-start-3 col-end-4 row-start-1 row-end-2 pl-2">
-              <ButtonNext className="text-c100  rounded-full">
-                <div className="justify-center items-center flex rounded-full border-c100 border-solid p-4 border-2 cursor-pointer">
-                  <i
-                    className={`fas fa-arrow-${useDirectionalValue(
-                      'right',
-                      'direction'
-                    )}`}
-                  ></i>
-                </div>
-              </ButtonNext>
-            </div>
-            <div className="causes__carousel__picker flex items-center justify-center text-lg col-start-1 col-end-4 row-start-2 row-end-3 py-4">
-              <DotGroup className="causes_dots_group" />
-            </div>
-          </CarouselProvider>
-        </div>
+            {causes.map((cause, index) => {
+              const {
+                title,
+                description,
+                raised,
+                goal,
+                image: { url },
+                id,
+                link: { url: btnUrl, text: btnText }
+              } = cause;
+              return (
+                <Slide className="causes__carousel__slide" key={id}>
+                  <div
+                    style={{ transform: `scaleX(${useDirectionalValue(1)})` }}
+                  >
+                    <Cause
+                      title={title}
+                      description={description}
+                      raised={raised}
+                      goal={goal}
+                      image={url}
+                      btnText={btnText}
+                      btnUrl={btnUrl}
+                      index={index}
+                    />
+                  </div>
+                </Slide>
+              );
+            })}
+          </Slider>
+          <div className="causes__carousel__back-arrow causes__carousel__arrow flex items-center justify-center text-lg col-start-1 col-end-2 row-start-1 row-end-2 pr-2">
+            <ButtonBack className="text-c100  rounded-full ">
+              <div className="justify-center items-center flex border-c100 rounded-full border-solid p-4 border-2 cursor-pointer">
+                <i
+                  className={`fas fa-arrow-${useDirectionalValue(
+                    'left',
+                    'direction'
+                  )}`}
+                ></i>
+              </div>
+            </ButtonBack>
+          </div>
+          <div className="causes__carousel__forward-arrow causes__carousel__arrow flex items-center justify-center text-lg col-start-3 col-end-4 row-start-1 row-end-2 pl-2">
+            <ButtonNext className="text-c100  rounded-full">
+              <div className="justify-center items-center flex rounded-full border-c100 border-solid p-4 border-2 cursor-pointer">
+                <i
+                  className={`fas fa-arrow-${useDirectionalValue(
+                    'right',
+                    'direction'
+                  )}`}
+                ></i>
+              </div>
+            </ButtonNext>
+          </div>
+          <div className="causes__carousel__picker flex items-center justify-center text-lg col-start-1 col-end-4 row-start-2 row-end-3 py-4">
+            <DotGroup className="causes_dots_group" />
+          </div>
+        </CarouselProvider>
         <div className="causes__wrapper  grid-cols-3 gap-8 hidden text-left lg:grid">
           {causes.map((cause, index) => {
             const {
