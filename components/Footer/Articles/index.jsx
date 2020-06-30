@@ -1,19 +1,19 @@
-import React from "react";
-import { parseISO, format } from "date-fns";
-import Link from "next/link";
-import useI18n from "../../../hooks/use-i18n";
+import React from 'react';
+import { parseISO, format } from 'date-fns';
+import Link from 'next/link';
+import useI18n from '../../../hooks/use-i18n';
 
 const Articles = ({ articles, title }) => {
   const i18n = useI18n();
   const currentLocale = i18n.activeLocale;
-  const getDate = (myDate) => {
+  const getDate = myDate => {
     const theDate = parseISO(myDate);
 
     return {
-      time: format(theDate, "hh:mm a").toLowerCase(),
-      day: format(theDate, "dd"),
-      month: format(theDate, "MMM"),
-      year: format(theDate, "yyyy"),
+      time: format(theDate, 'hh:mm a').toLowerCase(),
+      day: format(theDate, 'dd'),
+      month: format(theDate, 'MMM'),
+      year: format(theDate, 'yyyy')
     };
   };
   const getArticles = articles.map(

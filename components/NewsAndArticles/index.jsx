@@ -1,10 +1,10 @@
-import React from "react";
-import Heading from "../Heading/index";
-import useMedia from "../../Helpers/useMedia";
-import { useInView } from "react-intersection-observer";
-import { useSpring, animated } from "react-spring";
-import Link from "next/link";
-import Article from "../Article";
+import React from 'react';
+import Heading from '../Heading/index';
+import useMedia from '../../Helpers/useMedia';
+import { useInView } from 'react-intersection-observer';
+import { useSpring, animated } from 'react-spring';
+import Link from 'next/link';
+import Article from '../Article';
 
 const ArticlesList = ({ articles, animationDelay }) => {
   return articles.map(
@@ -28,40 +28,40 @@ const ArticlesList = ({ articles, animationDelay }) => {
 
 const News = ({ data }) => {
   // //Meida query
-  const isMobile = useMedia(["(min-width: 768px)"], [false], true);
+  const isMobile = useMedia(['(min-width: 768px)'], [false], true);
   const [ref, inView] = useInView({
     threshold: 0.3,
-    triggerOnce: true,
+    triggerOnce: true
   });
 
   const slideHead = useSpring({
     opacity: inView ? 1 : 0,
     transform: inView
-      ? "translateX(0%)"
+      ? 'translateX(0%)'
       : isMobile
-      ? "translateY(-50%)"
-      : "translateX(-50%)",
+      ? 'translateY(-50%)'
+      : 'translateX(-50%)'
   });
   const slideP = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? "translateY(0%)" : "translateY(-50%)",
-    delay: isMobile ? 0 : 300,
+    transform: inView ? 'translateY(0%)' : 'translateY(-50%)',
+    delay: isMobile ? 0 : 300
   });
 
   const slideBtn = useSpring({
     opacity: inView ? 1 : 0,
     transform: inView
-      ? "translateX(0%)"
+      ? 'translateX(0%)'
       : isMobile
-      ? "translateY(-50%)"
-      : "translateX(50%)",
-    delay: isMobile ? 0 : 600,
+      ? 'translateY(-50%)'
+      : 'translateX(50%)',
+    delay: isMobile ? 0 : 600
   });
 
   const {
     heading: { heading_primary, heading_secondary },
     link: { text, url },
-    home_articles,
+    home_articles
   } = data;
   return (
     <section className="news font-body bg-c800 mb-20 md:mb-64 pt-18 pb-1 md:pb-48 relative">

@@ -3,7 +3,7 @@ import { useSpring, animated } from 'react-spring';
 import { useMeasure } from 'react-use';
 
 const Widget = ({ children, title }) => {
-  const isMobile = false
+  const isMobile = false;
   const [isOpen, setOpen] = useState();
   const [contentHeight, setContentHeight] = useState('0px');
   const [ref, { height }] = useMeasure();

@@ -7,7 +7,7 @@ import Loader from './ContentLoader';
 import './style.css';
 
 const MainNavigationContainer = () => {
-  const { data, loading, dataError } = useSelector(({pages}) => pages);
+  const { data, loading, dataError } = useSelector(({ pages }) => pages);
 
   return <MainNavigation data={data} loading={loading} error={dataError} />;
 };
@@ -52,10 +52,14 @@ const MainNavigation = ({ data, loading, error }) => {
           </div>
           <div className="menu-navbar-wrapper flex flex-col md:flex-row justify-between">
             <ul className="nav__ul mr-0 sm:w-full   flex flex-col  md:items-center md:flex-row md:justify-around bg-c200 md:mr-2  text-c000">
-              {data.filter(item => item.show_in_navigation).map(item => {
-                let {link: { text, url }} = item;
-                return <NavigationLink title={text} url={url} key={text} />;
-              })}
+              {data
+                .filter(item => item.show_in_navigation)
+                .map(item => {
+                  let {
+                    link: { text, url }
+                  } = item;
+                  return <NavigationLink title={text} url={url} key={text} />;
+                })}
             </ul>
             <button
               className="start__donantion__btn  btn btn- bg-c300 flex-1"

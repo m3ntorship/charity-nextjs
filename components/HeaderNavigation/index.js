@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import LanguageSwitcher from "../LanguageSwitcher";
-import cn from "classnames";
-import Logo from "../Logo";
-import NavigationLink from "../NavigationLink";
-import Link from "next/link";
-import useI18n from "../../hooks/use-i18n";
+import React, { useState } from 'react';
+import LanguageSwitcher from '../LanguageSwitcher';
+import cn from 'classnames';
+import Logo from '../Logo';
+import NavigationLink from '../NavigationLink';
+import Link from 'next/link';
+import useI18n from '../../hooks/use-i18n';
 
 const HeaderNavigation = ({ logoData, pagesData, contactsData }) => {
   const [isOpen, setOpen] = useState(false);
@@ -43,13 +43,13 @@ const HeaderNavigation = ({ logoData, pagesData, contactsData }) => {
             </div>
           </div>
           <ul
-            className={cn("block nav-links", {
-              hidden: !isOpen,
+            className={cn('block nav-links', {
+              hidden: !isOpen
             })}
           >
             {pagesData
-              .filter((page) => page.show_in_navigation)
-              .map((page) => (
+              .filter(page => page.show_in_navigation)
+              .map(page => (
                 <NavigationLink
                   key={page.id}
                   url={page.link.url}
@@ -69,7 +69,7 @@ const HeaderNavigation = ({ logoData, pagesData, contactsData }) => {
                 title,
                 url,
                 sub_title,
-                icon: { url: iconUrl, name: IconName },
+                icon: { url: iconUrl, name: IconName }
               }) => {
                 return (
                   <div key={_id} className="contact px-5 lg:my-5">

@@ -1,20 +1,20 @@
-import React from "react";
-import { useInView } from "react-intersection-observer";
-import { useSpring, animated } from "react-spring";
-import Heading from "../Heading";
-import Link from "next/link";
-import useI18n from "../../hooks/use-i18n";
+import React from 'react';
+import { useInView } from 'react-intersection-observer';
+import { useSpring, animated } from 'react-spring';
+import Heading from '../Heading';
+import Link from 'next/link';
+import useI18n from '../../hooks/use-i18n';
 
 const FeaturedBanner = ({ data }) => {
   const i18n = useI18n();
   const currentLocale = i18n.activeLocale;
   const [ref, inView] = useInView({
     threshold: 0.3,
-    triggerOnce: true,
+    triggerOnce: true
   });
   const fade = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? "translateY(0px)" : "translateY(10rem)",
+    transform: inView ? 'translateY(0px)' : 'translateY(10rem)'
   });
 
   const {
@@ -23,10 +23,10 @@ const FeaturedBanner = ({ data }) => {
     button_text,
     button_url,
     image_top: { url: image_url },
-    image_background: { url: image_background_url },
+    image_background: { url: image_background_url }
   } = data;
   const backgroundStyle = {
-    backgroundImage: `linear-gradient( rgba(41, 68, 85, 0.5), rgba(41, 68, 85, 0.7) ), url('${image_background_url}')`,
+    backgroundImage: `linear-gradient( rgba(41, 68, 85, 0.5), rgba(41, 68, 85, 0.7) ), url('${image_background_url}')`
   };
 
   return (

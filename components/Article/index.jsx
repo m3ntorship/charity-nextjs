@@ -1,27 +1,27 @@
-import useMedia from "../../Helpers/useMedia";
-import React from "react";
-import Link from "next/link";
-import useI18n from "../../hooks/use-i18n";
-import { useInView } from "react-intersection-observer";
-import { useSpring, animated } from "react-spring";
+import useMedia from '../../Helpers/useMedia';
+import React from 'react';
+import Link from 'next/link';
+import useI18n from '../../hooks/use-i18n';
+import { useInView } from 'react-intersection-observer';
+import { useSpring, animated } from 'react-spring';
 
 const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
   const [cardRef, cardInView] = useInView({
     threshold: 0.5,
-    triggerOnce: true,
+    triggerOnce: true
   });
-  const isMobile = useMedia(["(min-width: 768px)"], [false], true);
+  const isMobile = useMedia(['(min-width: 768px)'], [false], true);
 
   const slideCard = useSpring({
     opacity: cardInView ? 1 : 0,
     transform: cardInView
-      ? "translate(0%)"
+      ? 'translate(0%)'
       : isMobile
       ? index % 2 === 0
-        ? "translateX(-50%)"
-        : "translateX(50%)"
-      : "translateY(-50%)",
-    delay: animationDelay ? (isMobile ? 0 : 900 + 250 * index) : 0,
+        ? 'translateX(-50%)'
+        : 'translateX(50%)'
+      : 'translateY(-50%)',
+    delay: animationDelay ? (isMobile ? 0 : 900 + 250 * index) : 0
   });
 
   const i18n = useI18n();

@@ -1,36 +1,36 @@
-import React from "react";
-import { useInView } from "react-intersection-observer";
-import { useSpring, animated } from "react-spring";
-import Link from "next/link";
-import useI18n from "../../hooks/use-i18n";
+import React from 'react';
+import { useInView } from 'react-intersection-observer';
+import { useSpring, animated } from 'react-spring';
+import Link from 'next/link';
+import useI18n from '../../hooks/use-i18n';
 
-import Heading from "../Heading";
+import Heading from '../Heading';
 import {
   CarouselProvider,
   Slide,
   Slider,
   ButtonBack,
-  ButtonNext,
-} from "pure-react-carousel";
+  ButtonNext
+} from 'pure-react-carousel';
 
 const HeaderCarousel = ({ data }) => {
   const i18n = useI18n();
   const currentLocale = i18n.activeLocale;
   const [ref, inView] = useInView({
     threshold: 0.3,
-    triggerOnce: true,
+    triggerOnce: true
   });
   const fadeScale = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? "scale(1)" : "scale(0)",
+    transform: inView ? 'scale(1)' : 'scale(0)'
   });
   const fadeLeft = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? "translateX(0)" : "translateX(-50%)",
+    transform: inView ? 'translateX(0)' : 'translateX(-50%)'
   });
   const fadeRight = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? "translateX(0)" : "translateX(50%)",
+    transform: inView ? 'translateX(0)' : 'translateX(50%)'
   });
 
   let numberOfSlides = data.length;
@@ -53,14 +53,14 @@ const HeaderCarousel = ({ data }) => {
               heading: { heading_primary, heading_secondary },
               intro,
               link: { url, text },
-              image: { url: image_url },
+              image: { url: image_url }
             } = slide;
             return (
               <Slide key={slide.id} index={{ index }} className="h-full">
                 <div
                   className="header__carousel__slide h-full flex items-center justify-center bg-cover"
                   style={{
-                    background: `linear-gradient(0deg, #203b4cb5, #203b4cb5), url(${image_url}) no-repeat center/cover`,
+                    background: `linear-gradient(0deg, #203b4cb5, #203b4cb5), url(${image_url}) no-repeat center/cover`
                   }}
                 >
                   <div className="header__carouser__slide__textContent text text-center text-c000">
@@ -83,7 +83,7 @@ const HeaderCarousel = ({ data }) => {
                       />
                     </animated.div>
                     <animated.div style={fadeRight}>
-                      <Link href={ `${currentLocale}${url}`}>
+                      <Link href={`${currentLocale}${url}`}>
                         <a className="mainHeader_fix_mb btn btn-md bg-c200 text-c000 inline-block">
                           {text}
                         </a>

@@ -1,8 +1,8 @@
-import { ArticlesList } from "../../../components/NewsAndArticles";
-import { Banner } from "../../../components/ArticleBanner";
-import { VolunteeringBanner } from "../../../components/VolunteeringBanner";
-import Layout from "../../../components/Layout";
-import { charityAPI } from "../../../clients";
+import { ArticlesList } from '../../../components/NewsAndArticles';
+import { Banner } from '../../../components/ArticleBanner';
+import { VolunteeringBanner } from '../../../components/VolunteeringBanner';
+import Layout from '../../../components/Layout';
+import { charityAPI } from '../../../clients';
 
 const Articles = ({
   footerData,
@@ -11,7 +11,7 @@ const Articles = ({
   socialMediasData,
   articlesPageData,
   articlesData,
-  pagesData,
+  pagesData
 }) => {
   return (
     <Layout
@@ -39,12 +39,12 @@ export async function getServerSideProps({ params: { lng } }) {
   );
   const getCharityAPI = charityAPI(lng);
   return Promise.all([
-    getCharityAPI("/main-contacts"),
-    getCharityAPI("/logo"),
-    getCharityAPI("/socialmedias"),
-    getCharityAPI("/pages"),
-    getCharityAPI("/footer"),
-    getCharityAPI("/articles"),
+    getCharityAPI('/main-contacts'),
+    getCharityAPI('/logo'),
+    getCharityAPI('/socialmedias'),
+    getCharityAPI('/pages'),
+    getCharityAPI('/footer'),
+    getCharityAPI('/articles')
   ]).then(
     ([
       { data: contactsData },
@@ -52,10 +52,10 @@ export async function getServerSideProps({ params: { lng } }) {
       { data: socialMediasData },
       { data: pagesData },
       { data: footerData },
-      { data: articlesData },
+      { data: articlesData }
     ]) => {
       const [articlesPageData] = pagesData.filter(
-        (pageData) => pageData.name === "articles"
+        pageData => pageData.name === 'articles'
       );
       return {
         props: {
@@ -67,8 +67,8 @@ export async function getServerSideProps({ params: { lng } }) {
           articlesData,
           pagesData,
           lng,
-          lngDict,
-        },
+          lngDict
+        }
       };
     }
   );
