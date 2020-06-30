@@ -1,6 +1,6 @@
-import React from "react";
-import { Widget } from "../shared/Widget";
-import { ListItemWithThumbnail } from "../shared/ListItemWithThumbnail";
+import React from 'react';
+import { Widget } from '../shared/Widget';
+import { ListItemWithThumbnail } from '../shared/ListItemWithThumbnail';
 
 const RecentArticles = ({ data, recentArticlesTitle }) => {
   const isMobile = false;
@@ -8,7 +8,7 @@ const RecentArticles = ({ data, recentArticlesTitle }) => {
   return (
     <Widget title={recentArticlesTitle}>
       <div className="pt-5 pb-10">
-        {data.map((articleData) => {
+        {data.map(articleData => {
           return (
             <ListItemWithThumbnail data={articleData} key={articleData.id} />
           );

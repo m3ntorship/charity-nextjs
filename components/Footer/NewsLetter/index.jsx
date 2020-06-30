@@ -1,9 +1,9 @@
-import React from "react";
-import useI18n from "../../../hooks/use-i18n";
+import React from 'react';
+import useI18n from '../../../hooks/use-i18n';
 
 const Links = ({ title, description }) => {
   const i18n = useI18n();
-  const emailPlaceHolder = `${i18n.t("email.placeholder")}`;
+  const emailPlaceHolder = `${i18n.t('email.placeholder')}`;
 
   return (
     <div className="footer-card lg:my-0 my-6">

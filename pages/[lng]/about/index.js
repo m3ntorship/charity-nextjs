@@ -1,12 +1,12 @@
-import Layout from "../../../components/Layout";
-import { charityAPI } from "../../../clients";
-import { Soon } from "../../../components/Soon";
+import Layout from '../../../components/Layout';
+import { charityAPI } from '../../../clients';
+import { Soon } from '../../../components/Soon';
 const About = ({
   footerData,
   contactsData,
   logoData,
   socialMediasData,
-  pagesData,
+  pagesData
 }) => {
   return (
     <Layout
@@ -28,18 +28,18 @@ export async function getServerSideProps({ params: { lng } }) {
   const getCharityAPI = charityAPI(lng);
 
   return Promise.all([
-    getCharityAPI("/main-contacts"),
-    getCharityAPI("/logo"),
-    getCharityAPI("/socialmedias"),
-    getCharityAPI("/pages"),
-    getCharityAPI("/footer"),
+    getCharityAPI('/main-contacts'),
+    getCharityAPI('/logo'),
+    getCharityAPI('/socialmedias'),
+    getCharityAPI('/pages'),
+    getCharityAPI('/footer')
   ]).then(
     ([
       { data: contactsData },
       { data: logoData },
       { data: socialMediasData },
       { data: pagesData },
-      { data: footerData },
+      { data: footerData }
     ]) => {
       return {
         props: {
@@ -49,8 +49,8 @@ export async function getServerSideProps({ params: { lng } }) {
           footerData,
           pagesData,
           lngDict,
-          lng,
-        },
+          lng
+        }
       };
     }
   );

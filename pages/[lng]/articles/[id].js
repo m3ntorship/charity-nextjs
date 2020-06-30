@@ -1,11 +1,11 @@
-import ArticleModel from "../../../components/ArticleModel";
-import { ArticlesSearch } from "../../../components/ArticlesSearch";
-import { RecentArticles } from "../../../components/RecentArticles";
-import { Banner } from "../../../components/ArticleBanner";
-import { VolunteeringBanner } from "../../../components/VolunteeringBanner";
-import Layout from "../../../components/Layout";
-import { charityAPI } from "../../../clients";
-import useI18n from "../../../hooks/use-i18n";
+import ArticleModel from '../../../components/ArticleModel';
+import { ArticlesSearch } from '../../../components/ArticlesSearch';
+import { RecentArticles } from '../../../components/RecentArticles';
+import { Banner } from '../../../components/ArticleBanner';
+import { VolunteeringBanner } from '../../../components/VolunteeringBanner';
+import Layout from '../../../components/Layout';
+import { charityAPI } from '../../../clients';
+import useI18n from '../../../hooks/use-i18n';
 
 const Article = ({
   footerData,
@@ -15,11 +15,11 @@ const Article = ({
   pagesData,
   recentArticlesData,
   articleData,
-  articlesPageData,
+  articlesPageData
 }) => {
   const i18n = useI18n();
-  const findArticle = `${i18n.t("articles.findArticle")}`;
-  const recentArticlesTitle = `${i18n.t("articles.recentArticles")}`;
+  const findArticle = `${i18n.t('articles.findArticle')}`;
+  const recentArticlesTitle = `${i18n.t('articles.recentArticles')}`;
 
   return (
     <Layout
@@ -59,12 +59,12 @@ export async function getServerSideProps({ params: { lng, id } }) {
   );
   const getCharityAPI = charityAPI(lng);
   return Promise.all([
-    getCharityAPI("/main-contacts"),
-    getCharityAPI("/logo"),
-    getCharityAPI("/socialmedias"),
-    getCharityAPI("/pages"),
-    getCharityAPI("/footer"),
-    getCharityAPI("/articles?_sort=createdAt:DESC"),
+    getCharityAPI('/main-contacts'),
+    getCharityAPI('/logo'),
+    getCharityAPI('/socialmedias'),
+    getCharityAPI('/pages'),
+    getCharityAPI('/footer'),
+    getCharityAPI('/articles?_sort=createdAt:DESC')
   ]).then(
     ([
       { data: contactsData },
@@ -72,12 +72,12 @@ export async function getServerSideProps({ params: { lng, id } }) {
       { data: socialMediasData },
       { data: pagesData },
       { data: footerData },
-      { data: articlesData },
+      { data: articlesData }
     ]) => {
       const [articlesPageData] = pagesData.filter(
-        (pageData) => pageData.name === "articles"
+        pageData => pageData.name === 'articles'
       );
-      const articleData = articlesData.find((article) => article.id === id);
+      const articleData = articlesData.find(article => article.id === id);
       const recentArticlesData = articlesData.slice(0, 3);
       return {
         props: {
@@ -90,8 +90,8 @@ export async function getServerSideProps({ params: { lng, id } }) {
           articlesPageData,
           recentArticlesData,
           lng,
-          lngDict,
-        },
+          lngDict
+        }
       };
     }
   );

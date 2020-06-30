@@ -1,4 +1,3 @@
-
 .news .head-section .btn-sm {
-    @apply px-8;
-  }
+  @apply px-8;
+}

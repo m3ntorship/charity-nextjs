@@ -1,14 +1,13 @@
 .logo {
-    width: 5rem;
+  width: 5rem;
 }
 
-
 .mobile__logo {
-    position: absolute;
-    left: calc( 50% + 1rem );
+  position: absolute;
+  left: calc(50% + 1rem);
 }
 
 .mobile__logo .language_elector {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }

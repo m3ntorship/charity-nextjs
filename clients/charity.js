@@ -1,13 +1,13 @@
-import { create } from "axios";
+import { create } from 'axios';
 
-export const charityAPI = (lng) => {
-  if (lng === "en") {
+export const charityAPI = lng => {
+  if (lng === 'en') {
     return create({
-      baseURL: process.env.url,
+      baseURL: process.env.url
     });
   } else {
     return create({
-      baseURL: process.env.urlAr,
+      baseURL: process.env.urlAr
     });
   }
 };
