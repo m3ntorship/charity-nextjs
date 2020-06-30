@@ -124,9 +124,9 @@ const FeedBackHeader = ({
         <Heading
           primaryText={heading_primary}
           secondaryText={heading_secondary}
-          primaryClassName="col-span-3 text-center lg:col-span-2 lg:text-left"
+          primaryClassName="col-span-3 text-center lg:col-span-1 lg:text-left"
         />
-        <div className="text-c000 font-hairline text-center col-span-3 lg:col-span-1 lg:text-left">
+        <div className="text-c000 font-hairline text-center col-span-3 lg:col-span-2 lg:text-left">
           <p>{description}</p>
         </div>
       </div>
