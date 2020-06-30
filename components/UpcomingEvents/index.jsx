@@ -1,11 +1,11 @@
 import React from 'react';
-import Link from 'next/link';
 import useI18n from '../../hooks/use-i18n';
 import Heading from '../Heading';
 import { FeaturedCause } from '../FeaturedCause';
 import { parseISO, format } from 'date-fns';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
+import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 
 // Function to get add dates needed
 function getDate(myDate) {
@@ -42,13 +42,13 @@ const Event = ({ data }) => {
             &nbsp; &nbsp;
             <span>{getDate(date).time}</span>
           </div>
-          <Link href={`${currentLocale}/events/${id}`}>
+          <LinkNoPrefetch href={`${currentLocale}/events/${id}`}>
             <a className="event__title">
               <div className="event-card-wrapper__topic">
                 <p className="text-c100 font-bold">{title}</p>
               </div>
             </a>
-          </Link>
+          </LinkNoPrefetch>
 
           <div className="event-card-wrapper__location">
             <p className="text-c600 text-base flex items-center leading-none">

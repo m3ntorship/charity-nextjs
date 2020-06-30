@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import LinkNoPrefetch from  '../shared/LinkNoPrefetch'
 import { Fragment } from 'react';
 import { animated, useSpring } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
@@ -149,8 +149,8 @@ const WelcomeBtn = ({ link }) => {
   const i18n = useI18n();
   const currentLocale = i18n.activeLocale;
   return (
-    <Link href={`${currentLocale}/about`}>
+    <LinkNoPrefetch href={`${currentLocale}/about`}>
       <a className=" btn btn-lg bg-c300 hover:text-c100">{link.text}</a>
-    </Link>
+    </LinkNoPrefetch>
   );
 };

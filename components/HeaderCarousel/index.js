@@ -1,7 +1,7 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
-import Link from 'next/link';
+import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 import useI18n from '../../hooks/use-i18n';
 
 import Heading from '../Heading';
@@ -12,7 +12,6 @@ import {
   ButtonBack,
   ButtonNext
 } from 'pure-react-carousel';
-
 const HeaderCarousel = ({ data }) => {
   const i18n = useI18n();
   const currentLocale = i18n.activeLocale;
@@ -83,11 +82,11 @@ const HeaderCarousel = ({ data }) => {
                       />
                     </animated.div>
                     <animated.div style={fadeRight}>
-                      <Link href={`${currentLocale}${url}`}>
+                      <LinkNoPrefetch href={`${currentLocale}${url}`}>
                         <a className="mainHeader_fix_mb btn btn-md bg-c200 text-c000 inline-block">
                           {text}
                         </a>
-                      </Link>
+                      </LinkNoPrefetch>
                     </animated.div>
                   </div>
                 </div>

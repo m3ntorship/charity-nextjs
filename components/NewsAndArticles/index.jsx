@@ -3,8 +3,8 @@ import Heading from '../Heading/index';
 import useMedia from '../../Helpers/useMedia';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
-import Link from 'next/link';
 import Article from '../Article';
+import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 
 const ArticlesList = ({ articles, animationDelay }) => {
   return articles.map(
@@ -88,11 +88,11 @@ const News = ({ data }) => {
             {data.description}
           </animated.p>
           <animated.div style={slideBtn} className="btn-div md:col-span-3">
-            <Link href={url}>
+            <LinkNoPrefetch href={url}>
               <a className="btn btn-sm text-sm bg-c300 my-8 md:float-right md:mt-3 cursor-pointer hover:text-c100">
                 {text}
               </a>
-            </Link>
+            </LinkNoPrefetch>
           </animated.div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
-import Link from 'next/link';
+import useI18n from '../../hooks/use-i18n';
+import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 import useMedia from '../../Helpers/useMedia';
 import Heading from '../Heading';
 import {
@@ -54,7 +55,9 @@ const Cause = ({
     percent => Math.floor(percent) + '%'
   );
   const numberToLocal = number => Number(number).toLocaleString();
-
+  const i18n = useI18n();
+  const currentLocale = i18n.activeLocale;
+  const donate = `${i18n.t('causes.donate')}`;
   return (
     <animated.div
       className="causes__card border-gray-900 border border-solid z-10 bg-c000"
@@ -116,11 +119,11 @@ const Cause = ({
               <animated.span>{progressNumber}</animated.span>%
             </animated.div>
           </div>
-          <Link href="/donations">
+          <LinkNoPrefetch href={`/${currentLocale}/donations`}>
             <button className="causes__btn font-bold bg-c800 text-c600 hover:bg-c300 hover:text-c100 transition duration-200 ease-out">
-              Donate Now
+             {donate}
             </button>
-          </Link>
+          </LinkNoPrefetch>
         </div>{' '}
       </div>{' '}
     </animated.div>
