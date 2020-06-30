@@ -5,6 +5,9 @@
   margin-bottom: 17.25rem;
 }
 
+.feedback__heading  {
+  padding:  0 11%;
+}
 .feedback::before {
   content: '';
   background: no-repeat url('../public/images/testimonials/blocks.png');

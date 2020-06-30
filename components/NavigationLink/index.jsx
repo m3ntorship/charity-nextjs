@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import Link from 'next/link';
+import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 import useI18n from '../../hooks/use-i18n';
 
 const NavigationLink = ({ url, title, secondaryClassName, linkClassName }) => {
@@ -8,9 +8,9 @@ const NavigationLink = ({ url, title, secondaryClassName, linkClassName }) => {
   const currentLocale = i18n.activeLocale;
   return (
     <li className={cn('text-center', secondaryClassName)}>
-      <Link href={`/${currentLocale}${url}`}>
+      <LinkNoPrefetch href={`/${currentLocale}${url}`}>
         <a className={cn('', linkClassName)}>{title}</a>
-      </Link>
+      </LinkNoPrefetch>
     </li>
   );
 };

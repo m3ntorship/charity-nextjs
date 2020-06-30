@@ -1,12 +1,12 @@
-import Link from 'next/link';
 import cn from 'classnames';
+import LinkNoPrefetch from '../LinkNoPrefetch';
 
 const NavigationLink = ({ url, text, linkClassName, secondaryClassName }) => {
   return (
     <li className={cn('text-center', secondaryClassName)}>
-      <Link href={url}>
+      <LinkNoPrefetch href={url}>
         <a className={cn('', linkClassName)}>{text}</a>
-      </Link>
+      </LinkNoPrefetch>
     </li>
   );
 };

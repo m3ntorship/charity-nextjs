@@ -4,6 +4,7 @@ import { useSpring, animated } from 'react-spring';
 import Heading from '../Heading';
 import Link from 'next/link';
 import useI18n from '../../hooks/use-i18n';
+import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 
 const FeaturedBanner = ({ data }) => {
   const i18n = useI18n();
@@ -47,11 +48,11 @@ const FeaturedBanner = ({ data }) => {
               align="center"
               primaryClassName="donation-banner-desc"
             />
-            <Link href={`${currentLocale}${button_url}`}>
+            <LinkNoPrefetch href={`${currentLocale}${button_url}`}>
               <a className="donation-banner__btn btn btn-lg bg-c300">
                 {button_text}
               </a>
-            </Link>
+            </LinkNoPrefetch>
           </div>
         </animated.div>
       </div>

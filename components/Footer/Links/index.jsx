@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import LinkNoPrefetch from '../../shared/LinkNoPrefetch';
 import useI18n from '../../../hooks/use-i18n';
 
 const Links = ({ links, title }) => {
@@ -12,9 +12,9 @@ const Links = ({ links, title }) => {
         {links.map(({ id, text, url }) => {
           return (
             <li key={id} className="pb-4">
-              <Link href={`/${currentLocale}${url}`}>
+              <LinkNoPrefetch href={`/${currentLocale}${url}`}>
                 <a>{text}</a>
-              </Link>
+              </LinkNoPrefetch>
             </li>
           );
         })}

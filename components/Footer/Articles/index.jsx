@@ -1,6 +1,6 @@
 import React from 'react';
 import { parseISO, format } from 'date-fns';
-import Link from 'next/link';
+import LinkNoPrefetch from '../../shared/LinkNoPrefetch';
 import useI18n from '../../../hooks/use-i18n';
 
 const Articles = ({ articles, title }) => {
@@ -20,7 +20,7 @@ const Articles = ({ articles, title }) => {
     ({ date, id, thumbnail: { url, alternativeText }, description }) => {
       const formattedDate = getDate(date);
       return (
-        <Link key={id} href={`/${currentLocale}/articles/${id}`}>
+        <LinkNoPrefetch key={id} href={`/${currentLocale}/articles/${id}`}>
           <a className="flex flex-col flex-grow my-2">
             <article className="flex">
               <img
@@ -38,7 +38,7 @@ const Articles = ({ articles, title }) => {
               </div>
             </article>
           </a>
-        </Link>
+        </LinkNoPrefetch>
       );
     }
   );

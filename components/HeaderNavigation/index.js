@@ -3,8 +3,8 @@ import LanguageSwitcher from '../LanguageSwitcher';
 import cn from 'classnames';
 import Logo from '../Logo';
 import NavigationLink from '../NavigationLink';
-import Link from 'next/link';
 import useI18n from '../../hooks/use-i18n';
+import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 
 const HeaderNavigation = ({ logoData, pagesData, contactsData }) => {
   const [isOpen, setOpen] = useState(false);
@@ -17,11 +17,11 @@ const HeaderNavigation = ({ logoData, pagesData, contactsData }) => {
         <div className="logo-links-container sm:justify-between sm:w-full">
           <div className="flex items-center px-10 justify-between relative">
             <div className="w-26">
-              <Link href={`/${currentLocale}`}>
+              <LinkNoPrefetch href={`/${currentLocale}`}>
                 <a>
                   <Logo logoData={logoData} />
                 </a>
-              </Link>
+              </LinkNoPrefetch>
             </div>
             <div className="mobile__logo block md:hidden ">
               <LanguageSwitcher />

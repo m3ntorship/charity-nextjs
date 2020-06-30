@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import Link from 'next/link';
+import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 import { animated, useSpring, useChain } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
 
@@ -109,11 +109,11 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
                 Goal
               </p>
             </div>
-            <Link href={linkUrl}>
+            <LinkNoPrefetch href={linkUrl}>
               <button className="btn btn-card bg-c300 px-24 self-center mt-5">
                 {linkText}
               </button>
-            </Link>
+            </LinkNoPrefetch>
           </div>
         </div>
       </animated.div>
