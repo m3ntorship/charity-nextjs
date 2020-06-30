@@ -1,10 +1,11 @@
-import React, { useRef } from "react";
-import Link from "next/link";
-import { animated, useSpring, useChain } from "react-spring";
-import { useInView } from "react-intersection-observer";
+import React, { useRef } from 'react';
+import Link from 'next/link';
+import { animated, useSpring, useChain } from 'react-spring';
+import { useInView } from 'react-intersection-observer';
+import useMedia from '../../Helpers/useMedia';
 
 const FeaturedCause = ({ data: { featuredCause } }) => {
-  const isMobile = false;
+  const isMobile = useMedia(['(min-width: 768px)'], [false], true);
 
   const getProgressPrecentage = (raised, goal) => {
     return Math.floor((raised / goal) * 100);
@@ -12,15 +13,15 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
 
   const [ref, inView] = useInView({
     threshold: 0.2,
-    triggerOnce: true,
+    triggerOnce: true
   });
 
   const slideEndRef = useRef();
   const slideEnd = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? "translateX(0%)" : "translateX(50%)",
+    transform: inView ? 'translateX(0%)' : 'translateX(50%)',
     delay: isMobile ? 0 : 600,
-    ref: slideEndRef,
+    ref: slideEndRef
   });
   const aspiringRef = useRef();
   const aspiring = useSpring({
@@ -29,7 +30,7 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
       : 0,
     from: { percent: 0 },
     delay: isMobile ? 300 : 900,
-    ref: aspiringRef,
+    ref: aspiringRef
   });
 
   const strokeRef = useRef();
@@ -40,7 +41,7 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
       : 565,
     from: { percent: 565 },
     delay: isMobile ? 300 : 900,
-    ref: strokeRef,
+    ref: strokeRef
   });
 
   useChain([slideEndRef, aspiringRef, strokeRef]);
@@ -49,13 +50,13 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
     return <div>We will announce for urgent cause soon</div>;
   }
   if (featuredCause) {
-    const numberToLocal = (number) => Number(number).toLocaleString();
+    const numberToLocal = number => Number(number).toLocaleString();
     let {
       raised,
       goal,
       title,
       description,
-      link: { text: linkText, url: linkUrl },
+      link: { text: linkText, url: linkUrl }
     } = featuredCause;
     return (
       <animated.div className="Upcoming-Events-Card w-full" style={slideEnd}>
@@ -78,7 +79,7 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
                 <div className="number">
                   <h2>
                     <animated.span>
-                      {aspiring.percent.interpolate((percent) =>
+                      {aspiring.percent.interpolate(percent =>
                         Math.floor(percent)
                       )}
                     </animated.span>
@@ -98,13 +99,13 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
             <div className="text-center">
               <p className="text-sm font-light tracking-normal">
                 <span className="text-c300 text-lg tracking-wide font-bold">
-                  ${numberToLocal(raised)}{" "}
+                  ${numberToLocal(raised)}{' '}
                 </span>
                 Raised
               </p>
               <p className="text-sm font-light tracking-normal">
                 <span className="text-c300 text-lg tracking-wide font-bold font">
-                  ${numberToLocal(goal)}{" "}
+                  ${numberToLocal(goal)}{' '}
                 </span>
                 Goal
               </p>
@@ -119,7 +120,7 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
       </animated.div>
     );
   }
-  return "Generic Error";
+  return 'Generic Error';
 };
 
 export { FeaturedCause };
