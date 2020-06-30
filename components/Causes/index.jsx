@@ -139,7 +139,6 @@ const Causes = ({ data }) => {
   });
 
   const isCarousel = useMedia(['(min-width: 768px)'], [false], true);
-  console.log(isCarousel);
 
   let {
     causes,

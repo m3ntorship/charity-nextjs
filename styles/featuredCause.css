@@ -1,58 +1,57 @@
 .right-fund-card {
-    background-color: #d55343;
-    background-image: url('../public/images/featuredCause/bg_2.png');
-    background-repeat: no-repeat;
-    background-position: top left;
-  }
-  
-  .r-card-font-color {
-    color: #ffffffbd;
-  }
-  
-  .percent {
-    position: relative;
-    width: 208px;
-    height: 208px;
-    border-radius: 50%;
-    z-index: 1000;
-  }
-  .percent .number {
-    position: absolute;
-    display: grid;
-    place-items: center;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    transform: rotate(90deg);
-  }
-  .percent .number h2 {
-    color: white;
-    font-weight: 700;
-    font-size: 2.2rem;
-    margin-bottom: 0;
-  }
-  
-  .main_circle {
-    width: 208px;
-    height: 208px;
-    z-index: 1000;
-  }
-  
-  svg circle {
-    fill: none;
-    stroke: rgb(255, 255, 255);
-    stroke-width: 4;
-    transform: translate(5px, 5px);
-    stroke-opacity: 0.1;
-  }
-  svg circle:nth-child(2) {
-    stroke-dasharray: 565;
-    stroke-opacity: 1;
-  }
-  
-  .guage {
-    transform: rotate(-90deg);
-  }
-  
+  background-color: #d55343;
+  background-image: url('../public/images/featuredCause/bg_2.png');
+  background-repeat: no-repeat;
+  background-position: top left;
+}
+
+.r-card-font-color {
+  color: #ffffffbd;
+}
+
+.percent {
+  position: relative;
+  width: 208px;
+  height: 208px;
+  border-radius: 50%;
+  z-index: 1000;
+}
+.percent .number {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform: rotate(90deg);
+}
+.percent .number h2 {
+  color: white;
+  font-weight: 700;
+  font-size: 2.2rem;
+  margin-bottom: 0;
+}
+
+.main_circle {
+  width: 208px;
+  height: 208px;
+  z-index: 1000;
+}
+
+svg circle {
+  fill: none;
+  stroke: rgb(255, 255, 255);
+  stroke-width: 4;
+  transform: translate(5px, 5px);
+  stroke-opacity: 0.1;
+}
+svg circle:nth-child(2) {
+  stroke-dasharray: 565;
+  stroke-opacity: 1;
+}
+
+.guage {
+  transform: rotate(-90deg);
+}

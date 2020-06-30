@@ -1,5 +1,5 @@
-import I18n from "../lib/i18n";
-import "../styles/index.css";
+import I18n from '../lib/i18n';
+import '../styles/index.css';
 
 function MyApp({ Component, pageProps }) {
   return (

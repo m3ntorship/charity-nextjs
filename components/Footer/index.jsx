@@ -1,25 +1,25 @@
-import React from "react";
-import Links from "./Links/index";
-import Articles from "./Articles/index";
-import About from "./About/index";
-import Newsletter from "./NewsLetter/index";
-import { useInView } from "react-intersection-observer";
-import { useSpring, animated } from "react-spring";
+import React from 'react';
+import Links from './Links/index';
+import Articles from './Articles/index';
+import About from './About/index';
+import Newsletter from './NewsLetter/index';
+import { useInView } from 'react-intersection-observer';
+import { useSpring, animated } from 'react-spring';
 
 const Footer = ({ data }) => {
   const [refLeft, inViewLeft] = useInView({
-    triggerOnce: true,
+    triggerOnce: true
   });
   const [refRight, inViewRight] = useInView({ triggerOnce: true });
 
   const fadeLeft = useSpring({
     opacity: inViewLeft ? 1 : 0,
-    transform: inViewLeft ? "translateX(0%)" : "translateX(-50%)",
+    transform: inViewLeft ? 'translateX(0%)' : 'translateX(-50%)'
   });
 
   const fadeRight = useSpring({
     opacity: inViewRight ? 1 : 0,
-    transform: inViewRight ? "translateX(0%)" : "translateX(50%)",
+    transform: inViewRight ? 'translateX(0%)' : 'translateX(50%)'
   });
 
   if (data) {
@@ -33,7 +33,7 @@ const Footer = ({ data }) => {
       articles,
       links,
       Disclaimer,
-      links_title,
+      links_title
     } = data;
     return (
       <footer className="footer bg-c100 text-c700">
@@ -75,7 +75,7 @@ const Footer = ({ data }) => {
       </footer>
     );
   }
-  return "generic error";
+  return 'generic error';
 };
 
 export { Footer };

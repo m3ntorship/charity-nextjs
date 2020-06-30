@@ -1,20 +1,20 @@
-import Link from "next/link";
-import { useSpring, animated } from "react-spring";
-import useI18n from "../../hooks/use-i18n";
-import LanguageSwitcher from "../LanguageSwitcher";
+import Link from 'next/link';
+import { useSpring, animated } from 'react-spring';
+import useI18n from '../../hooks/use-i18n';
+import LanguageSwitcher from '../LanguageSwitcher';
 
 const ContactTop = ({ data }) => {
   const i18n = useI18n();
-  const followUs = `${i18n.t("followus.follow")}`;
-  const welcome = `${i18n.t("welcome.message")}`;
-  const lovims = `${i18n.t("welcome.lovims")}`;
-  const platform = `${i18n.t("welcome.platform")}`;
-  const donationBtnText = `${i18n.t("donationButton.text")}`;
-  const donationBtnUrl = `${i18n.t("donationButton.url")}`;
+  const followUs = `${i18n.t('followus.follow')}`;
+  const welcome = `${i18n.t('welcome.message')}`;
+  const lovims = `${i18n.t('welcome.lovims')}`;
+  const platform = `${i18n.t('welcome.platform')}`;
+  const donationBtnText = `${i18n.t('donationButton.text')}`;
+  const donationBtnUrl = `${i18n.t('donationButton.url')}`;
 
   const fade = useSpring({
     from: { opacity: 0 },
-    to: { opacity: 1 },
+    to: { opacity: 1 }
   });
   if (data) {
     return (
@@ -22,8 +22,8 @@ const ContactTop = ({ data }) => {
         <section className="contact-top p-0 items-center bg-c100 hidden md:flex">
           <div className="container px-20 w-full max-w-full md:flex justify-between">
             <div className="welcome-text text-sm">
-              {welcome}{" "}
-              <span className="text-c300 underline italic">{lovims}</span>{" "}
+              {welcome}{' '}
+              <span className="text-c300 underline italic">{lovims}</span>{' '}
               {platform}
             </div>
             <ul className="flex languag__selector_wrapper">
@@ -55,6 +55,6 @@ const ContactTop = ({ data }) => {
       </animated.div>
     );
   }
-  return "Generic Error";
+  return 'Generic Error';
 };
 export { ContactTop };

@@ -1,6 +1,6 @@
-import React from "react";
-import Link from "next/link";
-import useI18n from "../../../hooks/use-i18n";
+import React from 'react';
+import Link from 'next/link';
+import useI18n from '../../../hooks/use-i18n';
 
 const Links = ({ links, title }) => {
   const i18n = useI18n();

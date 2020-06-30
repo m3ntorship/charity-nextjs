@@ -1,6 +1,6 @@
-import React from "react";
-import { Widget } from "../shared/Widget";
-import { SearchBar } from "../shared/SearchBar";
+import React from 'react';
+import { Widget } from '../shared/Widget';
+import { SearchBar } from '../shared/SearchBar';
 
 const ArticlesSearch = ({ data }) => {
   return (

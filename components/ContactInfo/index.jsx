@@ -1,5 +1,5 @@
-import React from "react";
-import cn from "classnames";
+import React from 'react';
+import cn from 'classnames';
 
 export const ContactInfo = ({ socialData, contactData }) => {
   return (
@@ -46,7 +46,7 @@ const Contact = ({ contactData }) => {
             title,
             url,
             sub_title,
-            icon: { url: iconUrl, name: IconName },
+            icon: { url: iconUrl, name: IconName }
           },
           index
         ) => {
@@ -55,14 +55,14 @@ const Contact = ({ contactData }) => {
             <div
               key={_id}
               className={cn(
-                "contact",
-                "my-1",
-                "lg:my-0",
-                "w-64",
-                "mt-2",
-                "md:mt-0",
+                'contact',
+                'my-1',
+                'lg:my-0',
+                'w-64',
+                'mt-2',
+                'md:mt-0',
                 {
-                  "border-right": !isLast,
+                  'border-right': !isLast
                 }
               )}
             >
