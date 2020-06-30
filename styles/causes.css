@@ -121,7 +121,7 @@
   outline-style: none;
 }
 
-.causes__carousel__arrow button:disabled {
+.causes__carousel__arrow button:disabled div {
   border-color: #a39d9d;
   color: #a39d9d;
 }
