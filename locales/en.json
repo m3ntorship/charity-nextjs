@@ -21,7 +21,9 @@
   },
   "comments": "comments",
   "causes": {
-    "urgentCause": "URGENT CAUSE"
+    "urgentCause": "URGENT CAUSE",
+    "goal": "Goal",
+    "raised": "Raised"
   },
   "numbersText": "Numbers speak",
   "soon": "Coming Soon"
