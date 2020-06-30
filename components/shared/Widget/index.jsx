@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { useMeasure } from 'react-use';
-import useMedia from '../../Helpers/useMedia';
+import useMedia from '../../../Helpers/useMedia';
 
 const Widget = ({ children, title }) => {
   const isMobile = useMedia(['(min-width: 768px)'], [false], true);
