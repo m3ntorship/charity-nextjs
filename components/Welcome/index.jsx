@@ -5,11 +5,10 @@ import { animated, useSpring } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
 import useI18n from '../../hooks/use-i18n';
 import { useDirectionalValue } from '../../hooks/useDirectionalValue';
-
-// import useMedia from '../../Helpers/useMedia'; // need to fix window is not defined in useMedia
+import useMedia from '../../Helpers/useMedia';
 
 export const Welcome = ({ data }) => {
-  const isMobile = false;
+  const isMobile = useMedia(['(min-width: 768px)'], [false], true);
 
   const [ref, inView] = useInView({
     threshold: 0.3,

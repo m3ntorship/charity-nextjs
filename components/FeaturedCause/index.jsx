@@ -2,9 +2,10 @@ import React, { useRef } from 'react';
 import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 import { animated, useSpring, useChain } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
+import useMedia from '../../Helpers/useMedia';
 
 const FeaturedCause = ({ data: { featuredCause } }) => {
-  const isMobile = false;
+  const isMobile = useMedia(['(min-width: 768px)'], [false], true);
 
   const getProgressPrecentage = (raised, goal) => {
     return Math.floor((raised / goal) * 100);
