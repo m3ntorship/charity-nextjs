@@ -12,6 +12,8 @@ import {
 } from 'pure-react-carousel';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated, useChain } from 'react-spring';
+import { useDirectionalValue } from '../../hooks/useDirectionalValue';
+import useI18n from '../../hooks/use-i18n';
 
 const Cause = ({
   title,
@@ -20,7 +22,9 @@ const Cause = ({
   goal,
   image,
   imageText,
-  index
+  index,
+  btnText,
+  btnUrl
 }) => {
   const [cardRef, cardInView] = useInView({
     threshold: 0.3,
@@ -55,6 +59,13 @@ const Cause = ({
   );
   const numberToLocal = number => Number(number).toLocaleString();
 
+  //Get Locales
+  const i18n = useI18n();
+  const goalText = `${i18n.t('causes.goal')}`;
+  const raisedText = `${i18n.t('causes.raised')}`;
+  const activeLocale = i18n.activeLocale;
+  const activeDirection = i18n.activeDirection;
+
   return (
     <animated.div
       className="causes__card border-gray-900 border border-solid z-10 bg-c000"
@@ -76,53 +87,57 @@ const Cause = ({
           </div>
 
           <div className="causes__info pb-10">
-            <div className="causes__raised relative">
-              <span className="causes__icon inline-block">
-                <i className="fas fa-hand-holding-usd text-lg"></i>
+            <div className="causes__raised flex justify-start mb-4">
+              <span className="causes__icon mr-3">
+                <i className="fas fa-hand-holding-usd text-lg text-c500"></i>
               </span>
-              <span className="causes__icon--funds font-bold text-c200 text-sm text-center inline-block absolute">
+              <span className="causes__icon--funds font-bold text-c200 text-sm text-center mr-3">
                 ${numberToLocal(raised)}
               </span>
-              <span className="causes__icon--tag absolute text-c600 text-xs font-bold">
-                Raised
+              <span className="causes__icon--tag text-c600 text-xs font-bold">
+                {raisedText}
               </span>
             </div>
-            <div className="causes__goal mb-3 relative">
-              <span className="causes__icon inline-block">
-                <i className="fas fa-bullseye text-lg"></i>
+            <div className="causes__goal flex justify-start mb-4">
+              <span className="causes__icon mr-3">
+                <i className="fas fa-bullseye text-lg text-c500"></i>
               </span>
-              <span className="causes__icon--goal font-bold text-c200 text-sm absolute">
+              <span className="causes__icon--goal font-bold text-c200 text-sm mr-3">
                 ${numberToLocal(goal)}
               </span>
-              <span className="causes__icon--tag absolute text-c600 text-xs font-bold">
-                Goal
+              <span className="causes__icon--tag text-c600 text-xs font-bold">
+                {goalText}
               </span>
             </div>
           </div>
 
           <div className="causes__progress mb-2 relative h-2 w-full bg-c800">
             <animated.div
-              className="causes__progress__progress-bar bg-c200"
+              className="causes__progress__progress-bar"
               style={{
                 width: progressWidth
               }}
             ></animated.div>
             <animated.div
-              className="causes__progress__tooltip bg-c200"
-              style={{
-                left: progressWidth
-              }}
+              className="causes__progress__tooltip"
+              style={
+                activeDirection === 'ltr'
+                  ? {
+                      left: progressWidth
+                    }
+                  : { right: progressWidth }
+              }
             >
               <animated.span>{progressNumber}</animated.span>%
             </animated.div>
           </div>
-          <Link href="/donations">
+          <Link href={`/${activeLocale}${btnUrl}`}>
             <button className="causes__btn font-bold bg-c800 text-c600 hover:bg-c300 hover:text-c100 transition duration-200 ease-out">
-              Donate Now
+              {btnText}
             </button>
           </Link>
-        </div>{' '}
-      </div>{' '}
+        </div>
+      </div>
     </animated.div>
   );
 };
@@ -137,8 +152,6 @@ const Causes = ({ data }) => {
     opacity: inView ? 1 : 0,
     transform: inView ? 'translateY(0%)' : 'translateY(-50%)'
   });
-
-  const isCarousel = useMedia(['(min-width: 768px)'], [false], true);
 
   let {
     causes,
@@ -157,59 +170,81 @@ const Causes = ({ data }) => {
             />
           </div>{' '}
         </animated.div>
-        <CarouselProvider
-          naturalSlideWidth={50}
-          naturalSlideHeight={100}
-          totalSlides={causes.length}
-          isIntrinsicHeight="true"
-          isPlaying="true"
-          interval="5000"
-          lockOnWindowScroll="true"
-          className="causes__carousel causes__carousel__grid grid lg:hidden"
-        >
-          <Slider className="causes__carousel__slider col-start-2 col-end-3">
-            {causes.map((cause, index) => {
-              const {
-                title,
-                description,
-                raised,
-                goal,
-                image: { url },
-                id
-              } = cause;
-              return (
-                <Slide className="causes__carousel__slide" key={id}>
-                  <Cause
-                    title={title}
-                    description={description}
-                    raised={raised}
-                    goal={goal}
-                    image={url}
-                    index={index}
-                  />
-                </Slide>
-              );
-            })}
-          </Slider>
-          <div className="causes__carousel__back-arrow causes__carousel__arrow flex items-center justify-center text-lg col-start-1 col-end-2 row-start-1 row-end-2 pr-2">
-            <ButtonBack className="text-c100 border-c100 rounded-full ">
-              <div className="justify-center items-center flex rounded-full border-solid p-4 border-2 cursor-pointer">
-                <i className="fas fa-arrow-left"></i>
-              </div>
-            </ButtonBack>
-          </div>
-          <div className="causes__carousel__forward-arrow causes__carousel__arrow flex items-center justify-center text-lg col-start-3 col-end-4 row-start-1 row-end-2 pl-2">
-            <ButtonNext className="text-c100 border-c100 rounded-full">
-              <div className="justify-center items-center flex rounded-full border-solid p-4 border-2 cursor-pointer">
-                <i className="fas fa-arrow-right"></i>
-              </div>
-            </ButtonNext>
-          </div>
-          <div className="causes__carousel__picker flex items-center justify-center text-lg col-start-1 col-end-4 row-start-2 row-end-3 py-4">
-            <DotGroup className="causes_dots_group" />
-          </div>
-        </CarouselProvider>
-        <div className="causes__wrapper  grid-cols-3 gap-8 hidden lg:grid">
+        <div className="causes__wrapper">
+          <CarouselProvider
+            naturalSlideWidth={50}
+            naturalSlideHeight={100}
+            totalSlides={causes.length}
+            isIntrinsicHeight="true"
+            isPlaying="true"
+            interval="5000"
+            lockOnWindowScroll="true"
+            className="causes__carousel causes__carousel__grid text-left grid lg:hidden"
+          >
+            <Slider
+              className="causes__carousel__slider col-start-2 col-end-3"
+              style={{ transform: `scaleX(1)` }}
+            >
+              {causes.map((cause, index) => {
+                const {
+                  title,
+                  description,
+                  raised,
+                  goal,
+                  image: { url },
+                  id,
+                  link: { url: btnUrl, text: btnText }
+                } = cause;
+                return (
+                  <Slide className="causes__carousel__slide" key={id}>
+                    <div
+                      style={{ transform: `scaleX(${useDirectionalValue(1)})` }}
+                    >
+                      <Cause
+                        title={title}
+                        description={description}
+                        raised={raised}
+                        goal={goal}
+                        image={url}
+                        btnText={btnText}
+                        btnUrl={btnUrl}
+                        index={index}
+                      />
+                    </div>
+                  </Slide>
+                );
+              })}
+            </Slider>
+            <div className="causes__carousel__back-arrow causes__carousel__arrow flex items-center justify-center text-lg col-start-1 col-end-2 row-start-1 row-end-2 pr-2">
+              <ButtonBack className="text-c100 border-c100 rounded-full ">
+                <div className="justify-center items-center flex rounded-full border-solid p-4 border-2 cursor-pointer">
+                  <i
+                    className={`fas fa-arrow-${useDirectionalValue(
+                      'left',
+                      'direction'
+                    )}`}
+                  ></i>
+                </div>
+              </ButtonBack>
+            </div>
+            <div className="causes__carousel__forward-arrow causes__carousel__arrow flex items-center justify-center text-lg col-start-3 col-end-4 row-start-1 row-end-2 pl-2">
+              <ButtonNext className="text-c100 border-c100 rounded-full">
+                <div className="justify-center items-center flex rounded-full border-solid p-4 border-2 cursor-pointer">
+                  <i
+                    className={`fas fa-arrow-${useDirectionalValue(
+                      'right',
+                      'direction'
+                    )}`}
+                  ></i>
+                </div>
+              </ButtonNext>
+            </div>
+            <div className="causes__carousel__picker flex items-center justify-center text-lg col-start-1 col-end-4 row-start-2 row-end-3 py-4">
+              <DotGroup className="causes_dots_group" />
+            </div>
+          </CarouselProvider>
+        </div>
+        <div className="causes__wrapper  grid-cols-3 gap-8 hidden text-left lg:grid">
           {causes.map((cause, index) => {
             const {
               title,
@@ -218,7 +253,8 @@ const Causes = ({ data }) => {
               goal,
               image: { url },
               id,
-              alternativeText
+              alternativeText,
+              link: { url: btnUrl, text: btnText }
             } = cause;
             return (
               <Cause
@@ -229,6 +265,8 @@ const Causes = ({ data }) => {
                 goal={goal}
                 image={url}
                 imageText={alternativeText}
+                btnText={btnText}
+                btnUrl={btnUrl}
                 index={index}
               />
             );
