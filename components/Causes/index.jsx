@@ -14,7 +14,6 @@ import {
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated, useChain } from 'react-spring';
 import { useDirectionalValue } from '../../hooks/useDirectionalValue';
-import useI18n from '../../hooks/use-i18n';
 
 const Cause = ({
   title,
