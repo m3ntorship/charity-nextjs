@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import useI18n from '../../hooks/use-i18n';
 import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 
-export const VolunteeringBanner = ({ data }) => {
+export const SecondaryBanner = ({ data }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.5
@@ -41,7 +41,9 @@ export const VolunteeringBanner = ({ data }) => {
             <a href={url}>{text}</a>{' '}
           </button> */}
           <LinkNoPrefetch href={`/${currentLocale}${url}`}>
-            <a className="btn btn-md bg-c300 text-c100 mt-10 md:mt-0 hover:text-c100 ">{text}</a>
+            <a className="btn btn-md bg-c300 text-c100 mt-10 md:mt-0 hover:text-c100 ">
+              {text}
+            </a>
           </LinkNoPrefetch>
         </animated.div>
       </div>
