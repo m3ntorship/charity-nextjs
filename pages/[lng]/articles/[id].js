@@ -1,7 +1,7 @@
 import ArticleModel from '../../../components/ArticleModel';
 import { ArticlesSearch } from '../../../components/ArticlesSearch';
 import { RecentArticles } from '../../../components/RecentArticles';
-import { Banner } from '../../../components/ArticleBanner';
+import { Banner } from '../../../components/MainBanner';
 import { SecondaryBanner } from '../../../components/SecondaryBanner';
 import Layout from '../../../components/Layout';
 import { charityAPI } from '../../../clients';
