@@ -2,6 +2,7 @@ import Layout from '../../../components/Layout';
 import { charityAPI } from '../../../clients';
 import { PersonCardsSection } from '../../../components/PersonCardsSection';
 import { SecondaryBanner } from '../../../components/SecondaryBanner';
+import { Banner } from '../../../components/MainBanner';
 
 const Volunteers = ({
   footerData,
@@ -11,7 +12,8 @@ const Volunteers = ({
   pagesData,
   devTeamPageData,
   devTeamMembersData,
-  lng
+  lng,
+  lngDict
 }) => {
   return (
     <Layout
@@ -21,6 +23,7 @@ const Volunteers = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
+      <Banner data={devTeamPageData} lngDict={lngDict} />
       <div className="container">
         <PersonCardsSection data={devTeamMembersData} lng={lng} />
       </div>
