@@ -3,9 +3,8 @@ import { useInView } from 'react-intersection-observer';
 import NavigationLink from '../NavigationLink';
 import { useSpring, animated } from 'react-spring';
 import Heading from '../Heading';
-import useI18n from '../../hooks/use-i18n';
 
-const Banner = ({ data }) => {
+const Banner = ({ data, lngDict }) => {
   const [ref, inView] = useInView({
     threshold: 0.3,
     triggerOnce: true
@@ -18,8 +17,9 @@ const Banner = ({ data }) => {
     transform: inView ? 'translateY(0%)' : 'translateY(-25%)'
   });
 
-  const i18n = useI18n();
-  const home = `${i18n.t('homePage.text')}`;
+  const {
+    homePage: { text: home }
+  } = lngDict;
   const {
     Banner: { image_bg, title, sub_title },
     link: { text: pageName, url: pageUrl }
