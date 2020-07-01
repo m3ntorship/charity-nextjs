@@ -17,7 +17,7 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
     threshold: 0.2,
     triggerOnce: true
   });
-  const upcomingEventsCardTransformValue = useDirectionalValue(25);
+  const upcomingEventsCardTransformValue = useDirectionalValue(50);
 
   const slideEndRef = useRef();
   const slideEnd = useSpring({
