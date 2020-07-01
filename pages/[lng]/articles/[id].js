@@ -2,7 +2,7 @@ import ArticleModel from '../../../components/ArticleModel';
 import { ArticlesSearch } from '../../../components/ArticlesSearch';
 import { RecentArticles } from '../../../components/RecentArticles';
 import { Banner } from '../../../components/ArticleBanner';
-import { VolunteeringBanner } from '../../../components/VolunteeringBanner';
+import { SecondaryBanner } from '../../../components/SecondaryBanner';
 import Layout from '../../../components/Layout';
 import { charityAPI } from '../../../clients';
 import useI18n from '../../../hooks/use-i18n';
@@ -48,7 +48,7 @@ const Article = ({
           </aside>
         </div>
       </div>
-      <VolunteeringBanner data={articlesPageData} />
+      <SecondaryBanner data={articlesPageData} />
     </Layout>
   );
 };
