@@ -1,13 +1,98 @@
 import Layout from '../../../components/Layout';
 import { charityAPI } from '../../../clients';
-import { Soon } from '../../../components/Soon';
+import { VolunteersSection } from '../../../components/VolunteersSection';
+import { VolunteeringBanner } from '../../../components/VolunteeringBanner';
+
 const Volunteers = ({
   footerData,
   contactsData,
   logoData,
   socialMediasData,
-  pagesData
+  pagesData,
+  volunteersPageData
 }) => {
+  const volunteersData = [
+    {
+      icon_links: [
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' }
+      ],
+      name: 'Mohamed Altramsi',
+      role: 'Volunteer'
+    },
+    {
+      icon_links: [
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' }
+      ],
+      name: 'Mohamed Altramsi',
+      role: 'Volunteer'
+    },
+    {
+      icon_links: [
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' }
+      ],
+      name: 'Mohamed Altramsi',
+      role: 'Volunteer'
+    },
+    {
+      icon_links: [
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' }
+      ],
+      name: 'Mohamed Altramsi',
+      role: 'Volunteer'
+    },
+    {
+      icon_links: [
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' }
+      ],
+      name: 'Mohamed Altramsi',
+      role: 'Volunteer'
+    },
+    {
+      icon_links: [
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' }
+      ],
+      name: 'Mohamed Altramsi',
+      role: 'Volunteer'
+    },
+    {
+      icon_links: [
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' }
+      ],
+      name: 'Mohamed Altramsi',
+      role: 'Volunteer'
+    },
+    {
+      icon_links: [
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' },
+        { icon_url: 'https://www.instgram.com', icon_font: 'instagram-square' }
+      ],
+      name: 'Mohamed Altramsi',
+      role: 'Volunteer'
+    }
+  ];
   return (
     <Layout
       footerData={footerData}
@@ -16,7 +101,10 @@ const Volunteers = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      <Soon />
+      <div className="container">
+        <VolunteersSection data={volunteersData} />
+      </div>
+      <VolunteeringBanner data={volunteersPageData} />
     </Layout>
   );
 };
@@ -41,6 +129,9 @@ export async function getServerSideProps({ params: { lng } }) {
       { data: pagesData },
       { data: footerData }
     ]) => {
+      const [volunteersPageData] = pagesData.filter(
+        pageData => pageData.name === 'volunteers'
+      );
       return {
         props: {
           contactsData,
@@ -48,6 +139,7 @@ export async function getServerSideProps({ params: { lng } }) {
           socialMediasData,
           footerData,
           pagesData,
+          volunteersPageData,
           lng,
           lngDict
         }
