@@ -1,5 +1,5 @@
 import { ArticlesList } from '../../../components/NewsAndArticles';
-import { Banner } from '../../../components/ArticleBanner';
+import { Banner } from '../../../components/MainBanner';
 import { SecondaryBanner } from '../../../components/SecondaryBanner';
 import Layout from '../../../components/Layout';
 import { charityAPI } from '../../../clients';
@@ -11,7 +11,9 @@ const Articles = ({
   socialMediasData,
   articlesPageData,
   articlesData,
-  pagesData
+  pagesData,
+  lng,
+  lngDict
 }) => {
   return (
     <Layout
@@ -22,7 +24,7 @@ const Articles = ({
       pagesData={pagesData}
       articlesData={articlesData}
     >
-      <Banner data={articlesPageData} />
+      <Banner data={articlesPageData} lngDict={lngDict} />
       <div className="container py-32">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 sm:gap-8 row-gap-8">
           <ArticlesList articles={articlesData} />
