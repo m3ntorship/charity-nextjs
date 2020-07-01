@@ -3,6 +3,8 @@ import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 import { animated, useSpring, useChain } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
 import useMedia from '../../Helpers/useMedia';
+import { useDirectionalValue } from '../../hooks/useDirectionalValue';
+
 
 const FeaturedCause = ({ data: { featuredCause } }) => {
   const isMobile = useMedia(['(min-width: 768px)'], [false], true);
@@ -15,11 +17,12 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
     threshold: 0.2,
     triggerOnce: true
   });
+  const upcomingEventsCardTransformValue = useDirectionalValue(25);
 
   const slideEndRef = useRef();
   const slideEnd = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0%)' : 'translateX(50%)',
+    transform: inView ? 'translateX(0%)' :   `translateX(${upcomingEventsCardTransformValue}%)`,
     delay: isMobile ? 0 : 600,
     ref: slideEndRef
   });

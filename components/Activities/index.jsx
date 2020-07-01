@@ -11,17 +11,21 @@ const Activities = ({ data }) => {
     triggerOnce: true
   });
   const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true });
+  const headerTransformValue = useDirectionalValue(-25);
+  const descTransformValue = useDirectionalValue(25);
   const fade = useSpring({
     opacity: inViewCards ? 1 : 0,
     transform: inViewCards ? 'translateY(0%)' : 'translateY(50%)'
   });
   const fadeHeader = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0%)' : 'translateX(-25%)'
+    transform: inView
+      ? 'translateX(0%)'
+      : `translateX(${headerTransformValue}%)`
   });
   const fadeDescription = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0%)' : 'translateX(25%)'
+    transform: inView ? 'translateX(0%)' : `translateX(${descTransformValue}%)`
   });
 
   const {
