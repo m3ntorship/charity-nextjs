@@ -5,6 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
 import Article from '../Article';
 import LinkNoPrefetch from '../shared/LinkNoPrefetch';
+import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
 const ArticlesList = ({ articles, animationDelay }) => {
   return articles.map(
@@ -33,6 +34,7 @@ const News = ({ data }) => {
     threshold: 0.3,
     triggerOnce: true
   });
+  const rightContent = useDirectionalValue(-50);
 
   const slideHead = useSpring({
     opacity: inView ? 1 : 0,
@@ -40,13 +42,14 @@ const News = ({ data }) => {
       ? 'translateX(0%)'
       : isMobile
       ? 'translateY(-50%)'
-      : 'translateX(-50%)'
+      : `translateX(${rightContent}%)`
   });
   const slideP = useSpring({
     opacity: inView ? 1 : 0,
     transform: inView ? 'translateY(0%)' : 'translateY(-50%)',
     delay: isMobile ? 0 : 300
   });
+  const btnTransform = useDirectionalValue(50);
 
   const slideBtn = useSpring({
     opacity: inView ? 1 : 0,
@@ -54,7 +57,7 @@ const News = ({ data }) => {
       ? 'translateX(0%)'
       : isMobile
       ? 'translateY(-50%)'
-      : 'translateX(50%)',
+      :  `translateX(${btnTransform}%)`,
     delay: isMobile ? 0 : 600
   });
 

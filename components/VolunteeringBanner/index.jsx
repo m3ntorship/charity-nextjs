@@ -3,19 +3,24 @@ import { useSpring, animated } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
 import useI18n from '../../hooks/use-i18n';
 import LinkNoPrefetch from '../shared/LinkNoPrefetch';
+import { useDirectionalValue } from '../../hooks/useDirectionalValue';
+
 
 export const VolunteeringBanner = ({ data }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.5
   });
+  const volunteeringDesc = useDirectionalValue(50);
+  const volunteeringBtn = useDirectionalValue(-50);
+
   const fade1 = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0%)' : 'translateX(50%)'
+    transform: inView ? 'translateX(0%)' : `translateX(${volunteeringDesc}%)`,
   });
   const fade2 = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0%)' : 'translateX(-50%)'
+    transform: inView ? 'translateX(0%)' : `translateX(${volunteeringBtn}%)`,
   });
 
   const {
