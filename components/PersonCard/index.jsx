@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated, useTransition } from 'react-spring';
 import { CircularLink } from '../shared/CircularLink';
 
 export const PersonCard = ({ data }) => {
@@ -7,15 +7,19 @@ export const PersonCard = ({ data }) => {
   const backgroundFade = useSpring({
     opacity: isHoverd ? 0.3 : 0
   });
-  const iconFadeIn = useSpring({
-    opacity: isHoverd ? 1 : 0
+  const iconsTransition = useTransition(data.social_icons, data => data.id, {
+    from: { transform: 'translateX(-30%)', opacity: 0 },
+    update: {
+      transform: isHoverd ? 'translateX(0)' : 'translateX(-30%)',
+      opacity: isHoverd ? 1 : 0
+    },
+    trail: 150
   });
-
+  console.log(iconsTransition);
   //Data destructuring
   const {
     member_name,
     member_role,
-    social_icons,
     member_img: { url: imgUrl }
   } = data;
   return (
@@ -30,11 +34,11 @@ export const PersonCard = ({ data }) => {
           style={backgroundFade}
         ></animated.div>
         <div className="person-card__image-container__social-icons absolute  h-full flex flex-col justify-center items-start">
-          {social_icons.map(({ url, fa_icon, id }) => (
+          {iconsTransition.map(({ item: { url, fa_icon, id }, key, props }) => (
             <animated.div
-              style={iconFadeIn}
+              style={props}
               className="my-1 flex justify-center items-center"
-              key={id}
+              key={key}
             >
               <CircularLink url={url} fontClass={fa_icon} />
             </animated.div>
