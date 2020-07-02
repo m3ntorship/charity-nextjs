@@ -1,10 +1,10 @@
 import React from 'react';
-import '../styles/index.css';
 import { select } from '@storybook/addon-knobs';
 import { addDecorator } from '@storybook/react';
 import I18n from '../lib/i18n';
 import langDictAr from '../locales/ar.json';
 import langDictEn from '../locales/en.json';
+import '../styles/index.css';
 
 addDecorator(storyFn => {
   const lang = select(
