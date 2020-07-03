@@ -17,7 +17,7 @@ spec:
     spec:    
       containers:
         - name: "{{{APPLICATION}}}"
-          image: nilegfx/nile:8
+          image: '{{{IMAGE}}}:{{{VERSION}}}'
           ports:
             - name: web
               containerPort: 3002
