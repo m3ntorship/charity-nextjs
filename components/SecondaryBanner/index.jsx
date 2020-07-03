@@ -5,7 +5,6 @@ import useI18n from '../../hooks/use-i18n';
 import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
-
 export const SecondaryBanner = ({ data }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -16,11 +15,11 @@ export const SecondaryBanner = ({ data }) => {
 
   const fade1 = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0%)' : `translateX(${volunteeringDesc}%)`,
+    transform: inView ? 'translateX(0%)' : `translateX(${volunteeringDesc}%)`
   });
   const fade2 = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0%)' : `translateX(${volunteeringBtn}%)`,
+    transform: inView ? 'translateX(0%)' : `translateX(${volunteeringBtn}%)`
   });
 
   const {
@@ -36,13 +35,13 @@ export const SecondaryBanner = ({ data }) => {
       <div className="container flex flex-col md:flex-row items-center">
         <animated.div
           style={fade2}
-          className="description text-c000 w-3/5 text-center md:text-left"
+          className="description text-c000 w-full md:w-3/5 text-center md:text-left"
         >
           <p className="font-bold leading-tighter">{description}</p>
         </animated.div>
         <animated.div style={fade1} className="mx-auto md:mr-0">
           <LinkNoPrefetch href={`/${currentLocale}${url}`}>
-            <a className="btn btn-md bg-c300 text-c100 mt-10 md:mt-0 hover:text-c100 ">
+            <a className="btn btn-md bg-c300 text-c100 mt-10 md:mt-0 hover:text-c100 block">
               {text}
             </a>
           </LinkNoPrefetch>
