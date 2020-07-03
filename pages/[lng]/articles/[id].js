@@ -15,7 +15,8 @@ const Article = ({
   pagesData,
   recentArticlesData,
   articleData,
-  articlesPageData
+  articlesPageData,
+  lngDict
 }) => {
   const i18n = useI18n();
   const findArticle = `${i18n.t('articles.findArticle')}`;
@@ -29,7 +30,7 @@ const Article = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      <Banner data={articlesPageData} />
+      <Banner data={articlesPageData} lngDict={lngDict} />
       <div className="container py-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 lg:gap-8 row-gap-8">
           <div className="col-span-12 lg:col-span-8">
