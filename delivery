@@ -1,5 +1,5 @@
-APPLICATION=ghiras
-NAMESPACE=ghiras
+APPLICATION=ghiras2
+NAMESPACE=ghiras2
 IMAGE=docker.m3ntorship.net/ghiras
 PORT=3000
 REPLICAS=3
