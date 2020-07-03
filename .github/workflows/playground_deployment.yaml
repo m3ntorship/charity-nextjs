@@ -1,0 +1,15 @@
+name: deploy to playground
+
+on: 
+  push:
+    branches:
+      - playground-deployment
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout the code 
+        uses: actions/checkout@v1
+      - name: print simple string
+        run: echo "besm ellah"
