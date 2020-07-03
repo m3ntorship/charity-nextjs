@@ -31,13 +31,7 @@ jobs:
           sudo mv mo /usr/local/bin/
           echo "works" | mo
       
-      # generate k8s yaml(s)
-      - name: generate k8s resources from templates
-        run: |
-          mkdir -p ./deploy/resources
-          for f in ./deploy/apply/*.yaml; do mo -s=delivery "$f" > ./deploy/resources/"$(basename $f)"; done
-          kubectl apply -f ./deploy/resources
-      
+      # login to docker
       - uses: azure/docker-login@v1
         with:
           login-server: ${{ secrets.M3NTORSHIP_DOCKER_HOST }} # default: index.docker.io
@@ -47,6 +41,20 @@ jobs:
       # build and push docker image
       - name: build the app
         run: |
-          docker build -t docker.m3ntorship.net/ghiras:$(git rev-parse --short "$GITHUB_SHA") -f Dockerfile.playground .
+          docker build -e REACT_APP_STRAPI_URL_AR=https://charity-cms-dev-ar.m3ntorship.net -e REACT_APP_STRAPI_URL=https://charity-cms-dev.m3ntorship.net -t docker.m3ntorship.net/ghiras:$(git rev-parse --short "$GITHUB_SHA") -f Dockerfile.playground .
           docker push docker.m3ntorship.net/ghiras:$(git rev-parse --short "$GITHUB_SHA")
+    
+      # deploy k8s yaml(s)
+      - name: add version to variables
+        run: echo VERSION=$(git rev-parse --short "$GITHUB_SHA") >> delivery
       
+      # temp
+      - name: ensure version is written
+        run: cat delivery
+      
+      # deploy
+      - name: deploy
+        run: |
+          mkdir -p ./deploy/resources
+          for f in ./deploy/apply/*.yaml; do mo -s=delivery "$f" > ./deploy/resources/"$(basename $f)"; done
+          kubectl apply -f ./deploy/resources

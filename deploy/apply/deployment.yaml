@@ -1,24 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "{{{APPLICATION}}}"
+  name: '{{{APPLICATION}}}'
   namespace: '{{{NAMESPACE}}}'
   labels:
-    app: "{{{APPLICATION}}}"
+    app: '{{{APPLICATION}}}'
 spec:
-  replicas: 3
+  replicas: {{{REPLICAS}}}
   selector:
     matchLabels:
-      app: "{{{APPLICATION}}}"
+      app: '{{{APPLICATION}}}'
   template:
     metadata:
       labels:
-        app: "{{{APPLICATION}}}"
-    spec:    
+        app: '{{{APPLICATION}}}'
+        version: '{{{VERSION}}}'
+    spec:
       containers:
-        - name: "{{{APPLICATION}}}"
+        - name: '{{{APPLICATION}}}'
           image: '{{{IMAGE}}}:{{{VERSION}}}'
           ports:
             - name: web
-              containerPort: 3002
+              containerPort: '{{{PORT}}}'
               protocol: TCP

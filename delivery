@@ -1,4 +1,5 @@
 APPLICATION=ghiras
 NAMESPACE=ghiras
-IMAGE=docker.m3ntorship.net/nilegfx
-VERSION=32
+IMAGE=docker.m3ntorship.net/ghiras
+PORT=3002
+REPLICAS=3
