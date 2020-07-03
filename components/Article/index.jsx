@@ -4,6 +4,7 @@ import useI18n from '../../hooks/use-i18n';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
 import LinkNoPrefetch from '../shared/LinkNoPrefetch';
+import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
 const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
   const [cardRef, cardInView] = useInView({

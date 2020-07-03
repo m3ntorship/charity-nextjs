@@ -3,15 +3,18 @@ import { useSpring } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
 import WorkStyleCard from '../WorkStyleCard';
 import Heading from '../Heading/index';
+import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
 const WorkStyle = ({ data }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 1
   });
+  const workStyleContent = useDirectionalValue(25);
+
   const fade = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0%)' : 'translateX(50%)'
+    transform: inView ? 'translateX(0%)' :  `translateX(${workStyleContent}%)`,
   });
 
   const { title_primary, title_complementary, Cards } = data;
