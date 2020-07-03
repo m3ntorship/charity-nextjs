@@ -47,6 +47,6 @@ jobs:
       # build and push docker image
       - name: build the app
         run: |
-          docker build -t docker.m3ntorship.net:$(git rev-parse --short "$GITHUB_SHA") -f Dockerfile.playground .
-          docker push docker.m3ntorship.net:$(git rev-parse --short "$GITHUB_SHA")
+          docker build -t docker.m3ntorship.net/ghiras:$(git rev-parse --short "$GITHUB_SHA") -f Dockerfile.playground .
+          docker push docker.m3ntorship.net/ghiras:$(git rev-parse --short "$GITHUB_SHA")
       
