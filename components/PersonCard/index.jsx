@@ -37,7 +37,7 @@ export const PersonCard = ({ data }) => {
           className="absolute w-full h-full bg-c100 left-0 top-0 pointer-events-none"
           style={backgroundFade}
         ></animated.div>
-        <div className="person-card__image-container__social-icons absolute flex justify-center items-start bottom-0">
+        <div className="person-card__image-container__social-icons absolute flex justify-center items-start bottom-0 w-full md:w-auto md:flex-col md:h-full">
           {iconsTransition.map(({ item: { url, fa_icon, id }, props }) => (
             <animated.div style={isMobile ? null : props} key={id}>
               <div className="mx-2 md:mx-0 md:my-1 flex justify-center items-center">
