@@ -52,9 +52,9 @@ jobs:
       - name: ensure version is written
         run: cat delivery
       
-      - uses: jakejarvis/wait-action@master
-        with:
-          time: '60s'
+      # - uses: jakejarvis/wait-action@master
+      #   with:
+      #     time: '60s'
 
       # deploy
       - name: deploy
