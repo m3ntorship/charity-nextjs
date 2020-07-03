@@ -1,0 +1,15 @@
+FROM node:12.16.3-alpine3.11
+
+# create application directory
+RUN mkdir -p /charity-next
+WORKDIR /charity-next
+
+
+# copy application files
+COPY ./ .
+# install dependencies
+RUN yarn --network-timeout 1000000 && yarn build
+
+EXPOSE 3000
+
+CMD ["yarn", "start"]

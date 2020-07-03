@@ -37,3 +37,19 @@ jobs:
           mkdir -p ./deploy/resources
           for f in ./deploy/apply/*.yaml; do mo -s=delivery "$f" > ./deploy/resources/"$(basename $f)"; done
           kubectl apply -f ./deploy/resources
+      
+      - uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.M3NTORSHIP_DOCKER_HOST }} # default: index.docker.io
+          username: ${{ secrets.M3NTORSHIP_DOCKER_USERNAME }}
+          password: ${{ secrets.M3NTORSHIP_DOCKER_PASSWORD }}
+      
+      # build docker image
+      - name: test docker working
+        run: |
+          docker pull docker.m3ntorship.net/nilegfx:32
+           
+      - name: build the app
+        run: |
+          docker build -t docker.m3ntorship.net -f Dockerfile.playground .
+      
