@@ -45,8 +45,8 @@ jobs:
           docker push docker.m3ntorship.net/ghiras:$(git rev-parse --short "$GITHUB_SHA")
     
       # deploy k8s yaml(s)
-      - name: add version to variables
-        run: echo VERSION=$(git rev-parse --short "$GITHUB_SHA") >> delivery
+      # - name: add version to variables
+        # run: echo VERSION=$(git rev-parse --short "$GITHUB_SHA") >> delivery
       
       # temp
       - name: ensure version is written

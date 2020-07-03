@@ -1,5 +1,6 @@
 APPLICATION=ghiras
 NAMESPACE=ghiras
 IMAGE=docker.m3ntorship.net/ghiras
-PORT=3002
+PORT=3000
 REPLICAS=3
+VERSION=0003cc8
