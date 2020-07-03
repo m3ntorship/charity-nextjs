@@ -4,7 +4,7 @@ import { PersonCardsSection } from '../../../components/PersonCardsSection';
 import { SecondaryBanner } from '../../../components/SecondaryBanner';
 import { Banner } from '../../../components/MainBanner';
 
-const Volunteers = ({
+const devTeam = ({
   footerData,
   contactsData,
   logoData,
@@ -74,4 +74,4 @@ export async function getServerSideProps({ params: { lng } }) {
   );
 }
 
-export default Volunteers;
+export default devTeam;
