@@ -13,3 +13,16 @@ jobs:
         uses: actions/checkout@v1
       - name: print simple string
         run: echo "besm ellah"
+      
+      # install kubectl 
+      - name: install kubectl
+        uses: azure/setup-kubectl@v1
+      
+      # configure kubectl
+      - name: Kubectl configuration
+        shell: bash
+        run: |
+          mkdir -p ~/.kube
+          echo ${{ secrets.KUBE_CONFIG }} | base64 -d -i > ~/.kube/config
+      - name: get pods
+        run: kubectl get pods
