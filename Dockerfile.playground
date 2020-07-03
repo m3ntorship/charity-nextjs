@@ -3,6 +3,8 @@ FROM node:12.16.3-alpine3.11
 # create application directory
 RUN mkdir -p /charity-next
 WORKDIR /charity-next
+ARG REACT_APP_STRAPI_URL
+ARG REACT_APP_STRAPI_URL_AR
 
 
 # copy application files
