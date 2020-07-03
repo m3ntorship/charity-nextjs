@@ -19,7 +19,8 @@ spec:
       containers:
         - name: '{{{APPLICATION}}}'
           image: '{{{IMAGE}}}:{{{VERSION}}}'
+          imagePullPolicy: IfNotPresent
           ports:
             - name: web
-              containerPort: '{{{PORT}}}'
+              containerPort: {{{PORT}}}
               protocol: TCP
