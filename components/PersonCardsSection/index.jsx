@@ -3,7 +3,7 @@ import { animated, useTransition } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
 export const PersonCardsSection = ({ data }) => {
   const [ref, inView] = useInView({
-    threshold: 0.5,
+    threshold: 0,
     triggerOnce: true
   });
   const cardsTransition = useTransition(data, data => data.id, {
