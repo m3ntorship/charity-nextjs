@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: checkout the code 
         uses: actions/checkout@v1
-      - name: print simple string
-        run: echo "besm ellah"
       
       # install kubectl 
       - name: install kubectl
@@ -24,5 +22,18 @@ jobs:
         run: |
           mkdir -p ~/.kube
           echo ${{ secrets.KUBE_CONFIG }} | base64 -d -i > ~/.kube/config
-      - name: get pods
-        run: kubectl get pods
+      
+      # install moustache
+      - name: install moustache
+        run: |
+          curl -sSL https://git.io/get-mo -o mo
+          chmod +x mo
+          sudo mv mo /usr/local/bin/
+          echo "works" | mo
+      
+      # generate k8s yaml(s)
+      - name: generate k8s resources from templates
+        run: |
+          mkdir -p ./deploy/resources
+          for f in ./deploy/apply/*.yaml; do mo -s=delivery "$f" > ./deploy/resources/"$(basename $f)"; done
+          kubectl apply -f ./deploy/resources
