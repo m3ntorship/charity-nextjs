@@ -44,12 +44,9 @@ jobs:
           username: ${{ secrets.M3NTORSHIP_DOCKER_USERNAME }}
           password: ${{ secrets.M3NTORSHIP_DOCKER_PASSWORD }}
       
-      # build docker image
-      - name: test docker working
-        run: |
-          docker pull docker.m3ntorship.net/nilegfx:32
-           
+      # build and push docker image
       - name: build the app
         run: |
-          docker build -t docker.m3ntorship.net -f Dockerfile.playground .
+          docker build -t docker.m3ntorship.net:$(git rev-parse --short "$GITHUB_SHA") -f Dockerfile.playground .
+          docker push docker.m3ntorship.net:$(git rev-parse --short "$GITHUB_SHA")
       
