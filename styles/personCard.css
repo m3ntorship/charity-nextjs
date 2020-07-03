@@ -1,0 +1,8 @@
+.person-card__image-container__social-icons {
+  transform: translate3d(0, 50%, 0);
+}
+@media screen and (min-width: 768px) {
+  .person-card__image-container__social-icons {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
