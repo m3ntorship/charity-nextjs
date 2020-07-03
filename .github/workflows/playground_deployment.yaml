@@ -46,7 +46,7 @@ jobs:
     
       # deploy k8s yaml(s)
       - name: add version to variables
-        run: echo VERSION=0003cc8 >> delivery
+        run: echo VERSION=0003scc8 >> delivery
       
       # temp
       - name: ensure version is written
