@@ -2,7 +2,9 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start -p $PORT"
+    "start": "next start -p $PORT",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "autoprefixer": "^9.8.1",
@@ -24,5 +26,14 @@
     "react-use": "^15.2.5",
     "rosetta": "^1.0.1",
     "tailwindcss": "^1.4.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-knobs": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/react": "^5.3.19",
+    "babel-loader": "^8.1.0"
   }
 }
