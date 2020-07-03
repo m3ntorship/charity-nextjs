@@ -39,14 +39,14 @@ jobs:
           password: ${{ secrets.M3NTORSHIP_DOCKER_PASSWORD }}
       
       # build and push docker image
-      - name: build the app
-        run: |
-          docker build --build-arg REACT_APP_STRAPI_URL_AR=https://charity-cms-dev-ar.m3ntorship.net --build-arg REACT_APP_STRAPI_URL=https://charity-cms-dev.m3ntorship.net -t docker.m3ntorship.net/ghiras:$(git rev-parse --short "$GITHUB_SHA") -f Dockerfile.playground .
-          docker push docker.m3ntorship.net/ghiras:$(git rev-parse --short "$GITHUB_SHA")
+      # - name: build the app
+      #   run: |
+      #     docker build --build-arg REACT_APP_STRAPI_URL_AR=https://charity-cms-dev-ar.m3ntorship.net --build-arg REACT_APP_STRAPI_URL=https://charity-cms-dev.m3ntorship.net -t docker.m3ntorship.net/ghiras:$(git rev-parse --short "$GITHUB_SHA") -f Dockerfile.playground .
+      #     docker push docker.m3ntorship.net/ghiras:$(git rev-parse --short "$GITHUB_SHA")
     
       # deploy k8s yaml(s)
-      # - name: add version to variables
-        # run: echo VERSION=$(git rev-parse --short "$GITHUB_SHA") >> delivery
+      - name: add version to variables
+        run: echo VERSION=0003cc8 >> delivery
       
       # temp
       - name: ensure version is written
