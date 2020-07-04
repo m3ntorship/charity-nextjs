@@ -105,13 +105,13 @@ const FeaturedCause = ({ data: { featuredCause }, lng, lngDict }) => {
                 <span className="text-c300 text-lg tracking-wide font-bold">
                   ${numberToLocal(raised)}{' '}
                 </span>
-                Raised
+                {raisedText}
               </p>
               <p className="text-sm font-light tracking-normal">
                 <span className="text-c300 text-lg tracking-wide font-bold font">
                   ${numberToLocal(goal)}{' '}
                 </span>
-                Goal
+                {goalText}
               </p>
             </div>
             <LinkNoPrefetch href={`/${lng}${linkUrl}`}>
