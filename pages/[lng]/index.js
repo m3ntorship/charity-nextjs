@@ -32,7 +32,7 @@ const Home = ({
   logoData,
   socialMediasData,
   pagesData,
-  settings
+  settings,
 }) => {
   let featuredCauseData = data => {
     if (data) {
@@ -143,7 +143,8 @@ export async function getServerSideProps({ params: { lng } }) {
           sponsersData,
           footerData,
           lngDict,
-          settings
+          settings,
+          lng
         }
       };
     }
