@@ -1,4 +1,4 @@
-COMPONENT=storybook
+HOST="ghiras-storybook.m3ntorship.net"
 APPLICATION=ghiras-storybook
 NAMESPACE=default
 IMAGE=docker.m3ntorship.net/ghiras-storybook

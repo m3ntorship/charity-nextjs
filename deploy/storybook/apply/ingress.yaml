@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   namespace: '{{{NAMESPACE}}}'
   labels:
-    application: "{{{APPLICATION}}}"
+    application: '{{{APPLICATION}}}'
     version: '{{{VERSION}}}'
   annotations:
     kubernetes.io/ingress.class: nginx
@@ -13,13 +13,20 @@ metadata:
     # nginx.ingress.kubernetes.io/auth-secret: "{{{SECRET_NAME}}}"
     # message to display with an appropriate context why the authentication is required
     # nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required - foo'
-  name: "{{{APPLICATION}}}"
+  name: '{{{APPLICATION}}}'
 spec:
   rules:
-    - host: "{{{COMPONENT}}}}.ghiras-charity.com"
+    - host: '{{{HOST}}}'
       http:
         paths:
           - backend:
-              serviceName: "{{{APPLICATION}}}"
+              serviceName: '{{{APPLICATION}}}'
+              servicePort: 80
+            path: /
+    - host: 'storybook.ghiras.m3ntorship.net'
+      http:
+        paths:
+          - backend:
+              serviceName: '{{{APPLICATION}}}'
               servicePort: 80
             path: /
