@@ -10,7 +10,8 @@ spec:
   replicas: {{{ REPLICAS }}}
   selector:
     matchLabels:
-      app: '{{{APPLICATION}}}'
+      application: '{{{APPLICATION}}}'
+      version: '{{{VERSION}}}'
   template:
     metadata:
       labels:
