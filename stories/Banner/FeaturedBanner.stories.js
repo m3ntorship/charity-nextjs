@@ -10,5 +10,7 @@ export default {
 
 export const Primary = ({ lang }) => {
   const data = lang == 'ar' ? ar : en;
-  return <FeaturedBanner data={data} />;
+  return <div className="pt-12">
+     <FeaturedBanner data={data} />
+  </div>;
 };

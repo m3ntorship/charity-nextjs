@@ -15,7 +15,7 @@ import { useInView } from 'react-intersection-observer';
 import { useSpring, animated, useChain } from 'react-spring';
 import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
-const Cause = ({
+export const Cause = ({
   title,
   description,
   raised,

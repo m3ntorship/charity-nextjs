@@ -3,7 +3,8 @@ name: Push Container to Heroku
 on: 
   push:
     branches:
-      - feature/configure-storybook
+      - master
+      - storybook
 
 jobs:
   build:
