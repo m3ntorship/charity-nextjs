@@ -3,6 +3,7 @@ name: deploy to playground
 on: 
   push:
     branches:
+      - master
       - playground-deployment
 
 jobs:
