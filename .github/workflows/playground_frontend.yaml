@@ -8,6 +8,8 @@ on:
 
 jobs:
   build:
+    env:
+      DEPLOYMENT_NAME: frontend
     runs-on: ubuntu-latest
     steps:
       - name: checkout the code 
@@ -42,18 +44,18 @@ jobs:
       # build and push docker image
       - name: build the app
         run: |
-          docker build --build-arg REACT_APP_STRAPI_URL_AR=https://charity-cms-dev-ar.m3ntorship.net --build-arg REACT_APP_STRAPI_URL=https://charity-cms-dev.m3ntorship.net -t docker.m3ntorship.net/ghiras:$(git rev-parse --short "$GITHUB_SHA") -f Dockerfile.playground.frontend .
+          docker build --build-arg REACT_APP_STRAPI_URL_AR=https://charity-cms-dev-ar.m3ntorship.net --build-arg REACT_APP_STRAPI_URL=https://charity-cms-dev.m3ntorship.net -t docker.m3ntorship.net/ghiras:$(git rev-parse --short "$GITHUB_SHA") -f Dockerfile.playground.$DEPLOYMENT_NAME .
           docker push docker.m3ntorship.net/ghiras:$(git rev-parse --short "$GITHUB_SHA")
     
       # deploy k8s yaml(s)
       - name: add version to variables
         run: | 
-          echo VERSION=$(git rev-parse --short "$GITHUB_SHA") >> delivery.playground.frontend
-          cat delivery.playground.frontend
+          echo VERSION=$(git rev-parse --short "$GITHUB_SHA") >> delivery.playground.$DEPLOYMENT_NAME
+          cat delivery.playground.$DEPLOYMENT_NAME
 
       # deploy
       - name: deploy
         run: |
-          mkdir -p ./deploy/frontend/resources
-          for f in ./deploy/frontend/apply/*.yaml; do mo -s=delivery.playground.frontend "$f" > ./deploy/frontend/resources/"$(basename $f)"; done
-          kubectl apply -f ./deploy/frontend/resources
+          mkdir -p ./deploy/$DEPLOYMENT_NAME/resources
+          for f in ./deploy/$DEPLOYMENT_NAME/apply/*.yaml; do mo -s=delivery.playground.$DEPLOYMENT_NAME "$f" > ./deploy/$DEPLOYMENT_NAME/resources/"$(basename $f)"; done
+          kubectl apply -f ./deploy/$DEPLOYMENT_NAME/resources
