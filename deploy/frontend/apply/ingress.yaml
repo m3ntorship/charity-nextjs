@@ -2,6 +2,9 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   namespace: '{{{NAMESPACE}}}'
+  labels:
+    application: "{{{APPLICATION}}}"
+    version: '{{{VERSION}}}'
   annotations:
     kubernetes.io/ingress.class: nginx
     # type of authentication

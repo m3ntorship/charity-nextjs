@@ -4,16 +4,17 @@ metadata:
   name: '{{{APPLICATION}}}'
   namespace: '{{{NAMESPACE}}}'
   labels:
-    app: '{{{APPLICATION}}}'
+    application: '{{{APPLICATION}}}'
+    version: '{{{VERSION}}}'
 spec:
-  replicas: {{{REPLICAS}}}
+  replicas: {{{ REPLICAS }}}
   selector:
     matchLabels:
       app: '{{{APPLICATION}}}'
   template:
     metadata:
       labels:
-        app: '{{{APPLICATION}}}'
+        application: '{{{APPLICATION}}}'
         version: '{{{VERSION}}}'
     spec:
       containers:
