@@ -4,9 +4,13 @@ import { animated, useSpring, useChain } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
 import useMedia from '../../Helpers/useMedia';
 import { useDirectionalValue } from '../../hooks/useDirectionalValue';
+import useI18n from '../../hooks/use-i18n';
 
 
 const FeaturedCause = ({ data: { featuredCause } }) => {
+  const i18n = useI18n();
+  const goalText = i18n.t('causes.goal');
+  const raisedText = i18n.t('causes.raised');
   const isMobile = useMedia(['(min-width: 768px)'], [false], true);
 
   const getProgressPrecentage = (raised, goal) => {
@@ -104,13 +108,13 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
                 <span className="text-c300 text-lg tracking-wide font-bold">
                   ${numberToLocal(raised)}{' '}
                 </span>
-                Raised
+                {raisedText}
               </p>
               <p className="text-sm font-light tracking-normal">
                 <span className="text-c300 text-lg tracking-wide font-bold font">
                   ${numberToLocal(goal)}{' '}
                 </span>
-                Goal
+                {goalText}
               </p>
             </div>
             <LinkNoPrefetch href={linkUrl}>
