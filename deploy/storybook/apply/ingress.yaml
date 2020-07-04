@@ -23,10 +23,3 @@ spec:
               serviceName: '{{{APPLICATION}}}'
               servicePort: 80
             path: /
-    - host: 'storybook.ghiras.m3ntorship.net'
-      http:
-        paths:
-          - backend:
-              serviceName: '{{{APPLICATION}}}'
-              servicePort: 80
-            path: /
