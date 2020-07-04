@@ -9,6 +9,7 @@ metadata:
 spec:
   selector:
     application: "{{{APPLICATION}}}"
+    version: "{{{VERSION}}}"
   ports:
     - protocol: TCP
       port: 80
