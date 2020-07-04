@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import useI18n from '../../hooks/use-i18n';
 import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 import useMedia from '../../Helpers/useMedia';
 import Heading from '../Heading';
@@ -24,7 +23,9 @@ export const Cause = ({
   imageText,
   index,
   btnText,
-  btnUrl
+  btnUrl,
+  lngDict,
+  lng
 }) => {
   const [cardRef, cardInView] = useInView({
     threshold: 0.3,
@@ -60,12 +61,9 @@ export const Cause = ({
   const numberToLocal = number => Number(number).toLocaleString();
 
   //Get Locales
-  const i18n = useI18n();
-  const goalText = `${i18n.t('causes.goal')}`;
-  const raisedText = `${i18n.t('causes.raised')}`;
-  const activeLocale = i18n.activeLocale;
-  const activeDirection = i18n.activeDirection;
-
+  const {
+    causes: { goal: goalText, raised: raisedText, currency }
+  } = lngDict;
   return (
     <animated.div
       className="causes__card border-gray-900 border border-solid z-10 bg-c000"
@@ -91,8 +89,9 @@ export const Cause = ({
               <span className="causes__icon mr-3">
                 <i className="fas fa-hand-holding-usd text-lg text-c500"></i>
               </span>
-              <span className="causes__icon--funds font-bold text-c200 text-sm text-center mr-3">
-                ${numberToLocal(raised)}
+              <span className="causes__icon--funds font-bold text-c200 text-sm mr-3">
+                {numberToLocal(raised)}
+                {currency}
               </span>
               <span className="causes__icon--tag text-c600 text-xs font-bold">
                 {raisedText}
@@ -103,7 +102,8 @@ export const Cause = ({
                 <i className="fas fa-bullseye text-lg text-c500"></i>
               </span>
               <span className="causes__icon--goal font-bold text-c200 text-sm mr-3">
-                ${numberToLocal(goal)}
+                {numberToLocal(goal)}
+                {currency}
               </span>
               <span className="causes__icon--tag text-c600 text-xs font-bold">
                 {goalText}
@@ -121,7 +121,7 @@ export const Cause = ({
             <animated.div
               className="causes__progress__tooltip"
               style={
-                activeDirection === 'ltr'
+                lng === 'en'
                   ? {
                       left: progressWidth
                     }
@@ -131,7 +131,7 @@ export const Cause = ({
               <animated.span>{progressNumber}</animated.span>%
             </animated.div>
           </div>
-          <LinkNoPrefetch href={`/${activeLocale}${btnUrl}`}>
+          <LinkNoPrefetch href={`/${lng}${btnUrl}`}>
             <button className="causes__btn font-bold bg-c800 text-c600 hover:bg-c300 hover:text-c100 transition duration-200 ease-out">
               {btnText}
             </button>
@@ -142,7 +142,7 @@ export const Cause = ({
   );
 };
 
-const Causes = ({ data }) => {
+const Causes = ({ data, lngDict, lng }) => {
   const [ref, inView] = useInView({
     threshold: 0.3,
     triggerOnce: true
@@ -208,6 +208,8 @@ const Causes = ({ data }) => {
                       btnText={btnText}
                       btnUrl={btnUrl}
                       index={index}
+                      lng={lng}
+                      lngDict={lngDict}
                     />
                   </div>
                 </Slide>
@@ -266,6 +268,8 @@ const Causes = ({ data }) => {
                 btnText={btnText}
                 btnUrl={btnUrl}
                 index={index}
+                lng={lng}
+                lngDict={lngDict}
               />
             );
           })}
