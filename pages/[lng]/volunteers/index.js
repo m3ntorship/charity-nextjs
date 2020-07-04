@@ -1,6 +1,8 @@
 import Layout from '../../../components/Layout';
 import { charityAPI } from '../../../clients';
-import { Soon } from '../../../components/Soon';
+import { PersonCardsSection } from '../../../components/PersonCardsSection';
+import { SecondaryBanner } from '../../../components/SecondaryBanner';
+import { Banner } from '../../../components/MainBanner';
 
 const Volunteers = ({
   footerData,
@@ -8,7 +10,10 @@ const Volunteers = ({
   logoData,
   socialMediasData,
   pagesData,
-  volunteersPageData
+  volunteersPageData,
+  volunteersData,
+  lng,
+  lngDict
 }) => {
   return (
     <Layout
@@ -18,7 +23,11 @@ const Volunteers = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      <Soon />
+      <Banner data={volunteersPageData} lngDict={lngDict} />
+      <div className="container">
+        <PersonCardsSection data={volunteersData} lng={lng} />
+      </div>
+      <SecondaryBanner data={volunteersPageData} />
     </Layout>
   );
 };
@@ -34,6 +43,7 @@ export async function getServerSideProps({ params: { lng } }) {
     getCharityAPI('/logo'),
     getCharityAPI('/socialmedias'),
     getCharityAPI('/pages'),
+    getCharityAPI('/volunteers'),
     getCharityAPI('/footer')
   ]).then(
     ([
@@ -41,6 +51,7 @@ export async function getServerSideProps({ params: { lng } }) {
       { data: logoData },
       { data: socialMediasData },
       { data: pagesData },
+      { data: volunteersData },
       { data: footerData }
     ]) => {
       const [volunteersPageData] = pagesData.filter(
@@ -53,6 +64,7 @@ export async function getServerSideProps({ params: { lng } }) {
           socialMediasData,
           footerData,
           pagesData,
+          volunteersData,
           volunteersPageData,
           lng,
           lngDict

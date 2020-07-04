@@ -20,6 +20,13 @@ const Layout = ({
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          property="og:image"
+          content="https://s3.m3ntorship.net/charity-cms-dev/Artboard_1_0900f76203.png"
+        />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1024" />
+        <meta property="og:image:height" content="1024" />
         {currentLocale === 'ar' ? (
           <link
             href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700&display=swap"
