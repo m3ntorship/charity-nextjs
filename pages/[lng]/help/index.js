@@ -1,6 +1,7 @@
 import Layout from '../../../components/Layout';
 import { charityAPI } from '../../../clients';
 import { Soon } from '../../../components/Soon';
+import { set } from 'date-fns';
 const Faq = ({
   footerData,
   contactsData,
@@ -16,6 +17,7 @@ const Faq = ({
       logoData={logoData}
       socialMediasData={socialMediasData}
       pagesData={pagesData}
+      settings = {settings}
     >
       <Soon data={settings} />
     </Layout>
