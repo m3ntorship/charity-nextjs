@@ -16,14 +16,7 @@ metadata:
   name: "{{{APPLICATION}}}"
 spec:
   rules:
-    - host: "ghiras-charity.com"
-      http:
-        paths:
-          - backend:
-              serviceName: "{{{APPLICATION}}}"
-              servicePort: 80
-            path: /
-    - host: "www.ghiras-charity.com"
+    - host: "{{{COMPONENT}}}}.ghiras-charity.com"
       http:
         paths:
           - backend:

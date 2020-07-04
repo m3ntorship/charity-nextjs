@@ -1,3 +1,4 @@
+COMPONENT=storybook
 APPLICATION=ghiras-storybook
 NAMESPACE=default
 IMAGE=docker.m3ntorship.net/ghiras-storybook
