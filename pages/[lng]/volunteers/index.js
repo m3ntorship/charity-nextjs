@@ -23,7 +23,7 @@ const Volunteers = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      <Banner data={volunteersData} lngDict={lngDict} />
+      <Banner data={volunteersPageData} lngDict={lngDict} />
       <div className="container">
         <PersonCardsSection data={volunteersData} lng={lng} />
       </div>
