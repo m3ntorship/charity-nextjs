@@ -23,7 +23,8 @@
   "causes": {
     "urgentCause": "حــــالات طــــارئــــة",
     "goal": "المبلغ المستهدف",
-    "raised": "ما تم جمعه"
+    "raised": "ما تم جمعه",
+    "currency": "LE"
   },
   "numbersText": "الأرقام تتحدث",
   "soon": "قريباً"
