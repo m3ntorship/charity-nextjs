@@ -7,11 +7,11 @@ export const Soon = ({
   }
 }) => {
   return (
-    <div className="flex flex-col text-c100 items-center w-full text-center py-16">
+    <div className="flex flex-col text-c100 items-center w-full text-center py-16 border-t">
       <div>
         <img src={url} alt="soon" />
       </div>
-      <p className="text-xl leading-none my-8 mb-2 font-semibold">
+      <p className="text-large leading-none my-10 mb-4 font-semibold">
         {comming_soon_main_message}
       </p>
       <p>{comming_soon_second_message}</p>
