@@ -1,0 +1,14 @@
+FROM node:12.16.3-alpine3.11
+
+# create application directory
+RUN mkdir -p /charity-next-storybook
+WORKDIR /charity-next-storybook
+
+# copy application files
+COPY ./storybook-static/ .
+# install dependencies
+RUN yarn global add serve
+
+EXPOSE 3001
+
+CMD ["serve", "/charity-next-storybook", "-l", "3001"]

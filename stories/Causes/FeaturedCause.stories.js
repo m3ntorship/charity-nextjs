@@ -10,12 +10,14 @@ export default {
   decorators: [withKnobs]
 };
 
-export const Featured = ({ lang }) => {
-  const data = lang == 'ar' ? ar : en;
-  return <FeaturedCause data={{ featuredCause: data }} />;
+export const Featured = ({ lng, lngDict }) => {
+  const data = lng == 'ar' ? ar : en;
+  return (
+    <FeaturedCause data={{ featuredCause: data }} lng={lng} lngDict={lngDict} />
+  );
 };
 
-export const Normal = ({ lang }) => {
-  const data = lang == 'ar' ? normal_ar : normal_en;
-  return <Cause {...data} />;
+export const Normal = ({ lng, lngDict }) => {
+  const data = lng == 'ar' ? normal_ar : normal_en;
+  return <Cause {...data} lng={lng} lngDict={lngDict} />;
 };

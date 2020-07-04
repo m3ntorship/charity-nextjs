@@ -7,7 +7,7 @@ import langDictEn from '../locales/en.json';
 import '../styles/index.css';
 
 addDecorator(storyFn => {
-  const lang = select(
+  const lng = select(
     'Language',
     {
       English: 'en',
@@ -15,12 +15,12 @@ addDecorator(storyFn => {
     },
     'en'
   );
-  const langDict = lang == 'ar' ? langDictAr : langDictEn;
-  const dir = lang == 'ar' ? 'rtl' : 'ltr';
+  const lngDict = lng == 'ar' ? langDictAr : langDictEn;
+  const dir = lng == 'ar' ? 'rtl' : 'ltr';
   return (
-    <I18n lngDict={langDict} locale={lang}>
-      <div dir={dir} className={`font-${lang}`}>
-        {storyFn({ lang })}
+    <I18n lngDict={lngDict} locale={lng}>
+      <div dir={dir} className={`font-${lng}`}>
+        {storyFn({ lng,lngDict })}
       </div>
     </I18n>
   );
