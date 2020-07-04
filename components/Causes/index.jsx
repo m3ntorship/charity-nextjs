@@ -91,7 +91,7 @@ export const Cause = ({
               </span>
               <span className="causes__icon--funds font-bold text-c200 text-sm mr-3">
                 {numberToLocal(raised)}
-                {currency}
+                <span className="mx-1">{currency}</span>
               </span>
               <span className="causes__icon--tag text-c600 text-xs font-bold">
                 {raisedText}
@@ -103,7 +103,7 @@ export const Cause = ({
               </span>
               <span className="causes__icon--goal font-bold text-c200 text-sm mr-3">
                 {numberToLocal(goal)}
-                {currency}
+                <span className="mx-1">{currency}</span>
               </span>
               <span className="causes__icon--tag text-c600 text-xs font-bold">
                 {goalText}

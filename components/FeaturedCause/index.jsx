@@ -8,6 +8,9 @@ import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 const FeaturedCause = ({ data: { featuredCause }, lng, lngDict }) => {
   const isMobile = useMedia(['(min-width: 768px)'], [false], true);
 
+  const {
+    causes: { goal: goalText, raised: raisedText, currency }
+  } = lngDict;
   const getProgressPrecentage = (raised, goal) => {
     return Math.floor((raised / goal) * 100);
   };
@@ -93,25 +96,27 @@ const FeaturedCause = ({ data: { featuredCause }, lng, lngDict }) => {
               </div>
             </div>
           </div>
-          <div className="urgent-cause-event_info flex flex-col justify-between pt-8 lg:pt-0">
+          <div className="urgent-cause-event_info flex flex-col justify-between items-center pt-8 lg:pt-0">
             <h3 className="text-lg text-center font-semibold m-auto urgent-case__title">
               {title}
             </h3>
             <p className="my-4 text-center m-auto leading-loose urgent-case__desc tracking-wider font-light">
               {description}
             </p>
-            <div className="text-center">
-              <p className="text-sm font-light tracking-normal">
+            <div className="text-left ">
+              <p className="text-sm font-light tracking-normal flex items-center">
+                <span className="mr-2">{raisedText}</span>
                 <span className="text-c300 text-lg tracking-wide font-bold">
-                  ${numberToLocal(raised)}{' '}
+                  {numberToLocal(raised)}
+                  <span className="mx-1">{currency}</span>
                 </span>
-                {raisedText}
               </p>
               <p className="text-sm font-light tracking-normal">
-                <span className="text-c300 text-lg tracking-wide font-bold font">
-                  ${numberToLocal(goal)}{' '}
+                <span className="mr-2">{goalText}</span>
+                <span className="text-c300 text-lg tracking-wide font-bold ">
+                  {numberToLocal(goal)}
+                  <span className="mx-1">{currency}</span>
                 </span>
-                {goalText}
               </p>
             </div>
             <LinkNoPrefetch href={`/${lng}${linkUrl}`}>

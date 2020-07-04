@@ -32,6 +32,7 @@ module.exports = {
         base: '1rem', // 16px
         md: '1.125rem', // 18px
         lg: '1.25rem', // 20px
+        large: '2.5rem', // 20px
         xl: '3.125rem', //50px
         xxl: '3.75rem', //60px
         xxxl: '6.875rem', //110px

@@ -7,7 +7,8 @@ const Donations = ({
   contactsData,
   logoData,
   socialMediasData,
-  pagesData
+  pagesData,
+  settings
 }) => {
   return (
     <Layout
@@ -17,7 +18,7 @@ const Donations = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
     >
-      <Soon />
+      <Soon data={settings} />
     </Layout>
   );
 };
@@ -33,14 +34,16 @@ export async function getServerSideProps({ params: { lng } }) {
     getCharityAPI('/logo'),
     getCharityAPI('/socialmedias'),
     getCharityAPI('/pages'),
-    getCharityAPI('/footer')
+    getCharityAPI('/footer'),
+    getCharityAPI('/site-settings')
   ]).then(
     ([
       { data: contactsData },
       { data: logoData },
       { data: socialMediasData },
       { data: pagesData },
-      { data: footerData }
+      { data: footerData },
+      { data: settings }
     ]) => {
       return {
         props: {
@@ -48,6 +51,7 @@ export async function getServerSideProps({ params: { lng } }) {
           logoData,
           socialMediasData,
           footerData,
+          settings,
           pagesData,
           lng,
           lngDict
