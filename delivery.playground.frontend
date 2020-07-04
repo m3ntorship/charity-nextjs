@@ -1,4 +1,4 @@
-APPLICATION=ghiras
+APPLICATION=ghiras2
 NAMESPACE=default
 IMAGE=docker.m3ntorship.net/ghiras
 PORT=3000
