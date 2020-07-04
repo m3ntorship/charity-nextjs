@@ -43,7 +43,7 @@ export async function getServerSideProps({ params: { lng } }) {
     getCharityAPI('/logo'),
     getCharityAPI('/socialmedias'),
     getCharityAPI('/pages'),
-    getCharityAPI('/dev-team-members'),
+    getCharityAPI('/dev-team-members?_sort=priority:ASC'),
     getCharityAPI('/footer')
   ]).then(
     ([
