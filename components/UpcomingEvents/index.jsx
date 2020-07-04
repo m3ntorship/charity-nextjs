@@ -8,7 +8,6 @@ import { useSpring, animated } from 'react-spring';
 import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
-
 // Function to get add dates needed
 function getDate(myDate) {
   const theDate = parseISO(myDate);
@@ -101,7 +100,7 @@ const UpcomingEventsText = ({ data, slideTop }) => {
   );
 };
 
-const UpcomingEventsSection = ({ data, cardData }) => {
+const UpcomingEventsSection = ({ data, cardData, lng, lngDict }) => {
   //Scroll observation
   const [ref, inView] = useInView({
     threshold: 0.3,
@@ -145,7 +144,7 @@ const UpcomingEventsSection = ({ data, cardData }) => {
           {urgentCuase}
         </animated.div>
         <div className=" col-start-8 col-end-13 row-start-1 row-end-3 h-full w-full flex">
-          <FeaturedCause data={cardData} />
+          <FeaturedCause data={cardData} lng={lng} lngDict={lngDict} />
         </div>
       </div>
     </section>

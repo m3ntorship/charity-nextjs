@@ -5,8 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import useMedia from '../../Helpers/useMedia';
 import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
-
-const FeaturedCause = ({ data: { featuredCause } }) => {
+const FeaturedCause = ({ data: { featuredCause }, lng, lngDict }) => {
   const isMobile = useMedia(['(min-width: 768px)'], [false], true);
 
   const getProgressPrecentage = (raised, goal) => {
@@ -22,7 +21,9 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
   const slideEndRef = useRef();
   const slideEnd = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0%)' :   `translateX(${upcomingEventsCardTransformValue}%)`,
+    transform: inView
+      ? 'translateX(0%)'
+      : `translateX(${upcomingEventsCardTransformValue}%)`,
     delay: isMobile ? 0 : 600,
     ref: slideEndRef
   });
@@ -113,7 +114,7 @@ const FeaturedCause = ({ data: { featuredCause } }) => {
                 Goal
               </p>
             </div>
-            <LinkNoPrefetch href={linkUrl}>
+            <LinkNoPrefetch href={`/${lng}${linkUrl}`}>
               <button className="btn btn-card bg-c300 px-24 self-center mt-5">
                 {linkText}
               </button>

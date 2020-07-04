@@ -74,6 +74,8 @@ const Home = ({
       <UpcomingEventsSection
         data={upcomingEventsData}
         cardData={featuredCauseData(causesData)}
+        lng={lng}
+        lngDict={lngDict}
       />
       <Testimonials data={testimonialsData} />
       <WorkStyle data={workStyleData} />
