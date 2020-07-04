@@ -23,7 +23,8 @@
   "causes": {
     "urgentCause": "URGENT CAUSE",
     "goal": "Goal",
-    "raised": "Raised"
+    "raised": "Raised",
+    "currency": "LE"
   },
   "numbersText": "Numbers speak",
   "soon": "Coming Soon"

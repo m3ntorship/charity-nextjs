@@ -33,6 +33,8 @@ const Home = ({
   socialMediasData,
   pagesData,
   settings,
+  lng,
+  lngDict
 }) => {
   let featuredCauseData = data => {
     if (data) {
@@ -69,11 +71,13 @@ const Home = ({
       <Welcome data={welcomeData} />
       <Activities data={activitiesData} />
       <FeaturedBanner data={featuredBannerData} />
-      <Causes data={causesData} />
+      <Causes data={causesData} lng={lng} lngDict={lngDict} />
       <Numbers data={numbersData} />
       <UpcomingEventsSection
         data={upcomingEventsData}
         cardData={featuredCauseData(causesData)}
+        lng={lng}
+        lngDict={lngDict}
       />
       <Testimonials data={testimonialsData} />
       <WorkStyle data={workStyleData} />
