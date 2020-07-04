@@ -1,17 +1,17 @@
-import { ArticlesList } from '../../../components/NewsAndArticles';
-import { Banner } from '../../../components/MainBanner';
-import { SecondaryBanner } from '../../../components/SecondaryBanner';
 import Layout from '../../../components/Layout';
 import { charityAPI } from '../../../clients';
+import { PersonCardsSection } from '../../../components/PersonCardsSection';
+import { SecondaryBanner } from '../../../components/SecondaryBanner';
+import { Banner } from '../../../components/MainBanner';
 
-const Articles = ({
+const devTeam = ({
   footerData,
   contactsData,
   logoData,
   socialMediasData,
-  articlesPageData,
-  articlesData,
   pagesData,
+  devTeamPageData,
+  devTeamMembersData,
   lng,
   lngDict
 }) => {
@@ -22,15 +22,12 @@ const Articles = ({
       logoData={logoData}
       socialMediasData={socialMediasData}
       pagesData={pagesData}
-      articlesData={articlesData}
     >
-      <Banner data={articlesPageData} lngDict={lngDict} />
-      <div className="container py-32">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 sm:gap-8 row-gap-8">
-          <ArticlesList articles={articlesData} />
-        </div>
+      <Banner data={devTeamPageData} lngDict={lngDict} />
+      <div className="container">
+        <PersonCardsSection data={devTeamMembersData} lng={lng} />
       </div>
-      <SecondaryBanner data={articlesPageData} />
+      <SecondaryBanner data={devTeamPageData} />
     </Layout>
   );
 };
@@ -40,34 +37,35 @@ export async function getServerSideProps({ params: { lng } }) {
     `../../../locales/${lng}.json`
   );
   const getCharityAPI = charityAPI(lng);
+
   return Promise.all([
     getCharityAPI('/main-contacts'),
     getCharityAPI('/logo'),
     getCharityAPI('/socialmedias'),
     getCharityAPI('/pages'),
-    getCharityAPI('/footer'),
-    getCharityAPI('/articles')
+    getCharityAPI('/dev-team-members'),
+    getCharityAPI('/footer')
   ]).then(
     ([
       { data: contactsData },
       { data: logoData },
       { data: socialMediasData },
       { data: pagesData },
-      { data: footerData },
-      { data: articlesData }
+      { data: devTeamMembersData },
+      { data: footerData }
     ]) => {
-      const [articlesPageData] = pagesData.filter(
-        pageData => pageData.name === 'articles'
+      const [devTeamPageData] = pagesData.filter(
+        pageData => pageData.name === 'Dev Team'
       );
       return {
         props: {
           contactsData,
           logoData,
           socialMediasData,
-          articlesPageData,
           footerData,
-          articlesData,
           pagesData,
+          devTeamMembersData,
+          devTeamPageData,
           lng,
           lngDict
         }
@@ -76,4 +74,4 @@ export async function getServerSideProps({ params: { lng } }) {
   );
 }
 
-export default Articles;
+export default devTeam;

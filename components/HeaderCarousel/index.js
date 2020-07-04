@@ -3,6 +3,7 @@ import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
 import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 import useI18n from '../../hooks/use-i18n';
+import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
 import Heading from '../Heading';
 import {
@@ -19,19 +20,21 @@ const HeaderCarousel = ({ data }) => {
     threshold: 0.3,
     triggerOnce: true
   });
+
+  const headerCarouseDesc = useDirectionalValue(-50);
+  const headerCarouselBtn = useDirectionalValue(50);
   const fadeScale = useSpring({
     opacity: inView ? 1 : 0,
     transform: inView ? 'scale(1)' : 'scale(0)'
   });
   const fadeLeft = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0)' : 'translateX(-50%)'
+    transform: inView ? 'translateX(0)' : `translateX(${headerCarouseDesc}%)`,
   });
   const fadeRight = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0)' : 'translateX(50%)'
-  });
-
+    transform: inView ? 'translateX(0)' :`translateX(${headerCarouselBtn}%)`
+  })
   let numberOfSlides = data.length;
   let enableSliding = numberOfSlides > 1;
   let enableButtons = numberOfSlides > 1;

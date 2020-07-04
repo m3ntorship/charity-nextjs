@@ -5,21 +5,24 @@ import About from './About/index';
 import Newsletter from './NewsLetter/index';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
+import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
 const Footer = ({ data }) => {
   const [refLeft, inViewLeft] = useInView({
     triggerOnce: true
   });
   const [refRight, inViewRight] = useInView({ triggerOnce: true });
+  const leftContent = useDirectionalValue(-50);
+  const rightContent = useDirectionalValue(50);
 
   const fadeLeft = useSpring({
     opacity: inViewLeft ? 1 : 0,
-    transform: inViewLeft ? 'translateX(0%)' : 'translateX(-50%)'
+    transform: inViewLeft ? 'translateX(0%)' :  `translateX(${leftContent}%)`,
   });
 
   const fadeRight = useSpring({
     opacity: inViewRight ? 1 : 0,
-    transform: inViewRight ? 'translateX(0%)' : 'translateX(50%)'
+    transform: inViewRight ? 'translateX(0%)' :  `translateX(${rightContent}%)`,
   });
 
   if (data) {

@@ -6,6 +6,8 @@ import { parseISO, format } from 'date-fns';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
 import LinkNoPrefetch from '../shared/LinkNoPrefetch';
+import { useDirectionalValue } from '../../hooks/useDirectionalValue';
+
 
 // Function to get add dates needed
 function getDate(myDate) {
@@ -105,7 +107,7 @@ const UpcomingEventsSection = ({ data, cardData }) => {
     threshold: 0.3,
     triggerOnce: true
   });
-
+  const leftContent = useDirectionalValue(-50);
   //Animation
   const slideTop = useSpring({
     opacity: inView ? 1 : 0,
@@ -114,7 +116,7 @@ const UpcomingEventsSection = ({ data, cardData }) => {
 
   const slideStart = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0%)' : 'translateX(-50%)',
+    transform: inView ? 'translateX(0%)' : `translateX(${leftContent}%)`,
     delay: 300
   });
 

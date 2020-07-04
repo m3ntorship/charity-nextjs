@@ -1,12 +1,14 @@
 import Layout from '../../../components/Layout';
 import { charityAPI } from '../../../clients';
 import { Soon } from '../../../components/Soon';
+
 const Volunteers = ({
   footerData,
   contactsData,
   logoData,
   socialMediasData,
-  pagesData
+  pagesData,
+  volunteersPageData
 }) => {
   return (
     <Layout
@@ -41,6 +43,9 @@ export async function getServerSideProps({ params: { lng } }) {
       { data: pagesData },
       { data: footerData }
     ]) => {
+      const [volunteersPageData] = pagesData.filter(
+        pageData => pageData.name === 'volunteers'
+      );
       return {
         props: {
           contactsData,
@@ -48,6 +53,7 @@ export async function getServerSideProps({ params: { lng } }) {
           socialMediasData,
           footerData,
           pagesData,
+          volunteersPageData,
           lng,
           lngDict
         }

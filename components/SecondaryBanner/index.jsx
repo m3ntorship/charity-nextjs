@@ -3,19 +3,23 @@ import { useSpring, animated } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
 import useI18n from '../../hooks/use-i18n';
 import LinkNoPrefetch from '../shared/LinkNoPrefetch';
+import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
-export const VolunteeringBanner = ({ data }) => {
+export const SecondaryBanner = ({ data }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.5
   });
+  const volunteeringDesc = useDirectionalValue(50);
+  const volunteeringBtn = useDirectionalValue(-50);
+
   const fade1 = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0%)' : 'translateX(50%)'
+    transform: inView ? 'translateX(0%)' : `translateX(${volunteeringDesc}%)`
   });
   const fade2 = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0%)' : 'translateX(-50%)'
+    transform: inView ? 'translateX(0%)' : `translateX(${volunteeringBtn}%)`
   });
 
   const {
@@ -31,17 +35,15 @@ export const VolunteeringBanner = ({ data }) => {
       <div className="container flex flex-col md:flex-row items-center">
         <animated.div
           style={fade2}
-          className="description text-c000 w-3/5 text-center md:text-left"
+          className="description text-c000 w-full md:w-3/5 text-center md:text-left"
         >
           <p className="font-bold leading-tighter">{description}</p>
         </animated.div>
         <animated.div style={fade1} className="mx-auto md:mr-0">
-          {/* <button className="btn btn-md bg-c300 text-c100 mt-10 md:mt-0">
-            {' '}
-            <a href={url}>{text}</a>{' '}
-          </button> */}
           <LinkNoPrefetch href={`/${currentLocale}${url}`}>
-            <a className="btn btn-md bg-c300 text-c100 mt-10 md:mt-0 hover:text-c100 ">{text}</a>
+            <a className="btn btn-md bg-c300 text-c100 mt-10 md:mt-0 hover:text-c100 block">
+              {text}
+            </a>
           </LinkNoPrefetch>
         </animated.div>
       </div>
