@@ -3,7 +3,7 @@ import { useSpring, animated } from 'react-spring';
 import useI18n from '../../hooks/use-i18n';
 import LanguageSwitcher from '../LanguageSwitcher';
 
-const ContactTop = ({ data }) => {
+const ContactTop = ({ data, settings :{enable_english_site}}) => {
   const i18n = useI18n();
   const followUs = `${i18n.t('followus.follow')}`;
   const welcome = `${i18n.t('welcome.message')}`;
@@ -26,8 +26,9 @@ const ContactTop = ({ data }) => {
               <span className="text-c300 underline italic">{lovims}</span>{' '}
               {platform}
             </div>
+            {}
             <ul className="flex languag__selector_wrapper">
-              <LanguageSwitcher />
+              {enable_english_site && <LanguageSwitcher />}
             </ul>
             <div className="social flex text-sm">
               <div>{followUs}</div>

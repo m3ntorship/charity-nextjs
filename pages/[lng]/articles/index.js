@@ -13,7 +13,8 @@ const Articles = ({
   articlesData,
   pagesData,
   lng,
-  lngDict
+  lngDict,
+  settings
 }) => {
   return (
     <Layout
@@ -23,6 +24,7 @@ const Articles = ({
       socialMediasData={socialMediasData}
       pagesData={pagesData}
       articlesData={articlesData}
+      settings={settings}
     >
       <Banner data={articlesPageData} lngDict={lngDict} />
       <div className="container py-32">
@@ -46,7 +48,8 @@ export async function getServerSideProps({ params: { lng } }) {
     getCharityAPI('/socialmedias'),
     getCharityAPI('/pages'),
     getCharityAPI('/footer'),
-    getCharityAPI('/articles')
+    getCharityAPI('/articles'),
+    getCharityAPI('/site-settings')
   ]).then(
     ([
       { data: contactsData },
@@ -54,7 +57,8 @@ export async function getServerSideProps({ params: { lng } }) {
       { data: socialMediasData },
       { data: pagesData },
       { data: footerData },
-      { data: articlesData }
+      { data: articlesData },
+      { data: settings }
     ]) => {
       const [articlesPageData] = pagesData.filter(
         pageData => pageData.name === 'articles'
@@ -69,7 +73,8 @@ export async function getServerSideProps({ params: { lng } }) {
           articlesData,
           pagesData,
           lng,
-          lngDict
+          lngDict,
+          settings
         }
       };
     }
