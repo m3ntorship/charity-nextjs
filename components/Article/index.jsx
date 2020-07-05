@@ -22,7 +22,7 @@ const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
         ? 'translateX(-50%)'
         : 'translateX(50%)'
       : 'translateY(-50%)',
-    delay: animationDelay ? (isMobile ? 0 : 900 + 250 * index) : 0
+    delay: animationDelay ? (isMobile ? 0 : 600 + 200 * index) : 0
   });
 
   const i18n = useI18n();
