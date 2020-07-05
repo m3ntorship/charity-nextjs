@@ -116,12 +116,12 @@ const UpcomingEventsSection = ({ data, cardData, lng, lngDict }) => {
   const slideStart = useSpring({
     opacity: inView ? 1 : 0,
     transform: inView ? 'translateX(0%)' : `translateX(${leftContent}%)`,
-    delay: 300
+    delay: 200
   });
 
   const fade = useSpring({
     opacity: inView ? 1 : 0,
-    delay: 900
+    delay: 600
   });
 
   //Data Error Handling

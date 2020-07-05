@@ -27,7 +27,7 @@ const FeaturedCause = ({ data: { featuredCause }, lng, lngDict }) => {
     transform: inView
       ? 'translateX(0%)'
       : `translateX(${upcomingEventsCardTransformValue}%)`,
-    delay: isMobile ? 0 : 600,
+    delay: isMobile ? 0 : 400,
     ref: slideEndRef
   });
   const aspiringRef = useRef();
@@ -36,7 +36,7 @@ const FeaturedCause = ({ data: { featuredCause }, lng, lngDict }) => {
       ? getProgressPrecentage(featuredCause.raised, featuredCause.goal)
       : 0,
     from: { percent: 0 },
-    delay: isMobile ? 300 : 900,
+    delay: isMobile ? 200 : 600,
     ref: aspiringRef
   });
 
@@ -47,7 +47,7 @@ const FeaturedCause = ({ data: { featuredCause }, lng, lngDict }) => {
         getProgressPrecentage(featuredCause.raised, featuredCause.goal) * -5.65
       : 565,
     from: { percent: 565 },
-    delay: isMobile ? 300 : 900,
+    delay: isMobile ? 200 : 600,
     ref: strokeRef
   });
 
