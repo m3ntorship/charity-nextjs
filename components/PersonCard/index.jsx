@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSpring, animated, useTransition } from 'react-spring';
+import { useSpring, animated, useTransition, config } from 'react-spring';
 import { CircularLink } from '../shared/CircularLink';
 import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 import useMedia from '../../Helpers/useMedia';
@@ -18,7 +18,8 @@ export const PersonCard = ({ data }) => {
         : `translateX(${iconAnmiationValue}%)`,
       opacity: isHoverd ? 1 : 0
     },
-    trail: 150
+    trail: 100,
+    config: config.wobbly
   });
   //Data destructuring
   const {
