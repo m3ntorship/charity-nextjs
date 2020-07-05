@@ -1,5 +1,5 @@
 import { PersonCard } from '../PersonCard';
-import { animated, useTransition } from 'react-spring';
+import { animated, useTransition, config } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
 export const PersonCardsSection = ({ data }) => {
   const [ref, inView] = useInView({
@@ -12,16 +12,17 @@ export const PersonCardsSection = ({ data }) => {
       transform: inView ? 'translateY(0)' : 'translateY(-50%)',
       opacity: inView ? 1 : 0
     },
-    trail: 250
+    trail: 200,
+    config: config.gentle
   });
   return (
     <section
-      className="person-cards-section grid gird-cols-1 gap-8 md:grid-cols-4"
+      className="person-cards-section grid gird-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4"
       ref={ref}
     >
       {cardsTransition.map(({ item, key, props }) => (
-        <div className="col-span-1 md:col-span-2 lg:col-span-1" key={key}>
-          <animated.div style={props}>
+        <div key={key}>
+          <animated.div className="flex justify-center" style={props}>
             <PersonCard data={item} />
           </animated.div>
         </div>
