@@ -31,7 +31,7 @@ const ContactTop = ({ data }) => {
             </ul>
             <div className="social flex text-sm">
               <div>{followUs}</div>
-              <div className="ml-1">
+              <div className="ml-1 flex items-center">
                 <ul className="inline-block ">
                   {data.map(({ id, url, fontawesome_icons }) => {
                     return (
