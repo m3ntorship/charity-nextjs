@@ -11,7 +11,8 @@ const Layout = ({
   logoData,
   socialMediasData,
   contactsData,
-  pagesData
+  pagesData,
+  settings
 }) => {
   const i18n = useI18n();
   const currentLocale = i18n.activeLocale;
@@ -45,7 +46,7 @@ const Layout = ({
         ></link>
       </Head>
       <header>
-        <ContactTop data={socialMediasData} />
+        <ContactTop settings={settings} data={socialMediasData} />
         <HeaderNavigation
           logoData={logoData}
           contactsData={contactsData}

@@ -13,7 +13,8 @@ const devTeam = ({
   devTeamPageData,
   devTeamMembersData,
   lng,
-  lngDict
+  lngDict,
+  settings
 }) => {
   return (
     <Layout
@@ -22,6 +23,7 @@ const devTeam = ({
       logoData={logoData}
       socialMediasData={socialMediasData}
       pagesData={pagesData}
+      settings={settings}
     >
       <Banner data={devTeamPageData} lngDict={lngDict} />
       <div className="container">
@@ -44,7 +46,8 @@ export async function getServerSideProps({ params: { lng } }) {
     getCharityAPI('/socialmedias'),
     getCharityAPI('/pages'),
     getCharityAPI('/dev-team-members?_sort=priority:ASC'),
-    getCharityAPI('/footer')
+    getCharityAPI('/footer'),
+    getCharityAPI('/site-settings')
   ]).then(
     ([
       { data: contactsData },
@@ -52,7 +55,8 @@ export async function getServerSideProps({ params: { lng } }) {
       { data: socialMediasData },
       { data: pagesData },
       { data: devTeamMembersData },
-      { data: footerData }
+      { data: footerData },
+      { data: settings }
     ]) => {
       const [devTeamPageData] = pagesData.filter(
         pageData => pageData.name === 'Dev Team'
@@ -67,7 +71,8 @@ export async function getServerSideProps({ params: { lng } }) {
           devTeamMembersData,
           devTeamPageData,
           lng,
-          lngDict
+          lngDict,
+          settings
         }
       };
     }

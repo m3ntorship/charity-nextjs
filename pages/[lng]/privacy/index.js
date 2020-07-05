@@ -16,6 +16,7 @@ const Faq = ({
       logoData={logoData}
       socialMediasData={socialMediasData}
       pagesData={pagesData}
+      settings = {settings}
     >
       <Soon data={settings} />
     </Layout>

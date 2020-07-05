@@ -17,6 +17,7 @@ const Donations = ({
       logoData={logoData}
       socialMediasData={socialMediasData}
       pagesData={pagesData}
+      settings = {settings}
     >
       <Soon data={settings} />
     </Layout>
@@ -54,7 +55,8 @@ export async function getServerSideProps({ params: { lng } }) {
           settings,
           pagesData,
           lng,
-          lngDict
+          lngDict,
+          settings
         }
       };
     }

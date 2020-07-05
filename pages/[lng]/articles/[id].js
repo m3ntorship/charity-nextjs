@@ -16,7 +16,8 @@ const Article = ({
   recentArticlesData,
   articleData,
   articlesPageData,
-  lngDict
+  lngDict,
+  settings
 }) => {
   const i18n = useI18n();
   const findArticle = `${i18n.t('articles.findArticle')}`;
@@ -29,6 +30,7 @@ const Article = ({
       logoData={logoData}
       socialMediasData={socialMediasData}
       pagesData={pagesData}
+      settings={settings}
     >
       <Banner data={articlesPageData} lngDict={lngDict} />
       <div className="container py-32">
@@ -65,7 +67,8 @@ export async function getServerSideProps({ params: { lng, id } }) {
     getCharityAPI('/socialmedias'),
     getCharityAPI('/pages'),
     getCharityAPI('/footer'),
-    getCharityAPI('/articles?_sort=createdAt:DESC')
+    getCharityAPI('/articles?_sort=createdAt:DESC'),
+    getCharityAPI('/site-settings')
   ]).then(
     ([
       { data: contactsData },
@@ -73,7 +76,8 @@ export async function getServerSideProps({ params: { lng, id } }) {
       { data: socialMediasData },
       { data: pagesData },
       { data: footerData },
-      { data: articlesData }
+      { data: articlesData },
+      { data: settings }
     ]) => {
       const [articlesPageData] = pagesData.filter(
         pageData => pageData.name === 'articles'
@@ -91,7 +95,8 @@ export async function getServerSideProps({ params: { lng, id } }) {
           articlesPageData,
           recentArticlesData,
           lng,
-          lngDict
+          lngDict,
+          settings
         }
       };
     }

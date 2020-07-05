@@ -32,6 +32,7 @@ const Home = ({
   logoData,
   socialMediasData,
   pagesData,
+  settings,
   lng,
   lngDict
 }) => {
@@ -58,6 +59,7 @@ const Home = ({
       logoData={logoData}
       socialMediasData={socialMediasData}
       pagesData={pagesData}
+      settings={settings}
     >
       <Head>
         <meta
@@ -104,7 +106,8 @@ export async function getServerSideProps({ params: { lng } }) {
     getCharityAPI('/how-we-work'),
     getCharityAPI('/news-and-articles'),
     getCharityAPI('/Sponsers'),
-    getCharityAPI('/footer')
+    getCharityAPI('/footer'),
+    getCharityAPI('/site-settings')
   ]).then(
     ([
       { data: contactsData },
@@ -122,7 +125,8 @@ export async function getServerSideProps({ params: { lng } }) {
       { data: workStyleData },
       { data: newsData },
       { data: sponsersData },
-      { data: footerData }
+      { data: footerData },
+      { data: settings }
     ]) => {
       return {
         props: {
@@ -143,6 +147,7 @@ export async function getServerSideProps({ params: { lng } }) {
           sponsersData,
           footerData,
           lngDict,
+          settings,
           lng
         }
       };

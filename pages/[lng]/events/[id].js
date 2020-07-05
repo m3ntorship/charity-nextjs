@@ -6,7 +6,8 @@ const Article = ({
   contactsData,
   logoData,
   socialMediasData,
-  pagesData
+  pagesData,
+  settings
 }) => {
   return (
     <Layout
@@ -15,6 +16,7 @@ const Article = ({
       logoData={logoData}
       socialMediasData={socialMediasData}
       pagesData={pagesData}
+      settings={settings}
     >
       <div> Event place holder </div>
     </Layout>
@@ -31,14 +33,16 @@ export async function getServerSideProps({ params: { lng, id } }) {
     getCharityAPI('/logo'),
     getCharityAPI('/socialmedias'),
     getCharityAPI('/pages'),
-    getCharityAPI('/footer')
+    getCharityAPI('/footer'),
+    getCharityAPI('/site-settings')
   ]).then(
     ([
       { data: contactsData },
       { data: logoData },
       { data: socialMediasData },
       { data: pagesData },
-      { data: footerData }
+      { data: footerData },
+      { data: settings }
     ]) => {
       return {
         props: {
@@ -48,7 +52,8 @@ export async function getServerSideProps({ params: { lng, id } }) {
           pagesData,
           footerData,
           lng,
-          lngDict
+          lngDict,
+          settings
         }
       };
     }
