@@ -1,0 +1,62 @@
+name: deploy frontend to playground
+
+on: 
+  push:
+    branches:
+      - master
+      - playground-deployment
+
+jobs:
+  build:
+    env:
+      DEPLOYMENT_NAME: frontend
+      IMAGE_NAME: ghiras-frontend
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout the code 
+        uses: actions/checkout@v1
+      
+      # install kubectl 
+      - name: install kubectl
+        uses: azure/setup-kubectl@v1
+      
+      # configure kubectl
+      - name: Kubectl configuration
+        shell: bash
+        run: |
+          mkdir -p ~/.kube
+          echo ${{ secrets.KUBE_CONFIG }} | base64 -d -i > ~/.kube/config
+      
+      # install moustache
+      - name: install moustache
+        run: |
+          curl -sSL https://git.io/get-mo -o mo
+          chmod +x mo
+          sudo mv mo /usr/local/bin/
+          echo "works" | mo
+      
+      # login to docker
+      - uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.M3NTORSHIP_DOCKER_HOST }} # default: index.docker.io
+          username: ${{ secrets.M3NTORSHIP_DOCKER_USERNAME }}
+          password: ${{ secrets.M3NTORSHIP_DOCKER_PASSWORD }}
+      
+      # build and push docker image
+      - name: build the app
+        run: |
+          docker build --build-arg REACT_APP_STRAPI_URL_AR=https://charity-cms-dev-ar.m3ntorship.net --build-arg REACT_APP_STRAPI_URL=https://charity-cms-dev.m3ntorship.net -t docker.m3ntorship.net/$IMAGE_NAME:$(git rev-parse --short "$GITHUB_SHA") -f Dockerfile.playground.$DEPLOYMENT_NAME .
+          docker push docker.m3ntorship.net/$IMAGE_NAME:$(git rev-parse --short "$GITHUB_SHA")
+    
+      # deploy k8s yaml(s)
+      - name: add version to variables
+        run: | 
+          echo VERSION=$(git rev-parse --short "$GITHUB_SHA") >> delivery.playground.$DEPLOYMENT_NAME
+          cat delivery.playground.$DEPLOYMENT_NAME
+
+      # deploy
+      - name: deploy
+        run: |
+          mkdir -p ./deploy/$DEPLOYMENT_NAME/resources
+          for f in ./deploy/$DEPLOYMENT_NAME/apply/*.yaml; do mo -s=delivery.playground.$DEPLOYMENT_NAME "$f" > ./deploy/$DEPLOYMENT_NAME/resources/"$(basename $f)"; done
+          kubectl apply -f ./deploy/$DEPLOYMENT_NAME/resources

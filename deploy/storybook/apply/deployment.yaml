@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: '{{{APPLICATION}}}'
+  namespace: '{{{NAMESPACE}}}'
+  labels:
+    application: '{{{APPLICATION}}}'
+    version: '{{{VERSION}}}'
+spec:
+  replicas: {{{ REPLICAS }}}
+  selector:
+    matchLabels:
+      application: '{{{APPLICATION}}}'
+  template:
+    metadata:
+      labels:
+        application: '{{{APPLICATION}}}'
+        version: '{{{VERSION}}}'
+    spec:
+      containers:
+        - name: '{{{APPLICATION}}}'
+          image: '{{{IMAGE}}}:{{{VERSION}}}'
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: web
+              containerPort: {{{PORT}}}
+              protocol: TCP
