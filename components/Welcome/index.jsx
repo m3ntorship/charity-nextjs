@@ -1,5 +1,5 @@
 import React from 'react';
-import LinkNoPrefetch from  '../shared/LinkNoPrefetch'
+import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 import { Fragment } from 'react';
 import { animated, useSpring } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
@@ -41,9 +41,9 @@ export const Welcome = ({ data }) => {
     <Fragment>
       <section className="welcome py-0 text-c600 pt-16 md:pt-0" ref={ref}>
         <div
-          className="welcome_wrap container grid grid-cols-12 gap-6
-            md:grid-rows-3"
-          style={{ gridTemplateRows: '.6fr .4fr .0fr' }}
+          className="welcome_wrap container grid grid-cols-1 sm:grid-cols-2 sm:gap-8
+            md:grid-rows-2 md:grid-cols-12"
+          style={{ gridTemplateRows: '.6fr .4fr' }}
         >
           <WelcomeImage url={url} slideStart={slideStart} />
 
@@ -53,22 +53,21 @@ export const Welcome = ({ data }) => {
             desc={description}
             slideText={slideText}
           />
-          <animated.ul
-            className="welcome_list col-start-1 col-end-13 sm:text-center 
-              sm:flex sm:col-start-1 sm:col-end-13
-              md:col-start-7 md:col-end-13 md:flex md:flex-col md:text-left 
-              lg:flex-row md:row-start-2 md:row-end-3"
-            style={slideText}
-          >
-            <MiniCard cardInfo={WelcomeActions} />
-          </animated.ul>
-
           <animated.div
-            className="welcome_btn w-full block text-center md:text-left col-start-1 col-end-13 sm:col-start-3 sm:col-end-11
-              md:col-start-7 md:col-end-13 md:row-start-4"
             style={slideText}
+            className="col-span-1 sm:col-span-2 md:col-start-7 md:col-span-6"
           >
-            <WelcomeBtn link={link || {}} />
+            <ul
+              className="welcome_list sm:text-center 
+              sm:flex md:flex-col md:text-left 
+              lg:flex-row "
+            >
+              <MiniCard cardInfo={WelcomeActions} />
+            </ul>
+
+            <div className="welcome_btn w-full block text-center md:text-left">
+              <WelcomeBtn link={link || {}} />
+            </div>
           </animated.div>
         </div>
       </section>
@@ -81,8 +80,7 @@ export const Welcome = ({ data }) => {
 const WelcomeImage = ({ url, slideStart }) => {
   return (
     <animated.div
-      className="welcome__start hidden sm:block  sm:col-start-1 sm:col-end-6 
-      md:col-start-1 md:col-end-6  md:row-span-4"
+      className="welcome__start hidden sm:block sm:col-span-1 md:row-span-2 md:col-span-5"
       style={slideStart}
     >
       <div className="welcome__start__img h-full relative ">
@@ -108,8 +106,7 @@ const WelcomeHeader = ({ header, title_complementary, desc, slideText }) => {
   return (
     <Fragment>
       <animated.div
-        className="col-start-1 col-end-13 sm:col-start-7 sm:col-end-13
-        md:col-start-7 md:col-end-13  md:row-span-1 md:pt-32"
+        className="md:row-span-1 md:col-start-7 md:col-span-6 md:pt-32"
         style={slideText}
       >
         <h2
@@ -149,7 +146,9 @@ const WelcomeBtn = ({ link }) => {
   const currentLocale = i18n.activeLocale;
   return (
     <LinkNoPrefetch href={`${currentLocale}/about`}>
-      <a className=" btn btn-lg bg-c300 hover:text-c100">{link.text}</a>
+      <a className=" btn btn-lg bg-c300 hover:text-c100 inline-block">
+        {link.text}
+      </a>
     </LinkNoPrefetch>
   );
 };

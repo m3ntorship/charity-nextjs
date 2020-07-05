@@ -6,8 +6,10 @@
   background-repeat: no-repeat;
 }
 
-.welcome__start {
-  width: calc(100% + 2rem);
+@media screen and (min-width: 768px) {
+  .welcome__start {
+    width: calc(100% + 2rem);
+  }
 }
 
 %welcome__start__img__element {
