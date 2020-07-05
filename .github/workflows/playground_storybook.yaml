@@ -1,4 +1,4 @@
-name: deploy to playground
+name: deploy storybook to playground
 
 on: 
   push:
@@ -8,6 +8,9 @@ on:
 
 jobs:
   build:
+    env:
+      DEPLOYMENT_NAME: storybook
+      IMAGE_NAME: ghiras-storybook
     runs-on: ubuntu-latest
     steps:
       - name: checkout the code 
@@ -39,23 +42,29 @@ jobs:
           username: ${{ secrets.M3NTORSHIP_DOCKER_USERNAME }}
           password: ${{ secrets.M3NTORSHIP_DOCKER_PASSWORD }}
       
+      # build app (story book)
+      - name: install dependencies
+        run: yarn
+
+      # build app (story book)
+      - name: build storybook
+        run: yarn build-storybook
+            
       # build and push docker image
-      - name: build the app
+      - name: build and push docker image
         run: |
-          docker build --build-arg REACT_APP_STRAPI_URL_AR=https://charity-cms-dev-ar.m3ntorship.net --build-arg REACT_APP_STRAPI_URL=https://charity-cms-dev.m3ntorship.net -t docker.m3ntorship.net/ghiras:$(git rev-parse --short "$GITHUB_SHA") -f Dockerfile.playground .
-          docker push docker.m3ntorship.net/ghiras:$(git rev-parse --short "$GITHUB_SHA")
+          docker build -t docker.m3ntorship.net/$IMAGE_NAME:$(git rev-parse --short "$GITHUB_SHA") -f Dockerfile.playground.$DEPLOYMENT_NAME .
+          docker push docker.m3ntorship.net/$IMAGE_NAME:$(git rev-parse --short "$GITHUB_SHA")
     
       # deploy k8s yaml(s)
       - name: add version to variables
-        run: echo VERSION=$(git rev-parse --short "$GITHUB_SHA") >> delivery
-      
-      # temp
-      - name: ensure version is written
-        run: cat delivery
+        run: | 
+          echo VERSION=$(git rev-parse --short "$GITHUB_SHA") >> delivery.playground.$DEPLOYMENT_NAME
+          cat delivery.playground.$DEPLOYMENT_NAME
 
       # deploy
       - name: deploy
         run: |
-          mkdir -p ./deploy/resources
-          for f in ./deploy/apply/*.yaml; do mo -s=delivery "$f" > ./deploy/resources/"$(basename $f)"; done
-          kubectl apply -f ./deploy/resources
+          mkdir -p ./deploy/$DEPLOYMENT_NAME/resources
+          for f in ./deploy/$DEPLOYMENT_NAME/apply/*.yaml; do mo -s=delivery.playground.$DEPLOYMENT_NAME "$f" > ./deploy/$DEPLOYMENT_NAME/resources/"$(basename $f)"; done
+          kubectl apply -f ./deploy/$DEPLOYMENT_NAME/resources
