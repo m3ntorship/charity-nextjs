@@ -47,7 +47,7 @@ const News = ({ data }) => {
   const slideP = useSpring({
     opacity: inView ? 1 : 0,
     transform: inView ? 'translateY(0%)' : 'translateY(-50%)',
-    delay: isMobile ? 0 : 300
+    delay: isMobile ? 0 : 200
   });
   const btnTransform = useDirectionalValue(50);
 
@@ -57,8 +57,8 @@ const News = ({ data }) => {
       ? 'translateX(0%)'
       : isMobile
       ? 'translateY(-50%)'
-      :  `translateX(${btnTransform}%)`,
-    delay: isMobile ? 0 : 600
+      : `translateX(${btnTransform}%)`,
+    delay: isMobile ? 0 : 400
   });
 
   const {

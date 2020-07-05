@@ -37,7 +37,7 @@ export const Cause = ({
   const slideCard = useSpring({
     opacity: cardInView ? 1 : 0,
     transform: cardInView ? 'translateY(0%)' : 'translateY(-25%)',
-    delay: isMobile ? 0 : 300 * index,
+    delay: isMobile ? 0 : 200 * index,
     ref: slideCardRef
   });
 
@@ -46,7 +46,7 @@ export const Cause = ({
   const aspiring = useSpring({
     percent: cardInView ? progress : 0,
     from: { percent: 0 },
-    delay: isMobile ? 0 : 300 + 300 * index,
+    delay: isMobile ? 0 : 200 + 200 * index,
     ref: aspiringRef
   });
 
