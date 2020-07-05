@@ -23,7 +23,7 @@ const Socialmedia = ({ socialData }) => {
           className="contact-section__social-icon hover:bg-c200 ml-0"
         >
           <a
-            className="full-width-click"
+            className="full-width-click flex justify-center items-center"
             href={url}
             target="_blank"
             rel="noopener noreferrer"
@@ -54,19 +54,11 @@ const Contact = ({ contactData }) => {
           return (
             <div
               key={_id}
-              className={cn(
-                'contact',
-                'my-1',
-                'lg:my-0',
-                'w-64',
-                'mt-2',
-                'md:mt-0',
-                {
-                  'border-right': !isLast
-                }
-              )}
+              className={cn('contact', 'my-1', 'lg:my-0', 'mt-2', 'md:mt-0', {
+                'border-right': !isLast
+              })}
             >
-              <div className="contact-icon">
+              <div className="contact-icon mr-5">
                 <img className="h-auto" src={iconUrl} alt={IconName} />
               </div>
               <div className="information">

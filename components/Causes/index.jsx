@@ -69,8 +69,11 @@ export const Cause = ({
       className="causes__card border-gray-900 border border-solid z-10 bg-c000"
       style={isMobile ? null : slideCard}
     >
-      <div className="refContainer" ref={cardRef}>
-        <div>
+      <div className="refContainer h-full" ref={cardRef}>
+        <div
+          className="flex flex-col justify-between h-full
+"
+        >
           <div className="causes__img pb-5">
             <img src={image} alt={imageText} />
           </div>
@@ -85,7 +88,7 @@ export const Cause = ({
           </div>
 
           <div className="causes__info pb-10">
-            <div className="causes__raised flex justify-start mb-4">
+            <div className="causes__raised flex justify-start items-center mb-4">
               <span className="causes__icon mr-3">
                 <i className="fas fa-hand-holding-usd text-lg text-c500"></i>
               </span>
@@ -97,7 +100,7 @@ export const Cause = ({
                 {raisedText}
               </span>
             </div>
-            <div className="causes__goal flex justify-start mb-4">
+            <div className="causes__goal flex justify-start items-center mb-4">
               <span className="causes__icon mr-3">
                 <i className="fas fa-bullseye text-lg text-c500"></i>
               </span>
@@ -111,31 +114,33 @@ export const Cause = ({
             </div>
           </div>
 
-          <div className="causes__progress mb-2 relative h-2 w-full bg-c800">
-            <animated.div
-              className="causes__progress__progress-bar"
-              style={{
-                width: progressWidth
-              }}
-            ></animated.div>
-            <animated.div
-              className="causes__progress__tooltip"
-              style={
-                lng === 'en'
-                  ? {
-                      left: progressWidth
-                    }
-                  : { right: progressWidth }
-              }
-            >
-              <animated.span>{progressNumber}</animated.span>%
-            </animated.div>
+          <div className="causes__bottom-container">
+            <div className="causes__progress mb-2 relative h-2 w-full bg-c800">
+              <animated.div
+                className="causes__progress__progress-bar"
+                style={{
+                  width: progressWidth
+                }}
+              ></animated.div>
+              <animated.div
+                className="causes__progress__tooltip"
+                style={
+                  lng === 'en'
+                    ? {
+                        left: progressWidth
+                      }
+                    : { right: progressWidth }
+                }
+              >
+                <animated.span>{progressNumber}</animated.span>%
+              </animated.div>
+            </div>
+            <LinkNoPrefetch href={`/${lng}${btnUrl}`}>
+              <button className="causes__btn font-bold bg-c800 text-c600 hover:bg-c300 hover:text-c100 transition duration-200 ease-out">
+                {btnText}
+              </button>
+            </LinkNoPrefetch>
           </div>
-          <LinkNoPrefetch href={`/${lng}${btnUrl}`}>
-            <button className="causes__btn font-bold bg-c800 text-c600 hover:bg-c300 hover:text-c100 transition duration-200 ease-out">
-              {btnText}
-            </button>
-          </LinkNoPrefetch>
         </div>
       </div>
     </animated.div>

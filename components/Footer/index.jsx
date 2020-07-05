@@ -17,12 +17,12 @@ const Footer = ({ data }) => {
 
   const fadeLeft = useSpring({
     opacity: inViewLeft ? 1 : 0,
-    transform: inViewLeft ? 'translateX(0%)' :  `translateX(${leftContent}%)`,
+    transform: inViewLeft ? 'translateX(0%)' : `translateX(${leftContent}%)`
   });
 
   const fadeRight = useSpring({
     opacity: inViewRight ? 1 : 0,
-    transform: inViewRight ? 'translateX(0%)' :  `translateX(${rightContent}%)`,
+    transform: inViewRight ? 'translateX(0%)' : `translateX(${rightContent}%)`
   });
 
   if (data) {
@@ -44,7 +44,7 @@ const Footer = ({ data }) => {
           <div className="ref-container" ref={refLeft}>
             <animated.div
               style={fadeLeft}
-              className="grid lg:grid-cols-2 md:grid-cols-1 grid-cols-1"
+              className="grid lg:grid-cols-2 md:grid-cols-1 grid-cols-1 gap-8"
             >
               <About
                 title={About_title}
@@ -59,7 +59,7 @@ const Footer = ({ data }) => {
           <div className="ref-container" ref={refRight}>
             <animated.div
               style={fadeRight}
-              className="grid lg:grid-cols-2 md:grid-cols-1 grid-cols-1"
+              className="grid lg:grid-cols-2 md:grid-cols-1 grid-cols-1 gap-8"
             >
               <Links title={links_title} links={links} />
               <Newsletter
