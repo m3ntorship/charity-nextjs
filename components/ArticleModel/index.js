@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import { CarouselProvider, Slide, Slider, DotGroup } from 'pure-react-carousel';
+
 import useI18n from '../../hooks/use-i18n';
+import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
 const ArticleModel = ({ data }) => {
   const {
@@ -9,9 +12,14 @@ const ArticleModel = ({ data }) => {
     body,
     author: { username }
   } = data;
+
   return (
-    <div className="article-model grid grid-cols-1 row-gap-8 lg:grid-cols-12 lg:gap-8">
-      <ArticleImg url={image_main[0].url} />{' '}
+    <div className="article-model grid grid-cols-1 row-gap-3 lg:grid-cols-12 ">
+      {image_main && image_main.length === 1 ? (
+        <ArticleImg url={image_main[0].url} />
+      ) : (
+        <MainImagesCarousel images={image_main} />
+      )}
       <Headline title={title} username={username} />{' '}
       <div className="text-content col-start-1 col-span-1 lg:col-span-12 sm:grid-rows-1">
         <ReactMarkdown className="markdown grid" source={body} />
@@ -43,9 +51,46 @@ const Headline = ({ title, username }) => {
 
 const ArticleImg = ({ url }) => {
   return (
-    <div className="col-start-1 col-span-1 lg:col-span-12">
-      <img src={url} alt="Cover" width="100%" height="100%" />
+    <div
+      style={{ height: '100%', transform: `scaleX(${useDirectionalValue(1)})` }}
+      className="col-start-1 col-span-1 lg:col-span-12"
+    >
+      <img
+        src={url}
+        alt="Cover"
+        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+      />
     </div>
+  );
+};
+
+const MainImagesCarousel = ({ images }) => {
+  return (
+    <CarouselProvider
+      naturalSlideWidth={50}
+      naturalSlideHeight={480}
+      totalSlides={images.length}
+      isIntrinsicHeight="true"
+      isPlaying="true"
+      lockOnWindowScroll="true"
+      interval="5000"
+      className="causes__carousel causes__carousel__grid text-center col-span-12 grid"
+    >
+      <Slider className=" col-span-6 " style={{ transform: `scaleX(1)` }}>
+        {images.map(image => {
+          const { _id, url } = image;
+          return (
+            <Slide className="grid grid-cols-12 " key={_id}>
+              <ArticleImg url={url}></ArticleImg>
+            </Slide>
+          );
+        })}
+      </Slider>
+
+      <div className="flex items-center justify-center text-lg col-start-1 col-end-6 row-start-2 row-end-3 pt-2">
+        <DotGroup className="causes_dots_group" />
+      </div>
+    </CarouselProvider>
   );
 };
 
