@@ -28,17 +28,6 @@ const Layout = ({
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1024" />
         <meta property="og:image:height" content="1024" />
-        {currentLocale === 'ar' ? (
-          <link
-            href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700&display=swap"
-            rel="stylesheet"
-          />
-        ) : (
-          <link
-            href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap"
-            rel="stylesheet"
-          />
-        )}
         <link
           rel="shortcut icon"
           type="image/svg"
