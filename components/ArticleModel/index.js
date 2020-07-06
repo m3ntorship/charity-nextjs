@@ -73,6 +73,7 @@ const MainImagesCarousel = ({ images }) => {
       isIntrinsicHeight="true"
       isPlaying="true"
       lockOnWindowScroll="true"
+      interval="5000"
       className="causes__carousel causes__carousel__grid text-center col-span-12 grid"
     >
       <Slider className=" col-span-6 " style={{ transform: `scaleX(1)` }}>
