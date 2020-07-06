@@ -15,7 +15,10 @@ import Layout from '../../components/Layout';
 import Head from 'next/head';
 import useI18n from '../../hooks/use-i18n';
 import { contentLanguageMap } from '../../lib/i18n';
+import Error from '../_error';
+
 const Home = ({
+  statusCode,
   headerCarouselData,
   welcomeData,
   activitiesData,
@@ -27,12 +30,6 @@ const Home = ({
   workStyleData,
   newsData,
   sponsersData,
-  footerData,
-  contactsData,
-  logoData,
-  socialMediasData,
-  pagesData,
-  settings,
   lng,
   lngDict
 }) => {
@@ -53,20 +50,7 @@ const Home = ({
   const i18n = useI18n();
   const currentLocale = i18n.activeLocale;
   return (
-    <Layout
-      footerData={footerData}
-      contactsData={contactsData}
-      logoData={logoData}
-      socialMediasData={socialMediasData}
-      pagesData={pagesData}
-      settings={settings}
-    >
-      <Head>
-        <meta
-          httpEquiv="content-language"
-          content={contentLanguageMap[currentLocale]}
-        />
-      </Head>
+    <>
       <HeaderCarousel data={headerCarouselData} />
       <Welcome data={welcomeData} />
       <Activities data={activitiesData} />
@@ -83,75 +67,60 @@ const Home = ({
       <WorkStyle data={workStyleData} />
       <News data={newsData} />
       <Sponsers data={sponsersData} />
-      <ContactInfo contactData={contactsData} socialData={socialMediasData} />
-    </Layout>
+    </>
   );
 };
 export async function getServerSideProps({ params: { lng } }) {
-  const { default: lngDict = {} } = await import(`../../locales/${lng}.json`);
-  const getCharityAPI = charityAPI(lng);
-  return Promise.all([
-    getCharityAPI('/main-contacts'),
-    getCharityAPI('/logo'),
-    getCharityAPI('/socialmedias'),
-    getCharityAPI('/pages'),
-    getCharityAPI('/main-carousels'),
-    getCharityAPI('/welcome-section'),
-    getCharityAPI('/what-we-do'),
-    getCharityAPI('/featured-banner'),
-    getCharityAPI('/popular-causes'),
-    getCharityAPI('/speaking-numbers'),
-    getCharityAPI('/upcoming-events'),
-    getCharityAPI('/what-they-say'),
-    getCharityAPI('/how-we-work'),
-    getCharityAPI('/news-and-articles'),
-    getCharityAPI('/Sponsers'),
-    getCharityAPI('/footer'),
-    getCharityAPI('/site-settings')
-  ]).then(
-    ([
-      { data: contactsData },
-      { data: logoData },
-      { data: socialMediasData },
-      { data: pagesData },
-      { data: headerCarouselData },
-      { data: welcomeData },
-      { data: activitiesData },
-      { data: featuredBannerData },
-      { data: causesData },
-      { data: numbersData },
-      { data: upcomingEventsData },
-      { data: testimonialsData },
-      { data: workStyleData },
-      { data: newsData },
-      { data: sponsersData },
-      { data: footerData },
-      { data: settings }
-    ]) => {
-      return {
-        props: {
-          contactsData,
-          logoData,
-          socialMediasData,
-          pagesData,
-          headerCarouselData,
-          welcomeData,
-          activitiesData,
-          featuredBannerData,
-          causesData,
-          numbersData,
-          upcomingEventsData,
-          testimonialsData,
-          workStyleData,
-          newsData,
-          sponsersData,
-          footerData,
-          lngDict,
-          settings,
-          lng
-        }
-      };
-    }
-  );
+  if (lng !== 'ar' || lng !== 'en') {
+    lng = 'en';
+    const { default: lngDict = {} } = await import(`../../locales/${lng}.json`);
+
+    const getCharityAPI = charityAPI(lng);
+    return Promise.all([
+      getCharityAPI('/main-carousels'),
+      getCharityAPI('/welcome-section'),
+      getCharityAPI('/what-we-do'),
+      getCharityAPI('/featured-banner'),
+      getCharityAPI('/popular-causes'),
+      getCharityAPI('/speaking-numbers'),
+      getCharityAPI('/upcoming-events'),
+      getCharityAPI('/what-they-say'),
+      getCharityAPI('/how-we-work'),
+      getCharityAPI('/news-and-articles'),
+      getCharityAPI('/Sponsers')
+    ]).then(
+      ([
+        { data: headerCarouselData },
+        { data: welcomeData },
+        { data: activitiesData },
+        { data: featuredBannerData },
+        { data: causesData },
+        { data: numbersData },
+        { data: upcomingEventsData },
+        { data: testimonialsData },
+        { data: workStyleData },
+        { data: newsData },
+        { data: sponsersData }
+      ]) => {
+        return {
+          props: {
+            headerCarouselData,
+            welcomeData,
+            activitiesData,
+            featuredBannerData,
+            causesData,
+            numbersData,
+            upcomingEventsData,
+            testimonialsData,
+            workStyleData,
+            newsData,
+            sponsersData,
+            lngDict,
+            lng
+          }
+        };
+      }
+    );
+  }
 }
 export default Home;
