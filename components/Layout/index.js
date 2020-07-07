@@ -4,6 +4,7 @@ import HeaderNavigation from '../HeaderNavigation';
 import useI18n from '../../hooks/use-i18n';
 import { ContactTop } from '../ContactTop';
 import { ButtonBack } from 'pure-react-carousel';
+import { ContactInfo } from '../ContactInfo';
 
 const Layout = ({
   children,
@@ -43,6 +44,7 @@ const Layout = ({
         />
       </header>
       <main>{children}</main>
+      <ContactInfo contactData={contactsData} socialData={socialMediasData} />
       <Footer data={footerData} />
     </>
   );
