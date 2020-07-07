@@ -3,6 +3,7 @@ import '../styles/index.css';
 import { charityAPI } from '../clients';
 import Layout from '../components/Layout';
 
+import { useRouter } from 'next/router';
 function MyApp({
   Component,
   pageProps,
@@ -36,12 +37,12 @@ export default MyApp;
 MyApp.getInitialProps = async ({
   ctx,
   ctx: {
-    query: { lng }
+    query: { lng = 'ar' }
   }
 }) => {
-  // if (lng !== 'ar' && lng !== 'en') {
-  //   return ctx.res.writeHeader(303, { Location: '/ar' }).end();
-  // }
+  if (lng !== 'ar' && lng !== 'en') {
+    return ctx.res.writeHeader(303, { Location: '/ar' }).end();
+  }
   const { default: lngDict = {} } = await import(`../locales/${lng}.json`);
 
   const getCharityAPI = charityAPI(lng);
