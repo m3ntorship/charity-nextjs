@@ -34,42 +34,43 @@ function MyApp({
 export default MyApp;
 
 MyApp.getInitialProps = async ({
+  ctx,
   ctx: {
     query: { lng }
   }
 }) => {
-  if (lng !== 'ar' || lng !== 'en') {
-    lng = 'en';
-    const { default: lngDict = {} } = await import(`../locales/${lng}.json`);
-
-    const getCharityAPI = charityAPI(lng);
-    return Promise.all([
-      getCharityAPI('/main-contacts'),
-      getCharityAPI('/logo'),
-      getCharityAPI('/socialmedias'),
-      getCharityAPI('/pages'),
-      getCharityAPI('/footer'),
-      getCharityAPI('/site-settings')
-    ]).then(
-      ([
-        { data: contactsData },
-        { data: logoData },
-        { data: socialMediasData },
-        { data: pagesData },
-        { data: footerData },
-        { data: settings }
-      ]) => {
-        return {
-          contactsData,
-          logoData,
-          socialMediasData,
-          pagesData,
-          footerData,
-          settings,
-          lngDict,
-          lng
-        };
-      }
-    );
+  if (lng !== 'ar' && lng !== 'en') {
+    return ctx.res.writeHeader(303, { Location: '/ar' }).end();
   }
+  const { default: lngDict = {} } = await import(`../locales/${lng}.json`);
+
+  const getCharityAPI = charityAPI(lng);
+  return Promise.all([
+    getCharityAPI('/main-contacts'),
+    getCharityAPI('/logo'),
+    getCharityAPI('/socialmedias'),
+    getCharityAPI('/pages'),
+    getCharityAPI('/footer'),
+    getCharityAPI('/site-settings')
+  ]).then(
+    ([
+      { data: contactsData },
+      { data: logoData },
+      { data: socialMediasData },
+      { data: pagesData },
+      { data: footerData },
+      { data: settings }
+    ]) => {
+      return {
+        contactsData,
+        logoData,
+        socialMediasData,
+        pagesData,
+        footerData,
+        settings,
+        lngDict,
+        lng
+      };
+    }
+  );
 };
