@@ -9,16 +9,9 @@ import { Testimonials } from '../../components/Testimonials';
 import { WorkStyle } from '../../components/WorkStyle';
 import { News } from '../../components/NewsAndArticles';
 import { Sponsers } from '../../components/Sponsers';
-import { ContactInfo } from '../../components/ContactInfo';
 import { charityAPI } from '../../clients';
-import Layout from '../../components/Layout';
-import Head from 'next/head';
-import useI18n from '../../hooks/use-i18n';
-import { contentLanguageMap } from '../../lib/i18n';
-import Error from '../_error';
 
 const Home = ({
-  statusCode,
   headerCarouselData,
   welcomeData,
   activitiesData,
@@ -30,9 +23,10 @@ const Home = ({
   workStyleData,
   newsData,
   sponsersData,
+  homeArticles,
+  homeCausesData,
   lng,
-  lngDict,
-  homeArticles
+  lngDict
 }) => {
   let featuredCauseData = data => {
     if (data) {
@@ -48,15 +42,18 @@ const Home = ({
       };
     }
   };
-  const i18n = useI18n();
-  const currentLocale = i18n.activeLocale;
   return (
     <>
       <HeaderCarousel data={headerCarouselData} />
       <Welcome data={welcomeData} />
       <Activities data={activitiesData} />
       <FeaturedBanner data={featuredBannerData} />
-      <Causes data={causesData} lng={lng} lngDict={lngDict} />
+      <Causes
+        data={causesData}
+        homeCausesData={homeCausesData}
+        lng={lng}
+        lngDict={lngDict}
+      />
       <Numbers data={numbersData} />
       <UpcomingEventsSection
         data={upcomingEventsData}
@@ -89,7 +86,8 @@ export async function getServerSideProps({ params: { lng } }) {
     getCharityAPI('/how-we-work'),
     getCharityAPI('/news-and-articles'),
     getCharityAPI('/Sponsers'),
-    getCharityAPI('/articles?_limit=3&is_in_home=true')
+    getCharityAPI('/articles?_limit=3&is_in_home=true'),
+    getCharityAPI('/causes?is_home=true')
   ]).then(
     ([
       { data: headerCarouselData },
@@ -103,7 +101,8 @@ export async function getServerSideProps({ params: { lng } }) {
       { data: workStyleData },
       { data: newsData },
       { data: sponsersData },
-      { data: homeArticles }
+      { data: homeArticles },
+      { data: homeCausesData }
     ]) => {
       return {
         props: {
@@ -119,6 +118,7 @@ export async function getServerSideProps({ params: { lng } }) {
           newsData,
           sponsersData,
           homeArticles,
+          homeCausesData,
           lngDict,
           lng
         }
