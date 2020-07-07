@@ -35,7 +35,7 @@ const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
           src={imageURL}
           alt="article thumbnail"
         />
-        <div className="article-info transform -translate-y-1/2 bg-c000 text-center shadow-lg p-6">
+        <div className="article-info transform -translate-y-1/2 bg-c000 text-center shadow-lg">
           <div className="content-info">
             <span className="text-c600 mx-2">
               <i className="fas fa-user-tie mr-1 text-c500"></i>Admin
