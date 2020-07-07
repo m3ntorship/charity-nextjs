@@ -27,8 +27,7 @@ const ArticlesList = ({ articles, animationDelay }) => {
   );
 };
 
-const News = ({ data }) => {
-  console.log(data);
+const News = ({ data:{newsData, homeArticles} }) => {
   // //Meida query
   const isMobile = useMedia(['(min-width: 768px)'], [false], true);
   const [ref, inView] = useInView({
@@ -66,8 +65,7 @@ const News = ({ data }) => {
     description,
     heading: { heading_primary, heading_secondary },
     link: { text, url }
-  } = data.newsData;
-  console.log(text);
+  } = newsData;
   return (
     <section className="news font-body bg-c800 mb-20 md:mb-64 pt-18 pb-1 md:pb-48 relative">
       <div className="container">
@@ -103,7 +101,7 @@ const News = ({ data }) => {
       </div>
       <div className="container relative">
         <div className="articles grid grid-cols-1 mt-12 md:mt-auto md:grid-cols-3 gap-8 md:gap-4 md:absolute w-full sm:grid-cols-2 ">
-          <ArticlesList articles={data.homeArticles} animationDelay={true} />
+          <ArticlesList articles={homeArticles} animationDelay={true} />
         </div>
       </div>
     </section>
