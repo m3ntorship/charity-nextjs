@@ -27,6 +27,7 @@ const Home = ({
   numbersData,
   upcomingEventsData,
   testimonialsData,
+  testimonials,
   workStyleData,
   newsData,
   sponsersData,
@@ -64,7 +65,7 @@ const Home = ({
         lng={lng}
         lngDict={lngDict}
       />
-      <Testimonials data={testimonialsData} />
+      <Testimonials data={{testimonialsData,testimonials}} />
       <WorkStyle data={workStyleData} />
       <News data={{ newsData, homeArticles }} />
       <Sponsers data={sponsersData} />
@@ -89,7 +90,8 @@ export async function getServerSideProps({ params: { lng } }) {
     getCharityAPI('/how-we-work'),
     getCharityAPI('/news-and-articles'),
     getCharityAPI('/Sponsers'),
-    getCharityAPI('/articles?_limit=3&is_in_home=true')
+    getCharityAPI('/articles?_limit=3&is_in_home=true'),
+    getCharityAPI('/testimonials?isShown=true')
   ]).then(
     ([
       { data: headerCarouselData },
@@ -103,7 +105,8 @@ export async function getServerSideProps({ params: { lng } }) {
       { data: workStyleData },
       { data: newsData },
       { data: sponsersData },
-      { data: homeArticles }
+      { data: homeArticles },
+      {data: testimonials}
     ]) => {
       return {
         props: {
@@ -115,6 +118,7 @@ export async function getServerSideProps({ params: { lng } }) {
           numbersData,
           upcomingEventsData,
           testimonialsData,
+          testimonials,
           workStyleData,
           newsData,
           sponsersData,
