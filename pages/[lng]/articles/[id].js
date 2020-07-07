@@ -3,35 +3,24 @@ import { ArticlesSearch } from '../../../components/ArticlesSearch';
 import { RecentArticles } from '../../../components/RecentArticles';
 import { Banner } from '../../../components/MainBanner';
 import { SecondaryBanner } from '../../../components/SecondaryBanner';
-import Layout from '../../../components/Layout';
 import { charityAPI } from '../../../clients';
 import useI18n from '../../../hooks/use-i18n';
-
+import Error from '../../_error';
 const Article = ({
-  footerData,
-  contactsData,
-  logoData,
-  socialMediasData,
-  pagesData,
+  statusCode,
   recentArticlesData,
   articleData,
   articlesPageData,
-  lngDict,
-  settings
+  lngDict
 }) => {
+  // if (statusCode === 404) return <Error />;
+
   const i18n = useI18n();
   const findArticle = `${i18n.t('articles.findArticle')}`;
   const recentArticlesTitle = `${i18n.t('articles.recentArticles')}`;
 
   return (
-    <Layout
-      footerData={footerData}
-      contactsData={contactsData}
-      logoData={logoData}
-      socialMediasData={socialMediasData}
-      pagesData={pagesData}
-      settings={settings}
-    >
+    <>
       <Banner data={articlesPageData} lngDict={lngDict} />
       <div className="container py-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 lg:gap-8 row-gap-8">
@@ -52,7 +41,7 @@ const Article = ({
         </div>
       </div>
       <SecondaryBanner data={articlesPageData} />
-    </Layout>
+    </>
   );
 };
 
@@ -61,46 +50,38 @@ export async function getServerSideProps({ params: { lng, id } }) {
     `../../../locales/${lng}.json`
   );
   const getCharityAPI = charityAPI(lng);
-  return Promise.all([
-    getCharityAPI('/main-contacts'),
-    getCharityAPI('/logo'),
-    getCharityAPI('/socialmedias'),
-    getCharityAPI('/pages'),
-    getCharityAPI('/footer'),
-    getCharityAPI('/articles?_sort=createdAt:DESC'),
-    getCharityAPI('/site-settings')
-  ]).then(
-    ([
-      { data: contactsData },
-      { data: logoData },
-      { data: socialMediasData },
-      { data: pagesData },
-      { data: footerData },
-      { data: articlesData },
-      { data: settings }
-    ]) => {
-      const [articlesPageData] = pagesData.filter(
-        pageData => pageData.name === 'articles'
-      );
-      const articleData = articlesData.find(article => article.id === id);
-      const recentArticlesData = articlesData.slice(0, 3);
-      return {
-        props: {
-          contactsData,
-          logoData,
-          socialMediasData,
-          pagesData,
-          footerData,
-          articleData,
-          articlesPageData,
-          recentArticlesData,
-          lng,
-          lngDict,
-          settings
-        }
-      };
-    }
+
+  const pagesResponse = await getCharityAPI('/pages');
+  const articlesResponse = await getCharityAPI(
+    '/articles?_sort=createdAt:DESC'
   );
+
+  const pagesData = await pagesResponse.data;
+  const articlesData = await articlesResponse.data;
+
+  const [articlesPageData] = pagesData.filter(
+    pageData => pageData.name === 'articles'
+  );
+
+  const articleData = articlesData.find(article => article.id === id);
+  if (!articleData) {
+    return {
+      props: {
+        statusCode: 404
+      }
+    };
+  }
+  const recentArticlesData = articlesData.slice(0, 3);
+
+  return {
+    props: {
+      pagesData,
+      articleData,
+      articlesPageData,
+      recentArticlesData,
+      lngDict
+    }
+  };
 }
 
 export default Article;
