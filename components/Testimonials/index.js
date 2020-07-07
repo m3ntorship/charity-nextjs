@@ -10,13 +10,12 @@ import React from 'react';
 import Heading from '../Heading';
 import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
-const Testimonials = ({ data, loading, error }) => {
+const Testimonials = ({data:{testimonialsData,testimonials}}) => {
   let {
     Description,
     Heading: { heading_primary, heading_secondary },
-    testimonials,
     background: { url: backgroundUrl }
-  } = data;
+  } = testimonialsData;
 
   let numbersOfSlides = testimonials.length;
   return (
