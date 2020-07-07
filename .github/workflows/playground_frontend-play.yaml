@@ -1,15 +1,15 @@
-name: deploy storybook to playground
+name: deploy frontend-play to playground
 
 on: 
   push:
     branches:
       - master
-      
+
 jobs:
   build:
     env:
-      DEPLOYMENT_NAME: storybook
-      IMAGE_NAME: ghiras-storybook
+      DEPLOYMENT_NAME: frontend-play
+      IMAGE_NAME: ghiras-frontend-play
     runs-on: ubuntu-latest
     steps:
       - name: checkout the code 
@@ -41,18 +41,10 @@ jobs:
           username: ${{ secrets.M3NTORSHIP_DOCKER_USERNAME }}
           password: ${{ secrets.M3NTORSHIP_DOCKER_PASSWORD }}
       
-      # build app (story book)
-      - name: install dependencies
-        run: yarn
-
-      # build app (story book)
-      - name: build storybook
-        run: yarn build-storybook
-            
       # build and push docker image
-      - name: build and push docker image
+      - name: build the app
         run: |
-          docker build -t docker.m3ntorship.net/$IMAGE_NAME:$(git rev-parse --short "$GITHUB_SHA") -f Dockerfile.playground.$DEPLOYMENT_NAME .
+          docker build --build-arg REACT_APP_STRAPI_URL_AR=https://ghiras-cms-play-ar.m3ntorship.net --build-arg REACT_APP_STRAPI_URL=https://charity-cms-dev.m3ntorship.net -t docker.m3ntorship.net/$IMAGE_NAME:$(git rev-parse --short "$GITHUB_SHA") -f Dockerfile.playground.$DEPLOYMENT_NAME .
           docker push docker.m3ntorship.net/$IMAGE_NAME:$(git rev-parse --short "$GITHUB_SHA")
     
       # deploy k8s yaml(s)
