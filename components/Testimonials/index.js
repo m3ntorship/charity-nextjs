@@ -62,7 +62,8 @@ const Testimonials = ({data:{testimonialsData,testimonials}}) => {
                       <img
                         className="feedback__carousel__avatar"
                         src={imageUrl}
-                        alt="nile"
+                        alt={author}
+                        style={{ objectFit: 'cover' }}
                       />
                       <blockquote className="feedback__quote__text mt-8 mb-4 text-center">
                         <p className="mb-8 font-hairline">{body}</p>
@@ -70,7 +71,13 @@ const Testimonials = ({data:{testimonialsData,testimonials}}) => {
                           {author}
                         </h4>
                         <p className="leading-normal text-c600 text-base">
-                          <a href={linkUrl}>{linkText}</a>
+                          <a
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            href={linkUrl}
+                          >
+                            {linkText}
+                          </a>
                         </p>
                       </blockquote>
                     </figure>

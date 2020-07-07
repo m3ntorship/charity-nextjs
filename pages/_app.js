@@ -39,9 +39,9 @@ MyApp.getInitialProps = async ({
     query: { lng }
   }
 }) => {
-  if (lng !== 'ar' && lng !== 'en') {
-    return ctx.res.writeHeader(303, { Location: '/ar' }).end();
-  }
+  // if (lng !== 'ar' && lng !== 'en') {
+  //   return ctx.res.writeHeader(303, { Location: '/ar' }).end();
+  // }
   const { default: lngDict = {} } = await import(`../locales/${lng}.json`);
 
   const getCharityAPI = charityAPI(lng);
