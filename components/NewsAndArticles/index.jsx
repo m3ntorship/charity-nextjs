@@ -28,6 +28,7 @@ const ArticlesList = ({ articles, animationDelay }) => {
 };
 
 const News = ({ data }) => {
+  console.log(data);
   // //Meida query
   const isMobile = useMedia(['(min-width: 768px)'], [false], true);
   const [ref, inView] = useInView({
@@ -62,10 +63,11 @@ const News = ({ data }) => {
   });
 
   const {
+    description,
     heading: { heading_primary, heading_secondary },
-    link: { text, url },
-    home_articles
-  } = data;
+    link: { text, url }
+  } = data.newsData;
+  console.log(text);
   return (
     <section className="news font-body bg-c800 mb-20 md:mb-64 pt-18 pb-1 md:pb-48 relative">
       <div className="container">
@@ -88,7 +90,7 @@ const News = ({ data }) => {
             style={slideP}
             className="mb-8  news_description text-c600  md:col-span-4 text-base leading-loose"
           >
-            {data.description}
+            {description}
           </animated.p>
           <animated.div style={slideBtn} className="btn-div md:col-span-3">
             <LinkNoPrefetch href={url}>
@@ -101,7 +103,7 @@ const News = ({ data }) => {
       </div>
       <div className="container relative">
         <div className="articles grid grid-cols-1 mt-12 md:mt-auto md:grid-cols-3 gap-8 md:gap-4 md:absolute w-full sm:grid-cols-2 ">
-          <ArticlesList articles={home_articles} animationDelay={true} />
+          <ArticlesList articles={data.homeArticles} animationDelay={true} />
         </div>
       </div>
     </section>
