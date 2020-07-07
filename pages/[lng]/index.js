@@ -71,56 +71,55 @@ const Home = ({
   );
 };
 export async function getServerSideProps({ params: { lng } }) {
-  if (lng !== 'ar' || lng !== 'en') {
-    lng = 'en';
-    const { default: lngDict = {} } = await import(`../../locales/${lng}.json`);
+  if (lng !== 'ar' && lng !== 'en') return { props: {} };
 
-    const getCharityAPI = charityAPI(lng);
-    return Promise.all([
-      getCharityAPI('/main-carousels'),
-      getCharityAPI('/welcome-section'),
-      getCharityAPI('/what-we-do'),
-      getCharityAPI('/featured-banner'),
-      getCharityAPI('/popular-causes'),
-      getCharityAPI('/speaking-numbers'),
-      getCharityAPI('/upcoming-events'),
-      getCharityAPI('/what-they-say'),
-      getCharityAPI('/how-we-work'),
-      getCharityAPI('/news-and-articles'),
-      getCharityAPI('/Sponsers')
-    ]).then(
-      ([
-        { data: headerCarouselData },
-        { data: welcomeData },
-        { data: activitiesData },
-        { data: featuredBannerData },
-        { data: causesData },
-        { data: numbersData },
-        { data: upcomingEventsData },
-        { data: testimonialsData },
-        { data: workStyleData },
-        { data: newsData },
-        { data: sponsersData }
-      ]) => {
-        return {
-          props: {
-            headerCarouselData,
-            welcomeData,
-            activitiesData,
-            featuredBannerData,
-            causesData,
-            numbersData,
-            upcomingEventsData,
-            testimonialsData,
-            workStyleData,
-            newsData,
-            sponsersData,
-            lngDict,
-            lng
-          }
-        };
-      }
-    );
-  }
+  const { default: lngDict = {} } = await import(`../../locales/${lng}.json`);
+
+  const getCharityAPI = charityAPI(lng);
+  return Promise.all([
+    getCharityAPI('/main-carousels'),
+    getCharityAPI('/welcome-section'),
+    getCharityAPI('/what-we-do'),
+    getCharityAPI('/featured-banner'),
+    getCharityAPI('/popular-causes'),
+    getCharityAPI('/speaking-numbers'),
+    getCharityAPI('/upcoming-events'),
+    getCharityAPI('/what-they-say'),
+    getCharityAPI('/how-we-work'),
+    getCharityAPI('/news-and-articles'),
+    getCharityAPI('/Sponsers')
+  ]).then(
+    ([
+      { data: headerCarouselData },
+      { data: welcomeData },
+      { data: activitiesData },
+      { data: featuredBannerData },
+      { data: causesData },
+      { data: numbersData },
+      { data: upcomingEventsData },
+      { data: testimonialsData },
+      { data: workStyleData },
+      { data: newsData },
+      { data: sponsersData }
+    ]) => {
+      return {
+        props: {
+          headerCarouselData,
+          welcomeData,
+          activitiesData,
+          featuredBannerData,
+          causesData,
+          numbersData,
+          upcomingEventsData,
+          testimonialsData,
+          workStyleData,
+          newsData,
+          sponsersData,
+          lngDict,
+          lng
+        }
+      };
+    }
+  );
 }
 export default Home;
