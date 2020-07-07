@@ -1,20 +1,13 @@
 import { ArticlesList } from '../../../components/NewsAndArticles';
 import { Banner } from '../../../components/MainBanner';
 import { SecondaryBanner } from '../../../components/SecondaryBanner';
-import Layout from '../../../components/Layout';
 import { charityAPI } from '../../../clients';
 
 const Articles = ({
-  footerData,
-  contactsData,
-  logoData,
-  socialMediasData,
   articlesPageData,
   articlesData,
-  pagesData,
-  lng,
-  lngDict,
-  settings
+
+  lngDict
 }) => {
   return (
     <>
@@ -46,7 +39,7 @@ export async function getServerSideProps({ params: { lng } }) {
       props: {
         articlesPageData,
         articlesData,
-        pagesData,
+
         lng,
         lngDict
       }

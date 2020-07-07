@@ -1,20 +1,14 @@
-import Layout from '../../../components/Layout';
 import { charityAPI } from '../../../clients';
 import { PersonCardsSection } from '../../../components/PersonCardsSection';
 import { SecondaryBanner } from '../../../components/SecondaryBanner';
 import { Banner } from '../../../components/MainBanner';
 
 const Volunteers = ({
-  footerData,
-  contactsData,
-  logoData,
-  socialMediasData,
-  pagesData,
   volunteersPageData,
   volunteersData,
   lng,
   lngDict,
-  settings
+  
 }) => {
   return (
  <>
