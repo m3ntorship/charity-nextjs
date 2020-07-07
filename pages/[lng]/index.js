@@ -31,7 +31,8 @@ const Home = ({
   newsData,
   sponsersData,
   lng,
-  lngDict
+  lngDict,
+  homeArticles
 }) => {
   let featuredCauseData = data => {
     if (data) {
@@ -65,7 +66,7 @@ const Home = ({
       />
       <Testimonials data={testimonialsData} />
       <WorkStyle data={workStyleData} />
-      <News data={newsData} />
+      <News data={{ newsData, homeArticles }} />
       <Sponsers data={sponsersData} />
     </>
   );
@@ -87,7 +88,8 @@ export async function getServerSideProps({ params: { lng } }) {
     getCharityAPI('/what-they-say'),
     getCharityAPI('/how-we-work'),
     getCharityAPI('/news-and-articles'),
-    getCharityAPI('/Sponsers')
+    getCharityAPI('/Sponsers'),
+    getCharityAPI('/articles?_limit=3&is_in_home=true')
   ]).then(
     ([
       { data: headerCarouselData },
@@ -100,7 +102,8 @@ export async function getServerSideProps({ params: { lng } }) {
       { data: testimonialsData },
       { data: workStyleData },
       { data: newsData },
-      { data: sponsersData }
+      { data: sponsersData },
+      { data: homeArticles }
     ]) => {
       return {
         props: {
@@ -115,6 +118,7 @@ export async function getServerSideProps({ params: { lng } }) {
           workStyleData,
           newsData,
           sponsersData,
+          homeArticles,
           lngDict,
           lng
         }
