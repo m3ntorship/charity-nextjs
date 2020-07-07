@@ -1,14 +1,6 @@
-import Layout from '../../../components/Layout';
 import { charityAPI } from '../../../clients';
 import { Soon } from '../../../components/Soon';
-const About = ({
-  footerData,
-  contactsData,
-  logoData,
-  socialMediasData,
-  pagesData,
-  settings
-}) => {
+const About = ({ settings }) => {
   return <Soon data={settings} />;
 };
 
