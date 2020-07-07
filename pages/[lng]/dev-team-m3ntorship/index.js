@@ -1,4 +1,3 @@
-import Layout from '../../../components/Layout';
 import { charityAPI } from '../../../clients';
 import { PersonCardsSection } from '../../../components/PersonCardsSection';
 import { SecondaryBanner } from '../../../components/SecondaryBanner';

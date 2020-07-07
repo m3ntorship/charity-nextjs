@@ -1,4 +1,3 @@
-import Layout from '../../../components/Layout';
 import { charityAPI } from '../../../clients';
 
 const Article = () => {
