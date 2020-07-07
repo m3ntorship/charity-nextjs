@@ -3,24 +3,17 @@ import { ArticlesSearch } from '../../../components/ArticlesSearch';
 import { RecentArticles } from '../../../components/RecentArticles';
 import { Banner } from '../../../components/MainBanner';
 import { SecondaryBanner } from '../../../components/SecondaryBanner';
-import Layout from '../../../components/Layout';
 import { charityAPI } from '../../../clients';
 import useI18n from '../../../hooks/use-i18n';
 import Error from '../../_error';
 const Article = ({
   statusCode,
-  footerData,
-  contactsData,
-  logoData,
-  socialMediasData,
-  pagesData,
   recentArticlesData,
   articleData,
   articlesPageData,
-  lngDict,
-  settings
+  lngDict
 }) => {
-  if (statusCode === 404) return <Error />;
+  // if (statusCode === 404) return <Error />;
 
   const i18n = useI18n();
   const findArticle = `${i18n.t('articles.findArticle')}`;
