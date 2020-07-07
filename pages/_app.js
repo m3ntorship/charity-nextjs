@@ -3,7 +3,6 @@ import '../styles/index.css';
 import { charityAPI } from '../clients';
 import Layout from '../components/Layout';
 
-import { useRouter } from 'next/router';
 function MyApp({
   Component,
   pageProps,
