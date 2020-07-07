@@ -35,7 +35,7 @@ const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
           src={imageURL}
           alt="article thumbnail"
         />
-        <div className="article-info transform -translate-y-1/2 bg-c000 text-center shadow-lg p-6">
+        <div className="article-info transform -translate-y-1/2 bg-c000 text-center shadow-lg">
           <div className="content-info">
             <span className="text-c600 mx-2">
               <i className="fas fa-user-tie mr-1 text-c500"></i>Admin
@@ -43,7 +43,7 @@ const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
             <span className="text-c600 mx-2">
               <i className="fas fa-comments mr-1 text-c500"></i>2 Comments
             </span>
-            <h4 className="text-c100 font-bold">{title}</h4>
+            <h4 className="text-c100 font-bold px-2">{title}</h4>
           </div>
           <div className="block text-c100 text-center spicial-info cursor-pointer">
             <LinkNoPrefetch href={`/${currentLocale}/articles/${id}`}>

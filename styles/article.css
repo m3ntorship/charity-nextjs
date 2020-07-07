@@ -3,7 +3,7 @@
 }
 .article .article-info {
   width: 85%;
-  min-height: 150px;
+  height: 150px;
   display: flex;
   margin: 5px auto;
   justify-content: center;

@@ -141,13 +141,13 @@ const MiniCard = ({ cardInfo }) => {
 };
 
 // card btn
-const WelcomeBtn = ({ link }) => {
+const WelcomeBtn = ({ link :{url,text} }) => {
   const i18n = useI18n();
   const currentLocale = i18n.activeLocale;
   return (
-    <LinkNoPrefetch href={`${currentLocale}/about`}>
+    <LinkNoPrefetch href={`${currentLocale}${url}`}>
       <a className=" btn btn-lg bg-c300 hover:text-c100 inline-block">
-        {link.text}
+        {text}
       </a>
     </LinkNoPrefetch>
   );
