@@ -72,8 +72,6 @@ const Home = ({
   );
 };
 export async function getServerSideProps({ params: { lng } }) {
-  if (lng !== 'ar' && lng !== 'en') return { props: {} };
-
   const { default: lngDict = {} } = await import(`../../locales/${lng}.json`);
 
   const getCharityAPI = charityAPI(lng);
