@@ -41,6 +41,7 @@ const Layout = ({
           logoData={logoData}
           contactsData={contactsData}
           pagesData={pagesData}
+          settings={settings}
         />
       </header>
       <main>{children}</main>

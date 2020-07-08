@@ -6,7 +6,12 @@ import NavigationLink from '../NavigationLink';
 import useI18n from '../../hooks/use-i18n';
 import LinkNoPrefetch from '../shared/LinkNoPrefetch';
 
-const HeaderNavigation = ({ logoData, pagesData, contactsData }) => {
+const HeaderNavigation = ({
+  logoData,
+  pagesData,
+  contactsData,
+  settings: { enable_english_site }
+}) => {
   const [isOpen, setOpen] = useState(false);
   let i18n = useI18n();
   const currentLocale = i18n.activeLocale;
@@ -24,7 +29,7 @@ const HeaderNavigation = ({ logoData, pagesData, contactsData }) => {
               </LinkNoPrefetch>
             </div>
             <div className="mobile__logo block md:hidden ">
-              <LanguageSwitcher />
+              {enable_english_site && <LanguageSwitcher />}
             </div>
             <div className="toggle-btn">
               <button
