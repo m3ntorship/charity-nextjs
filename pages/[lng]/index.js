@@ -62,7 +62,7 @@ const Home = ({
         lng={lng}
         lngDict={lngDict}
       />
-      <Testimonials data={{testimonialsData,testimonials}} />
+      <Testimonials data={{ testimonialsData, testimonials }} />
       <WorkStyle data={workStyleData} />
       <News data={{ newsData, homeArticles }} />
       <Sponsers data={sponsersData} />
@@ -70,8 +70,6 @@ const Home = ({
   );
 };
 export async function getServerSideProps({ params: { lng } }) {
-  if (lng !== 'ar' && lng !== 'en') return { props: {} };
-
   const { default: lngDict = {} } = await import(`../../locales/${lng}.json`);
 
   const getCharityAPI = charityAPI(lng);
@@ -90,7 +88,6 @@ export async function getServerSideProps({ params: { lng } }) {
     getCharityAPI('/articles?_limit=3&is_in_home=true'),
     getCharityAPI('/causes?is_home=true'),
     getCharityAPI('/testimonials?isShown=true')
-
   ]).then(
     ([
       { data: headerCarouselData },
@@ -106,7 +103,7 @@ export async function getServerSideProps({ params: { lng } }) {
       { data: sponsersData },
       { data: homeArticles },
       { data: homeCausesData },
-      {data: testimonials}
+      { data: testimonials }
     ]) => {
       return {
         props: {
