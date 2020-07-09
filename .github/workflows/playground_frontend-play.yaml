@@ -60,8 +60,8 @@ jobs:
       # build and push docker image
       - name: build the app
         run: |
-          docker build --build-arg REACT_APP_STRAPI_URL_AR=https://ghiras-cms-play-ar.m3ntorship.net --build-arg REACT_APP_STRAPI_URL=https://charity-cms-dev.m3ntorship.net -t ${{ secrets.M3_DOCKER_HOST }}/$M3_IMAGE:$M3_VERSION -f $M3_DOCKER_FILE .
-          docker push ${{ secrets.M3_DOCKER_HOST }}/$M3_IMAGE:$M3_VERSION
+          docker build --build-arg REACT_APP_STRAPI_URL_AR=https://ghiras-cms-play-ar.m3ntorship.net --build-arg REACT_APP_STRAPI_URL=https://charity-cms-dev.m3ntorship.net -t $M3_IMAGE:$M3_VERSION -f $M3_DOCKER_FILE .
+          docker push $M3_IMAGE:$M3_VERSION
     
       # deploy
       - name: deploy
