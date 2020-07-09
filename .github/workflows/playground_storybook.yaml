@@ -18,7 +18,7 @@ jobs:
       M3_IMAGE: docker.m3ntorship.net/ghiras-storybook
       M3_DOCKER_FILE: Dockerfile.playground.storybook
       M3_PORT: 3001
-      M3_REPLICAS: 1 
+      M3_REPLICAS: 1
     steps:
       - name: checkout the code 
         uses: actions/checkout@v1
