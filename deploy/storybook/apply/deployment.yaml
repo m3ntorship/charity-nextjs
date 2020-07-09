@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: '{{{APPLICATION}}}'
-  namespace: '{{{NAMESPACE}}}'
+  name: '{{{M3_APPLICATION}}}'
+  namespace: '{{{M3_NAMESPACE}}}'
   labels:
-    application: '{{{APPLICATION}}}'
+    application: '{{{M3_APPLICATION}}}'
     version: '{{{VERSION}}}'
 spec:
-  replicas: {{{ REPLICAS }}}
+  replicas: {{{ M3_REPLICAS }}}
   selector:
     matchLabels:
-      application: '{{{APPLICATION}}}'
+      application: '{{{M3_APPLICATION}}}'
   template:
     metadata:
       labels:
-        application: '{{{APPLICATION}}}'
-        version: '{{{VERSION}}}'
+        application: '{{{M3_APPLICATION}}}'
+        version: '{{{M3_VERSION}}}'
     spec:
       containers:
-        - name: '{{{APPLICATION}}}'
-          image: '{{{IMAGE}}}:{{{VERSION}}}'
+        - name: '{{{M3_APPLICATION}}}'
+          image: '{{{M3_IMAGE}}}:{{{M3_VERSION}}}'
           imagePullPolicy: IfNotPresent
           ports:
             - name: web
-              containerPort: {{{PORT}}}
+              containerPort: {{{M3_PORT}}}
               protocol: TCP

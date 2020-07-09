@@ -1,17 +1,17 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: "{{{APPLICATION}}}"
+  name: "{{{M3_APPLICATION}}}"
   labels:
-    application: "{{{APPLICATION}}}"
-    version: '{{{VERSION}}}'
-  namespace: '{{{NAMESPACE}}}'
+    application: "{{{M3_APPLICATION}}}"
+    version: '{{{M3_VERSION}}}'
+  namespace: '{{{M3_NAMESPACE}}}'
 spec:
   selector:
-    application: "{{{APPLICATION}}}"
-    version: "{{{VERSION}}}"
+    application: "{{{M3_APPLICATION}}}"
+    version: "{{{M3_VERSION}}}"
   ports:
     - protocol: TCP
       port: 80
-      targetPort: {{{PORT}}}
+      targetPort: {{{M3_PORT}}}
 ---

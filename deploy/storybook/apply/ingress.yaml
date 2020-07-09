@@ -1,10 +1,10 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  namespace: '{{{NAMESPACE}}}'
+  namespace: '{{{M3_NAMESPACE}}}'
   labels:
-    application: '{{{APPLICATION}}}'
-    version: '{{{VERSION}}}'
+    application: '{{{M3_APPLICATION}}}'
+    version: '{{{M3_VERSION}}}'
   annotations:
     kubernetes.io/ingress.class: nginx
     # type of authentication
@@ -13,13 +13,13 @@ metadata:
     # nginx.ingress.kubernetes.io/auth-secret: "{{{SECRET_NAME}}}"
     # message to display with an appropriate context why the authentication is required
     # nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required - foo'
-  name: '{{{APPLICATION}}}'
+  name: '{{{M3_APPLICATION}}}'
 spec:
   rules:
-    - host: '{{{HOST}}}'
+    - host: '{{{M3_HOST}}}'
       http:
         paths:
           - backend:
-              serviceName: '{{{APPLICATION}}}'
+              serviceName: '{{{M3_APPLICATION}}}'
               servicePort: 80
             path: /
