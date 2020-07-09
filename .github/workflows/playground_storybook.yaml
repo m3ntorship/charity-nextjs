@@ -4,17 +4,30 @@ on:
   push:
     branches:
       - master
+      - playground-deployment
       
 jobs:
   build:
-    env:
-      DEPLOYMENT_NAME: storybook
-      IMAGE_NAME: ghiras-storybook
     runs-on: ubuntu-latest
+    env:
+      # fixed deployment envs
+      M3_DEPLOYMENT_NAME: storybook
+      M3_HOST: ghiras-storybook.m3ntorship.net
+      M3_APPLICATION: ghiras-storybook
+      M3_NAMESPACE: default
+      M3_IMAGE: docker.m3ntorship.net/ghiras-storybook
+      M3_DOCKER_FILE: Dockerfile.playground.storybook
+      M3_PORT: 3001
+      M3_REPLICAS: 1 
     steps:
       - name: checkout the code 
         uses: actions/checkout@v1
       
+      # dynamic deployment envs
+      - name: set templating envs
+        run: |
+          echo ::set-env name=M3_VERSION::$(git rev-parse --short=4 ${{ github.sha }})
+
       # install kubectl 
       - name: install kubectl
         uses: azure/setup-kubectl@v1
@@ -37,9 +50,9 @@ jobs:
       # login to docker
       - uses: azure/docker-login@v1
         with:
-          login-server: ${{ secrets.M3NTORSHIP_DOCKER_HOST }} # default: index.docker.io
-          username: ${{ secrets.M3NTORSHIP_DOCKER_USERNAME }}
-          password: ${{ secrets.M3NTORSHIP_DOCKER_PASSWORD }}
+          login-server: ${{ secrets.M3_DOCKER_HOST }} # default: index.docker.io
+          username: ${{ secrets.M3_DOCKER_USERNAME }}
+          password: ${{ secrets.M3_DOCKER_PASSWORD }}
       
       # build app (story book)
       - name: install dependencies
@@ -52,18 +65,12 @@ jobs:
       # build and push docker image
       - name: build and push docker image
         run: |
-          docker build -t docker.m3ntorship.net/$IMAGE_NAME:$(git rev-parse --short "$GITHUB_SHA") -f Dockerfile.playground.$DEPLOYMENT_NAME .
-          docker push docker.m3ntorship.net/$IMAGE_NAME:$(git rev-parse --short "$GITHUB_SHA")
+          docker build -t $M3_IMAGE:$M3_VERSION -f $M3_DOCKER_FILE .
+          docker push $M3_IMAGE:$M3_VERSION
     
-      # deploy k8s yaml(s)
-      - name: add version to variables
-        run: | 
-          echo VERSION=$(git rev-parse --short "$GITHUB_SHA") >> delivery.playground.$DEPLOYMENT_NAME
-          cat delivery.playground.$DEPLOYMENT_NAME
-
       # deploy
       - name: deploy
         run: |
-          mkdir -p ./deploy/$DEPLOYMENT_NAME/resources
-          for f in ./deploy/$DEPLOYMENT_NAME/apply/*.yaml; do mo -s=delivery.playground.$DEPLOYMENT_NAME "$f" > ./deploy/$DEPLOYMENT_NAME/resources/"$(basename $f)"; done
-          kubectl apply -f ./deploy/$DEPLOYMENT_NAME/resources
+          mkdir -p ./deploy/$M3_DEPLOYMENT_NAME/resources
+          for f in ./deploy/$M3_DEPLOYMENT_NAME/apply/*.yaml; do mo "$f" > ./deploy/$M3_DEPLOYMENT_NAME/resources/"$(basename $f)"; done
+          kubectl apply -f ./deploy/$M3_DEPLOYMENT_NAME/resources
