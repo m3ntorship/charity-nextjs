@@ -6,7 +6,7 @@ metadata:
   labels:
     application: '{{{M3_APPLICATION}}}'
     version: '{{{M3_VERSION}}}'
-    project: '{{{M3_project}}}'
+    project: '{{{M3_PROJECT}}}'
 spec:
   replicas: {{{ M3_REPLICAS }}}
   selector:
@@ -17,7 +17,7 @@ spec:
       labels:
         application: '{{{M3_APPLICATION}}}'
         version: '{{{M3_VERSION}}}'
-        project: '{{{M3_project}}}'
+        project: '{{{M3_PROJECT}}}'
     spec:
       containers:
         - name: '{{{M3_APPLICATION}}}'

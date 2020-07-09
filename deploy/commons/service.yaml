@@ -5,7 +5,7 @@ metadata:
   labels:
     application: "{{{M3_APPLICATION}}}"
     version: '{{{M3_VERSION}}}'
-    project: '{{{M3_project}}}'
+    project: '{{{M3_PROJECT}}}'
   namespace: '{{{M3_NAMESPACE}}}'
 spec:
   selector:
