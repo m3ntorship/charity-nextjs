@@ -51,6 +51,10 @@ jobs:
           username: ${{ secrets.M3_DOCKER_USERNAME }}
           password: ${{ secrets.M3_DOCKER_PASSWORD }}
 
+      # install app dependencies
+      - name: install app dependencies
+        run: yarn
+
       # build and push docker image
       - name: build the app
         run: |
