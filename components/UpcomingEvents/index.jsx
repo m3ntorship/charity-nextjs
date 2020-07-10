@@ -41,7 +41,7 @@ const Event = ({ data }) => {
             &nbsp; &nbsp;
             <span>{getDate(date).time}</span>
           </div>
-          <LinkLocale href={`/events/${id}`}>
+          <LinkLocale href={`/events?id=${id}`}>
             <a className="event__title">
               <div className="event-card-wrapper__topic">
                 <p className="text-c100 font-bold">{title}</p>

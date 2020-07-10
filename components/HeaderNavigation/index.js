@@ -19,7 +19,7 @@ const HeaderNavigation = ({
         <div className="logo-links-container sm:justify-between sm:w-full">
           <div className="flex items-center px-10 justify-between relative">
             <div className="w-26">
-              <LinkLocale href="/">
+              <LinkLocale href="">
                 <a>
                   <Logo logoData={logoData} />
                 </a>

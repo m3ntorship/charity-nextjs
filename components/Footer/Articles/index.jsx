@@ -17,7 +17,7 @@ const Articles = ({ articles, title }) => {
     ({ date, id, thumbnail: { url, alternativeText }, description }) => {
       const formattedDate = getDate(date);
       return (
-        <LinkLocale key={id} href={`/articles/${id}`}>
+        <LinkLocale key={id} href={`/articles?id=${id}`}>
           <a className="flex flex-col flex-grow my-2">
             <article className="flex">
               <img
