@@ -12,7 +12,7 @@
   },
   "donationButton": {
     "text": "تبرع الآن",
-    "url": "/ar/donations"
+    "url": "/donations"
   },
   "homePage": { "text": "الصفحة الرئيسية" },
   "articles": {
