@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import LinkNoPrefetch from '../shared/LinkNoPrefetch';
+import LinkLocale from '../shared/LinkLocale';
 import useMedia from '../../Helpers/useMedia';
 import Heading from '../Heading';
 import {
@@ -135,11 +135,11 @@ export const Cause = ({
                 <animated.span>{progressNumber}</animated.span>%
               </animated.div>
             </div>
-            <LinkNoPrefetch href={`/${lng}${btnUrl}`}>
+            <LinkLocale href={btnUrl}>
               <button className="causes__btn font-bold bg-c800 text-c600 hover:bg-c300 hover:text-c100 transition duration-200 ease-out">
                 {btnText}
               </button>
-            </LinkNoPrefetch>
+            </LinkLocale>
           </div>
         </div>
       </div>

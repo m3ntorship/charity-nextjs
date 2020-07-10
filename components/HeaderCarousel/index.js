@@ -1,8 +1,7 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
-import LinkNoPrefetch from '../shared/LinkNoPrefetch';
-import useI18n from '../../hooks/use-i18n';
+import LinkLocale from '../shared/LinkLocale';
 import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
 import Heading from '../Heading';
@@ -14,8 +13,6 @@ import {
   ButtonNext
 } from 'pure-react-carousel';
 const HeaderCarousel = ({ data }) => {
-  const i18n = useI18n();
-  const currentLocale = i18n.activeLocale;
   const [ref, inView] = useInView({
     threshold: 0.3,
     triggerOnce: true
@@ -29,12 +26,12 @@ const HeaderCarousel = ({ data }) => {
   });
   const fadeLeft = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0)' : `translateX(${headerCarouseDesc}%)`,
+    transform: inView ? 'translateX(0)' : `translateX(${headerCarouseDesc}%)`
   });
   const fadeRight = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateX(0)' :`translateX(${headerCarouselBtn}%)`
-  })
+    transform: inView ? 'translateX(0)' : `translateX(${headerCarouselBtn}%)`
+  });
   let numberOfSlides = data.length;
   let enableSliding = numberOfSlides > 1;
   let enableButtons = numberOfSlides > 1;
@@ -85,11 +82,11 @@ const HeaderCarousel = ({ data }) => {
                       />
                     </animated.div>
                     <animated.div style={fadeRight}>
-                      <LinkNoPrefetch href={`${currentLocale}${url}`}>
+                      <LinkLocale href={url}>
                         <a className="mainHeader_fix_mb btn btn-md bg-c200 text-c000 inline-block">
                           {text}
                         </a>
-                      </LinkNoPrefetch>
+                      </LinkLocale>
                     </animated.div>
                   </div>
                 </div>

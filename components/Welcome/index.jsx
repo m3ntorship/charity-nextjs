@@ -1,9 +1,8 @@
 import React from 'react';
-import LinkNoPrefetch from '../shared/LinkNoPrefetch';
+import LinkLocale from '../shared/LinkLocale';
 import { Fragment } from 'react';
 import { animated, useSpring } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
-import useI18n from '../../hooks/use-i18n';
 import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 import useMedia from '../../Helpers/useMedia';
 
@@ -141,14 +140,10 @@ const MiniCard = ({ cardInfo }) => {
 };
 
 // card btn
-const WelcomeBtn = ({ link :{url,text} }) => {
-  const i18n = useI18n();
-  const currentLocale = i18n.activeLocale;
+const WelcomeBtn = ({ link: { url, text } }) => {
   return (
-    <LinkNoPrefetch href={`${currentLocale}${url}`}>
-      <a className=" btn btn-lg bg-c300 hover:text-c100 inline-block">
-        {text}
-      </a>
-    </LinkNoPrefetch>
+    <LinkLocale href={url}>
+      <a className=" btn btn-lg bg-c300 hover:text-c100 inline-block">{text}</a>
+    </LinkLocale>
   );
 };

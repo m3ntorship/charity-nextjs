@@ -4,7 +4,7 @@ import useMedia from '../../Helpers/useMedia';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
 import Article from '../Article';
-import LinkNoPrefetch from '../shared/LinkNoPrefetch';
+import LinkLocale from '../shared/LinkLocale';
 import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
 const ArticlesList = ({ articles, animationDelay }) => {
@@ -27,7 +27,7 @@ const ArticlesList = ({ articles, animationDelay }) => {
   );
 };
 
-const News = ({ data:{newsData, homeArticles} }) => {
+const News = ({ data: { newsData, homeArticles } }) => {
   // //Meida query
   const isMobile = useMedia(['(min-width: 768px)'], [false], true);
   const [ref, inView] = useInView({
@@ -91,11 +91,11 @@ const News = ({ data:{newsData, homeArticles} }) => {
             {description}
           </animated.p>
           <animated.div style={slideBtn} className="btn-div md:col-span-3">
-            <LinkNoPrefetch href={url}>
+            <LinkLocale href={url}>
               <a className="btn btn-sm text-sm bg-c300 my-8 md:float-right md:mt-3 cursor-pointer hover:text-c100">
                 {text}
               </a>
-            </LinkNoPrefetch>
+            </LinkLocale>
           </animated.div>
         </div>
       </div>

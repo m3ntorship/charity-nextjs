@@ -1,9 +1,8 @@
 import useMedia from '../../Helpers/useMedia';
 import React from 'react';
-import useI18n from '../../hooks/use-i18n';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
-import LinkNoPrefetch from '../shared/LinkNoPrefetch';
+import LinkLocale from '../shared/LinkLocale';
 
 const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
   const [cardRef, cardInView] = useInView({
@@ -24,9 +23,6 @@ const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
     delay: animationDelay ? (isMobile ? 0 : 600 + 200 * index) : 0
   });
 
-  const i18n = useI18n();
-  const currentLocale = i18n.activeLocale;
-
   return (
     <animated.div className="article relative" style={slideCard}>
       <div ref={cardRef}>
@@ -46,12 +42,12 @@ const Article = ({ title, linkText, imageURL, id, index, animationDelay }) => {
             <h4 className="text-c100 font-bold px-2">{title}</h4>
           </div>
           <div className="block text-c100 text-center spicial-info cursor-pointer">
-            <LinkNoPrefetch href={`/${currentLocale}/articles/${id}`}>
+            <LinkLocale href={`/articles/${id}`}>
               <a className="w-full h-full flex justify-center items-center">
                 <i className="fas fa-long-arrow-alt-right"></i>
                 {linkText}
               </a>
-            </LinkNoPrefetch>
+            </LinkLocale>
           </div>
         </div>
       </div>
