@@ -55,6 +55,7 @@ jobs:
       - name: build the app
         run: |
           echo $M3_VERSION
+          yarn build-storybook
           docker build -t $M3_IMAGE:$M3_VERSION -f $M3_DOCKER_FILE .
           docker push $M3_IMAGE:$M3_VERSION
 
