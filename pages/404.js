@@ -1,5 +1,5 @@
-import { Soon } from './../../components/Soon/index';
-import useI18n from './../../hooks/use-i18n';
+import { Soon } from '../components/Soon/index';
+import useI18n from '../hooks/use-i18n';
 
 export default () => {
   const i18n = useI18n();
