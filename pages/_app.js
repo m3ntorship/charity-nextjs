@@ -3,6 +3,7 @@ import '../styles/index.css';
 import { charityAPI } from '../clients';
 import Layout from '../components/Layout';
 import Router from 'next/router';
+import redirect from '../Helpers/redirect';
 function MyApp({
   Component,
   pageProps,
@@ -39,17 +40,14 @@ MyApp.getInitialProps = async ({
     query: { lng }
   }
 }) => {
-  console.log(ctx);
-  console.log('top', lng);
   let location;
   if (lng && lng !== 'ar' && lng !== 'en') {
-    return ctx.res.writeHead(301, { Location: '/ar' }).end();
+    location = '/ar';
+    return redirect({ Router, ctx, location });
   }
   if (!lng && ctx.pathname === '/_error') {
-    console.log('insied errror', ctx.pathname);
-    location = `/ar/404`;
-    ctx.res.writeHead(301, { Location: location }).end();
-    return {};
+    location = '/ar/404';
+    return redirect({ Router, ctx, location });
   }
   // } else if (ctx.pathname.includes('/[lng]')) {
   //   location = ctx.pathname.replace('/[lng]', '/ar');
@@ -74,9 +72,10 @@ MyApp.getInitialProps = async ({
   //       : ctx.res.writeHead(301, { Location: location }).end();
   //   }
   // }
-  console.log('outside', lng);
-
-  const { default: lngDict = {} } = await import(`../locales/${lng}.json`);
+  let lngDict = {};
+  if (lng) {
+    lngDict = await import(`../locales/${lng}.json`);
+  }
 
   const getCharityAPI = charityAPI(lng);
   return Promise.all([
