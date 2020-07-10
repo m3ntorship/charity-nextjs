@@ -49,29 +49,6 @@ MyApp.getInitialProps = async ({
     location = '/ar/404';
     return redirect({ Router, ctx, location });
   }
-  // } else if (ctx.pathname.includes('/[lng]')) {
-  //   location = ctx.pathname.replace('/[lng]', '/ar');
-  //   return ctx.res.writeHead(301, { Location: location }).end();
-  // }
-  // } else {
-  //   location = ctx.pathname.replace('/[lng]', '/ar');
-  //   return ctx.res.writeHead(301, { Location: location }).end();
-  //   //     console.log('insied else', location, ctx.pathname);
-  // }
-
-  // {
-  //   console.log('gggggg', lng);
-  //   if (ctx.pathname === '/_error') {
-  //     console.log('insied errror', ctx.pathname);
-  //     location = '/ar/404';
-  //   } else {
-  //     location = ctx.pathname.replace('/[lng]', '/ar');
-  //     console.log('insied else', location, ctx.pathname);
-  //     return typeof window !== 'undefined'
-  //       ? Router.push(location)
-  //       : ctx.res.writeHead(301, { Location: location }).end();
-  //   }
-  // }
   let lngDict = {};
   if (lng) {
     lngDict = await import(`../locales/${lng}.json`);
