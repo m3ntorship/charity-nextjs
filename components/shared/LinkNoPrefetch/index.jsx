@@ -2,11 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 
 const LinkNoPrefetch = ({ children, ...props }) => {
-  return (
-    <Link prefetch={false} {...props}>
-      {children}
-    </Link>
-  );
+  return <Link {...props}>{children}</Link>;
 };
 
 export default LinkNoPrefetch;
