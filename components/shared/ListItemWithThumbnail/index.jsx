@@ -19,7 +19,7 @@ export const ListItemWithThumbnail = ({ data }) => {
   } = data;
 
   return (
-    <LinkLocale href={`/articles?id=${id}`}>
+    <LinkLocale href={`/articles/[id]`} as={`/articles/${id}`}>
       <animated.a
         className="listItem cursor-pointer flex flex-col"
         style={hovered}
