@@ -1,4 +1,4 @@
-name: deploy frontend to playground cluster
+name: deploy frontend storybook to playground cluster
 
 on:
   push:
@@ -55,7 +55,7 @@ jobs:
       - name: build the app
         run: |
           echo $M3_VERSION
-          docker build --build-arg -t $M3_IMAGE:$M3_VERSION -f $M3_DOCKER_FILE .
+          docker build -t $M3_IMAGE:$M3_VERSION -f $M3_DOCKER_FILE .
           docker push $M3_IMAGE:$M3_VERSION
 
       # deploy
