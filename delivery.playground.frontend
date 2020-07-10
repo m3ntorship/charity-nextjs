@@ -1,5 +1,0 @@
-APPLICATION=ghiras-frontend
-NAMESPACE=default
-IMAGE=docker.m3ntorship.net/ghiras-frontend
-PORT=3000
-REPLICAS=3
