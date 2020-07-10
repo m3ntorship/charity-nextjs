@@ -8,7 +8,7 @@ const NavigationLink = ({ url, title, secondaryClassName, linkClassName }) => {
   const currentLocale = i18n.activeLocale;
   return (
     <li className={cn('text-center', secondaryClassName)}>
-      <LinkNoPrefetch href={`/${currentLocale}${url}`}>
+      <LinkNoPrefetch href={`/[lng]${url}`} as={`/${currentLocale}${url}`}>
         <a className={cn('', linkClassName)}>{title}</a>
       </LinkNoPrefetch>
     </li>
