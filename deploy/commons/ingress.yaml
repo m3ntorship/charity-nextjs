@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: '{{{M3_NAMESPACE}}}'
+  labels:
+    application: '{{{M3_APPLICATION}}}'
+    version: '{{{M3_VERSION}}}'
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: '{{{M3_APPLICATION}}}'
+spec:
+  rules:
+    - host: '{{{M3_HOST}}}'
+      http:
+        paths:
+          - backend:
+              serviceName: '{{{M3_APPLICATION}}}'
+              servicePort: 80
+            path: /

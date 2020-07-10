@@ -1,0 +1,80 @@
+name: deploy frontend storybook to playground cluster
+
+on:
+  push:
+    branches:
+      - master
+      - playground-deployment
+env:
+  # fixed deployment envs
+  M3_IMAGE: ${{ secrets.M3_DOCKER_HOST }}/ghiras-frontend-storybook
+  M3_DOCKER_FILE: Dockerfile.playground.storybook
+
+jobs:
+  deploy_storybook:
+    runs-on: ubuntu-latest
+    env:
+      M3_DEPLOYMENT_PATH: deploy/frontend-storybook
+    steps:
+      # checkout the code commit
+      - name: checkout the code
+        uses: actions/checkout@v1
+
+      # dynamic deployment envs
+      - name: set templating envs
+        run: |
+          echo ::set-env name=M3_VERSION::$(git rev-parse --short=4 ${{ github.sha }})
+
+      # install kubectl
+      - name: install kubectl
+        uses: azure/setup-kubectl@v1
+
+      # configure kubectl
+      - name: Kubectl configuration
+        shell: bash
+        run: |
+          mkdir -p ~/.kube
+          echo ${{ secrets.KUBE_CONFIG }} | base64 -d -i > ~/.kube/config
+
+      # install moustache
+      - name: install moustache
+        run: |
+          curl -sSL https://git.io/get-mo -o mo
+          chmod +x mo
+          sudo mv mo /usr/local/bin/
+          echo "works" | mo
+
+      # login to docker
+      - uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.M3_DOCKER_HOST }} # default: index.docker.io
+          username: ${{ secrets.M3_DOCKER_USERNAME }}
+          password: ${{ secrets.M3_DOCKER_PASSWORD }}
+
+      # install app dependencies
+      - name: install app dependencies
+        run: yarn
+
+      # build and push docker image
+      - name: build the app
+        run: |
+          echo $M3_VERSION
+          yarn build-storybook
+          docker build -t $M3_IMAGE:$M3_VERSION -f $M3_DOCKER_FILE .
+          docker push $M3_IMAGE:$M3_VERSION
+
+      # deploy
+      - name: deploy
+        env:
+          TEMP_DIR: temp
+          M3_NAMESPACE: default
+          M3_APPLICATION: ghiras-fe-storybook
+          M3_HOST: ghiras-storybook.m3ntorship.net
+          M3_PROJECT: ghiras
+          M3_REPLICAS: '1'
+          M3_PORT: '3001'
+        run: |
+          mkdir -p $TEMP_DIR
+          for f in $M3_DEPLOYMENT_PATH/apply/*; do mo -u "$f" > $TEMP_DIR/"$(basename $f)"; done
+          kubectl apply -f $TEMP_DIR
+  
