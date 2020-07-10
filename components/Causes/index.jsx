@@ -147,7 +147,7 @@ export const Cause = ({
   );
 };
 
-const Causes = ({ data, lngDict, lng }) => {
+const Causes = ({ data, homeCausesData, lngDict, lng }) => {
   const [ref, inView] = useInView({
     threshold: 0.3,
     triggerOnce: true
@@ -159,7 +159,6 @@ const Causes = ({ data, lngDict, lng }) => {
   });
 
   let {
-    causes,
     causes_heading: { heading_primary, heading_secondary }
   } = data;
   return (
@@ -178,7 +177,7 @@ const Causes = ({ data, lngDict, lng }) => {
         <CarouselProvider
           naturalSlideWidth={50}
           naturalSlideHeight={100}
-          totalSlides={causes.length}
+          totalSlides={homeCausesData.length}
           isIntrinsicHeight="true"
           isPlaying="true"
           interval="5000"
@@ -189,7 +188,7 @@ const Causes = ({ data, lngDict, lng }) => {
             className="causes__carousel__slider col-start-2 col-end-3"
             style={{ transform: `scaleX(1)` }}
           >
-            {causes.map((cause, index) => {
+            {homeCausesData.map((cause, index) => {
               const {
                 title,
                 description,
@@ -250,7 +249,7 @@ const Causes = ({ data, lngDict, lng }) => {
           </div>
         </CarouselProvider>
         <div className="causes__wrapper  grid-cols-3 gap-8 hidden text-left lg:grid">
-          {causes.map((cause, index) => {
+          {homeCausesData.map((cause, index) => {
             const {
               title,
               description,

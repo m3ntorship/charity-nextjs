@@ -5,7 +5,12 @@ import Logo from '../Logo';
 import NavigationLink from '../NavigationLink';
 import LinkLocale from '../shared/LinkLocale';
 
-const HeaderNavigation = ({ logoData, pagesData, contactsData }) => {
+const HeaderNavigation = ({
+  logoData,
+  pagesData,
+  contactsData,
+  settings: { enable_english_site }
+}) => {
   const [isOpen, setOpen] = useState(false);
 
   return (
@@ -21,7 +26,7 @@ const HeaderNavigation = ({ logoData, pagesData, contactsData }) => {
               </LinkLocale>
             </div>
             <div className="mobile__logo block md:hidden ">
-              <LanguageSwitcher />
+              {enable_english_site && <LanguageSwitcher />}
             </div>
             <div className="toggle-btn">
               <button
