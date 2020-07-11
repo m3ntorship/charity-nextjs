@@ -1,26 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: '{{{M3_APPLICATION}}}'
+  name: '{{{M3_PROJECT}}}-{{{M3_COMPONENET}}}-{{{M3_ENVIRONMENT}}}'
   namespace: '{{{M3_NAMESPACE}}}'
   labels:
-    application: '{{{M3_APPLICATION}}}'
-    version: '{{{M3_VERSION}}}'
     project: '{{{M3_PROJECT}}}'
+    environment: '{{{M3_ENVIRONMENT}}}'
+    componenet: '{{{M3_COMPONENET}}}'
+    application: '{{{M3_PROJECT}}}-{{{M3_COMPONENET}}}-{{{M3_ENVIRONMENT}}}'
+    version: '{{{M3_VERSION}}}'
 spec:
-  replicas: {{{ M3_REPLICAS }}}
+  replicas: {{{M3_REPLICAS}}}
   selector:
     matchLabels:
-      application: '{{{M3_APPLICATION}}}'
+      application: '{{{M3_PROJECT}}}-{{{M3_COMPONENET}}}-{{{M3_ENVIRONMENT}}}'
   template:
     metadata:
       labels:
-        application: '{{{M3_APPLICATION}}}'
-        version: '{{{M3_VERSION}}}'
         project: '{{{M3_PROJECT}}}'
+        environment: '{{{M3_ENVIRONMENT}}}'
+        componenet: '{{{M3_COMPONENET}}}'
+        application: '{{{M3_PROJECT}}}-{{{M3_COMPONENET}}}-{{{M3_ENVIRONMENT}}}'
     spec:
       containers:
-        - name: '{{{M3_APPLICATION}}}'
+        - name: '{{{M3_PROJECT}}}-{{{M3_COMPONENET}}}-{{{M3_ENVIRONMENT}}}'
           image: '{{{M3_IMAGE}}}:{{{M3_VERSION}}}'
           imagePullPolicy: IfNotPresent
           ports:
