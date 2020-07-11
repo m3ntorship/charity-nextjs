@@ -45,14 +45,35 @@ MyApp.getInitialProps = async ({
   const { default: lngDict = {} } = await import(`../locales/${lng}.json`);
 
   const getCharityAPI = charityAPI(lng);
-  return Promise.all([
+  const layoutEndPointsArr = [
     getCharityAPI('/main-contacts'),
     getCharityAPI('/logo'),
     getCharityAPI('/socialmedias'),
     getCharityAPI('/pages'),
     getCharityAPI('/footer'),
     getCharityAPI('/site-settings')
-  ]).then(
+  ];
+  return Promise.all(
+    layoutEndPointsArr.map(endPoint => {
+      return endPoint
+        .then(res => {
+          if (Object.keys(res.data).length) {
+            return res;
+          } else {
+            return {
+              data: {
+                statusCode: 404
+              }
+            };
+          }
+        })
+        .catch(err => ({
+          data: {
+            statusCode: 404
+          }
+        }));
+    })
+  ).then(
     ([
       { data: contactsData },
       { data: logoData },
