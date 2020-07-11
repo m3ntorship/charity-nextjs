@@ -2,13 +2,9 @@ import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
 import Heading from '../Heading';
-import Link from 'next/link';
-import useI18n from '../../hooks/use-i18n';
-import LinkNoPrefetch from '../shared/LinkNoPrefetch';
+import LinkLocale from '../shared/LinkLocale';
 
 const FeaturedBanner = ({ data }) => {
-  const i18n = useI18n();
-  const currentLocale = i18n.activeLocale;
   const [ref, inView] = useInView({
     threshold: 0.3,
     triggerOnce: true
@@ -48,11 +44,11 @@ const FeaturedBanner = ({ data }) => {
               align="center"
               primaryClassName="donation-banner-desc"
             />
-            <LinkNoPrefetch href={`${currentLocale}${button_url}`}>
+            <LinkLocale href={button_url}>
               <a className="donation-banner__btn btn btn-lg bg-c300">
                 {button_text}
               </a>
-            </LinkNoPrefetch>
+            </LinkLocale>
           </div>
         </animated.div>
       </div>

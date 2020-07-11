@@ -57,7 +57,7 @@ const Banner = ({ data, lngDict }) => {
           <ul className=" nav__ul__items inline-flex justify-around relative px-10 bg-c200 text-c000 items-center">
             <NavigationLink
               title={home}
-              url="/"
+              url=""
               key="1"
               linkClassName="p-7 block font-bold"
             />

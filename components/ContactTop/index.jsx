@@ -1,9 +1,9 @@
-import LinkNoPrefetch from '../shared/LinkNoPrefetch';
+import LinkLocale from '../shared/LinkLocale';
 import { useSpring, animated } from 'react-spring';
 import useI18n from '../../hooks/use-i18n';
 import LanguageSwitcher from '../LanguageSwitcher';
 
-const ContactTop = ({ data, settings :{enable_english_site}}) => {
+const ContactTop = ({ data, settings: { enable_english_site } }) => {
   const i18n = useI18n();
   const followUs = `${i18n.t('followus.follow')}`;
   const welcome = `${i18n.t('welcome.message')}`;
@@ -47,11 +47,11 @@ const ContactTop = ({ data, settings :{enable_english_site}}) => {
               </div>
             </div>
           </div>
-          <LinkNoPrefetch href={donationBtnUrl}>
+          <LinkLocale href={donationBtnUrl}>
             <button className="btn w-2/12 h-full text-c100 text-sm font-bold bg-c300">
               {donationBtnText}
             </button>
-          </LinkNoPrefetch>
+          </LinkLocale>
         </section>
       </animated.div>
     );

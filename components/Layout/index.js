@@ -1,9 +1,7 @@
 import { Footer } from '../Footer';
 import Head from 'next/head';
 import HeaderNavigation from '../HeaderNavigation';
-import useI18n from '../../hooks/use-i18n';
 import { ContactTop } from '../ContactTop';
-import { ButtonBack } from 'pure-react-carousel';
 import { ContactInfo } from '../ContactInfo';
 
 const Layout = ({
@@ -15,8 +13,6 @@ const Layout = ({
   pagesData,
   settings
 }) => {
-  const i18n = useI18n();
-  const currentLocale = i18n.activeLocale;
   return (
     <>
       <Head>

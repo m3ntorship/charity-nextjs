@@ -3,8 +3,7 @@ import LanguageSwitcher from '../LanguageSwitcher';
 import cn from 'classnames';
 import Logo from '../Logo';
 import NavigationLink from '../NavigationLink';
-import useI18n from '../../hooks/use-i18n';
-import LinkNoPrefetch from '../shared/LinkNoPrefetch';
+import LinkLocale from '../shared/LinkLocale';
 
 const HeaderNavigation = ({
   logoData,
@@ -13,8 +12,6 @@ const HeaderNavigation = ({
   settings: { enable_english_site }
 }) => {
   const [isOpen, setOpen] = useState(false);
-  let i18n = useI18n();
-  const currentLocale = i18n.activeLocale;
 
   return (
     <section className="header-nav py-5 px-0">
@@ -22,11 +19,11 @@ const HeaderNavigation = ({
         <div className="logo-links-container sm:justify-between sm:w-full">
           <div className="flex items-center px-10 justify-between relative">
             <div className="w-26">
-              <LinkNoPrefetch href={`/${currentLocale}`}>
+              <LinkLocale href="">
                 <a>
                   <Logo logoData={logoData} />
                 </a>
-              </LinkNoPrefetch>
+              </LinkLocale>
             </div>
             <div className="mobile__logo block md:hidden ">
               {enable_english_site && <LanguageSwitcher />}
