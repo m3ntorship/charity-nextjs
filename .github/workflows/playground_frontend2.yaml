@@ -62,7 +62,6 @@ jobs:
       # deploy
       - name: deploy
         env:
-
           M3_DEPLOYMENT_PATH: deploy/frontend-staging
           TEMP_DIR: temp
           M3_NAMESPACE: default
@@ -131,7 +130,6 @@ jobs:
       # deploy
       - name: deploy
         env:
-
           M3_DEPLOYMENT_PATH: deploy/frontend-live
           TEMP_DIR: temp
           M3_NAMESPACE: default
