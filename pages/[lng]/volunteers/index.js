@@ -10,10 +10,14 @@ const Volunteers = ({ volunteersPageData, volunteersData, lng, lngDict }) => {
         <Banner data={volunteersPageData[0]} lngDict={lngDict} />
       )}
 
-      {/* <div className="container">
-        <PersonCardsSection data={volunteersData} lng={lng} />
-      </div> */}
-      {/* <SecondaryBanner data={volunteersPageData} /> */}
+      <div className="container">
+        {!volunteersData.statusCode && (
+          <PersonCardsSection data={volunteersData} lng={lng} />
+        )}
+      </div>
+      {!volunteersPageData.statusCode && (
+        <SecondaryBanner data={volunteersPageData[0]} />
+      )}
     </>
   );
 };
