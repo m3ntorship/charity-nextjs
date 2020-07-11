@@ -13,7 +13,7 @@ const Article = ({
   articlesPageData,
   lngDict
 }) => {
-  // if (statusCode === 404) return <Error />;
+  if (statusCode === 404) return <Error />;
 
   const i18n = useI18n();
   const findArticle = `${i18n.t('articles.findArticle')}`;

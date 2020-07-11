@@ -5,7 +5,7 @@ import { FeaturedCause } from '../FeaturedCause';
 import { parseISO, format } from 'date-fns';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
-import LinkNoPrefetch from '../shared/LinkNoPrefetch';
+import LinkLocale from '../shared/LinkLocale';
 import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
 // Function to get add dates needed
@@ -21,8 +21,6 @@ function getDate(myDate) {
 }
 
 const Event = ({ data }) => {
-  const i18n = useI18n();
-  const currentLocale = i18n.activeLocale;
   if (data) {
     const {
       id,
@@ -43,13 +41,13 @@ const Event = ({ data }) => {
             &nbsp; &nbsp;
             <span>{getDate(date).time}</span>
           </div>
-          <LinkNoPrefetch href={`${currentLocale}/events/${id}`}>
+          <LinkLocale href={`/events/[id]`} as={`/events/${id}`}>
             <a className="event__title">
               <div className="event-card-wrapper__topic">
                 <p className="text-c100 font-bold">{title}</p>
               </div>
             </a>
-          </LinkNoPrefetch>
+          </LinkLocale>
 
           <div className="event-card-wrapper__location">
             <p className="text-c600 text-base flex items-center leading-none">

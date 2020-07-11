@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import LinkNoPrefetch from '../shared/LinkNoPrefetch';
+import LinkLocale from '../shared/LinkLocale';
 import { animated, useSpring, useChain } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
 import useMedia from '../../Helpers/useMedia';
@@ -119,11 +119,11 @@ const FeaturedCause = ({ data: { featuredCause }, lng, lngDict }) => {
                 </span>
               </p>
             </div>
-            <LinkNoPrefetch href={`/${lng}${linkUrl}`}>
+            <LinkLocale href={linkUrl}>
               <button className="btn btn-card bg-c300 px-24 self-center mt-5">
                 {linkText}
               </button>
-            </LinkNoPrefetch>
+            </LinkLocale>
           </div>
         </div>
       </animated.div>

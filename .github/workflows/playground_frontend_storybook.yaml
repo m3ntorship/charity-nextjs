@@ -66,11 +66,12 @@ jobs:
       # deploy
       - name: deploy
         env:
+          M3_DEPLOYMENT_PATH: deploy/frontend-staging
           TEMP_DIR: temp
           M3_NAMESPACE: default
-          M3_APPLICATION: ghiras-fe-storybook
-          M3_HOST: ghiras-storybook.m3ntorship.net
           M3_PROJECT: ghiras
+          M3_COMPONENET: story-book
+          M3_ENVIRONMENT: dev
           M3_REPLICAS: '1'
           M3_PORT: '3001'
         run: |

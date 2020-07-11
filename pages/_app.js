@@ -2,7 +2,8 @@ import I18n from '../lib/i18n';
 import '../styles/index.css';
 import { charityAPI } from '../clients';
 import Layout from '../components/Layout';
-
+import Router from 'next/router';
+import redirect from '../Helpers/redirect';
 function MyApp({
   Component,
   pageProps,
@@ -36,13 +37,19 @@ export default MyApp;
 MyApp.getInitialProps = async ({
   ctx,
   ctx: {
-    query: { lng }
+    query: { lng = 'ar' }
   }
 }) => {
-  // if (lng !== 'ar' && lng !== 'en') {
-  //   return ctx.res.writeHeader(303, { Location: '/ar' }).end();
-  // }
-  const { default: lngDict = {} } = await import(`../locales/${lng}.json`);
+  let location;
+  if (lng && lng !== 'ar' && lng !== 'en') {
+    location = '/ar';
+    return redirect({ Router, ctx, location });
+  }
+
+  let lngDict = {};
+  if (lng) {
+    lngDict = await import(`../locales/${lng}.json`);
+  }
 
   const getCharityAPI = charityAPI(lng);
   const layoutEndPointsArr = [

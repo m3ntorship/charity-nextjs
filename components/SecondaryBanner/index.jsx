@@ -1,8 +1,7 @@
 import React from 'react';
 import { useSpring, animated } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
-import useI18n from '../../hooks/use-i18n';
-import LinkNoPrefetch from '../shared/LinkNoPrefetch';
+import LinkLocale from '../shared/LinkLocale';
 import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
 export const SecondaryBanner = ({ data }) => {
@@ -28,8 +27,6 @@ export const SecondaryBanner = ({ data }) => {
       banner_button: { text, url }
     }
   } = data;
-  const i18n = useI18n();
-  const currentLocale = i18n.activeLocale;
   return (
     <div ref={ref} className="volunte bg-c200 py-32">
       <div className="container flex flex-col md:flex-row items-center">
@@ -40,11 +37,11 @@ export const SecondaryBanner = ({ data }) => {
           <p className="font-bold leading-tighter">{description}</p>
         </animated.div>
         <animated.div style={fade1} className="mx-auto md:mr-0">
-          <LinkNoPrefetch href={`/${currentLocale}${url}`}>
+          <LinkLocale href={url}>
             <a className="btn btn-md bg-c300 text-c100 mt-10 md:mt-0 hover:text-c100 block">
               {text}
             </a>
-          </LinkNoPrefetch>
+          </LinkLocale>
         </animated.div>
       </div>
     </div>

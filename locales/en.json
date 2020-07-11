@@ -12,7 +12,7 @@
   },
   "donationButton": {
     "text": "Start Donation",
-    "url": "/en/donations"
+    "url": "/donations"
   },
   "homePage": { "text": "Home" },
   "articles": {
