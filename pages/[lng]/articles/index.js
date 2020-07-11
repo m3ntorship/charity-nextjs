@@ -2,6 +2,7 @@ import { ArticlesList } from '../../../components/NewsAndArticles';
 import { Banner } from '../../../components/MainBanner';
 import { SecondaryBanner } from '../../../components/SecondaryBanner';
 import { charityAPI } from '../../../clients';
+import checkingDataError from '../../../Helpers/checkingDataError';
 
 const Articles = ({
   articlesPageData,
@@ -9,15 +10,21 @@ const Articles = ({
 
   lngDict
 }) => {
+  if (articlesPageData.statusCode) {
+    articlesPageData = false;
+  } else {
+    articlesPageData = articlesPageData[0];
+  }
+
   return (
     <>
-      <Banner data={articlesPageData} lngDict={lngDict} />
+      {articlesPageData && <Banner data={articlesPageData} lngDict={lngDict} />}
       <div className="container py-32">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 sm:gap-8 row-gap-8">
-          <ArticlesList articles={articlesData} />
+          {!articlesData.statusCode && <ArticlesList articles={articlesData} />}
         </div>
       </div>
-      <SecondaryBanner data={articlesPageData} />
+      {articlesPageData && <SecondaryBanner data={articlesPageData} />}
     </>
   );
 };
@@ -27,24 +34,22 @@ export async function getServerSideProps({ params: { lng } }) {
     `../../../locales/${lng}.json`
   );
   const getCharityAPI = charityAPI(lng);
-  return Promise.all([
-    getCharityAPI('/pages'),
-
+  const layoutEndPointsArr = [
+    getCharityAPI('/pages?id=5ef224bd6b82900017e7a7b3'),
     getCharityAPI('/articles')
-  ]).then(([{ data: pagesData }, { data: articlesData }]) => {
-    const [articlesPageData] = pagesData.filter(
-      pageData => pageData.name === 'articles'
-    );
-    return {
-      props: {
-        articlesPageData,
-        articlesData,
-
-        lng,
-        lngDict
-      }
-    };
-  });
+  ];
+  return Promise.all(checkingDataError(layoutEndPointsArr)).then(
+    ([{ data: articlesPageData }, { data: articlesData }]) => {
+      return {
+        props: {
+          articlesPageData,
+          articlesData,
+          lng,
+          lngDict
+        }
+      };
+    }
+  );
 }
 
 export default Articles;

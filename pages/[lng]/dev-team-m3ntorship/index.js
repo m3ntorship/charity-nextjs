@@ -2,15 +2,23 @@ import { charityAPI } from '../../../clients';
 import { PersonCardsSection } from '../../../components/PersonCardsSection';
 import { SecondaryBanner } from '../../../components/SecondaryBanner';
 import { Banner } from '../../../components/MainBanner';
+import checkingDataError from '../../../Helpers/checkingDataError';
 
 const devTeam = ({ devTeamPageData, devTeamMembersData, lng, lngDict }) => {
+  if (devTeamPageData.statusCode) {
+    devTeamPageData = false;
+  } else {
+    devTeamPageData = devTeamPageData[0];
+  }
   return (
     <>
-      <Banner data={devTeamPageData} lngDict={lngDict} />
+      {devTeamPageData && <Banner data={devTeamPageData} lngDict={lngDict} />}
       <div className="container">
-        <PersonCardsSection data={devTeamMembersData} lng={lng} />
+        {!devTeamMembersData.statusCode && (
+          <PersonCardsSection data={devTeamMembersData} lng={lng} />
+        )}
       </div>
-      <SecondaryBanner data={devTeamPageData} />
+      {devTeamPageData && <SecondaryBanner data={devTeamPageData} />}
     </>
   );
 };
@@ -21,22 +29,23 @@ export async function getServerSideProps({ params: { lng } }) {
   );
   const getCharityAPI = charityAPI(lng);
 
-  return Promise.all([
-    getCharityAPI('/pages'),
+  const layoutEndPointsArr = [
+    getCharityAPI('/pages?id=5efc87637faf900017be6dd9'),
     getCharityAPI('/dev-team-members?_sort=priority:ASC')
-  ]).then(([{ data: pagesData }, { data: devTeamMembersData }]) => {
-    const [devTeamPageData] = pagesData.filter(
-      pageData => pageData.name === 'Dev Team'
-    );
-    return {
-      props: {
-        devTeamMembersData,
-        devTeamPageData,
-        lng,
-        lngDict
-      }
-    };
-  });
+  ];
+  return Promise.all(checkingDataError(layoutEndPointsArr)).then(
+    ([{ data: devTeamPageData }, { data: devTeamMembersData }]) => {
+      console.log(devTeamPageData);
+      return {
+        props: {
+          devTeamMembersData,
+          devTeamPageData,
+          lng,
+          lngDict
+        }
+      };
+    }
+  );
 }
 
 export default devTeam;
