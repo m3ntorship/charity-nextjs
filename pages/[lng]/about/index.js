@@ -1,7 +1,7 @@
 import { charityAPI } from '../../../clients';
 import { Soon } from '../../../components/Soon';
 const About = ({ settings }) => {
-  return !settings.statusCode && <Soon data={settings} />;
+  return  <Soon data={settings} />;
 };
 
 export async function getServerSideProps({ params: { lng } }) {
