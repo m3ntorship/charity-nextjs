@@ -74,6 +74,74 @@ jobs:
           mkdir -p $TEMP_DIR
           for f in $M3_DEPLOYMENT_PATH/apply/*; do mo -u "$f" > $TEMP_DIR/"$(basename $f)"; done
           kubectl apply -f $TEMP_DIR
+  deploy_dev:
+    runs-on: ubuntu-latest
+    env:
+      M3_DEPLOYMENT_PATH: deploy/frontend-play
+      M3_IMAGE: ${{ secrets.M3_DOCKER_HOST }}/ghiras-frontend
+      M3_DOCKER_FILE: Dockerfile.playground.frontend
+    steps:
+      # checkout the code commit
+      - name: checkout the code
+        uses: actions/checkout@v1
+
+      # dynamic deployment envs
+      - name: set templating envs
+        run: |
+          echo ::set-env name=M3_VERSION::dev-$(git rev-parse --short=4 ${{ github.sha }})
+
+      # install kubectl
+      - name: install kubectl
+        uses: azure/setup-kubectl@v1
+
+      # configure kubectl
+      - name: Kubectl configuration
+        shell: bash
+        run: |
+          mkdir -p ~/.kube
+          echo ${{ secrets.KUBE_CONFIG }} | base64 -d -i > ~/.kube/config
+
+      # install moustache
+      - name: install moustache
+        run: |
+          curl -sSL https://git.io/get-mo -o mo
+          chmod +x mo
+          sudo mv mo /usr/local/bin/
+          echo "works" | mo
+
+      # login to docker
+      - uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.M3_DOCKER_HOST }} # default: index.docker.io
+          username: ${{ secrets.M3_DOCKER_USERNAME }}
+          password: ${{ secrets.M3_DOCKER_PASSWORD }}
+
+      # build and push docker image
+      - name: build the app
+        env:
+          REACT_APP_STRAPI_URL: https://ghiras-cms-dev.m3ntorship.net
+          REACT_APP_STRAPI_URL_AR: https://ghiras-cms-dev-ar.m3ntorship.net
+
+        run: |
+          echo $M3_VERSION
+          docker build --build-arg REACT_APP_STRAPI_URL_AR=$REACT_APP_STRAPI_URL_AR --build-arg REACT_APP_STRAPI_URL=$REACT_APP_STRAPI_URL -t $M3_IMAGE:$M3_VERSION -f $M3_DOCKER_FILE .
+          docker push $M3_IMAGE:$M3_VERSION
+
+      # deploy
+      - name: deploy
+        env:
+          M3_DEPLOYMENT_PATH: deploy/frontend-staging
+          TEMP_DIR: temp
+          M3_NAMESPACE: default
+          M3_PROJECT: ghiras
+          M3_COMPONENET: frontend
+          M3_ENVIRONMENT: dev
+          M3_REPLICAS: '1'
+          M3_PORT: '3000'
+        run: |
+          mkdir -p $TEMP_DIR
+          for f in $M3_DEPLOYMENT_PATH/apply/*; do mo -u "$f" > $TEMP_DIR/"$(basename $f)"; done
+          kubectl apply -f $TEMP_DIR
   deploy_live:
     runs-on: ubuntu-latest
     env:
