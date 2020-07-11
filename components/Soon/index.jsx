@@ -1,4 +1,4 @@
-export const Soon = data => {
+export const Soon = ({ data }) => {
   let {
     comming_soon_main_message,
     comming_soon_second_message,
