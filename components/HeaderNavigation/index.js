@@ -15,9 +15,7 @@ const HeaderNavigation = ({ logoData, pagesData, contactsData, settings }) => {
           <div className="flex items-center px-10 justify-between relative">
             <div className="w-26">
               <LinkLocale href="">
-                <a>
-                  <Logo logoData={logoData} />
-                </a>
+                <a>{!logoData.statusCode && <Logo logoData={logoData} />}</a>
               </LinkLocale>
             </div>
             <div className="mobile__logo block md:hidden ">
