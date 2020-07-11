@@ -1,7 +1,7 @@
 import { charityAPI } from '../../../clients';
 import { Soon } from '../../../components/Soon';
 const About = ({ settings }) => {
-  return <Soon data={settings} />;
+  return !settings.statusCode && <Soon data={settings} />;
 };
 
 export async function getServerSideProps({ params: { lng } }) {
@@ -10,17 +10,33 @@ export async function getServerSideProps({ params: { lng } }) {
   );
   const getCharityAPI = charityAPI(lng);
 
-  return Promise.all([getCharityAPI('/site-settings')]).then(
-    ([{ data: settings }]) => {
-      return {
-        props: {
-          settings,
-          lngDict,
-          lng
+  return Promise.all([
+    getCharityAPI('/site-setting')
+      .then(res => {
+        if (Object.keys(res.data).length) {
+          return res;
+        } else {
+          return {
+            data: {
+              statusCode: 404
+            }
+          };
         }
-      };
-    }
-  );
+      })
+      .catch(err => ({
+        data: {
+          statusCode: 404
+        }
+      }))
+  ]).then(([{ data: settings }]) => {
+    return {
+      props: {
+        settings,
+        lngDict,
+        lng
+      }
+    };
+  });
 }
 
 export default About;
