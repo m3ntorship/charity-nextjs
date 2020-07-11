@@ -11,7 +11,7 @@ export async function getServerSideProps({ params: { lng } }) {
   const getCharityAPI = charityAPI(lng);
 
   return Promise.all([
-    getCharityAPI('/site-setting')
+    getCharityAPI('/site-settings')
       .then(res => {
         if (Object.keys(res.data).length) {
           return res;
