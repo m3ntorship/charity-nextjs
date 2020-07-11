@@ -187,8 +187,8 @@ jobs:
       # build and push docker image
       - name: build the app
         env:
-          REACT_APP_STRAPI_URL: https://charity-cms-dev.m3ntorship.net
-          REACT_APP_STRAPI_URL_AR: https://charity-cms-dev-ar.m3ntorship.net
+          REACT_APP_STRAPI_URL: https://ghiras-cms-live.m3ntorship.net
+          REACT_APP_STRAPI_URL_AR: https://ghiras-cms-live-ar.m3ntorship.net
 
         run: |
           echo $M3_VERSION
