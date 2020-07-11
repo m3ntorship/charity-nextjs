@@ -1,8 +1,9 @@
-.volunte {
+[dir] .volunte {
   background-image: url('../public/images/volunteerBanner/blocks.png');
   background-position: 0 -300px;
   background-repeat: no-repeat;
 }
+
 .volunte .description {
   font-size: 40px;
 }
