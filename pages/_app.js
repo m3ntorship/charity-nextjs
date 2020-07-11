@@ -37,7 +37,7 @@ export default MyApp;
 MyApp.getInitialProps = async ({
   ctx,
   ctx: {
-    query: { lng }
+    query: { lng = 'ar' }
   }
 }) => {
   let location;
@@ -45,10 +45,7 @@ MyApp.getInitialProps = async ({
     location = '/ar';
     return redirect({ Router, ctx, location });
   }
-  if (!lng && ctx.pathname === '/_error') {
-    location = '/ar/404';
-    return redirect({ Router, ctx, location });
-  }
+
   let lngDict = {};
   if (lng) {
     lngDict = await import(`../locales/${lng}.json`);
