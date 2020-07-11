@@ -5,16 +5,13 @@ on:
     branches:
       - master
       - playground-deployment
-env:
-  # fixed deployment envs
-  M3_IMAGE: ${{ secrets.M3_DOCKER_HOST }}/ghiras-frontend
-  M3_DOCKER_FILE: Dockerfile.playground.frontend
-
 jobs:
   deploy_play:
     runs-on: ubuntu-latest
     env:
       M3_DEPLOYMENT_PATH: deploy/frontend-play
+      M3_IMAGE: ${{ secrets.M3_DOCKER_HOST }}/ghiras-frontend
+      M3_DOCKER_FILE: Dockerfile.playground.frontend
     steps:
       # checkout the code commit
       - name: checkout the code
@@ -23,7 +20,7 @@ jobs:
       # dynamic deployment envs
       - name: set templating envs
         run: |
-          echo ::set-env name=M3_VERSION::$(git rev-parse --short=4 ${{ github.sha }})
+          echo ::set-env name=M3_VERSION::play-$(git rev-parse --short=4 ${{ github.sha }})
 
       # install kubectl
       - name: install kubectl
@@ -54,7 +51,7 @@ jobs:
       # build and push docker image
       - name: build the app
         env:
-          REACT_APP_STRAPI_URL: https://charity-cms-dev.m3ntorship.net
+          REACT_APP_STRAPI_URL: https://ghiras-cms-play.m3ntorship.net
           REACT_APP_STRAPI_URL_AR: https://ghiras-cms-play-ar.m3ntorship.net
 
         run: |
@@ -65,11 +62,13 @@ jobs:
       # deploy
       - name: deploy
         env:
+
+          M3_DEPLOYMENT_PATH: deploy/frontend-staging
           TEMP_DIR: temp
           M3_NAMESPACE: default
-          M3_APPLICATION: ghiras-fe-play
-          M3_HOST: ghiras-play.m3ntorship.net
           M3_PROJECT: ghiras
+          M3_COMPONENET: frontend
+          M3_ENVIRONMENT: play
           M3_REPLICAS: '1'
           M3_PORT: '3000'
         run: |
@@ -79,7 +78,9 @@ jobs:
   deploy_live:
     runs-on: ubuntu-latest
     env:
-      M3_DEPLOYMENT_PATH: deploy/frontend
+      M3_DEPLOYMENT_PATH: deploy/frontend-play
+      M3_IMAGE: ${{ secrets.M3_DOCKER_HOST }}/ghiras-frontend
+      M3_DOCKER_FILE: Dockerfile.playground.frontend
     steps:
       # checkout the code commit
       - name: checkout the code
@@ -88,7 +89,7 @@ jobs:
       # dynamic deployment envs
       - name: set templating envs
         run: |
-          echo ::set-env name=M3_VERSION::$(git rev-parse --short=4 ${{ github.sha }})
+          echo ::set-env name=M3_VERSION::live-$(git rev-parse --short=4 ${{ github.sha }})
 
       # install kubectl
       - name: install kubectl
@@ -130,10 +131,13 @@ jobs:
       # deploy
       - name: deploy
         env:
+
+          M3_DEPLOYMENT_PATH: deploy/frontend-live
           TEMP_DIR: temp
           M3_NAMESPACE: default
-          M3_APPLICATION: ghiras-fe
           M3_PROJECT: ghiras
+          M3_COMPONENET: frontend
+          M3_ENVIRONMENT: live
           M3_REPLICAS: '3'
           M3_PORT: '3000'
         run: |
