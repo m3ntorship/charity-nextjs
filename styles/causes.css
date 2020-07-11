@@ -1,4 +1,4 @@
-.causes {
+[dir] .causes {
   background-image: url('../public/images/causes/blocks.png');
   background-repeat: no-repeat;
   background-position: 0% -15%;
@@ -26,63 +26,50 @@
   width: 45px;
   height: 30px;
   bottom: 12px;
-  transform: translateX(-10px) /* rtl: translateX(35px) */;
-  clip-path: polygon(
-    0 0,
-    70% 0%,
-    100% 0,
-    100% 75%,
-    45% 75%,
-    25% 100%,
-    25% 75%,
-    0 75%
-  );
+  transform: translateX(-10px)
+    /* rtl: translateX(35px) */
+  ;
+  clip-path: polygon(0 0,
+      70% 0%,
+      100% 0,
+      100% 75%,
+      45% 75%,
+      25% 100%,
+      25% 75%,
+      0 75%);
   padding-top: 2px;
   text-align: center;
   color: #fff;
   font-size: 12px;
 }
-.causes__wrapper
-  .causes__card:nth-of-type(1n + 0)
-  .causes__progress__progress-bar,
+
+.causes__wrapper .causes__card:nth-of-type(1n + 0) .causes__progress__progress-bar,
 .causes__wrapper .causes__card:nth-of-type(1n + 0) .causes__progress__tooltip {
   @apply bg-c400;
 }
-.causes__wrapper
-  .causes__card:nth-of-type(2n + 0)
-  .causes__progress__progress-bar,
+
+.causes__wrapper .causes__card:nth-of-type(2n + 0) .causes__progress__progress-bar,
 .causes__wrapper .causes__card:nth-of-type(2n + 0) .causes__progress__tooltip {
   @apply bg-c200;
 }
-.causes__wrapper
-  .causes__card:nth-of-type(3n + 0)
-  .causes__progress__progress-bar,
+
+.causes__wrapper .causes__card:nth-of-type(3n + 0) .causes__progress__progress-bar,
 .causes__wrapper .causes__card:nth-of-type(3n + 0) .causes__progress__tooltip {
   @apply bg-c500;
 }
 
-.causes__carousel__slider
-  .causes__carousel__slide:nth-of-type(1n + 0)
-  .causes__progress__progress-bar,
-.causes__carousel__slider
-  .causes__carousel__slide:nth-of-type(1n + 0)
-  .causes__progress__tooltip {
+.causes__carousel__slider .causes__carousel__slide:nth-of-type(1n + 0) .causes__progress__progress-bar,
+.causes__carousel__slider .causes__carousel__slide:nth-of-type(1n + 0) .causes__progress__tooltip {
   @apply bg-c400;
 }
-.causes__carousel__slider
-  .causes__carousel__slide:nth-of-type(2n + 0)
-  .causes__progress__progress-bar,
-.causes__carousel__slider
-  .causes__carousel__slide:nth-of-type(2n + 0)
-  .causes__progress__tooltip {
+
+.causes__carousel__slider .causes__carousel__slide:nth-of-type(2n + 0) .causes__progress__progress-bar,
+.causes__carousel__slider .causes__carousel__slide:nth-of-type(2n + 0) .causes__progress__tooltip {
   @apply bg-c200;
 }
-.causes__carousel__slider
-  .causes__carousel__slide:nth-of-type(3n + 0)
-  .causes__progress__progress-bar,
-.causes__carousel__slider
-  .causes__carousel__slide:nth-of-type(3n + 0)
-  .causes__progress__tooltip {
+
+.causes__carousel__slider .causes__carousel__slide:nth-of-type(3n + 0) .causes__progress__progress-bar,
+.causes__carousel__slider .causes__carousel__slide:nth-of-type(3n + 0) .causes__progress__tooltip {
   @apply bg-c500;
 }
 
@@ -102,6 +89,7 @@
   text-align: center;
   justify-content: center;
 }
+
 .causes_dots_group button {
   /* background-color: rgb(173, 168, 168); */
   border: 10px solid #a39d9d;
@@ -147,6 +135,7 @@
   .causes__carousel__grid {
     grid-template-columns: 1fr;
   }
+
   .causes__carousel__arrow {
     display: none;
   }

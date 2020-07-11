@@ -1,4 +1,4 @@
-.upcoming-events-section {
+[dir] .upcoming-events-section {
   background: url('../public/images/upcomingEvents/bg_1.png') no-repeat;
   background-position-x: left;
   background-position-y: -200px;
@@ -13,23 +13,32 @@
   margin-bottom: 3rem;
   z-index: 2;
 }
+
 .vertical-text {
   writing-mode: vertical-rl;
   grid-column-start: 12;
   grid-column-end: 13;
   grid-row-start: 1;
   grid-row-end: 3;
-  transform: translateX(6.25rem) /* rtl: translateX(-6.25rem) rotate(180deg) */;
-  letter-spacing: 0.27em /* rtl:unset */;
-  font-weight: initial /* rtl:700 */;
+  transform: translateX(6.25rem)
+    /* rtl: translateX(-6.25rem) rotate(180deg) */
+  ;
+  letter-spacing: 0.27em
+    /* rtl:unset */
+  ;
+  font-weight: initial
+    /* rtl:700 */
+  ;
   text-align: center;
   white-space: nowrap;
 }
+
 .vertical {
   letter-spacing: 0.24em;
   font-size: 3.09rem;
   text-align: left;
 }
+
 .event-card-wrapper {
   border: 1px solid #eff0eb;
   min-height: 160px;
@@ -41,6 +50,7 @@
   object-position: center;
   object-fit: cover;
 }
+
 .event-card-wrapper__date {
   position: absolute;
   background-color: #ffffff;
@@ -74,6 +84,7 @@
 .event-card-wrapper__timing {
   font-size: 0.9375rem;
 }
+
 .event-card-wrapper__topic {
   font-size: 1.375rem;
   margin: 10px 0;
@@ -97,6 +108,7 @@
 .event-img {
   width: 130px;
 }
+
 .event-img img {
   width: 100%;
 }
@@ -105,6 +117,7 @@
   font-size: 1.5rem;
   width: 70%;
 }
+
 .urgent-case__desc {
   width: 70%;
 }
@@ -117,6 +130,7 @@
   .upcoming-events-section__container {
     display: block;
   }
+
   .upcoming-events h2 {
     text-align: center;
     margin-bottom: 20px;
@@ -151,6 +165,7 @@
   .event-card-wrapper__topic {
     font-size: 1.2rem;
   }
+
   .Upcoming-Events-Card {
     max-width: 400px;
     margin: 5px auto;
@@ -163,6 +178,7 @@
   .articles-component {
     flex-direction: row;
   }
+
   .event-card-wrapper {
     flex-direction: column;
     width: 49%;
@@ -200,7 +216,7 @@
     width: unset;
   }
 
-  .urgent-cause-event_info > div > p {
+  .urgent-cause-event_info>div>p {
     margin-right: 30px;
   }
 }
