@@ -46,7 +46,7 @@ const Layout = ({
       </header>
       <main>{children}</main>
       <ContactInfo contactData={contactsData} socialData={socialMediasData} />
-      <Footer data={footerData} />
+      {!footerData.statusCode && <Footer data={footerData} />}
     </>
   );
 };
