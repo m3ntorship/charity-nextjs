@@ -19,7 +19,9 @@ const HeaderNavigation = ({ logoData, pagesData, contactsData, settings }) => {
               </LinkLocale>
             </div>
             <div className="mobile__logo block md:hidden ">
-              {!settings.statusCode && <LanguageSwitcher />}
+              {!settings.statusCode && settings.enable_english_site && (
+                <LanguageSwitcher />
+              )}
             </div>
             <div className="toggle-btn">
               <button
