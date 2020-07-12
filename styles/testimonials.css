@@ -229,6 +229,10 @@
 }
 
 @media screen and (max-width: 478px) {
+  .feedback__quote__text {
+    max-width: 320px;
+    padding: 0 1.6rem;
+  }
   .feedback {
     margin-bottom: 11.75rem;
     min-height: 55rem;
