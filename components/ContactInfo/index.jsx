@@ -6,8 +6,8 @@ export const ContactInfo = ({ socialData, contactData }) => {
     <section className="contact-section py-10">
       <div className="container">
         <div className="flex flex-col md:flex-row justify-around items-center mx-0 text-c000">
-          <Socialmedia socialData={socialData} />
-          <Contact contactData={contactData} />
+          {!socialData.statusCode && <Socialmedia socialData={socialData} />}
+          {!contactData.statusCode && <Contact contactData={contactData} />}
         </div>
       </div>
     </section>

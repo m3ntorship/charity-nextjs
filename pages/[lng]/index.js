@@ -45,35 +45,56 @@ const Home = ({
   };
   return (
     <>
-      <HeaderCarousel data={headerCarouselData} />
-      <Welcome data={welcomeData} />
-      <Activities data={activitiesData} />
-      <FeaturedBanner data={featuredBannerData} />
-      <Causes
-        data={causesData}
-        homeCausesData={homeCausesData}
-        lng={lng}
-        lngDict={lngDict}
-      />
-      <Numbers data={numbersData} />
-      <UpcomingEventsSection
-        data={upcomingEventsData}
-        cardData={featuredCauseData(causesData)}
-        lng={lng}
-        lngDict={lngDict}
-      />
-      <Testimonials data={{testimonialsData,testimonials}} />
-      <WorkStyle data={workStyleData} />
-      <News data={{ newsData, homeArticles }} />
-      <Sponsers data={sponsersData} />
+      {!headerCarouselData.statusCode && (
+        <HeaderCarousel data={headerCarouselData} />
+      )}
+      {!welcomeData.statusCode && <Welcome data={welcomeData} />}
+
+      {!activitiesData.statusCode && <Activities data={activitiesData} />}
+      {!featuredBannerData.statusCode && (
+        <FeaturedBanner data={featuredBannerData} />
+      )}
+      {!causesData.statusCode &&
+        !homeCausesData.statusCode &&
+        lng &&
+        lngDict && (
+          <Causes
+            data={causesData}
+            homeCausesData={homeCausesData}
+            lng={lng}
+            lngDict={lngDict}
+          />
+        )}
+      {!numbersData.statusCode && <Numbers data={numbersData} />}
+
+      {!upcomingEventsData.statusCode &&
+        !causesData.statusCode &&
+        lng &&
+        lngDict && (
+          <UpcomingEventsSection
+            data={upcomingEventsData}
+            cardData={featuredCauseData(causesData)}
+            lng={lng}
+            lngDict={lngDict}
+          />
+        )}
+      {!testimonialsData.statusCode && !testimonials.statusCode && (
+        <Testimonials data={{ testimonialsData, testimonials }} />
+      )}
+
+      {!workStyleData.statusCode && <WorkStyle data={workStyleData} />}
+      {!newsData.statusCode && !homeArticles.statusCode && (
+        <News data={{ newsData, homeArticles }} />
+      )}
+
+      {!sponsersData.statusCode && <Sponsers data={sponsersData} />}
     </>
   );
 };
 export async function getServerSideProps({ params: { lng } }) {
   const { default: lngDict = {} } = await import(`../../locales/${lng}.json`);
-
   const getCharityAPI = charityAPI(lng);
-  return Promise.all([
+  const mainEndPointsArr = [
     getCharityAPI('/main-carousels'),
     getCharityAPI('/welcome-section'),
     getCharityAPI('/what-we-do'),
@@ -88,8 +109,28 @@ export async function getServerSideProps({ params: { lng } }) {
     getCharityAPI('/articles?_limit=3&is_in_home=true'),
     getCharityAPI('/causes?is_home=true'),
     getCharityAPI('/testimonials?isShown=true')
-
-  ]).then(
+  ];
+  return Promise.all(
+    mainEndPointsArr.map(endPoint =>
+      endPoint
+        .then(res => {
+          if (Object.keys(res.data).length) {
+            return res;
+          } else {
+            return {
+              data: {
+                statusCode: 404
+              }
+            };
+          }
+        })
+        .catch(err => ({
+          data: {
+            statusCode: 404
+          }
+        }))
+    )
+  ).then(
     ([
       { data: headerCarouselData },
       { data: welcomeData },
@@ -104,7 +145,7 @@ export async function getServerSideProps({ params: { lng } }) {
       { data: sponsersData },
       { data: homeArticles },
       { data: homeCausesData },
-      {data: testimonials}
+      { data: testimonials }
     ]) => {
       return {
         props: {

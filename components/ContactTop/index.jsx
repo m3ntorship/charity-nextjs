@@ -3,7 +3,7 @@ import { useSpring, animated } from 'react-spring';
 import useI18n from '../../hooks/use-i18n';
 import LanguageSwitcher from '../LanguageSwitcher';
 
-const ContactTop = ({ data, settings: { enable_english_site } }) => {
+const ContactTop = ({ data, settings }) => {
   const i18n = useI18n();
   const followUs = `${i18n.t('followus.follow')}`;
   const welcome = `${i18n.t('welcome.message')}`;
@@ -28,21 +28,26 @@ const ContactTop = ({ data, settings: { enable_english_site } }) => {
             </div>
             {}
             <ul className="flex languag__selector_wrapper">
-              {enable_english_site && <LanguageSwitcher />}
+              {!settings.statusCode ? (
+                settings.enable_english_site ? (
+                  <LanguageSwitcher />
+                ) : null
+              ) : null}
             </ul>
             <div className="social flex text-sm">
               <div>{followUs}</div>
               <div className="ml-1 flex items-center">
                 <ul className="inline-block ">
-                  {data.map(({ id, url, fontawesome_icons }) => {
-                    return (
-                      <li key={id} className="inline px-3 hover:text-c000">
-                        <a href={url}>
-                          <i className={fontawesome_icons}></i>
-                        </a>
-                      </li>
-                    );
-                  })}
+                  {!data.statusCode &&
+                    data.map(({ id, url, fontawesome_icons }) => {
+                      return (
+                        <li key={id} className="inline px-3 hover:text-c000">
+                          <a href={url}>
+                            <i className={fontawesome_icons}></i>
+                          </a>
+                        </li>
+                      );
+                    })}
                 </ul>
               </div>
             </div>

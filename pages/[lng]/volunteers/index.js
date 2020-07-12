@@ -3,22 +3,22 @@ import { PersonCardsSection } from '../../../components/PersonCardsSection';
 import { SecondaryBanner } from '../../../components/SecondaryBanner';
 import { Banner } from '../../../components/MainBanner';
 
-const Volunteers = ({
-  volunteersPageData,
-  volunteersData,
-  lng,
-  lngDict,
-  
-}) => {
+const Volunteers = ({ volunteersPageData, volunteersData, lng, lngDict }) => {
   return (
- <>
-      <Banner data={volunteersPageData} lngDict={lngDict} />
-      <div className="container">
-        <PersonCardsSection data={volunteersData} lng={lng} />
-      </div>
-      <SecondaryBanner data={volunteersPageData} />
+    <>
+      {!volunteersPageData.statusCode && (
+        <Banner data={volunteersPageData[0]} lngDict={lngDict} />
+      )}
 
-      </>
+      <div className="container">
+        {!volunteersData.statusCode && (
+          <PersonCardsSection data={volunteersData} lng={lng} />
+        )}
+      </div>
+      {!volunteersPageData.statusCode && (
+        <SecondaryBanner data={volunteersPageData[0]} />
+      )}
+    </>
   );
 };
 
@@ -27,33 +27,40 @@ export async function getServerSideProps({ params: { lng } }) {
     `../../../locales/${lng}.json`
   );
   const getCharityAPI = charityAPI(lng);
-
-  return Promise.all([
-    
-    getCharityAPI('/pages'),
-    getCharityAPI('/volunteers'),
-    
-  ]).then(
-    ([
-     
-      { data: pagesData },
-      { data: volunteersData },
-      
-    ]) => {
-      const [volunteersPageData] = pagesData.filter(
-        pageData => pageData.name === 'volunteers'
-      );
-      return {
-        props: {
-          
-          volunteersData,
-          volunteersPageData,
-          lng,
-          lngDict,
-        }
-      };
-    }
-  );
+  const volunteetsPageEndPtArr = [
+    getCharityAPI('/pages?name=volunteers'),
+    getCharityAPI('/volunteers')
+  ];
+  return Promise.all(
+    volunteetsPageEndPtArr.map(endPoint =>
+      endPoint
+        .then(res => {
+          if (Object.keys(res.data).length) {
+            return res;
+          } else {
+            return {
+              data: {
+                statusCode: 404
+              }
+            };
+          }
+        })
+        .catch(err => ({
+          data: {
+            statusCode: 404
+          }
+        }))
+    )
+  ).then(([{ data: volunteersPageData }, { data: volunteersData }]) => {
+    return {
+      props: {
+        volunteersData,
+        volunteersPageData,
+        lng,
+        lngDict
+      }
+    };
+  });
 }
 
 export default Volunteers;

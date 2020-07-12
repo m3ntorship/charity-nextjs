@@ -11,17 +11,33 @@ export async function getServerSideProps({ params: { lng } }) {
   );
   const getCharityAPI = charityAPI(lng);
 
-  return Promise.all([getCharityAPI('/site-settings')]).then(
-    ([{ data: settings }]) => {
-      return {
-        props: {
-          settings,
-          lng,
-          lngDict
+  return Promise.all([
+    getCharityAPI('/site-settings')
+      .then(res => {
+        if (Object.keys(res.data).length) {
+          return res;
+        } else {
+          return {
+            data: {
+              statusCode: 404
+            }
+          };
         }
-      };
-    }
-  );
+      })
+      .catch(err => ({
+        data: {
+          statusCode: 404
+        }
+      }))
+  ]).then(([{ data: settings }]) => {
+    return {
+      props: {
+        settings,
+        lng,
+        lngDict
+      }
+    };
+  });
 }
 
 export default Events;

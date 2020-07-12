@@ -5,12 +5,7 @@ import Logo from '../Logo';
 import NavigationLink from '../NavigationLink';
 import LinkLocale from '../shared/LinkLocale';
 
-const HeaderNavigation = ({
-  logoData,
-  pagesData,
-  contactsData,
-  settings: { enable_english_site }
-}) => {
+const HeaderNavigation = ({ logoData, pagesData, contactsData, settings }) => {
   const [isOpen, setOpen] = useState(false);
 
   return (
@@ -20,13 +15,11 @@ const HeaderNavigation = ({
           <div className="flex items-center px-10 justify-between relative">
             <div className="w-26">
               <LinkLocale href="">
-                <a>
-                  <Logo logoData={logoData} />
-                </a>
+                <a>{!logoData.statusCode && <Logo logoData={logoData} />}</a>
               </LinkLocale>
             </div>
             <div className="mobile__logo block md:hidden ">
-              {enable_english_site && <LanguageSwitcher />}
+              {!settings.statusCode && <LanguageSwitcher />}
             </div>
             <div className="toggle-btn">
               <button
@@ -49,52 +42,54 @@ const HeaderNavigation = ({
               hidden: !isOpen
             })}
           >
-            {pagesData
-              .filter(page => page.show_in_navigation)
-              .map(page => (
-                <NavigationLink
-                  key={page.id}
-                  url={page.link.url}
-                  title={page.link.text}
-                  secondaryClassName="sm:mx-4 sm:font-bold nav-link"
-                  linkClassName="text-c600 hover:text-c100 p-2 mx-1 block"
-                />
-              ))}
+            {!pagesData.statusCode &&
+              pagesData
+                .filter(page => page.show_in_navigation)
+                .map(page => (
+                  <NavigationLink
+                    key={page.id}
+                    url={page.link.url}
+                    title={page.link.text}
+                    secondaryClassName="sm:mx-4 sm:font-bold nav-link"
+                    linkClassName="text-c600 hover:text-c100 p-2 mx-1 block"
+                  />
+                ))}
           </ul>
         </div>
         <div className="hidden lg:block contacts text-sm mx-6">
-          {contactsData
-            .filter(({ show_in_navbar }) => show_in_navbar)
-            .map(
-              ({
-                _id,
-                title,
-                url,
-                sub_title,
-                icon: { url: iconUrl, name: IconName }
-              }) => {
-                return (
-                  <div key={_id} className="contact px-5 lg:my-5">
-                    <div className="contact-icon">
-                      <img className="h-auto" src={iconUrl} alt={IconName} />
+          {!contactsData.statusCode &&
+            contactsData
+              .filter(({ show_in_navbar }) => show_in_navbar)
+              .map(
+                ({
+                  _id,
+                  title,
+                  url,
+                  sub_title,
+                  icon: { url: iconUrl, name: IconName }
+                }) => {
+                  return (
+                    <div key={_id} className="contact px-5 lg:my-5">
+                      <div className="contact-icon">
+                        <img className="h-auto" src={iconUrl} alt={IconName} />
+                      </div>
+                      <div className="information">
+                        <a
+                          className="block text-c100 font-bold hover:text-c100"
+                          href={url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {title}
+                        </a>
+                        <small className="information-small font-bold leading-normal text-c600">
+                          {sub_title}
+                        </small>
+                      </div>
                     </div>
-                    <div className="information">
-                      <a
-                        className="block text-c100 font-bold hover:text-c100"
-                        href={url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {title}
-                      </a>
-                      <small className="information-small font-bold leading-normal text-c600">
-                        {sub_title}
-                      </small>
-                    </div>
-                  </div>
-                );
-              }
-            )}
+                  );
+                }
+              )}
         </div>
       </div>
     </section>
