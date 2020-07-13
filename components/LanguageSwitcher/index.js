@@ -11,29 +11,23 @@ const LanguageSwitcher = () => {
   return (
     <>
       {currentLocale === 'ar' ? (
-        <li className="inline-block language_elector">
-          <Link href={`/[lng]${pageName}`} as={`/en${pageName}`}>
-            <a>
-              <img
-                className="w-8 h-6"
-                src="../../static/flag-icons/uk-en.png"
-                alt=""
-                title={`change to English `}
-              />
-            </a>
-          </Link>
-        </li>
+        <a href="" onClick={() => router.push(`/en${pageName}`)}>
+          <img
+            className="w-8 h-6"
+            src="../../static/flag-icons/uk-en.png"
+            alt=""
+            title={`change to English `}
+          />
+        </a>
       ) : (
-        <Link href={`/[lng]${pageName}`} as={`/ar${pageName}`}>
-          <a>
-            <img
-              className="w-8 h-6"
-              src="../../static/flag-icons/eg-ar.png"
-              alt=""
-              title="التحويل للغة العربية"
-            />
-          </a>
-        </Link>
+        <a href="" onClick={() => router.push(`/ar${pageName}`)}>
+          <img
+            className="w-8 h-6"
+            src="../../static/flag-icons/eg-ar.png"
+            alt=""
+            title="التحويل للغة العربية"
+          />
+        </a>
       )}
     </>
   );
