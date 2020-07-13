@@ -64,7 +64,7 @@ export async function getServerSideProps({ params: { lng, id } }) {
   );
   const getCharityAPI = charityAPI(lng);
   const layoutEndPointsArr = [
-    getCharityAPI('/pages?id=5ef224bd6b82900017e7a7b3'),
+    getCharityAPI('/pages?name=articles'),
     getCharityAPI(`articles?id=${id}`),
     getCharityAPI('articles?_sort=createdAt:DESC&_limit=3')
   ];

@@ -30,7 +30,7 @@ export async function getServerSideProps({ params: { lng } }) {
   const getCharityAPI = charityAPI(lng);
 
   const layoutEndPointsArr = [
-    getCharityAPI('/pages?id=5efc87637faf900017be6dd9'),
+    getCharityAPI('/pages?name=Dev%20Team'),
     getCharityAPI('/dev-team-members?_sort=priority:ASC')
   ];
   return Promise.all(checkingDataError(layoutEndPointsArr)).then(
