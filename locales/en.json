@@ -27,5 +27,8 @@
     "currency": "LE"
   },
   "numbersText": "Numbers speak",
-  "soon": "Coming Soon"
+  "soon": "Coming Soon",
+  "otherPages": {
+    "title": "other pages"
+  }
 }
