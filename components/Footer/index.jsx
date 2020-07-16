@@ -3,11 +3,12 @@ import Links from './Links/index';
 import Articles from './Articles/index';
 import About from './About/index';
 import Newsletter from './NewsLetter/index';
+import CustomPagesLinks from '../CustomPagesLinks';
 import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
 import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
-const Footer = ({ data }) => {
+const Footer = ({ data, customPages }) => {
   const [refLeft, inViewLeft] = useInView({
     triggerOnce: true
   });
@@ -66,6 +67,9 @@ const Footer = ({ data }) => {
                 title={newsletter_title}
                 description={newsletter_description}
               />
+              {!customPages.statusCode && (
+                <CustomPagesLinks data={customPages} />
+              )}
             </animated.div>
           </div>
         </div>
