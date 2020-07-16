@@ -17,3 +17,7 @@
 .newsletter_email_input:focus {
   outline: none;
 }
+
+.custom_pages_links {
+  column-count: 2;
+}
