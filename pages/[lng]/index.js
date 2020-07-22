@@ -26,23 +26,10 @@ const Home = ({
   sponsersData,
   homeArticles,
   homeCausesData,
+  featuredCauseData,
   lng,
   lngDict
 }) => {
-  let featuredCauseData = data => {
-    if (data) {
-      let featuredCause = data.causes.find(cause => {
-        return cause.is_featured;
-      });
-      return {
-        featuredCause
-      };
-    } else {
-      return {
-        featuredCause: null
-      };
-    }
-  };
   return (
     <>
       {!headerCarouselData.statusCode && (
@@ -73,7 +60,7 @@ const Home = ({
         lngDict && (
           <UpcomingEventsSection
             data={upcomingEventsData}
-            cardData={featuredCauseData(causesData)}
+            cardData={featuredCauseData}
             lng={lng}
             lngDict={lngDict}
           />
@@ -108,6 +95,7 @@ export async function getServerSideProps({ params: { lng } }) {
     getCharityAPI('/Sponsers'),
     getCharityAPI('/articles?_limit=3&is_in_home=true'),
     getCharityAPI('/causes?is_home=true'),
+    getCharityAPI('/causes?is_featured=true'),
     getCharityAPI('/testimonials?isShown=true')
   ];
   return Promise.all(
@@ -145,6 +133,7 @@ export async function getServerSideProps({ params: { lng } }) {
       { data: sponsersData },
       { data: homeArticles },
       { data: homeCausesData },
+      { data: featuredCauseData },
       { data: testimonials }
     ]) => {
       return {
@@ -163,6 +152,7 @@ export async function getServerSideProps({ params: { lng } }) {
           sponsersData,
           homeArticles,
           homeCausesData,
+          featuredCauseData,
           lngDict,
           lng
         }
