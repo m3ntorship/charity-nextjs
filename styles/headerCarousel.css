@@ -34,7 +34,7 @@ header .slider .overlay .header__carousel__slide .text .main p {
 .header__carouser__slide__textContent {
   width: 70%;
 }
-.header__carousel__arrows button:disabled {
+.header__carousel__arrows button:disabled div {
   border-color: #a39d9d;
   color: #a39d9d;
 }

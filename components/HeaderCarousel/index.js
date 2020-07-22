@@ -46,7 +46,7 @@ const HeaderCarousel = ({ data }) => {
         touchEnabled={enableSliding}
         className="h-full header__carousel"
       >
-        <Slider className="h-full">
+        <Slider className="h-full" style={{ transform: `scaleX(1)` }}>
           {data.map((slide, index) => {
             let {
               heading: { heading_primary, heading_secondary },
@@ -59,7 +59,8 @@ const HeaderCarousel = ({ data }) => {
                 <div
                   className="header__carousel__slide h-full flex items-center justify-center bg-cover"
                   style={{
-                    background: `linear-gradient(0deg, #203b4cb5, #203b4cb5), url(${image_url}) no-repeat center/cover`
+                    background: `linear-gradient(0deg, #203b4cb5, #203b4cb5), url(${image_url}) no-repeat center/cover`,
+                    transform: `scaleX(${useDirectionalValue(1)})`
                   }}
                 >
                   <div className="header__carouser__slide__textContent text text-center text-c000">
@@ -98,12 +99,22 @@ const HeaderCarousel = ({ data }) => {
           <div className="header__carousel__arrows absolute w-full flex text-c000 border-c000 justify-between px-16">
             <ButtonBack className="rounded-full">
               <div class="justify-center items-center flex rounded-full border-solid  p-4 border-2 cursor-pointer">
-                <i class="fas fa-arrow-left"></i>
+                <i
+                  className={`fas fa-arrow-${useDirectionalValue(
+                    'left',
+                    'direction'
+                  )}`}
+                ></i>
               </div>
             </ButtonBack>
             <ButtonNext className="rounded-full  ">
               <div class="justify-center items-center flex rounded-full border-solid  p-4 border-2 cursor-pointer">
-                <i className="fas fa-arrow-right"></i>
+                <i
+                  className={`fas fa-arrow-${useDirectionalValue(
+                    'right',
+                    'direction'
+                  )}`}
+                ></i>
               </div>
             </ButtonNext>
           </div>
