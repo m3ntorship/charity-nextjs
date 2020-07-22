@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import useMedia from '../../Helpers/useMedia';
 import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
-const FeaturedCause = ({ data: { featuredCause }, lng, lngDict }) => {
+const FeaturedCause = ({ data, lngDict }) => {
   const isMobile = useMedia(['(min-width: 768px)'], [false], true);
 
   const {
@@ -30,6 +30,11 @@ const FeaturedCause = ({ data: { featuredCause }, lng, lngDict }) => {
     delay: isMobile ? 0 : 400,
     ref: slideEndRef
   });
+
+  if (!data) {
+    return <div>We will announce for urgent cause soon</div>;
+  }
+  const featuredCause = data[0];
   const aspiringRef = useRef();
   const aspiring = useSpring({
     percent: inView
@@ -53,9 +58,6 @@ const FeaturedCause = ({ data: { featuredCause }, lng, lngDict }) => {
 
   useChain([slideEndRef, aspiringRef, strokeRef]);
 
-  if (!featuredCause) {
-    return <div>We will announce for urgent cause soon</div>;
-  }
   if (featuredCause) {
     const numberToLocal = number => Number(number).toLocaleString();
     let {
