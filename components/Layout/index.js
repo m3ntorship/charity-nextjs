@@ -12,7 +12,8 @@ const Layout = ({
   contactsData,
   pagesData,
   customPages,
-  settings
+  settings,
+  articlesData
 }) => {
   return (
     <>
@@ -43,7 +44,13 @@ const Layout = ({
       </header>
       <main>{children}</main>
       <ContactInfo contactData={contactsData} socialData={socialMediasData} />
-      {!footerData.statusCode && <Footer customPages ={customPages}  data={footerData} />}
+      {!footerData.statusCode && (
+        <Footer
+          customPages={customPages}
+          articlesData={articlesData}
+          data={footerData}
+        />
+      )}
     </>
   );
 };

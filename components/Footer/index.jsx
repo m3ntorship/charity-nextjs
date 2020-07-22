@@ -8,7 +8,7 @@ import { useInView } from 'react-intersection-observer';
 import { useSpring, animated } from 'react-spring';
 import { useDirectionalValue } from '../../hooks/useDirectionalValue';
 
-const Footer = ({ data, customPages }) => {
+const Footer = ({ data, articlesData, customPages }) => {
   const [refLeft, inViewLeft] = useInView({
     triggerOnce: true
   });
@@ -34,7 +34,6 @@ const Footer = ({ data, customPages }) => {
       news_title,
       newsletter_description,
       newsletter_title,
-      articles,
       links,
       Disclaimer,
       links_title
@@ -54,7 +53,7 @@ const Footer = ({ data, customPages }) => {
                 url={about_button_url}
                 cta={about_button_text}
               />
-              <Articles title={news_title} articles={articles} />
+              <Articles title={news_title} articles={articlesData} />
             </animated.div>
           </div>
           <div className="ref-container" ref={refRight}>

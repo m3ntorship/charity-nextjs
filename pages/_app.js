@@ -14,6 +14,7 @@ function MyApp({
   footerData,
   customPages,
   settings,
+  articlesData,
   lngDict,
   lng
 }) {
@@ -27,6 +28,7 @@ function MyApp({
         socialMediasData={socialMediasData}
         pagesData={pagesData}
         settings={settings}
+        articlesData={articlesData}
       >
         <Component {...pageProps} />
       </Layout>
@@ -61,7 +63,8 @@ MyApp.getInitialProps = async ({
     getCharityAPI('/pages'),
     getCharityAPI('/footer'),
     getCharityAPI('/site-settings'),
-    getCharityAPI('/custom-pages')
+    getCharityAPI('/custom-pages'),
+    getCharityAPI('/articles?is_in_footer=true')
   ];
   return Promise.all(
     layoutEndPointsArr.map(endPoint => {
@@ -91,7 +94,8 @@ MyApp.getInitialProps = async ({
       { data: pagesData },
       { data: footerData },
       { data: settings },
-      { data: customPages }
+      { data: customPages },
+      { data: articlesData }
     ]) => {
       return {
         contactsData,
@@ -100,6 +104,7 @@ MyApp.getInitialProps = async ({
         pagesData,
         footerData,
         customPages,
+        articlesData,
         settings,
         lngDict,
         lng
