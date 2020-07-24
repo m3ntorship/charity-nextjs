@@ -10,7 +10,8 @@ import {
   Slide,
   Slider,
   ButtonBack,
-  ButtonNext
+  ButtonNext,
+  DotGroup
 } from 'pure-react-carousel';
 const HeaderCarousel = ({ data }) => {
   const [ref, inView] = useInView({
@@ -96,28 +97,33 @@ const HeaderCarousel = ({ data }) => {
           })}
         </Slider>
         {enableButtons && (
-          <div className="header__carousel__arrows absolute w-full flex text-c000 border-c000 justify-between px-16">
-            <ButtonBack className="rounded-full">
-              <div class="justify-center items-center flex rounded-full border-solid  p-4 border-2 cursor-pointer">
-                <i
-                  className={`fas fa-arrow-${useDirectionalValue(
-                    'left',
-                    'direction'
-                  )}`}
-                ></i>
-              </div>
-            </ButtonBack>
-            <ButtonNext className="rounded-full  ">
-              <div class="justify-center items-center flex rounded-full border-solid  p-4 border-2 cursor-pointer">
-                <i
-                  className={`fas fa-arrow-${useDirectionalValue(
-                    'right',
-                    'direction'
-                  )}`}
-                ></i>
-              </div>
-            </ButtonNext>
-          </div>
+          <>
+            <div className="header__carousel__arrows absolute w-full hidden sm:flex text-c000 border-c000 justify-between px-8 md:px-16">
+              <ButtonBack className="rounded-full">
+                <div class="justify-center items-center flex rounded-full border-solid  p-4 border-2 cursor-pointer">
+                  <i
+                    className={`fas fa-arrow-${useDirectionalValue(
+                      'left',
+                      'direction'
+                    )}`}
+                  ></i>
+                </div>
+              </ButtonBack>
+              <ButtonNext className="rounded-full  ">
+                <div class="justify-center items-center flex rounded-full border-solid  p-4 border-2 cursor-pointer">
+                  <i
+                    className={`fas fa-arrow-${useDirectionalValue(
+                      'right',
+                      'direction'
+                    )}`}
+                  ></i>
+                </div>
+              </ButtonNext>
+            </div>
+            <div className="header-caoursel__carousel__picker absolute bottom-0 flex items-center justify-center w-full py-4">
+              <DotGroup className="header-caoursel_group" />
+            </div>
+          </>
         )}
       </CarouselProvider>
     </section>
