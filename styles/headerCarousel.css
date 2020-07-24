@@ -52,6 +52,26 @@ header .slider .overlay .header__carousel__slide .text .main p {
   border-color: #d55342;
   transition: all 0.2s ease-out;
 }
+.header-caoursel_group {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.header-caoursel_group button {
+  /* background-color: rgb(173, 168, 168); */
+  border: 10px solid #ffffff;
+  margin: 5px;
+  padding: 3px;
+  border-radius: 50%;
+  position: relative;
+  z-index: 9999;
+  outline-style: none;
+}
+
+.header-caoursel_group button:disabled {
+  border: 10px solid #d55342;
+}
 
 @media (max-width: 768px) {
   .header__loader {
