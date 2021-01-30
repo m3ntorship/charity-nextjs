@@ -5,6 +5,9 @@ on:
     branches:
       - master
       - deploy-dev
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+  
 jobs:
 
   deploy_live:
