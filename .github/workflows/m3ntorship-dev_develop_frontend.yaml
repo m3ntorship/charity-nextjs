@@ -1,0 +1,62 @@
+# the code base is not maintainable anymore and I couldn't fix all
+# the migration bugs, so I decided to statically deploy the docker
+# image to the new cluster and never touch this app again :(
+name: statically deploy version dev-b6ac to m3ntorship-dev cluster
+
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  deploy_dev:
+    runs-on: ubuntu-latest
+    steps:
+      # checkout the code commit
+      - name: checkout the code
+        uses: actions/checkout@v1
+      
+      # install kubectl
+      - name: install kubectl
+        uses: azure/setup-kubectl@v1
+
+      # configure kubectl
+      - name: Kubectl configuration
+        shell: bash
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBE_CONFIG_DEV }}" | base64 -d -i > ~/.kube/config
+
+      # install moustache
+      - name: install moustache
+        run: |
+          curl -sSL https://git.io/get-mo -o mo
+          chmod +x mo
+          sudo mv mo /usr/local/bin/
+          echo "works" | mo
+
+      # login to docker
+      - uses: azure/docker-login@v1
+        with:
+          username: ${{ secrets.M3NTORSHIP_DOCKERHUB_USERNAME }}
+          password: ${{ secrets.M3NTORSHIP_DOCKERHUB_PASSWORD }}
+
+      # deploy
+      - name: deploy
+        env:
+          M3_IMAGE: m3ntorshipci/ghiras-frontend
+          M3_DOCKER_FILE: Dockerfile.m3ntorship-dev.frontend
+          M3_VERSION: dev-b6ac
+          M3_DEPLOYMENT_PATH: deploy/frontend-staging
+          TEMP_DIR: temp
+          M3_NAMESPACE: m3ntorship-ghiras-frontend-dev
+          M3_ORGANIZATION: m3ntorship
+          M3_REPOSITORY: charity-nextjs
+          M3_PROJECT: ghiras
+          M3_COMPONENET: frontend
+          M3_ENVIRONMENT: dev
+          M3_REPLICAS: '1'
+          M3_PORT: '3000'
+        run: |
+          mkdir -p $TEMP_DIR
+          for f in $M3_DEPLOYMENT_PATH/apply/*; do mo -u "$f" > $TEMP_DIR/"$(basename $f)"; done
+          kubectl apply -f $TEMP_DIR
