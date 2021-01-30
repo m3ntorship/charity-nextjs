@@ -1,0 +1,5 @@
+.page__wrapper{
+  border: 1px solid white;
+  border-radius: 1rem;
+  box-shadow: -1px -1px 8px -1px rgba(184, 175, 184, 1);
+}

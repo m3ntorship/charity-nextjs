@@ -27,5 +27,8 @@
     "currency": "LE"
   },
   "numbersText": "الأرقام تتحدث",
-  "soon": "قريباً"
+  "soon": "قريباً",
+  "otherPages": {
+    "title": "صفحات أخرى"
+  }
 }
